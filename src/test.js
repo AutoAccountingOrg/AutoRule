@@ -45,7 +45,7 @@ for (const category in list) {
             index++;
 
             const result = CategoryGet(transaction.money, transaction.type, transaction.shopName, transaction.shopItem, transaction.time);
-            if(result===category){
+            if(result.category===category){
                 pass++;
                 console.log(`\x1b[32m[ ${formatLocalTime()} ][ 用例${JSON.stringify(transaction)} ] 测试成功! \x1b[0m`,result)
             }else{

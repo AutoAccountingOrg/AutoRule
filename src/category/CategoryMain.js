@@ -17,7 +17,7 @@ export function get(money, type, shopName, shopItem, time) {
                 if(isTimeInRange("21:30", "06:00",time))return "夜宵";
 
         }
-        return category;
+        return {category:category,book:"默认账本"};
     }
     const publicRule =
         {
