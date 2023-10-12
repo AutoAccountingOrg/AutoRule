@@ -21,7 +21,7 @@ jobs:
             const regexResult = issueTitle.match(/\[([^[]*)\]\[([^\]]*)]/);
             if (regexResult && regexResult.length >= 3) {
               const label = regexResult[1];
-              const title = regexResult[2;
+              const title = regexResult[2];
 
               github.rest.issues.addLabels({
                 issue_number: context.issue.number,
