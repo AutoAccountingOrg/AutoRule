@@ -1,5 +1,3 @@
-name: Extract Label from Title
-
 on:
   issues:
     types:
@@ -18,22 +16,36 @@ jobs:
         with:
           script: |
             const issueTitle = context.payload.issue.title;
-            const regexResult = issueTitle.match(/\[([^[]*)\]\[([^\]]*)]/);
-            if (regexResult && regexResult.length >= 3) {
-              const label = regexResult[1];
-              const title = regexResult[2];
-
+            const regexResult = issueTitle.match(/\[(.*?)\]\[(.*?)\](.*)/);
+            if (regexResult && regexResult.length >= 4) {
               github.rest.issues.addLabels({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                labels: [label]
+                labels: [regexResult[1], regexResult[2], regexResult[3]]
               });
 
               github.rest.issues.update({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: title
+                title: issprefueTitle
+              });
+            } else {
+              // Add a comment to the issue
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: "错误的 issue 名称格式，请按指定格式输入。"
+              });
+
+              // Close the issue and label it as 'invalid'
+              github.rest.issues.update({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'closed',
+                labels: ['invalid']
               });
             }
