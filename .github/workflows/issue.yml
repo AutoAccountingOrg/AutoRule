@@ -1,0 +1,39 @@
+name: Extract Label from Title
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  extract_label:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Extract Label and Title
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueTitle = context.payload.issue.title;
+            const regexResult = issueTitle.match(/\[([^[]*)\]\[([^\]]*)]/);
+            if (regexResult && regexResult.length >= 3) {
+              const label = regexResult[1];
+              const title = regexResult[2;
+
+              github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: [label]
+              });
+
+              github.rest.issues.update({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title
+              });
+            }
