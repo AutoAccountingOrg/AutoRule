@@ -1,4 +1,5 @@
 import ruleModules from "../src/utils/RuleModules";
+import tests from "../src/utils/RuleTests";
 import {test as CategoryTest,get as CategoryGet} from "./category/CategoryMain";
 
 function formatLocalTime() {
@@ -12,23 +13,35 @@ function formatLocalTime() {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-// 调用函数获取并输出格式化后的本地时间
-const formattedTime = formatLocalTime();
+
 
 console.log("\n\n===============自动记账识别规则测试====================")
 let pass = 0, total = 0;
 for (const moduleName in ruleModules) {
     const module = ruleModules[moduleName];
     let index = 0;
-    for (const test of module.test()) {
+    for (const test in tests) {
+
+        if(test.indexOf(moduleName)===-1){
+            continue
+        }
+        const testData = tests[test].default;
+
         total++;
         index++;
-        const result = module.get(test);
+        let result = false
+       try{
+            result = module.get(testData);
+       }catch (e) {
+           console.log(`\x1b[31m[ ${formatLocalTime()} ][ ${moduleName} ][ 用例${index} ] 测试异常! \x1b[0m`,e,testData)
+
+       }
+
         if(result){
             pass++;
             console.log(`\x1b[32m[ ${formatLocalTime()} ][ ${moduleName} ][ 用例${index} ] 测试成功! \x1b[0m`,JSON.stringify(result))
         }else{
-            console.log(`\x1b[31m[ ${formatLocalTime()} ][ ${moduleName} ][ 用例${index} ] 测试失败! \x1b[0m`,test)
+            console.log(`\x1b[31m[ ${formatLocalTime()} ][ ${moduleName} ][ 用例${index} ] 测试失败! \x1b[0m`,testData)
         }
     }
 }

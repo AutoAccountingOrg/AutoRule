@@ -12,6 +12,8 @@ export class RuleObject {
      * @param accountNameTo 转入账户
      * @param fee 手续费
      * @param currency 币种，使用Currency
+     * @param time 时间
+     * @param channel 具体渠道
      */
     constructor( type = BillType.Expend,
                  money = 0.01,
@@ -20,7 +22,9 @@ export class RuleObject {
                  accountNameFrom = "",
                  accountNameTo = "",
                  fee = 0.00,
-                 currency = Currency['人民币']
+                 currency = Currency['人民币'],
+                 time = 0,
+                 channel = ""
     ) {
         /**
          * 账单类型 只有三种
@@ -61,6 +65,15 @@ export class RuleObject {
          * 币种
          */
         this.currency = currency;
+        /**
+         * 该记录发生的时间
+         * @type {number}
+         */
+        this.time = time
+        /**
+         * 渠道
+         */
+        this.channel = channel
 
     }
 

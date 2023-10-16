@@ -19,6 +19,10 @@ module.exports = {
                     loader: 'babel-loader',
                 },
             },
+            {
+                test: /\.txt$/,
+                use: 'raw-loader',
+            },
         ],
     },
 };
