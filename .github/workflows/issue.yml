@@ -29,7 +29,7 @@ jobs:
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: issprefueTitle
+                title: "适配请求："+regexResult[3]
               });
             } else {
               // Add a comment to the issue
