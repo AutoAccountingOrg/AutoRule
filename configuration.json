@@ -30,7 +30,7 @@
     }
   ],
   "template": "${{CHANGELOG}}",
-  "pr_template": "- [**${{TITLE}}**](https://github.com/Auto-Accounting/AutoRule/commit/${{MERGE_SHA}}) by ${{AUTHOR}}",
+  "pr_template": "- **${{TITLE}}**",
   "label_extractor": [
     {
       "pattern": "(\\w+):(.+)",
