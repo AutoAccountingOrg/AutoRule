@@ -30,7 +30,7 @@
     }
   ],
   "template": "${{CHANGELOG}}",
-  "pr_template": "- [**${{TITLE}}**](https://github.com/matteopolak/password/commit/${{MERGE_SHA}}) by ${{AUTHOR}}",
+  "pr_template": "- [**${{TITLE}}**](https://github.com/Auto-Accounting/AutoRule/commit/${{MERGE_SHA}}) by ${{AUTHOR}}",
   "label_extractor": [
     {
       "pattern": "(\\w+):(.+)",
@@ -41,7 +41,7 @@
   "transformers": [
     {
       "pattern": "(\\w+):(.+)",
-      "target": "- $2"
+      "target": "$2"
     }
   ],
   "max_pull_requests": 1000,
