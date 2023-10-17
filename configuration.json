@@ -29,16 +29,18 @@
       "labels": ["dependencies","deps"]
     }
   ],
-  "pr_template": "${{TITLE}}",
+  "template": "${{CHANGELOG}}",
+  "pr_template": "- [**${{TITLE}}**](https://github.com/matteopolak/password/commit/${{MERGE_SHA}}) by ${{AUTHOR}}",
   "label_extractor": [
     {
-      "pattern": "(.*?):(.*?)",
-      "target": "$1"
+      "pattern": "(\\w+):(.+)",
+      "target": "$1",
+      "on_property": "title"
     }
   ],
   "transformers": [
     {
-      "pattern": "(.*?):(.*?)",
+      "pattern": "(\\w+):(.+)",
       "target": "- $2"
     }
   ],
