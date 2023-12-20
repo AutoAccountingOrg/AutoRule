@@ -19,11 +19,12 @@ for (const moduleName in ruleModules) {
         }
         if(result!==null){
             result.ruleName = module.name();
-            console.log(JSON.stringify(result));
+            print(JSON.stringify(result));
             break;
         }
     }
 }
+
 
 
 

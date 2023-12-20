@@ -9,4 +9,4 @@ const money = money || 0,
 
 import {get as CategoryGet} from "./category/CategoryMain";
 
-console.log(CategoryGet(money,type,shopName,shopItem,time));
+print(JSON.stringify(CategoryGet(money,type,shopName,shopItem,time)));
