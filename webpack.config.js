@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+    target: ['web', 'es5'],
     entry: {
         rule: './src/rule.js',
         test: './src/test.js',
@@ -12,13 +13,6 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
-            },
             {
                 test: /\.txt$/,
                 use: 'raw-loader',
