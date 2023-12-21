@@ -36,7 +36,7 @@ module.exports = {
     },
     mode: 'production', // 确保在生产模式下，以启用压缩功能
     optimization: {
-        minimize: false,
+        minimize: true,
         minimizer: [
             new TerserPlugin({
                 terserOptions: {
