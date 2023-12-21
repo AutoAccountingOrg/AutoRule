@@ -1,5 +1,7 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
+
+
 module.exports = {
     target: ['web', 'es5'],
     entry: {
@@ -8,9 +10,11 @@ module.exports = {
         category: './src/category.js',
     },
     output: {
+       // libraryTarget: 'global',
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
+
     module: {
 
         rules: [
@@ -32,7 +36,7 @@ module.exports = {
     },
     mode: 'production', // 确保在生产模式下，以启用压缩功能
     optimization: {
-        minimize: true,
+        minimize: false,
         minimizer: [
             new TerserPlugin({
                 terserOptions: {

@@ -1,21 +1,21 @@
 import {DataType} from "./utils/DataType";
 import ruleModules from "./utils/RuleModules";
 
-const json = json || {}
-const dataType = dataType || 0
-const app = app || ""
+const data = window.data || ''
+const dataType = window.dataType || 0
+const app = window.app || ""
 
 for (const moduleName in ruleModules) {
     const module = ruleModules[moduleName];
     if(module.app() === app){
         let result = null;
         if(
-            (moduleName.startsWith("app_") &&dataType === DataType.App) ||
-            (moduleName.startsWith("helper_") &&dataType === DataType.Helper) ||
-            (moduleName.startsWith("notice_") &&dataType === DataType.Notice) ||
-            (moduleName.startsWith("sms_") &&dataType === DataType.Sms)
+            (moduleName.startsWith("app") &&dataType === DataType.App) ||
+            (moduleName.startsWith("helper") &&dataType === DataType.Helper) ||
+            (moduleName.startsWith("notice") &&dataType === DataType.Notice) ||
+            (moduleName.startsWith("sms") &&dataType === DataType.Sms)
         ){
-             result = module.get();
+             result = module.get(data);
         }
         if(result!==null){
             result.ruleName = module.name();

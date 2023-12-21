@@ -3,6 +3,7 @@ import {RuleObject} from "../../../utils/RuleObject";
 import {Currency} from "../../../utils/Currency";
 import {stripHtml} from "../../../utils/Html";
 
+
 export function get(data) {
     data = JSON.parse(data)
     let pl = JSON.parse(data[0].pl)
