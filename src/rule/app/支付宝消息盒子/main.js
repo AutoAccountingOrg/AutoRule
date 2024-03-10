@@ -4,7 +4,7 @@ import {Currency} from "../../../utils/Currency";
 
 export function get(data) {
     data = JSON.parse(data)
-    let pl = JSON.parse(data.pl)
+    let pl = JSON.parse(data[0].pl)
     if(pl.templateType === "BN"){ //转账收款
         var dataItems = JSON.parse(pl.extraInfo)
         return new RuleObject(
@@ -23,7 +23,7 @@ export function get(data) {
         var dataItems = JSON.parse(pl.extraInfo)
         return new RuleObject(
             BillType.Income,
-            dataItems.content.replace("收款金额￥",""),
+            parseFloat(dataItems.content.replace("收款金额￥","")),
             dataItems.title,
             dataItems.assistMsg2,
             "",
@@ -39,9 +39,5 @@ export function get(data) {
 export function app(){
     return "com.eg.android.AlipayGphone"
 }
-export function name(){
-    return "支付宝消息盒子";
-}
-
 
 

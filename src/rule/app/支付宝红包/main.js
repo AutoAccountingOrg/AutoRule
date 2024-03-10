@@ -10,7 +10,7 @@ export function get(data) {
     var dataItems = JSON.parse(pl.templateJson)
     return new RuleObject(
         BillType.Income,
-        dataItems.statusLine1Text.replace("元",""),
+        parseFloat(dataItems.statusLine1Text.replace("元","")),
         stripHtml(dataItems.subtitle),
         dataItems.title,
         "",
@@ -22,9 +22,6 @@ export function get(data) {
 }
 export function app(){
     return "com.eg.android.AlipayGphone"
-}
-export function name(){
-    return "支付宝红包";
 }
 
 

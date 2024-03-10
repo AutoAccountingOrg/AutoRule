@@ -7,6 +7,6 @@ const money = window.money || 0,
     time = window.time || "00:00";
 
 
-import {get as CategoryGet} from "./category/CategoryMain";
+import {get} from "./category/main";
 
-print(JSON.stringify(CategoryGet(money,type,shopName,shopItem,time)));
+print(JSON.stringify(get(money,type,shopName,shopItem,time)));

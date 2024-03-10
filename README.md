@@ -29,7 +29,7 @@ yarn test
 ├── package.json
 ├── src                                     项目主目录
 │   ├── category
-│   │   ├── CategoryMain.js     自动分类的主要文件（更新该文件）
+│   │   ├── main.js     自动分类的主要文件（更新该文件）
 │   │   └── TestObject.js       测试对象
 │   ├── category.js                   自动分类调用入口
 │   ├── rule                          规则列表

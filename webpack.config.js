@@ -6,7 +6,6 @@ module.exports = {
     target: ['web', 'es5'],
     entry: {
         rule: './src/rule.js',
-        test: './src/test.js',
         category: './src/category.js',
     },
     output: {
@@ -29,9 +28,9 @@ module.exports = {
                 }
             },
             {
-                test: /\.txt$/,
-                use: 'raw-loader',
-            },
+                test: /\.test\.js$/,
+                use: 'null-loader',
+            }
         ],
     },
     mode: 'production', // 确保在生产模式下，以启用压缩功能
