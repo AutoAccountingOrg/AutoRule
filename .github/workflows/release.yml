@@ -40,7 +40,7 @@ jobs:
         run: echo "TAG_VERSION_NAME=v${{ env.VERSION_NAME }}" >> $GITHUB_ENV
       - name: Upload Apks
         id: upload_apk
-        run: pip install requests && python .github/workflows/upload.py
+        run: pip install requests markdown && python .github/workflows/upload.py
         env:
           CHANGELOG: ${{steps.github_release.outputs.changelog}}
           GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
