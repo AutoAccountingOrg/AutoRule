@@ -40,4 +40,8 @@ export function app(){
     return "com.eg.android.AlipayGphone"
 }
 
+export function name(){
+    return "支付宝消费消息"
+}
+
 
