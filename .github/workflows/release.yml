@@ -32,9 +32,21 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v3
         with:
           commitMode: true
-          configuration: "configuration.json"
+          configuration: ".github/workflows/configuration.json"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate Tag Name
+        id: tag_name
+        run: echo "TAG_VERSION_NAME=v${{ env.VERSION_NAME }}" >> $GITHUB_ENV
+      - name: Upload Apks
+        id: upload_apk
+        run: pip install requests && python .github/workflows/upload.py
+        env:
+          CHANGELOG: ${{steps.github_release.outputs.changelog}}
+          GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
+          HOST_ENV_VAR: ${{ secrets.HOST_ENV_VAR }}
+          USERNAME_ENV_VAR: ${{ secrets.USERNAME_ENV_VAR }}
+          PASSWORD_ENV_VAR: ${{ secrets.PASSWORD_ENV_VAR }}
       - name: Create Release
         uses: mikepenz/action-gh-release@v0.2.0-a03 #softprops/action-gh-release
         with:
