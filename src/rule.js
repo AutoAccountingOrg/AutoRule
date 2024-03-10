@@ -17,7 +17,7 @@ for (const moduleName in ruleModules) {
         ){
              result = module.get(data);
         }
-        if(result!==null){
+        if(result!==null && result.money!==null  && parseFloat( result.money) > 0){
             result.ruleName = module.name();
             print(JSON.stringify(result));
             break;
