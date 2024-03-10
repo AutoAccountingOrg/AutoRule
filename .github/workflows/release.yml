@@ -35,9 +35,10 @@ jobs:
           configuration: ".github/workflows/configuration.json"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Generate Tag Name
-        id: tag_name
-        run: echo "TAG_VERSION_NAME=v${{ env.VERSION_NAME }}" >> $GITHUB_ENV
+      - name: Extract tag name
+        id: extract_tag
+        run: echo "TAG_VERSION_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
       - name: Upload Apks
         id: upload_apk
         run: pip install requests markdown && python .github/workflows/upload.py
