@@ -24,8 +24,29 @@ test("支付宝转账收款", () => {
         accountNameFrom: '支付宝余额',
         accountNameTo: '',
         currency: 'CNY',
-        time: 0,
-        channel: '支付宝转账收款'
+        time: 1697209372000,
+        channel: '支付宝收到一笔转账'
+    });
+})
+
+
+test("支付宝余额宝自动转入", () => {
+    const data = `
+                    [{"mk":240350210025200008,"st":1,"isSc":0,"appId":"","mct":1710075625000,"pl":"{\\"templateType\\":\\"BN\\",\\"commandType\\":\\"UPDATE\\",\\"withPushNfc\\":\\"Y\\",\\"expireLink\\":\\"\\",\\"msgType\\":\\"TODO\\",\\"icon\\":\\"https:\\/\\/gw.alipayobjects.com\\/mdn\\/rms_f96971\\/afts\\/img\\/A*leNcS41oUu0AAAAAAAAAAABkARQnAQ\\",\\"link\\":\\"alipays:\\/\\/platformapi\\/startapp?appId=20000003&actionType=toBillDetails&tradeNO=20240310009130125000720001057848&bizType=YEB?tagid=MB_SEND_PUSH_WALLET_NEW\\",\\"businessId\\":\\"PAY_HELPER_CARD_2088032022319723\\",\\"msgId\\":\\"3bd9308035bcda3d517c147b502782ef00972\\",\\"templateCode\\":\\"00059_00094_zfzs001\\",\\"templateId\\":\\"WALLET-BILL@BLPaymentHelper\\",\\"title\\":\\"转账收款到余额宝\\",\\"content\\":\\"{\\\\\\"status\\\\\\":\\\\\\"付款成功\\\\\\",\\\\\\"date\\\\\\":\\\\\\"03月10日\\\\\\",\\\\\\"amountTip\\\\\\":\\\\\\"\\\\\\",\\\\\\"money\\\\\\":\\\\\\"0.01\\\\\\",\\\\\\"unit\\\\\\":\\\\\\"元\\\\\\",\\\\\\"infoTip\\\\\\":\\\\\\"\\\\\\",\\\\\\"failTip\\\\\\":\\\\\\"\\\\\\",\\\\\\"goto\\\\\\":\\\\\\"alipays:\\/\\/platformapi\\/startapp?appId=20000003&actionType=toBillDetails&tradeNO=20240310009130125000720001057848&bizType=YEB\\\\\\",\\\\\\"content\\\\\\":[{\\\\\\"title\\\\\\":\\\\\\"付款方式：\\\\\\",\\\\\\"content\\\\\\":\\\\\\"账户余额\\\\\\"},{\\\\\\"title\\\\\\":\\\\\\"交易对象：\\\\\\",\\\\\\"content\\\\\\":\\\\\\"余额宝\\\\\\"}],\\\\\\"ad\\\\\\":[],\\\\\\"actions\\\\\\":[{\\\\\\"name\\\\\\":\\\\\\"\\\\\\",\\\\\\"url\\\\\\":\\\\\\"\\\\\\"},{\\\\\\"name\\\\\\":\\\\\\"查看详情\\\\\\",\\\\\\"url\\\\\\":\\\\\\"alipays:\\/\\/platformapi\\/startapp?appId=20000003&actionType=toBillDetails&tradeNO=20240310009130125000720001057848&bizType=YEB\\\\\\"}]}\\",\\"linkName\\":\\"\\",\\"bizName\\":\\"支付助手\\",\\"msgCategory\\":\\"bill\\",\\"scm\\":\\"27.gotone.card.3bd9308035bcda3d517c147b502782ef00972.MB_SEND_PH_NEW.null.payment_assist.10090.10099..\\",\\"assistInfo\\":\\"{\\\\\\"showInFriendTab\\\\\\":false,\\\\\\"icon\\\\\\":\\\\\\"https:\\/\\/gw.alipayobjects.com\\/mdn\\/rms_f96971\\/afts\\/img\\/A*ZapXT6AjvG0AAAAAAAAAAABkARQnAQ\\\\\\",\\\\\\"reminderType\\\\\\":\\\\\\"point\\\\\\",\\\\\\"hiddenMsgHeader\\\\\\":false,\\\\\\"title\\\\\\":\\\\\\"支付助手\\\\\\",\\\\\\"reminderTypeModifyEnable\\\\\\":false,\\\\\\"assistId\\\\\\":\\\\\\"payment_assist\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"支付宝资金变动通知\\\\\\"}\\",\\"ih\\":\\"{\\\\\\"extInfo\\\\\\":{},\\\\\\"iid\\\\\\":\\\\\\"105\\\\\\",\\\\\\"ioty\\\\\\":\\\\\\"aor\\\\\\",\\\\\\"itemBasicInfo\\\\\\":{\\\\\\"dn\\\\\\":\\\\\\"服务提醒\\\\\\",\\\\\\"ic\\\\\\":\\\\\\"https:\\/\\/gw.alipayobjects.com\\/zos\\/bmw-prod\\/b96c31e0-64ba-4cbb-9a64-73ff17d701fd.webp\\\\\\",\\\\\\"lk\\\\\\":\\\\\\"alipays:\\/\\/platformapi\\/startapp?appId=20000235&source=friendTab\\\\\\"},\\\\\\"itemUserRelation\\\\\\":{\\\\\\"ilf\\\\\\":\\\\\\"N\\\\\\",\\\\\\"uc\\\\\\":{\\\\\\"top\\\\\\":\\\\\\"0\\\\\\"},\\\\\\"version\\\\\\":0},\\\\\\"ity\\\\\\":\\\\\\"105\\\\\\",\\\\\\"moty\\\\\\":\\\\\\"u\\\\\\",\\\\\\"msgInfo\\\\\\":{\\\\\\"bm\\\\\\":\\\\\\"转账收款到余额宝￥0.01\\\\\\",\\\\\\"cmid\\\\\\":\\\\\\"3bd9308035bcda3d517c147b502782ef00972\\\\\\",\\\\\\"lmt\\\\\\":1710075625230,\\\\\\"msrid\\\\\\":\\\\\\"00059_00094_zfzs001\\\\\\",\\\\\\"ncs\\\\\\":\\\\\\"N\\\\\\",\\\\\\"rps\\\\\\":\\\\\\"num\\\\\\",\\\\\\"sam\\\\\\":\\\\\\"Y\\\\\\",\\\\\\"ssrid\\\\\\":\\\\\\"PAY_HELPER_CARD_2088032022319723\\\\\\",\\\\\\"urn\\\\\\":1}}\\",\\"bizMonitor\\":\\"{\\\\\\"serviceCode\\\\\\":\\\\\\"MB_SEND_PH_NEW\\\\\\",\\\\\\"bizName\\\\\\":\\\\\\"\\\\\\",\\\\\\"createTime\\\\\\":1710075625298,\\\\\\"businessId\\\\\\":\\\\\\"PAY_HELPER_CARD_2088032022319723\\\\\\",\\\\\\"messageId\\\\\\":\\\\\\"3bd9308035bcda3d517c147b502782ef00972\\\\\\",\\\\\\"messageTitle\\\\\\":\\\\\\"转账收款到余额宝\\\\\\",\\\\\\"pid\\\\\\":\\\\\\"2088421945423998\\\\\\",\\\\\\"templateId\\\\\\":\\\\\\"WALLET-BILL@BLPaymentHelper\\\\\\",\\\\\\"status\\\\\\":\\\\\\"\\\\\\"}\\",\\"languageType\\":\\"zh-Hans\\",\\"subscribeConfig\\":\\"0\\",\\"gmtCreate\\":1710075625230,\\"gmtValid\\":2025435625225,\\"operate\\":\\"SEND\\",\\"templateName\\":\\"支付助手\\",\\"homePageTitle\\":\\"转账收款到余额宝￥0.01\\",\\"status\\":\\"\\",\\"extraInfo\\":\\"{\\\\\\"topSubContent\\\\\\":\\\\\\"转入成功\\\\\\",\\\\\\"preValue\\\\\\":\\\\\\"￥\\\\\\",\\\\\\"languageType\\\\\\":\\\\\\"zh-Hans\\\\\\",\\\\\\"isPaymentMsg\\\\\\":true,\\\\\\"assistName2\\\\\\":\\\\\\"交易对象\\\\\\",\\\\\\"assistName3\\\\\\":\\\\\\"\\\\\\",\\\\\\"assistName1\\\\\\":\\\\\\"付款方式\\\\\\",\\\\\\"templateId\\\\\\":\\\\\\"WALLET-FWC@remindNumber\\\\\\",\\\\\\"content\\\\\\":\\\\\\"0.01\\\\\\",\\\\\\"linkName\\\\\\":\\\\\\"\\\\\\",\\\\\\"assistMsg3\\\\\\":\\\\\\"\\\\\\",\\\\\\"sceneExt2\\\\\\":{\\\\\\"sceneUrl\\\\\\":\\\\\\"alipays:\\/\\/platformapi\\/startapp?appId=20000003&actionType=toBillDetails&tradeNO=20240310009130125000720001057848&bizType=YEB\\\\\\",\\\\\\"sceneType\\\\\\":\\\\\\"nativeApp\\\\\\",\\\\\\"sceneName\\\\\\":\\\\\\"余额宝\\\\\\",\\\\\\"sceneIcon\\\\\\":\\\\\\"https:\\/\\/gw.alipayobjects.com\\/mdn\\/rms_b03cca\\/afts\\/img\\/A*YczITbg-JhMAAAAAAAAAAAAAARQnAQ\\\\\\"},\\\\\\"assistMsg2\\\\\\":\\\\\\"余额宝\\\\\\",\\\\\\"assistMsg1\\\\\\":\\\\\\"账户余额\\\\\\",\\\\\\"assistName4\\\\\\":\\\\\\"\\\\\\",\\\\\\"assistMsg5\\\\\\":\\\\\\"\\\\\\",\\\\\\"assistMsg4\\\\\\":\\\\\\"\\\\\\",\\\\\\"assistName5\\\\\\":\\\\\\"\\\\\\",\\\\\\"buttonLink\\\\\\":\\\\\\"\\\\\\",\\\\\\"cardAdInfo\\\\\\":{\\\\\\"p116\\\\\\":{\\\\\\"bizMonitor\\\\\\":{\\\\\\"marketingUniqueId\\\\\\":\\\\\\"MUc971114205524082a70044bb093d79c9\\\\\\",\\\\\\"outBizId\\\\\\":\\\\\\"LIFE_MSG_TEXT|AMTT202303030835710624|-\\\\\\",\\\\\\"marketingRuleId\\\\\\":\\\\\\"MRe1083c96277549ee85623566b185810c\\\\\\",\\\\\\"style\\\\\\":\\\\\\"actionLine\\\\\\",\\\\\\"marketingItemId\\\\\\":\\\\\\"MI315762102f114eefaa7ac93f6b4e4fcb\\\\\\"},\\\\\\"expireTime\\\\\\":1741611625296,\\\\\\"marketingUniqueId\\\\\\":\\\\\\"MUc971114205524082a70044bb093d79c9\\\\\\",\\\\\\"minClientVersion\\\\\\":\\\\\\"10.1.98\\\\\\",\\\\\\"recommendTemplateId\\\\\\":\\\\\\"actionLine\\\\\\",\\\\\\"viewInfo\\\\\\":{\\\\\\"btnName\\\\\\":\\\\\\"支付奖励\\\\\\",\\\\\\"actionType\\\\\\":\\\\\\"link\\\\\\",\\\\\\"tagIcon\\\\\\":\\\\\\"https:\\/\\/mdn.alipayobjects.com\\/huamei_cke3ep\\/afts\\/img\\/A*s1xhTYe-_PQAAAAAAAAAAAAADk1-AQ\\/original\\\\\\",\\\\\\"tagColor\\\\\\":\\\\\\"#FF6011\\\\\\",\\\\\\"actionUrl\\\\\\":\\\\\\"alipays:\\/\\/platformapi\\/startapp?appId=68687805&url=https%3A%2F%2Frender.alipay.com%2Fp%2Fyuyan%2F180020380000000023%2Fhome-page.html%3Fsource%3DLIFE_MSG_TEXT%26chInfo%3DLIFE_MSG_TEXT%26passInfo%3D%7B%22ttci%22%3A%22AMTT202303030835710624%22%2C%22ch%22%3A%22LIFE_MSG_TEXT%22%7D\\\\\\",\\\\\\"tag\\\\\\":\\\\\\"你有2积分可兑好礼\\\\\\"}}}}\\"}"}]`
+
+    let result = get(data);
+
+    expect(result).toEqual({
+        type: 2,
+        money: 0.01,
+        fee: 0,
+        shopName: '转账收款到余额宝',
+        shopItem: '转入成功',
+        accountNameFrom: '支付宝余额',
+        accountNameTo: '余额宝',
+        currency: 'CNY',
+        time: 1710075625000,
+        channel: '支付宝转账收款到余额宝'
     });
 })
 
@@ -41,12 +62,12 @@ test("支付宝收款码收款", () => {
         type: 1,
         money: 0.01,
         fee: 0,
-        shopName: '支付宝商家服务',
-        shopItem: '老顾客消费',
+        shopName: '老顾客消费',
+        shopItem: '今日第4笔收入，共计¥0.04',
         accountNameFrom: '支付宝余额',
         accountNameTo: '',
         currency: 'CNY',
-        time: 0,
+        time: 1703056950000,
         channel: '支付宝收款码收款'
     });
 })

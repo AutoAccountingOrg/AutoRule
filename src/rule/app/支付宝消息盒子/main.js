@@ -7,30 +7,49 @@ export function get(data) {
     let pl = JSON.parse(data[0].pl)
     if(pl.templateType === "BN"){ //转账收款
         var dataItems = JSON.parse(pl.extraInfo)
-        return new RuleObject(
-            BillType.Income,
-            dataItems.money,
-            dataItems.assistMsg1,
-            dataItems.topSubContent,
-            "支付宝余额",
-            "",
-            0,
-            Currency['人民币'],
-            data.mct,
-            "支付宝转账收款"
-        )
+
+        //转账、转账到余额宝都会触发
+        if(pl.link.indexOf("bizType=D_TRANSFER") > 0){
+            return new RuleObject(
+                BillType.Income,
+                parseFloat(dataItems.content),
+                dataItems.assistMsg1,
+                dataItems.topSubContent,
+                "支付宝余额",
+                "",
+                0,
+                Currency['人民币'],
+                data[0].mct,
+                "支付宝"+pl.title
+            )
+        }else if(pl.link.indexOf("bizType=YEB") > 0){
+            return new RuleObject(
+                BillType.Transfer,
+                parseFloat(dataItems.content),
+                pl.title,
+                dataItems.topSubContent,
+                "支付宝余额",
+                dataItems.assistMsg2,
+                0,
+                Currency['人民币'],
+                data[0].mct,
+                "支付宝"+pl.title
+            )
+        }
+
+
     }else if(pl.templateType === "S"){ //收款码收款
         var dataItems = JSON.parse(pl.extraInfo)
         return new RuleObject(
             BillType.Income,
             parseFloat(dataItems.content.replace("收款金额￥","")),
-            dataItems.title,
             dataItems.assistMsg2,
+            dataItems.assistMsg1,
             "支付宝余额",
             "",
             0,
             Currency['人民币'],
-            data.mct,
+            data[0].mct,
             "支付宝收款码收款")
     }
 
