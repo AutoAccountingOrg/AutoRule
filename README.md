@@ -12,6 +12,7 @@
 - 基础环境：`NodeJS` 
 - 包管理器：`yarn`
 - 构建工具：`webpack`
+- 测试工具: `jest`
 - 依赖安装：`yarn install`
 
 使用如下命令构建自动记账规则：
@@ -30,14 +31,15 @@ yarn test
 ├── src                                     项目主目录
 │   ├── category
 │   │   ├── main.js     自动分类的主要文件（更新该文件）
-│   │   └── TestObject.js       测试对象
+│   │   └── main.test.js       测试文件
 │   ├── category.js                   自动分类调用入口
 │   ├── rule                          规则列表
 │   │   ├── app                 App规则
+│   │   │   ├── 支付宝消息盒子  规则名称文件夹
+│   │   │   │   ├── main.js     规则文件
+│   │   │   │   └── main.test.js 测试文件
 │   │   ├── helper              无障碍规则
 │   │   ├── notice              通知规则
-│   │   │   ├── 微信收款到账.js   规则样例
-│   │   │   └── main.js
 │   │   └── sms                 短信规则
 │   ├── rule.js                       自动记账识别规则调用入口
 │   ├── test.js                       自动记账测试调用入口        
