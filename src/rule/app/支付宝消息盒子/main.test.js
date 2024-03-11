@@ -21,8 +21,8 @@ test("支付宝转账收款", () => {
         fee: 0,
         shopName: '从前慢 185******30',
         shopItem: '收到一笔转账',
-        accountNameFrom: '',
-        accountNameTo: '支付宝余额',
+        accountNameFrom: '支付宝余额',
+        accountNameTo: '',
         currency: 'CNY',
         time: 0,
         channel: '支付宝转账收款'
@@ -43,8 +43,8 @@ test("支付宝收款码收款", () => {
         fee: 0,
         shopName: '支付宝商家服务',
         shopItem: '老顾客消费',
-        accountNameFrom: '',
-        accountNameTo: '支付宝余额',
+        accountNameFrom: '支付宝余额',
+        accountNameTo: '',
         currency: 'CNY',
         time: 0,
         channel: '支付宝收款码收款'

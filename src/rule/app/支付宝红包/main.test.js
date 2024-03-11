@@ -14,8 +14,8 @@ test("支付宝红包", () => {
         fee: 0,
         shopName: '来自从前慢',
         shopItem: '普通红包',
-        accountNameFrom: '',
-        accountNameTo: '支付宝余额',
+        accountNameFrom: '支付宝余额',
+        accountNameTo: '',
         currency: 'CNY',
         time: 0,
         channel: '支付宝红包'
