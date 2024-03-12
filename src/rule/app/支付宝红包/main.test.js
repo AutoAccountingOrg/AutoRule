@@ -17,7 +17,7 @@ test("支付宝红包", () => {
         accountNameFrom: '支付宝余额',
         accountNameTo: '',
         currency: 'CNY',
-        time: 0,
+        time: 1702972951000,
         channel: '支付宝红包'
     });
 })

@@ -17,7 +17,7 @@ export function get(data) {
         "",
         0,
         Currency['人民币'],
-        data.mct,
+        data[0].mct,
         "支付宝红包")
 }
 export function app(){
