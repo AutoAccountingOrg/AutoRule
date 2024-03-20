@@ -48,6 +48,19 @@ export function get(data) {
                 data[0].mct,
                 "支付宝"+pl.title
             )
+        }else if(pl.link.indexOf("bizType=TRADEAP") > 0){//支付宝退款
+            return new RuleObject(
+                BillType.Income,
+                parseFloat(dataItems.content),
+                dataItems.sceneExt2.sceneName,
+                dataItems.assistMsg2,
+                dataItems.assistMsg1,
+                "",
+                0,
+                Currency['人民币'],
+                data[0].mct,
+                "支付宝"+pl.title
+            )
         }else if(pl.link.indexOf("bizType=TRADE") > 0){//支付宝消费
             return new RuleObject(
                 BillType.Expend,
