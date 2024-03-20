@@ -35,6 +35,19 @@ export function get(data) {
                 data[0].mct,
                 "支付宝"+pl.title
             )
+        }else if(pl.link.indexOf("bizType=B_TRANSFER") > 0){//支付宝发红包
+            return new RuleObject(
+                BillType.Expend,
+                parseFloat(dataItems.content),
+                dataItems.assistMsg2,
+                "",
+                dataItems.assistMsg1,
+                "",
+                0,
+                Currency['人民币'],
+                data[0].mct,
+                "支付宝"+pl.title
+            )
         }
 
 
@@ -44,8 +57,8 @@ export function get(data) {
             BillType.Income,
             parseFloat(dataItems.content.replace("收款金额￥","")),
             dataItems.assistMsg2,
-            dataItems.assistMsg1,
-            "支付宝余额",
+           "",
+           dataItems.assistMsg1,
             "",
             0,
             Currency['人民币'],
