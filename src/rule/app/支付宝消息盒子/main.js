@@ -77,20 +77,40 @@ export function get(data) {
         }
 
 
-    }else if(pl.templateType === "S"){ //收款码收款
+    }else if(pl.templateType === "S"){
+
+        //console.log(pl)
+        //收款码收款
         var dataItems = JSON.parse(pl.extraInfo)
-        return new RuleObject(
-            BillType.Income,
-            parseFloat(dataItems.content.replace("收款金额￥","")),
-            dataItems.assistMsg2,
-           "",
-           dataItems.assistMsg1,
-            "",
-            0,
-            Currency['人民币'],
-            data[0].mct,
-            "支付宝收款码收款")
-    }
+
+        if(pl.link.indexOf("appId=60000081") > 0){
+            return new RuleObject(
+                BillType.Income,
+                parseFloat(dataItems.content.replace("收款金额￥","")),
+                dataItems.assistMsg2,
+                dataItems.assistMsg1,
+                '支付宝余额',
+                "",
+                0,
+                Currency['人民币'],
+                data[0].mct,
+                "支付宝"+pl.title
+            )
+        }else if(pl.link.indexOf("appId=68688004") > 0)
+            //TODO 理财收益，目前只有正收益，好像是合并发来的？
+            return new RuleObject(
+                BillType.Income,
+                parseFloat(dataItems.mainText.replace("∝","").replace("+","")),
+                pl.title,
+                dataItems.assistMsg1,
+                '余利宝',
+                "",
+                0,
+                Currency['人民币'],
+                data[0].mct,
+                "支付宝"+pl.title)
+        }
+
 
     return null;
 }
