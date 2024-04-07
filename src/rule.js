@@ -27,12 +27,16 @@ for (const moduleName in ruleModules) {
     const findName = `${type}/${app}`
     if(moduleName.indexOf(findName) !== -1 ){
         let result = null;
-        result = module.get(data);
-        if(result!==null && result.money!==null  && parseFloat( result.money) > 0){
-            result.ruleName = moduleName.replace(findName,"").replace("main.js","").replaceAll("/","");
-            print(JSON.stringify(result));
-            break;
-        }
+       try{
+           result = module.get(data);
+           if(result!==null && result.money!==null  && parseFloat( result.money) > 0){
+               result.ruleName = moduleName.replace(findName,"").replace("main.js","").replaceAll("/","");
+               print(JSON.stringify(result));
+               break;
+           }
+       }catch (e) {
+
+       }
     }
 }
 
