@@ -1,6 +1,6 @@
-import {BillType} from "../../../utils/BillType";
-import {RuleObject} from "../../../utils/RuleObject";
-import {Currency} from "../../../utils/Currency";
+import {RuleObject} from "../../../../utils/RuleObject";
+import {BillType} from "../../../../utils/BillType";
+import {Currency} from "../../../../utils/Currency";
 
 export function get(data) {
     data = JSON.parse(data)
@@ -109,17 +109,8 @@ export function get(data) {
                 Currency['人民币'],
                 data[0].mct,
                 "支付宝"+pl.title)
-        }
+    }
 
 
     return null;
 }
-export function app(){
-    return "com.eg.android.AlipayGphone"
-}
-
-export function name(){
-    return "支付宝消费消息"
-}
-
-
