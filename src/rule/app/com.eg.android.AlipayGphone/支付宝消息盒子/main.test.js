@@ -1,9 +1,51 @@
 const { get } = require('./main');
-const fs = require('fs');
-const path = require('path');
+const path = require("path");
+const fs = require("fs");
+
+test("支付宝收款码收款", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '支付宝收款码收款.txt');
+    // 使用readFileSync来同步读取文件内容
+    const data = fs.readFileSync(dataFilePath, 'utf8')
+    let result = get(data);
+
+    expect(result).toEqual({
+        type: 1,
+        money: 0.01,
+        fee: 0,
+        shopName: '**江',
+        shopItem: '商品',
+        accountNameFrom: '余额',
+        accountNameTo: '',
+        currency: 'CNY',
+        time: 1703055625000,
+        channel: '支付宝收款码收款'
+    });
+});
+
+test("支付宝收钱码服务费", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '支付宝收钱码服务费.txt');
+    // 使用readFileSync来同步读取文件内容
+    const data = fs.readFileSync(dataFilePath, 'utf8')
+
+    let result = get(data);
+
+    expect(result).toEqual({
+        type: 0,
+        money: 9.50,
+        fee: 0,
+        shopName: "支付宝(中国)网络技术有限公司",
+        shopItem: "收钱码经营版信用卡收钱服务费[2024011022001425671431559132]",
+        accountNameFrom: "余额",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1704854659000,
+        channel: "支付宝收钱码经营版信用卡收钱服务费"
+    });
+});
+
+
 
 test("支付宝转账收款", () => {
-
     const dataFilePath = path.join(__dirname, 'tests', '支付宝转账收款.txt');
     // 使用readFileSync来同步读取文件内容
     const data = fs.readFileSync(dataFilePath, 'utf8')
@@ -11,107 +53,25 @@ test("支付宝转账收款", () => {
     let result = get(data);
 
     expect(result).toEqual({
-        type: 1,
+        type: 1, // 0为支出，1为收入，2为转账
         money: 0.01,
         fee: 0,
-        shopName: '从前慢 185******30',
-        shopItem: '收到一笔转账',
-        accountNameFrom: '支付宝余额',
-        accountNameTo: '',
-        currency: 'CNY',
-        time: 1697209372000,
-        channel: '支付宝收到一笔转账'
+        shopName: "从前慢",
+        shopItem: "转账",
+        accountNameFrom: "余额",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1710075615000,
+        channel: "支付宝转账收款"
     });
-})
+});
 
-test("支付宝余额宝自动转入", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝余额宝自动转入.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
-        type: 2,
-        money: 0.01,
-        fee: 0,
-        shopName: '转账收款到余额宝',
-        shopItem: '转入成功',
-        accountNameFrom: '支付宝余额',
-        accountNameTo: '余额宝',
-        currency: 'CNY',
-        time: 1710075625000,
-        channel: '支付宝转账收款到余额宝'
-    });
-})
-
-test("支付宝收款码收款", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝收款码收款.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
-        type: 1,
-        money: 0.01,
-        fee: 0,
-        shopName: '老顾客消费',
-        shopItem: '今日第4笔收入，共计¥0.04',
-        accountNameFrom: '支付宝余额',
-        accountNameTo: '',
-        currency: 'CNY',
-        time: 1703056950000,
-        channel: '支付宝支付宝商家服务'
-    });
-})
-
-test("支付宝理财收益", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝理财收益.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
-        type: 1,
-        money: 3.16,
-        fee: 0,
-        shopName: '蚂蚁财富',
-        shopItem: '2024-03-27总资产收益已更新',
-        accountNameFrom: '余利宝',
-        accountNameTo: '',
-        currency: 'CNY',
-        time: 1711609388000,
-        channel: '支付宝蚂蚁财富'
-    });
-})
-
-
-test("支付宝发红包", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝发红包.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
-        type: 0,
-        money: 1,
-        fee: 0,
-        shopName: '支付宝红包',
-        shopItem: '',
-        accountNameFrom: '农业银行储蓄卡(9979)',
-        accountNameTo: '',
-        currency: 'CNY',
-        time: 1710774326000,
-        channel: '支付宝付款成功'
-    });
-})
-
-test("支付宝消费", () => {
+test("支付宝余额转到余额宝", () => {
 
     var data = []
 
-    for (let i = 1; i < 4; i++) {
-        const dataFilePath = path.join(__dirname, 'tests',`支付宝消费${i}.txt`);
+    for (let i = 1; i < 3; i++) {
+        const dataFilePath = path.join(__dirname, 'tests',`支付宝余额转到余额宝${i}.txt`);
 
         data.push(fs.readFileSync(dataFilePath, 'utf8'));
     }
@@ -120,40 +80,28 @@ test("支付宝消费", () => {
 
     const expectResult = [
         {
-            type: 0,
-            money: 48.7,
+            type: 2,
+            money: 0.01,
             fee: 0,
-            shopName: '饿了么',
-            shopItem: '',
-            accountNameFrom: '农业银行储蓄卡(9979)',
-            accountNameTo: '',
-            currency: 'CNY',
-            time: 1710666718000,
-            channel: '支付宝付款成功'
+            shopName: "余额宝",
+            shopItem: "转账收款到余额宝",
+            accountNameFrom: "余额",
+            accountNameTo: "余额宝",
+            currency: "CNY",
+            time: 1710046787000,
+            channel: "支付宝余额转到余额宝"
         },
         {
-            type: 0,
-            money: 183,
+            type: 2,
+            money: 0.01,
             fee: 0,
-            shopName: '滴滴平台第三方油站',
-            shopItem: '',
-            accountNameFrom: '农业银行储蓄卡(9979)',
-            accountNameTo: '',
-            currency: 'CNY',
-            time: 1710680143000,
-            channel: '支付宝付款成功'
-        },
-        {
-            type: 0,
-            money: 169,
-            fee: 0,
-            shopName: '长沙新奥燃气发展有限公司',
-            shopItem: '',
-            accountNameFrom: '花呗',
-            accountNameTo: '',
-            currency: 'CNY',
-            time: 1710655649000,
-            channel: '支付宝付款成功'
+            shopName: "余额宝",
+            shopItem: "转账收款到余额宝",
+            accountNameFrom: "余额",
+            accountNameTo: "余额宝",
+            currency: "CNY",
+            time: 1710075624000,
+            channel: "支付宝余额转到余额宝"
         }
     ]
 
@@ -161,28 +109,27 @@ test("支付宝消费", () => {
         let result = get(data[index]);
         expect(result).toEqual(expectResult[index]);
     }
-})
 
 
-test("支付宝退款", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝退款.txt');
+});
+
+test("余额宝收益发放", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '余额宝收益发放.txt');
     // 使用readFileSync来同步读取文件内容
     const data = fs.readFileSync(dataFilePath, 'utf8')
+
     let result = get(data);
 
     expect(result).toEqual({
         type: 1,
-        money: 29.82,
+        money: 0.01,
         fee: 0,
-        shopName: '上海拉扎斯信息科技有限公司',
-        shopItem: '退款-麻爪爪·酸辣凤爪·卤味小吃(大朗里悦里店)外卖订单',
-        accountNameFrom: '农业银行储蓄卡(9979)',
-        accountNameTo: '',
-        currency: 'CNY',
-        time: 1710669984000,
-        channel: '支付宝退款通知'
+        shopName: "长城基金管理有限公司",
+        shopItem: "余额宝-2024.03.25-收益发放",
+        accountNameFrom: "余额宝",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1711393834000,
+        channel: "支付宝余额宝收益发放"
     });
-})
-
-
-
+});
