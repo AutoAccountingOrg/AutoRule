@@ -1,7 +1,7 @@
-import {BillType} from "../../../utils/BillType";
-import {RuleObject} from "../../../utils/RuleObject";
-import {Currency} from "../../../utils/Currency";
-import {stripHtml} from "../../../utils/Html";
+import {BillType} from "../../../../utils/BillType";
+import {RuleObject} from "../../../../utils/RuleObject";
+import {Currency} from "../../../../utils/Currency";
+import {stripHtml} from "../../../../utils/Html";
 
 
 export function get(data) {
@@ -20,11 +20,5 @@ export function get(data) {
         data[0].mct,
         "支付宝红包")
 }
-export function app(){
-    return "com.eg.android.AlipayGphone"
-}
 
-export function name(){
-    return "支付宝红包"
-}
 

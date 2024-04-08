@@ -35,9 +35,10 @@ yarn test
 │   ├── category.js                   自动分类调用入口
 │   ├── rule                          规则列表
 │   │   ├── app                 App规则
-│   │   │   ├── 支付宝消息盒子  规则名称文件夹
-│   │   │   │   ├── main.js     规则文件
-│   │   │   │   └── main.test.js 测试文件
+│   │   │   ├── com.eg.android.AlipayGphone 支付宝包名                App规则
+│   │   │   │   ├── 支付宝消息盒子  规则名称文件夹
+│   │   │   │   │   ├── main.js     规则文件
+│   │   │   │   │   └── main.test.js 测试文件
 │   │   ├── helper              无障碍规则
 │   │   ├── notice              通知规则
 │   │   └── sms                 短信规则
@@ -68,20 +69,23 @@ yarn test
 4. 推送到你的分支 (`git push origin feature/AmazingFeature`)
 5. 发起合并请求
 
-> 关于Commit的一点小要求：
+> 关于commit的要求：
 
+commit格式采用： :[类型]: [更改内容] #关联issue
+
+例如给issue(#1)编写规则：
+
+```shell
+git commit -m ":sparkles: 新增支付宝消息盒子规则 #1"
 ```
-commit格式采用： [类型] : [更改内容]
 
-feat: 新功能
-fix: 修复问题
-docs: 修改文档
-style: 修改代码格式，不影响代码逻辑
-refactor: 重构代码，理论上不影响现有功能
-perf: 提升性能
-test: 增加修改测试用例
-chore: 修改工具相关（包括但不限于文档、代码生成等）
-deps: 升级依赖
+类型包括：
+```
+art    # 美化界面或者优化体验
+sparkles   # 新功能
+bug    # 修复bug
+memo   # 文档修改
+fire  # 删除代码或文件
 ```
 ## 赞助支持
 
