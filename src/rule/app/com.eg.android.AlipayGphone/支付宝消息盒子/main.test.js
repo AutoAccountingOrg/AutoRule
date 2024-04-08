@@ -16,7 +16,7 @@ test("支付宝转账收款", () => {
         fee: 0,
         shopName: '从前慢 185******30',
         shopItem: '收到一笔转账',
-        accountNameFrom: '支付宝余额',
+        accountNameFrom: '余额',
         accountNameTo: '',
         currency: 'CNY',
         time: 1697209372000,
@@ -34,9 +34,9 @@ test("支付宝余额宝自动转入", () => {
         type: 2,
         money: 0.01,
         fee: 0,
-        shopName: '转账收款到余额宝',
+        shopName: '余额宝',
         shopItem: '转入成功',
-        accountNameFrom: '支付宝余额',
+        accountNameFrom: '账户余额',
         accountNameTo: '余额宝',
         currency: 'CNY',
         time: 1710075625000,
@@ -154,6 +154,18 @@ test("支付宝消费", () => {
             currency: 'CNY',
             time: 1710655649000,
             channel: '支付宝付款成功'
+        },
+        {
+            type: 0,
+            money: 19.90,
+            fee: 0,
+            shopName: '广州市动景计算机科技有限公司',
+            shopItem: '夸克网盘会员(月\/季\/年)',
+            accountNameFrom: '长沙银行储蓄卡(2754)',
+            accountNameTo: '',
+            currency: 'CNY',
+            time: 1712524722000,
+            channel: '支付宝自动扣款成功'
         }
     ]
 
@@ -184,5 +196,24 @@ test("支付宝退款", () => {
     });
 })
 
+test("支付宝预授权消费", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '支付宝预授权消费.txt');
+    // 使用readFileSync来同步读取文件内容
+    const data = fs.readFileSync(dataFilePath, 'utf8')
+    let result = get(data);
+
+    expect(result).toEqual({
+        type: 0,
+        money: 3,
+        fee: 0,
+        shopName: "中国人民人寿保险股份有限公司",
+        shopItem: "",
+        accountNameFrom: "长沙银行储蓄卡(2754)",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1711441569000,
+        channel: "支付宝付款成功"
+    });
+})
 
 
