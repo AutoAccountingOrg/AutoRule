@@ -2,17 +2,41 @@ import {BillType} from "../../../../utils/BillType";
 import {RuleObject} from "../../../../utils/RuleObject";
 import {Currency} from "../../../../utils/Currency";
 
+const processElement = (element, result) => {
+    if (!element.value) {
+        return; 
+    }
+    const elementValue = JSON.parse(element.value);
+
+    switch (element.templateId) {
+        case "BLDetailTitle":
+            result.shopName = elementValue.content;
+            break;
+        case "BLDetailPrice":
+            result.money = parseFloat(elementValue.amount.replace(/[+-]/, ""));
+            const type = elementValue.amount.replace(/\d+\.\d{0,2}/, "");
+            result.type = type === "+" ? BillType.Income : type === "-" ? BillType.Expend : BillType.Transfer;
+            break;
+        case "BLDetailCommon":
+        case "BLH5ProductInfo":
+            if (/商品说明|转账备注/.test(elementValue.title)) {
+                result.shopItem = elementValue.data[0].content;
+            }
+            break;
+    }
+}
+
 export function get(data) {
     data = JSON.parse(data);
-    var extension = data.extension;
-    var fields = data.fields;
+    const extension = data.extension;
+    const fields = data.fields;
 
-    var result = {
+    let result = {
         type: 0,
         money: 0,
         shopName: "",
         shopItem: "",
-        accountNameFrom: "",
+        accountNameFrom: "余额",
         accountNameTo: "",
         fee:0,
         currency:Currency["人民币"],
@@ -20,50 +44,19 @@ export function get(data) {
         channel:""
     };
 
-    for (var i = 0; i < fields.length; i++) {
-        var element = fields[i];
-        if (!element.value) {
-            continue; // 跳过这个元素，继续处理下一个
-        }
-        var elementValue = JSON.parse(element.value);
-
-        if (element.templateId === "BLDetailTitle") {
-            result.shopName = elementValue.content;
-        } else if (element.templateId === "BLDetailPrice") {
-            result.money = parseFloat(elementValue.amount.replace(/[+-]/, ""));
-            var type = elementValue.amount.replace(/\d+\.\d{0,2}/, "");
-            switch (type) {
-                case "+":
-                    result.type = BillType.Income;
-                    break;
-                case "-":
-                    result.type = BillType.Expend;
-                    break;
-                default:
-                    result.type = BillType.Transfer;
-            }
-        } else if (element.templateId === "BLDetailCommon"||element.templateId === "BLH5ProductInfo") {
-            if (/商品说明|转账备注/.test(elementValue.title)) {
-                result.shopItem = elementValue.data[0].content;
-            }
-        }
-    }
+    fields.forEach(element => processElement(element, result));
 
     switch (extension.bizType) {
         case "CHARGE":
-            result.accountNameFrom="余额"
             result.channel = "支付宝收钱码经营版信用卡收钱服务费";
             break;
         case "TRADE":
-            result.accountNameFrom="余额"
             result.channel = "支付宝收款码收款";
             break;
         case "D_TRANSFER":
-            result.accountNameFrom="余额"
             result.channel = "支付宝转账收款";
             break;
         case "YEB":
-            result.accountNameFrom="余额"
             result.accountNameTo = "余额宝";
             result.channel = "支付宝余额转到余额宝";
             break;
@@ -87,6 +80,4 @@ export function get(data) {
         result.currency,
         result.time,
         result.channel);
-
 }
-
