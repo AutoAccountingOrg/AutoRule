@@ -216,4 +216,22 @@ test("支付宝预授权消费", () => {
     });
 })
 
+test("支付宝亲情卡消费", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '支付宝亲情卡支付.txt');
+    // 使用readFileSync来同步读取文件内容
+    const data = fs.readFileSync(dataFilePath, 'utf8')
+    let result = get(data);
 
+    expect(result).toEqual({
+        type: 0,
+        money: 55,
+        fee: 0,
+        shopName: "173******86(未实名)",
+        shopItem: "",
+        accountNameFrom: "北京银行信用购(原花呗)",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1712723745000,
+        channel: "支付宝付款成功"
+    });
+})
