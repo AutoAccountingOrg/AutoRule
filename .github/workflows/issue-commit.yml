@@ -27,7 +27,7 @@ jobs:
                 console.log(`Found issue reference in commit: ${match[0]}`);
                 const issueNumber = parseInt(match[1]);
                 console.log(`Issue number: ${issueNumber}`);
-                await github.issues.update({
+                await github.rest.issues.update({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: issueNumber,
