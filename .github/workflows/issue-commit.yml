@@ -27,12 +27,21 @@ jobs:
                 console.log(`Found issue reference in commit: ${match[0]}`);
                 const issueNumber = parseInt(match[1]);
                 console.log(`Issue number: ${issueNumber}`);
-                await github.rest.issues.update({
+                const issue = await github.rest.issues.get({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  issue_number: issueNumber,
-                  state: "closed"
+                  issue_number: issueNumber
                 });
-                console.log(`Issue ${issueNumber} closed`);
+                if (issue.data.state !== 'closed') {
+                  await github.rest.issues.update({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    state: "closed"
+                  });
+                  console.log(`Issue ${issueNumber} closed`);
+                } else {
+                  console.log(`Issue ${issueNumber} is already closed`);
+                }
               }
             }
