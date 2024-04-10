@@ -54,6 +54,6 @@ export function get(data) {
         0,
         Currency['人民币'],
         parsedData.time,
-        `长沙银行 ${mapItem.title}`
+        `长沙银行${mapItem.title}`
     );
 }
