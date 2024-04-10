@@ -37,6 +37,8 @@ yarn test
 │   │   ├── app                 App规则
 │   │   │   ├── com.eg.android.AlipayGphone 支付宝包名                App规则
 │   │   │   │   ├── 支付宝消息盒子  规则名称文件夹
+│   │   │   │   │   ├── test        测试数据文件夹
+│   │   │   │   │   │   ├──支付宝消费1.txt      测试数据
 │   │   │   │   │   ├── main.js     规则文件
 │   │   │   │   │   └── main.test.js 测试文件
 │   │   ├── helper              无障碍规则
