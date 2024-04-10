@@ -149,6 +149,7 @@ function handleLink(pl, result) {
         case pl.link.includes("bizType=B_TRANSFER"):   //支付宝发红包
         case pl.link.includes("bizType=TRADE"):        //支付宝消费
         case pl.link.includes("bizType=PREAUTHPAY"):   //支付宝预授权消费
+        case pl.link.includes("bizType=PPAY"):         //支付宝亲情卡消费
             result.type = BillType.Expend;
             break;
         case pl.link.includes("bizType=D_TRANSFER"):   //支付宝转账收款

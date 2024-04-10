@@ -1,0 +1,1 @@
+                {"mMap":{"tableName":"AppMessage","description":"账户类型：住房公积金账户\n业务日期：20240410\n业务描述：汇缴[202404]\n业务金额：2154\n账户余额：29625.63","source":"长沙住房公积金","arg":"msgId","type":5,"appId":"","msgId":60287,"title":"公积金账户资金变动提醒"}}
