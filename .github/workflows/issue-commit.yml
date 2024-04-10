@@ -1,0 +1,47 @@
+name: Close Issue on Commit
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  close-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check commit messages for issue references
+        id: commit-check
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commits = await github.rest.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: process.env.GITHUB_SHA
+            });
+            for (const commit of commits.data) {
+              const match = commit.commit.message.match(/#(\d+)/);
+              if (match) {
+                console.log(`Found issue reference in commit: ${match[0]}`);
+                const issueNumber = parseInt(match[1]);
+                console.log(`Issue number: ${issueNumber}`);
+                const issue = await github.rest.issues.get({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber
+                });
+                if (issue.data.state !== 'closed') {
+                  await github.rest.issues.update({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    state: "closed"
+                  });
+                  console.log(`Issue ${issueNumber} closed`);
+                } else {
+                  console.log(`Issue ${issueNumber} is already closed`);
+                }
+              }
+            }
