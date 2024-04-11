@@ -1,9 +1,14 @@
+
 import {BillType} from "../../../../utils/BillType";
 import {RuleObject} from "../../../../utils/RuleObject";
 import {Currency} from "../../../../utils/Currency";
 import {stripHtml} from "../../../../utils/Html";
 
-
+/**
+ * 从给定的数据中提取支付宝红包的相关信息并返回规则对象。
+ * @param {string} data - 包含支付宝红包信息的字符串数据。
+ * @returns {RuleObject} - 包含支付宝红包相关信息的规则对象。
+ */
 export function get(data) {
     data = JSON.parse(data)
     let pl = JSON.parse(data[0].pl)
