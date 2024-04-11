@@ -2,6 +2,11 @@ import {BillType} from "../../../../utils/BillType";
 import {RuleObject} from "../../../../utils/RuleObject";
 import {Currency} from "../../../../utils/Currency";
 
+/**
+ * 解析元素并更新结果对象
+ * @param {Object} element - 要解析的元素对象
+ * @param {Object} result - 结果对象
+ */
 const processElement = (element, result) => {
     try {
         if (!element.value) {
@@ -30,48 +35,74 @@ const processElement = (element, result) => {
     }
 }
 
+/**
+ * 创建结果对象
+ * @param {Object} extension - 扩展对象
+ * @returns {Object} - 结果对象
+ */
+const createResultObject = (extension) => {
+    return {
+        type: 0,
+        money: 0,
+        shopName: "",
+        shopItem: "",
+        accountNameFrom: "余额",
+        accountNameTo: "",
+        fee: 0,
+        currency: Currency["人民币"],
+        time: Number(extension.gmtBizCreateTime),
+        channel: ""
+    };
+}
+
+/**
+ * 处理业务类型并更新结果对象
+ * @param {Object} extension - 扩展对象
+ * @param {Object} result - 结果对象
+ * @returns {boolean} - 是否成功处理业务类型
+ */
+const processBizType = (extension, result) => {
+    switch (extension.bizType) {
+        case "CHARGE":
+            result.channel = "支付宝收钱码经营版信用卡收钱服务费";
+            break;
+        case "TRADE":
+            result.channel = "支付宝收款码收款";
+            break;
+        case "D_TRANSFER":
+            result.channel = "支付宝转账收款";
+            break;
+        case "YEB":
+            result.accountNameTo = "余额宝";
+            result.channel = "支付宝余额转到余额宝";
+            break;
+        case "MINITRANS":
+            result.type = BillType.Income;
+            result.accountNameFrom = "余额宝";
+            result.channel = "支付宝余额宝收益发放";
+            break;
+        default:
+            return false;
+    }
+    return true;
+}
+
+/**
+ * 根据给定的数据获取规则对象
+ * @param {string} data - 要解析的数据
+ * @returns {RuleObject|null} - 解析后的规则对象，如果解析失败则返回null
+ */
 export function get(data) {
     try {
         data = JSON.parse(data);
-        const extension = data.extension;
-        const fields = data.fields;
+        const { extension, fields } = data;
 
-        let result = {
-            type: 0,
-            money: 0,
-            shopName: "",
-            shopItem: "",
-            accountNameFrom: "余额",
-            accountNameTo: "",
-            fee:0,
-            currency:Currency["人民币"],
-            time: Number(extension.gmtBizCreateTime),
-            channel:""
-        };
+        let result = createResultObject(extension);
 
         fields.forEach(element => processElement(element, result));
 
-        switch (extension.bizType) {
-            case "CHARGE":
-                result.channel = "支付宝收钱码经营版信用卡收钱服务费";
-                break;
-            case "TRADE":
-                result.channel = "支付宝收款码收款";
-                break;
-            case "D_TRANSFER":
-                result.channel = "支付宝转账收款";
-                break;
-            case "YEB":
-                result.accountNameTo = "余额宝";
-                result.channel = "支付宝余额转到余额宝";
-                break;
-            case "MINITRANS":
-                result.type = BillType.Income;
-                result.accountNameFrom = "余额宝";
-                result.channel = "支付宝余额宝收益发放";
-                break;
-            default:
-                return null;
+        if (!processBizType(extension, result)) {
+            return null;
         }
 
         return new RuleObject(
