@@ -1,9 +1,13 @@
-// 假设这是原有的导入，这里不做修改
 import { RuleObject } from "../../../../utils/RuleObject";
 import { BillType } from "../../../../utils/BillType";
 import { Currency } from "../../../../utils/Currency";
 
-// 初始化交易信息
+/**
+ * 初始化交易结果对象
+ * @param {Array} data - 交易数据
+ * @param {Object} pl - 交易数据的pl字段
+ * @returns {Object} - 初始化后的交易结果对象
+ */
 function initResult(data, pl) {
     return {
         type: null,
@@ -19,49 +23,55 @@ function initResult(data, pl) {
     };
 }
 
-// 解析交易信息的核心函数
+/**
+ * 解析交易信息的核心函数
+ * @param {Array} data - 交易数据
+ * @returns {RuleObject|null} - 解析后的交易结果对象，如果无法解析则返回null
+ */
 function parseTransaction(data) {
 
     // 解析data
-    try { data = JSON.parse(data);
-    } catch (e) { throw new Error("Invalid data: " + data);}
+    try { data = JSON.parse(data); }
+    catch (e) { throw new Error("Invalid data: " + data); }
 
     // 解析pl
     let pl;
-    try { pl = JSON.parse(data[0].pl);
-    } catch (e) { throw new Error("Invalid pl: " + data[0].pl);}
+    try { pl = JSON.parse(data[0].pl); }
+    catch (e) { throw new Error("Invalid pl: " + data[0].pl); }
 
     // 初始化result
     let result = initResult(data, pl);
 
     // 根据不同的模板类型处理
-    if (pl.templateType === "BN") {
-        parseBN(pl, result);
-    } else if (pl.templateType === "S") {
-        parseS(pl, result);
-    }
+    if (pl.templateType === "BN") { parseBN(pl, result); }
+    else if (pl.templateType === "S") { parseS(pl, result); }
 
     // 若result.type已设置，则返回RuleObject，否则返回null
-    return result.type!==null ? new RuleObject(
-                                    result.type,
-                                    result.money,
-                                    result.shopName, 
-                                    result.shopItem,
-                                    result.accountNameFrom, 
-                                    result.accountNameTo, 
-                                    result.fee, 
-                                    result.currency,
-                                    result.time,
-                                    result.channel) 
-                              : null;
+    return !isNaN(result.type) ?
+        new RuleObject(
+            result.type,
+            result.money,
+            result.shopName,
+            result.shopItem,
+            result.accountNameFrom,
+            result.accountNameTo,
+            result.fee,
+            result.currency,
+            result.time,
+            result.channel)
+        : null;
 }
 
-// 处理BN类型的模板
+/**
+ * 处理BN类型的模板
+ * @param {Object} pl - 解析后的pl对象
+ * @param {Object} result - 解析后的交易结果对象
+ */
 function parseBN(pl, result) {
     // 解析content
     let contentItems;
-    try { contentItems = JSON.parse(pl.content);
-    } catch (e) { throw new Error("Invalid content: " + pl.content); }
+    try { contentItems = JSON.parse(pl.content); }
+    catch (e) { throw new Error("Invalid content: " + pl.content); }
 
     // 处理contentItems.money的逻辑
     let money = parseFloat(contentItems.money);
@@ -69,21 +79,19 @@ function parseBN(pl, result) {
     result.money = money;
 
     // 处理contentItems.content的逻辑
-    try {
-        handleContentItems(contentItems.content, result);
-    } catch (e) {
-        throw new Error("Error handling content items: " + e.message);
-    }
+    try { handleContentItems(contentItems.content, result); }
+    catch (e) { throw new Error("Error handling content items: " + e.message); }
 
     // 处理pl.link的逻辑
-    try {
-        handleLink(pl, result);
-    } catch (e) {
-        throw new Error("Error handling link: " + e.message);
-    }
+    try { handleLink(pl, result); }
+    catch (e) { throw new Error("Error handling link: " + e.message); }
 }
 
-// 处理S类型的模板
+/**
+ * 处理S类型的模板
+ * @param {Object} pl - 解析后的pl对象
+ * @param {Object} result - 解析后的交易结果对象
+ */
 function parseS(pl, result) {
     let dataItems;
     try {
@@ -95,9 +103,8 @@ function parseS(pl, result) {
     if (pl.link.indexOf("appId=60000081") > 0) {
         result.type = BillType.Income;
         let money = parseFloat(dataItems.content.replace("收款金额￥", ""));
-        if (isNaN(money)) {
-            throw new Error("Invalid money: " + dataItems.content);
-        }
+        if (isNaN(money)) { throw new Error("Invalid money: " + dataItems.content); }
+
         result.money = money;
         result.shopName = dataItems.assistMsg2;
         result.shopItem = dataItems.assistMsg1;
@@ -116,7 +123,11 @@ function parseS(pl, result) {
     }
 }
 
-// 处理contentItems.content的逻辑
+/**
+ * 处理contentItems.content的逻辑
+ * @param {Array} contentItems - contentItems数组
+ * @param {Object} result - 解析后的交易结果对象
+ */
 function handleContentItems(contentItems, result) {
     contentItems.forEach(item => {
         switch (item.title) {
@@ -138,13 +149,17 @@ function handleContentItems(contentItems, result) {
     });
 }
 
-// 处理pl.link的逻辑
+/**
+ * 处理pl.link的逻辑
+ * @param {Object} pl - 解析后的pl对象
+ * @param {Object} result - 解析后的交易结果对象
+ */
 function handleLink(pl, result) {
     var dataItems = JSON.parse(pl.extraInfo)
     switch (true) {
         case pl.link.includes("bizType=TRADEAP"):      //支付宝退款
             result.shopName = dataItems.sceneExt2.sceneName;
-            result.type = BillType.Income; 
+            result.type = BillType.Income;
             break;
         case pl.link.includes("bizType=B_TRANSFER"):   //支付宝发红包
         case pl.link.includes("bizType=TRADE"):        //支付宝消费
@@ -165,9 +180,11 @@ function handleLink(pl, result) {
     }
 }
 
-
-
-// 示例调用
+/**
+ * 获取解析后的交易结果对象
+ * @param {Array} data - 交易数据
+ * @returns {RuleObject|null} - 解析后的交易结果对象，如果无法解析则返回null
+ */
 export function get(data) {
     return parseTransaction(data);
 }
