@@ -7,7 +7,7 @@ const SOURCE_NAME_WECHAT = "微信支付";
 const TITLES_WECHAT = ["已支付¥"];
 
 // 定义用于解析文本的正则表达式
-const regexWeChat = /付款金额¥(\d+\.\d{2})\n支付方式(.*?)\n交易状态支付成功，对方已收款/;
+const regexWeChat = /付款金额[¥￥](\d+\.\d{2})\n(支付|付款)方式(.*?)\n(交易状态|收单机构).*/;
 
 /**
  * 解析微信支付文本并返回账单对象
@@ -18,7 +18,7 @@ function parseWeChatText(text) {
     const match = text.match(regexWeChat);
     if (!match) return null;
 
-    const [_, amountText, accountNameFrom] = match;
+    const [_, amountText, _text1, accountNameFrom, _text2] = match;
     const money = parseFloat(amountText);
 
     return {
@@ -41,11 +41,11 @@ export function get(data) {
     let mapItem = data.mMap;
 
 
-    if (mapItem.source !== SOURCE_NAME_WECHAT || !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/,""))) return null;
+    if (mapItem.source !== SOURCE_NAME_WECHAT || !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/, ""))) return null;
 
     const parsedText = parseWeChatText(mapItem.description);
     // 检查解析结果是否有效
-    if (!parsedText || parsedText.type===null) return null;
+    if (!parsedText || parsedText.type === null) return null;
 
     return new RuleObject(
         parsedText.type,
@@ -57,6 +57,6 @@ export function get(data) {
         0,
         Currency['人民币'],
         parsedText.time,
-        `微信支付${mapItem.title.replace(/\d+\.\d{2}/,"")}`
+        `微信支付${mapItem.title.replace(/\d+\.\d{2}/, "")}`
     );
 }

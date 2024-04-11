@@ -1,0 +1,12 @@
+                {
+                    "mMap": {
+                        "tableName": "AppMessage",
+                        "description": "付款金额￥2.00\n付款方式零钱\n收单机构拉卡拉支付股份有限公司",
+                        "source": "微信支付",
+                        "arg": "msgId",
+                        "type": 5,
+                        "appId": "",
+                        "msgId": 60903,
+                        "title": "已支付¥2.00"
+                    }
+                }
