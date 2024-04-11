@@ -9,11 +9,16 @@ const TITLES = ["公积金账户资金变动提醒"];
 // 定义用于解析文本的正则表达式
 const regex = /账户类型：(.*?)\n业务日期：(.*?)\n业务描述：(.*?)\n业务金额：(.*?)\n账户余额：.*/;
 
-// 解析文本并返回解析结果
+/**
+ * 解析文本并返回解析结果。
+ * @param {string} text - 需要解析的文本。
+ * @returns {Object|null} - 解析后的结果对象，如果解析失败则返回null。
+ */
 function parseText(text) {
     let match = text.match(regex);
     if (!match) return null;
 
+    // 解析数据
     let type = match[3].includes("汇缴") ? BillType.Income : null;
     let time = match[2];
     let shopName = SOURCE_NAME;
@@ -21,6 +26,7 @@ function parseText(text) {
     let money = parseFloat(match[4]);
     let accountNameFrom = match[1];
 
+    // 返回解析结果
     return {
         type,
         time,
@@ -31,7 +37,11 @@ function parseText(text) {
     };
 }
 
-// 主函数，处理数据并返回结果
+/**
+ * 从微信公众号长沙住房公积金中解析数据并返回RuleObject对象。
+ * @param {string} data - 包含数据的JSON字符串。
+ * @returns {RuleObject|null} - 解析后的RuleObject对象，如果解析失败则返回null。
+ */
 export function get(data) {
     // 解析数据
     data = JSON.parse(data);
