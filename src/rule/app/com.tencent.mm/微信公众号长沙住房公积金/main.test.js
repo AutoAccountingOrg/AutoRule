@@ -20,6 +20,6 @@ test("长沙住房公积金每月汇缴", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: "20240410",
-        channel: '公积金账户资金变动提醒'
+        channel: '微信[长沙公积金汇缴]'
     });
 })
