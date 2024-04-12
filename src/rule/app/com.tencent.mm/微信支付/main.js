@@ -57,6 +57,6 @@ export function get(data) {
         0,
         Currency['人民币'],
         parsedText.time,
-        `微信支付${mapItem.title.replace(/\d+\.\d{2}/, "")}`
+        mapItem.source
     );
 }
