@@ -122,7 +122,7 @@ function parseS(pl, result) {
         }
         result.money = money;
         result.shopName = pl.title;
-        result.shopItem = dataItems.assistMsg1;
+        result.shopItem = `${dataItems.assistMsg1}（${dataItems.subCgyLeftKey}：${dataItems.subCgyLeftValue.replace("∝", "").replace("∝", "")}；${dataItems.subCgyMiddleKey}：${dataItems.subCgyMiddleValue.replace("∝", "").replace("∝", "")}；${dataItems.subCgyRightKey}：${dataItems.subCgyRightValue.replace("∝", "").replace("∝", "")}）`;
         result.accountNameFrom = '余利宝';
     }
 }
