@@ -19,6 +19,6 @@ test("收钱吧消费通知", () => {
         fee: 0,
         currency: 'CNY',
         time: '',
-        channel: '收钱吧福利社交易完成通知'
+        channel: '微信[收钱吧消费通知]'
     });
 });

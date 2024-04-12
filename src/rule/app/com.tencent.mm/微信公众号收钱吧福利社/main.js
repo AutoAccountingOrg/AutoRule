@@ -23,7 +23,7 @@ export function get(data) {
             0,
             Currency["人民币"],
             "",
-            "收钱吧福利社"+title
+            `微信[收钱吧消费通知]`
         );
     } catch (error) {
         console.error(`Error in getShouqianba function: ${error}`);

@@ -57,6 +57,6 @@ export function get(data) {
         0,
         Currency['人民币'],
         parsedText.time,
-        mapItem.source
+        `微信[${mapItem.source}]`
     );
 }
