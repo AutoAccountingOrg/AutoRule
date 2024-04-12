@@ -18,7 +18,7 @@ test("微信支付扫码付款给个人", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: "",
-        channel: '微信支付'
+        channel: '微信[微信支付]'
     });
 })
 
@@ -38,6 +38,6 @@ test("微信支付扫码付款（第三方收款码）", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: "",
-        channel: '微信支付'
+        channel: '微信[微信支付]'
     });
 })

@@ -18,7 +18,7 @@ test("支付宝收款码收款", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: 1703055625000,
-        channel: '支付宝收款码收款'
+        channel: '支付宝[收钱码收款]'
     });
 });
 
@@ -39,7 +39,7 @@ test("支付宝收钱码服务费", () => {
         accountNameTo: "",
         currency: "CNY",
         time: 1704854659000,
-        channel: "支付宝收钱码经营版信用卡收钱服务费"
+        channel: "支付宝[收钱码服务费]"
     });
 });
 
@@ -62,7 +62,7 @@ test("支付宝转账收款", () => {
         accountNameTo: "",
         currency: "CNY",
         time: 1710075615000,
-        channel: "支付宝转账收款"
+        channel: "支付宝[转账收款]"
     });
 });
 
@@ -89,7 +89,7 @@ test("支付宝余额转到余额宝", () => {
             accountNameTo: "余额宝",
             currency: "CNY",
             time: 1710046787000,
-            channel: "支付宝余额转到余额宝"
+            channel: "支付宝[余额宝转账]"
         },
         {
             type: 2,
@@ -101,7 +101,7 @@ test("支付宝余额转到余额宝", () => {
             accountNameTo: "余额宝",
             currency: "CNY",
             time: 1710075624000,
-            channel: "支付宝余额转到余额宝"
+            channel: "支付宝[余额宝转账]"
         }
     ]
 
@@ -130,6 +130,6 @@ test("余额宝收益发放", () => {
         accountNameTo: "",
         currency: "CNY",
         time: 1711393834000,
-        channel: "支付宝余额宝收益发放"
+        channel: "支付宝[余额宝收益]"
     });
 });
