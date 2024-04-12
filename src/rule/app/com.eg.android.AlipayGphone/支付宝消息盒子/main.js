@@ -42,9 +42,13 @@ function parseTransaction(data) {
     // 初始化result
     let result = initResult(data, pl);
 
-    // 根据不同的模板类型处理
-    if (pl.templateType === "BN") { parseBN(pl, result); }
-    else if (pl.templateType === "S") { parseS(pl, result); }
+    const actions = {
+        "BN": parseBN,
+        "S": parseS
+    };
+    (actions[pl.templateType] || (() => { 
+        console.error(`Unknown templateType: ${pl.templateType}`); 
+    }))(pl, result);
 
     // 若result.type已设置，则返回RuleObject，否则返回null
     return !isNaN(result.type) ?
