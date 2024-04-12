@@ -1,0 +1,12 @@
+{
+    "mMap": {
+        "tableName": "AppMessage",
+        "description": "订单金额：2元\n商品详情：三津汤包雅雀湖店 门店收款\n订单编号：7895223335272483",
+        "source": "收钱吧福利社",
+        "arg": "msgId",
+        "type": 5,
+        "appId": "",
+        "msgId": 60906,
+        "title": "交易完成通知"
+    }
+}
