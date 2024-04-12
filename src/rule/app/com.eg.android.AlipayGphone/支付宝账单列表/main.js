@@ -64,22 +64,22 @@ const createResultObject = (extension) => {
 const processBizType = (extension, result) => {
     switch (extension.bizType) {
         case "CHARGE":
-            result.channel = "支付宝收钱码经营版信用卡收钱服务费";
+            result.channel = "支付宝[收钱码服务费]";
             break;
         case "TRADE":
-            result.channel = "支付宝收款码收款";
+            result.channel = "支付宝[收钱码收款]";
             break;
         case "D_TRANSFER":
-            result.channel = "支付宝转账收款";
+            result.channel = "支付宝[转账收款]";
             break;
         case "YEB":
             result.accountNameTo = "余额宝";
-            result.channel = "支付宝余额转到余额宝";
+            result.channel = "支付宝[余额宝转账]";
             break;
         case "MINITRANS":
             result.type = BillType.Income;
             result.accountNameFrom = "余额宝";
-            result.channel = "支付宝余额宝收益发放";
+            result.channel = "支付宝[余额宝收益]";
             break;
         default:
             return false;

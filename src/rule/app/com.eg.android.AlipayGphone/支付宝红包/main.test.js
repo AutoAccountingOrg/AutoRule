@@ -19,7 +19,7 @@ test("支付宝红包", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: 1702972951000,
-        channel: '支付宝红包'
+        channel: '支付宝[收红包]'
     });
 })
 

@@ -20,7 +20,7 @@ test("支付宝转账收款", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: 1697209372000,
-        channel: '支付宝收到一笔转账'
+        channel: '支付宝[转账收款]'
     });
 })
 
@@ -40,7 +40,7 @@ test("支付宝余额宝自动转入", () => {
         accountNameTo: '余额宝',
         currency: 'CNY',
         time: 1710075625000,
-        channel: '支付宝转账收款到余额宝'
+        channel: "支付宝[转账到余额宝]"
     });
 })
 
@@ -61,7 +61,7 @@ test("支付宝收款码收款", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: 1703056950000,
-        channel: '支付宝支付宝商家服务'
+        channel: '支付宝[收款码收款]'
     });
 })
 
@@ -81,7 +81,7 @@ test("支付宝理财收益", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: 1711609388000,
-        channel: '支付宝蚂蚁财富'
+        channel: '支付宝[理财收益]'
     });
 })
 
@@ -102,7 +102,7 @@ test("支付宝发红包", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: 1710774326000,
-        channel: '支付宝付款成功'
+        channel: '支付宝[发红包]'
     });
 })
 
@@ -129,7 +129,7 @@ test("支付宝消费", () => {
             accountNameTo: '',
             currency: 'CNY',
             time: 1710666718000,
-            channel: '支付宝付款成功'
+            channel: '支付宝[消费]'
         },
         {
             type: 0,
@@ -141,7 +141,7 @@ test("支付宝消费", () => {
             accountNameTo: '',
             currency: 'CNY',
             time: 1710680143000,
-            channel: '支付宝付款成功'
+            channel: '支付宝[消费]'
         },
         {
             type: 0,
@@ -153,7 +153,7 @@ test("支付宝消费", () => {
             accountNameTo: '',
             currency: 'CNY',
             time: 1710655649000,
-            channel: '支付宝付款成功'
+            channel: '支付宝[消费]'
         },
         {
             type: 0,
@@ -165,7 +165,7 @@ test("支付宝消费", () => {
             accountNameTo: '',
             currency: 'CNY',
             time: 1712524722000,
-            channel: '支付宝自动扣款成功'
+            channel: '支付宝[消费]'
         }
     ]
 
@@ -192,7 +192,7 @@ test("支付宝退款", () => {
         accountNameTo: '',
         currency: 'CNY',
         time: 1710669984000,
-        channel: '支付宝退款通知'
+        channel: '支付宝[退款]'
     });
 })
 
@@ -212,7 +212,7 @@ test("支付宝预授权消费", () => {
         accountNameTo: "",
         currency: "CNY",
         time: 1711441569000,
-        channel: "支付宝付款成功"
+        channel:    "支付宝[预授权消费]"
     });
 })
 
@@ -232,6 +232,26 @@ test("支付宝亲情卡消费", () => {
         accountNameTo: "",
         currency: "CNY",
         time: 1712723745000,
-        channel: "支付宝付款成功"
+        channel:   "支付宝[亲情卡消费]"
     });
 })
+
+test("支付宝余利宝收益", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '支付宝余利宝收益.txt');
+    // 使用readFileSync来同步读取文件内容
+    const data = fs.readFileSync(dataFilePath, 'utf8')
+    let result = get(data);
+
+    expect(result).toEqual({
+        type: 1,
+        money: 9.49,
+        fee: 0,
+        shopName: "余利宝",
+        shopItem: "04-08你的余利宝收益已发放",
+        accountNameFrom: "余利宝",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1712638021000,
+        channel:   "支付宝[余利宝收益]"
+    });
+});

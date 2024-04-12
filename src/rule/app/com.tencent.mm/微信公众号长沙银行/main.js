@@ -63,6 +63,6 @@ export function get(data) {
         0,
         Currency['人民币'],
         parsedData.time,
-        `长沙银行${mapItem.title}`
+        `微信[长沙银行交易通知]`
     );
 }
