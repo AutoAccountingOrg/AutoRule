@@ -1,6 +1,6 @@
-import {BillType} from "../../../../utils/BillType";
-import {RuleObject} from "../../../../utils/RuleObject";
-import {Currency} from "../../../../utils/Currency";
+import { BillType } from "../../../../utils/BillType";
+import { RuleObject } from "../../../../utils/RuleObject";
+import { Currency } from "../../../../utils/Currency";
 
 /**
  * 解析元素并更新结果对象
@@ -10,7 +10,7 @@ import {Currency} from "../../../../utils/Currency";
 const processElement = (element, result) => {
     try {
         if (!element.value) {
-            return; 
+            return;
         }
         const elementValue = JSON.parse(element.value);
 

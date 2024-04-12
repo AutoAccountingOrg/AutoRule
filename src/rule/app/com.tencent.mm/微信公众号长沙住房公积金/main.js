@@ -25,6 +25,7 @@ function parseText(text) {
     let shopItem = match[3];
     let money = parseFloat(match[4]);
     let accountNameFrom = match[1];
+    let channel = match[3].includes("汇缴") ? "微信[长沙公积金汇缴]":"";
 
     // 返回解析结果
     return {
@@ -33,7 +34,8 @@ function parseText(text) {
         shopName,
         shopItem,
         money,
-        accountNameFrom
+        accountNameFrom,
+        channel
     };
 }
 
@@ -66,6 +68,6 @@ export function get(data) {
         0,
         Currency['人民币'],
         parsedData.time,
-        mapItem.title
+        parsedData.channel
     );
 }
