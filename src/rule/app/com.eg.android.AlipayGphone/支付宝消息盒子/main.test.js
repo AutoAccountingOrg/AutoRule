@@ -76,7 +76,7 @@ test("支付宝理财收益", () => {
         money: 3.16,
         fee: 0,
         shopName: '蚂蚁财富',
-        shopItem: '2024-03-27总资产收益已更新',
+        shopItem: '2024-03-27总资产收益已更新（灵活取用：+3.16；稳健理财：-0.01；进阶理财：+0.01）',
         accountNameFrom: '余利宝',
         accountNameTo: '',
         currency: 'CNY',
