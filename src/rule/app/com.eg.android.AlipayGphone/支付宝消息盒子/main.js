@@ -46,8 +46,8 @@ function parseTransaction(data) {
         "BN": parseBN,
         "S": parseS
     };
-    (actions[pl.templateType] || (() => { 
-        console.error(`Unknown templateType: ${pl.templateType}`); 
+    (actions[pl.templateType] || (() => {
+        console.error(`Unknown templateType: ${pl.templateType}`);
     }))(pl, result);
 
     // 若result.type已设置，则返回RuleObject，否则返回null
@@ -82,13 +82,13 @@ function parseBN(pl, result) {
     if (isNaN(money)) { throw new Error("Invalid money: " + contentItems.money); }
     result.money = money;
 
-    // 处理contentItems.content的逻辑
-    try { handleContentItems(contentItems.content, result); }
-    catch (e) { throw new Error("Error handling content items: " + e.message); }
-
     // 处理pl.link的逻辑
     try { handleLink(pl, result); }
     catch (e) { throw new Error("Error handling link: " + e.message); }
+
+    // 处理contentItems.content的逻辑
+    try { handleContentItems(contentItems.content, result); }
+    catch (e) { throw new Error("Error handling content items: " + e.message); }
 }
 
 /**
@@ -113,6 +113,7 @@ function parseS(pl, result) {
         result.shopName = dataItems.assistMsg2;
         result.shopItem = dataItems.assistMsg1;
         result.accountNameFrom = '支付宝余额';
+        result.channel = '支付宝[收款码收款]';
     } else if (pl.link.indexOf("appId=68688004") > 0) {
         // 理财收益
         result.type = BillType.Income;
@@ -124,6 +125,19 @@ function parseS(pl, result) {
         result.shopName = pl.title;
         result.shopItem = `${dataItems.assistMsg1}（${dataItems.subCgyLeftKey}：${dataItems.subCgyLeftValue.replace("∝", "").replace("∝", "")}；${dataItems.subCgyMiddleKey}：${dataItems.subCgyMiddleValue.replace("∝", "").replace("∝", "")}；${dataItems.subCgyRightKey}：${dataItems.subCgyRightValue.replace("∝", "").replace("∝", "")}）`;
         result.accountNameFrom = '余利宝';
+        result.channel = '支付宝[理财收益]';
+    } else if (pl.link.indexOf("appId=66666708") > 0) {
+        // 余利宝收益
+        result.type = BillType.Income;
+        let money = parseFloat(dataItems.content);
+        if (isNaN(money)) {
+            throw new Error("Invalid money: " + dataItems.content);
+        }
+        result.money = money;
+        result.shopName = pl.title;
+        result.shopItem = `${dataItems.assistMsg1}${dataItems.homePageTitle}`;
+        result.accountNameFrom = '余利宝';
+        result.channel = '支付宝[余利宝收益]';
     }
 }
 
@@ -159,28 +173,26 @@ function handleContentItems(contentItems, result) {
  * @param {Object} result - 解析后的交易结果对象
  */
 function handleLink(pl, result) {
-    var dataItems = JSON.parse(pl.extraInfo)
-    switch (true) {
-        case pl.link.includes("bizType=TRADEAP"):      //支付宝退款
-            result.shopName = dataItems.sceneExt2.sceneName;
-            result.type = BillType.Income;
-            break;
-        case pl.link.includes("bizType=B_TRANSFER"):   //支付宝发红包
-        case pl.link.includes("bizType=TRADE"):        //支付宝消费
-        case pl.link.includes("bizType=PREAUTHPAY"):   //支付宝预授权消费
-        case pl.link.includes("bizType=PPAY"):         //支付宝亲情卡消费
-            result.type = BillType.Expend;
-            break;
-        case pl.link.includes("bizType=D_TRANSFER"):   //支付宝转账收款
-            result.accountNameFrom = "余额";
-            result.shopItem = pl.title;
-            result.type = BillType.Income;
-            break;
-        case pl.link.includes("bizType=YEB"):          //转账到余额宝
-            result.type = BillType.Transfer;
-            result.shopItem = dataItems.topSubContent;
-            result.accountNameTo = "余额宝";
-            break;
+    const dataItems = JSON.parse(pl.extraInfo);
+    const bizType = pl.link.replace(/.*&bizType=(.*?)[&\?].*/, "$1");
+    const bizTypeMap = {
+        "TRADEAP": ["退款", dataItems.sceneExt2.sceneName, BillType.Income],
+        "B_TRANSFER": ["发红包", "", BillType.Expend],
+        "TRADE": ["消费", "", BillType.Expend],
+        "PREAUTHPAY": ["预授权消费", "", BillType.Expend],
+        "PPAY": ["亲情卡消费", "", BillType.Expend],
+        "D_TRANSFER": ["转账收款", pl.title, BillType.Income, "余额","",pl.title],
+        "YEB": ["转账到余额宝", dataItems.topSubContent, BillType.Transfer, "", "余额宝",dataItems.topSubContent]
+    };
+
+    if (bizTypeMap[bizType]) {
+        const [channel, shopName, type, accountNameFrom = "", accountNameTo = "",shopItem] = bizTypeMap[bizType];
+        result.channel = `支付宝[${channel}]`||result.channel;
+        result.shopName = shopName||result.shopName;
+        result.type = type;
+        result.accountNameFrom = accountNameFrom||result.accountNameFrom;
+        result.accountNameTo = accountNameTo||result.accountNameTo;
+        result.shopItem = shopItem||result.shopItem;
     }
 }
 
