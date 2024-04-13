@@ -31,7 +31,7 @@ const processElement = (element, result) => {
                 break;
         }
     } catch (error) {
-        console.error(`Error processing element: ${error}`);
+        throw new error(`[支付宝账单] Error processing element: ${error}`);
     }
 }
 
@@ -120,6 +120,6 @@ export function get(data) {
             result.time,
             result.channel);
     } catch (error) {
-        console.error(`Error in get function: ${error}`);
+        throw new error(`[支付宝账单] get function: ${error}`);
     }
 }

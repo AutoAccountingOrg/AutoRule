@@ -171,7 +171,8 @@ test("支付宝亲情卡消费", () => testAnkio(  '支付宝亲情卡支付',[{
     }])
 )
 
-test("支付宝余利宝收益", () => testAnkio( '支付宝余利宝收益',[{
+test("支付宝余利宝收益", () => testAnkio( '支付宝余利宝收益',[
+    {
         type: 1,
         money: 9.49,
         fee: 0,
@@ -181,18 +182,19 @@ test("支付宝余利宝收益", () => testAnkio( '支付宝余利宝收益',[{
         accountNameTo: "",
         currency: "CNY",
         time: 1712638021000,
-        channel:   "支付宝[余利宝收益]"
-    },{
-        type: 1, // 假设1表示收入
-        money: 3.16, // 从"+3.16"中提取出3.16
-        fee: 0, // 假设没有费用
-        shopName: "余利宝", // 从文件内容中提取
-        shopItem: "04-10你的余利宝收益已发放", // 从文件内容中提取
-        accountNameFrom: "余利宝", // 假设收益来自余利宝
-        accountNameTo: "", // 假设没有特定的接收账户
-        currency: "CNY", // 假设货币是人民币
-        time: 1712805886000, // 从"gmtCreate"中提取
-        channel: "支付宝[余利宝收益]" // 假设渠道是"支付宝[余利宝收益]"
-    }])
-)
+        channel: "支付宝[余利宝收益]"
+    },
+    {
+        type: 1,
+        money: 3.16,
+        fee: 0,
+        shopName: "余利宝",
+        shopItem: "04-10你的余利宝收益已发放",
+        accountNameFrom: "余利宝",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1712805886000,
+        channel: "支付宝[余利宝收益]"
+    }
+]))
 

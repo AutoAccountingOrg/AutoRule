@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "付款金额￥6.20\n付款方式零钱通\n收单机构广州合利宝支付科技有限公司",
+    "source": "微信支付",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 98535,
+    "title": "已支付¥6.20"
+  }
+}
