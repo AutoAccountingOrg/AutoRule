@@ -4,53 +4,68 @@ import { Currency } from "../../../../utils/Currency";
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = "微信支付";
-const TITLES_WECHAT = ["已支付¥"];
+const TITLES_WECHAT = ["已支付¥", "已扣费¥", "微信支付收款元"];
 
-// 定义用于解析文本的正则表达式
-const regexWeChat = /付款金额[¥￥](\d+\.\d{2})\n(支付|付款)方式(.*?)\n(交易状态|收单机构).*/;
+// 正则表达式和处理函数的映射关系
+const regexMap = new Map([
+    [/付款金额¥(\d+\.\d{2})\n支付方式(.*?)\n交易状态.*/, (match) => ({
+        money: parseFloat(match[1]),
+        accountNameFrom: match[2],
+        type: BillType.Expend
+    })],
+    [/付款金额￥(\d+\.\d{2})\n付款方式(.*?)\n收单机构.*/, (match) => ({
+        money: parseFloat(match[1]),
+        accountNameFrom: match[2],
+        type: BillType.Expend
+    })],
+    [/扣费金额￥(\d+\.\d{2})\n扣费服务(.*?)\n扣费内容(.*?)\n支付方式(.*?)\n收单机构.*/, (match) => ({
+        money: parseFloat(match[1]),
+        accountNameFrom: match[4],
+        shopName: match[2],
+        shopItem: match[3],
+        type: BillType.Expend
+    })],
+    [/收款金额￥(\d+\.\d{2})\n汇总(.*?)\n备注.*/, (match) => ({
+        money: parseFloat(match[1]),
+        type: BillType.Income,
+        shopItem: match[2],
+        accountNameFrom: "零钱"
+    })]
+]);
 
 /**
- * 解析微信支付文本并返回账单对象
- * @param {string} text - 微信支付文本
- * @returns {Object|null} - 账单对象，如果解析失败则返回null
+ * 解析微信支付文本
+ * @param {string} text - 需要解析的文本
+ * @returns {Object|null} - 解析结果对象，如果解析失败则返回null
  */
 function parseWeChatText(text) {
-    const match = text.match(regexWeChat);
-    if (!match) return null;
-
-    const [_, amountText, _text1, accountNameFrom, _text2] = match;
-    const money = parseFloat(amountText);
-
-    return {
-        type: BillType.Expend,
-        time: "", // 时间在这个消息中没有提供
-        shopItem: "",
-        money,
-        accountNameFrom
-    };
+    for (let [regex, handler] of regexMap) {
+        const match = text.match(regex);
+        if (match) {
+            return handler(match);
+        }
+    }
+    return null;
 }
 
 /**
- * 根据数据获取微信支付账单对象
- * @param {string} data - 数据字符串
- * @returns {RuleObject|null} - 微信支付账单对象，如果数据不符合规则则返回null
+ * 获取规则对象
+ * @param {string} data - JSON格式的数据
+ * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
 export function get(data) {
-    // 解析数据
-    data = JSON.parse(data);
-    let mapItem = data.mMap;
-
-
-    if (mapItem.source !== SOURCE_NAME_WECHAT || !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/, ""))) return null;
+    const mapItem = JSON.parse(data).mMap;
+    if (mapItem.source !== SOURCE_NAME_WECHAT ||
+        !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/, "")))
+        return null;
 
     const parsedText = parseWeChatText(mapItem.description);
-    // 检查解析结果是否有效
     if (!parsedText || parsedText.type === null) return null;
 
     return new RuleObject(
         parsedText.type,
         parsedText.money,
-        "",
+        parsedText.shopName,
         parsedText.shopItem,
         parsedText.accountNameFrom,
         "",
