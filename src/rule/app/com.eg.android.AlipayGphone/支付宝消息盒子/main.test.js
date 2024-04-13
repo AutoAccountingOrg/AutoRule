@@ -1,16 +1,10 @@
 const { get } = require('./main');
-const fs = require('fs');
-const path = require('path');
+const {testAnkio, testAnkioInit} = require("../../../../tests/TestUtils");
+const {DataType} = require("../../../../utils/DataType");
 
-test("支付宝转账收款", () => {
-
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝转账收款.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
+testAnkioInit(get,__dirname,DataType.App,"com.eg.android.AlipayGphone")
+test("支付宝转账收款",()=> testAnkio("支付宝转账收款", [
+    {
         type: 1,
         money: 0.01,
         fee: 0,
@@ -21,16 +15,12 @@ test("支付宝转账收款", () => {
         currency: 'CNY',
         time: 1697209372000,
         channel: '支付宝[转账收款]'
-    });
-})
+    }
+])
+)
 
-test("支付宝余额宝自动转入", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝余额宝自动转入.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝余额宝自动转入", ()=> testAnkio("支付宝余额宝自动转入", [
+    {
         type: 2,
         money: 0.01,
         fee: 0,
@@ -41,17 +31,10 @@ test("支付宝余额宝自动转入", () => {
         currency: 'CNY',
         time: 1710075625000,
         channel: "支付宝[转账到余额宝]"
-    });
-})
+    }
+]))
 
-test("支付宝收款码收款", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝收款码收款.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝收款码收款", () => testAnkio('支付宝收款码收款',[{
         type: 1,
         money: 0.01,
         fee: 0,
@@ -62,16 +45,10 @@ test("支付宝收款码收款", () => {
         currency: 'CNY',
         time: 1703056950000,
         channel: '支付宝[收款码收款]'
-    });
-})
+    }])
+)
 
-test("支付宝理财收益", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝理财收益.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝理财收益", ()  => testAnkio('支付宝理财收益',[{
         type: 1,
         money: 3.16,
         fee: 0,
@@ -82,17 +59,11 @@ test("支付宝理财收益", () => {
         currency: 'CNY',
         time: 1711609388000,
         channel: '支付宝[理财收益]'
-    });
-})
+    }])
+)
 
 
-test("支付宝发红包", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝发红包.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝发红包", () => testAnkio( '支付宝发红包',[{
         type: 0,
         money: 1,
         fee: 0,
@@ -103,22 +74,10 @@ test("支付宝发红包", () => {
         currency: 'CNY',
         time: 1710774326000,
         channel: '支付宝[发红包]'
-    });
-})
+    }])
+)
 
-test("支付宝消费", () => {
-
-    var data = []
-
-    for (let i = 1; i < 4; i++) {
-        const dataFilePath = path.join(__dirname, 'tests',`支付宝消费${i}.txt`);
-
-        data.push(fs.readFileSync(dataFilePath, 'utf8'));
-    }
-
-
-
-    const expectResult = [
+test("支付宝消费", () => testAnkio( '支付宝消费',[
         {
             type: 0,
             money: 48.7,
@@ -167,22 +126,10 @@ test("支付宝消费", () => {
             time: 1712524722000,
             channel: '支付宝[消费]'
         }
-    ]
+    ])
+)
 
-    for (const index in data) {
-        let result = get(data[index]);
-        expect(result).toEqual(expectResult[index]);
-    }
-})
-
-
-test("支付宝退款", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝退款.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝退款", () => testAnkio( '支付宝退款',[{
         type: 1,
         money: 29.82,
         fee: 0,
@@ -193,16 +140,10 @@ test("支付宝退款", () => {
         currency: 'CNY',
         time: 1710669984000,
         channel: '支付宝[退款]'
-    });
-})
+    }])
+)
 
-test("支付宝预授权消费", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝预授权消费.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝预授权消费", () => testAnkio( '支付宝预授权消费',[{
         type: 0,
         money: 3,
         fee: 0,
@@ -213,16 +154,10 @@ test("支付宝预授权消费", () => {
         currency: "CNY",
         time: 1711441569000,
         channel:    "支付宝[预授权消费]"
-    });
-})
+    }])
+)
 
-test("支付宝亲情卡消费", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝亲情卡支付.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝亲情卡消费", () => testAnkio(  '支付宝亲情卡支付',[{
         type: 0,
         money: 55,
         fee: 0,
@@ -233,16 +168,10 @@ test("支付宝亲情卡消费", () => {
         currency: "CNY",
         time: 1712723745000,
         channel:   "支付宝[亲情卡消费]"
-    });
-})
+    }])
+)
 
-test("支付宝余利宝收益", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝余利宝收益.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝余利宝收益", () => testAnkio( '支付宝余利宝收益',[{
         type: 1,
         money: 9.49,
         fee: 0,
@@ -253,16 +182,7 @@ test("支付宝余利宝收益", () => {
         currency: "CNY",
         time: 1712638021000,
         channel:   "支付宝[余利宝收益]"
-    });
-});
-
-test("支付宝余利宝收益2", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝余利宝收益2.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
-
-    expect(result).toEqual({
+    },{
         type: 1, // 假设1表示收入
         money: 3.16, // 从"+3.16"中提取出3.16
         fee: 0, // 假设没有费用
@@ -273,5 +193,6 @@ test("支付宝余利宝收益2", () => {
         currency: "CNY", // 假设货币是人民币
         time: 1712805886000, // 从"gmtCreate"中提取
         channel: "支付宝[余利宝收益]" // 假设渠道是"支付宝[余利宝收益]"
-    });
-})
+    }])
+)
+

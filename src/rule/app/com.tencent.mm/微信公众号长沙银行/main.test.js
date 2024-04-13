@@ -1,16 +1,10 @@
 const { get } = require('./main');
-const fs = require('fs');
-const path = require('path');
+const {testAnkioInit, testAnkio} = require("../../../../tests/TestUtils");
+const {DataType} = require("../../../../utils/DataType");
 
-test("长沙住房公积金每月汇缴", () => {
-
-    const dataFilePath = path.join(__dirname, 'tests', '长沙银行支付宝支付取出.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
+testAnkioInit(get,__dirname,DataType.App,"com.tencent.mm")
+test("长沙银行支付宝支付取出", () => testAnkio('长沙银行支付宝支付取出',[
+    {
         type: 0,
         money: 200,
         fee: 0,
@@ -21,5 +15,5 @@ test("长沙住房公积金每月汇缴", () => {
         currency: 'CNY',
         time: "2024年04月10日09:03",
         channel: '微信[长沙银行交易通知]'
-    });
-})
+    }
+]))
