@@ -32,7 +32,7 @@ function parseTransaction(data) {
 
     // 解析data
     try { data = JSON.parse(data); }
-    catch (e) { throw new Error("Invalid data: " + data); }
+    catch (e) { throw new Error("[支付宝消息盒子] Invalid data: " + data); }
 
     // 解析pl
     let pl = JSON.parse(data[0].pl);
@@ -48,7 +48,7 @@ function parseTransaction(data) {
         "S": parseS
     };
     (actions[pl.templateType] || (() => {
-        console.error(`Unknown templateType: ${pl.templateType}`);
+        console.error(`[支付宝消息盒子] Unknown templateType: ${pl.templateType}`);
     }))(pl, result);
 
     // 若result.type已设置，则返回RuleObject，否则返回null
@@ -76,20 +76,20 @@ function parseBN(pl, result) {
     // 解析content
     let contentItems;
     try { contentItems = JSON.parse(pl.content); }
-    catch (e) { throw new Error("Invalid content: " + pl.content); }
+    catch (e) { throw new Error("[支付宝消息盒子] Invalid content: " + pl.content); }
 
     // 处理contentItems.money的逻辑
     let money = parseFloat(contentItems.money);
-    if (isNaN(money)) { throw new Error("Invalid money: " + contentItems.money); }
+    if (isNaN(money)) { throw new Error("[支付宝消息盒子] Invalid money: " + contentItems.money); }
     result.money = money;
 
     // 处理pl.link的逻辑
     try { handleLink(pl, result); }
-    catch (e) { throw new Error("Error handling link: " + e.message); }
+    catch (e) { throw new Error("[支付宝消息盒子] Error handling link: " + e.message); }
 
     // 处理contentItems.content的逻辑
     try { handleContentItems(contentItems.content, result); }
-    catch (e) { throw new Error("Error handling content items: " + e.message); }
+    catch (e) { throw new Error("[支付宝消息盒子] Error handling content items: " + e.message); }
 }
 
 /**
@@ -102,13 +102,13 @@ function parseS(pl, result) {
     try {
         dataItems = JSON.parse(pl.extraInfo);
     } catch (e) {
-        throw new Error("Invalid extraInfo: " + pl.extraInfo);
+        throw new Error("[支付宝消息盒子] Invalid extraInfo: " + pl.extraInfo);
     }
 
     if (pl.link.indexOf("appId=60000081") > 0) {
         result.type = BillType.Income;
         let money = parseFloat(dataItems.content.replace("收款金额￥", ""));
-        if (isNaN(money)) { throw new Error("Invalid money: " + dataItems.content); }
+        if (isNaN(money)) { throw new Error("[支付宝消息盒子] Invalid money: " + dataItems.content); }
 
         result.money = money;
         result.shopName = dataItems.assistMsg2;
@@ -120,7 +120,7 @@ function parseS(pl, result) {
         result.type = BillType.Income;
         let money = parseFloat(dataItems.mainText.replace("∝", "").replace("+", ""));
         if (isNaN(money)) {
-            throw new Error("Invalid money: " + dataItems.mainText);
+            throw new Error("[支付宝消息盒子] Invalid money: " + dataItems.mainText);
         }
         result.money = money;
         result.shopName = pl.title;
@@ -132,7 +132,7 @@ function parseS(pl, result) {
         result.type = BillType.Income;
         let money = parseFloat(dataItems.content);
         if (isNaN(money)) {
-            throw new Error("Invalid money: " + dataItems.content);
+            throw new Error("[支付宝消息盒子] Invalid money: " + dataItems.content);
         }
         result.money = money;
         result.shopName = pl.title;
