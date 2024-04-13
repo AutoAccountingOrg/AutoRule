@@ -41,7 +41,6 @@ test("App规则调用校验", () => {
             function print(callbackResult) {
                 expect(callbackResult).toEqual(result     )
             }
-            console.log("测试规则: "+name)
             try{
                 eval(ruleJS)
             }catch (e) {
