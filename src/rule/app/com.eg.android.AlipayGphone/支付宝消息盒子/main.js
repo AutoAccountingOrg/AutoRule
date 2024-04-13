@@ -36,7 +36,9 @@ function parseTransaction(data) {
 
     // 解析pl
     let pl = JSON.parse(data[0].pl);
-    if (!pl||isNaN(pl.templateType)) return null;
+
+    if (pl==null||pl.templateType == null)
+        return null;
 
     // 初始化result
     let result = initResult(data, pl);
