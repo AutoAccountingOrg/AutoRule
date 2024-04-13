@@ -5,7 +5,7 @@ const {testAnkioInit, testAnkio} = require("../../../../tests/TestUtils");
 const {DataType} = require("../../../../utils/DataType");
 
 testAnkioInit(get,__dirname,DataType.App,"com.tencent.mm")
-test("微信支付扫码付款给个人", () => testAnkio('微信支付扫码付款给个人',[
+test("微信支付扫码付款（商家收款码）", () => testAnkio('微信支付扫码付款（商家收款码）',[
     {
         type: 0,
         money: 14.00,
