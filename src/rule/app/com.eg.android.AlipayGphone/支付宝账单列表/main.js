@@ -96,6 +96,9 @@ export function get(data) {
     try {
         data = JSON.parse(data);
         const { extension, fields } = data;
+        if (!extension || !fields) {
+            return null;
+        }
 
         let result = createResultObject(extension);
 

@@ -35,9 +35,8 @@ function parseTransaction(data) {
     catch (e) { throw new Error("Invalid data: " + data); }
 
     // 解析pl
-    let pl;
-    try { pl = JSON.parse(data[0].pl); }
-    catch (e) { throw new Error("Invalid pl: " + data[0].pl); }
+    let pl = JSON.parse(data[0].pl);
+    if (!pl||isNaN(pl.templateType)) return null;
 
     // 初始化result
     let result = initResult(data, pl);
@@ -181,18 +180,18 @@ function handleLink(pl, result) {
         "TRADE": ["消费", "", BillType.Expend],
         "PREAUTHPAY": ["预授权消费", "", BillType.Expend],
         "PPAY": ["亲情卡消费", "", BillType.Expend],
-        "D_TRANSFER": ["转账收款", pl.title, BillType.Income, "余额","",pl.title],
-        "YEB": ["转账到余额宝", dataItems.topSubContent, BillType.Transfer, "", "余额宝",dataItems.topSubContent]
+        "D_TRANSFER": ["转账收款", pl.title, BillType.Income, "余额", "", pl.title],
+        "YEB": ["转账到余额宝", dataItems.topSubContent, BillType.Transfer, "", "余额宝", dataItems.topSubContent]
     };
 
     if (bizTypeMap[bizType]) {
-        const [channel, shopName, type, accountNameFrom = "", accountNameTo = "",shopItem] = bizTypeMap[bizType];
-        result.channel = `支付宝[${channel}]`||result.channel;
-        result.shopName = shopName||result.shopName;
+        const [channel, shopName, type, accountNameFrom = "", accountNameTo = "", shopItem] = bizTypeMap[bizType];
+        result.channel = `支付宝[${channel}]` || result.channel;
+        result.shopName = shopName || result.shopName;
         result.type = type;
-        result.accountNameFrom = accountNameFrom||result.accountNameFrom;
-        result.accountNameTo = accountNameTo||result.accountNameTo;
-        result.shopItem = shopItem||result.shopItem;
+        result.accountNameFrom = accountNameFrom || result.accountNameFrom;
+        result.accountNameTo = accountNameTo || result.accountNameTo;
+        result.shopItem = shopItem || result.shopItem;
     }
 }
 
