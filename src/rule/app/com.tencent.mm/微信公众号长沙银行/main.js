@@ -18,9 +18,10 @@ const regex = /交易时间：(.*?)\n交易类型：(.*?)（个人账户：尾�
 function parseText(text) {
     let match = text.match(regex);
     if (!match) return null;
+    let currentYear = new Date().getFullYear();  // 获取当前年份
 
     let type = match[2].includes("支付取出") ? BillType.Expend : null;
-    let time = match[1];
+    let time = `${currentYear}年${match[1]}`;
     let shopItem = match[5];
     let money = parseFloat(match[4]);
     let accountNameFrom = `长沙银行（${match[3]}）`;
