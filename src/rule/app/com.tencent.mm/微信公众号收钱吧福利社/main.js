@@ -26,6 +26,6 @@ export function get(data) {
             `微信[收钱吧消费通知]`
         );
     } catch (error) {
-        console.error(`Error in getShouqianba function: ${error}`);
+        throw new error(`[微信公众号收钱吧福利社] get function: ${error}`);
     }
 }

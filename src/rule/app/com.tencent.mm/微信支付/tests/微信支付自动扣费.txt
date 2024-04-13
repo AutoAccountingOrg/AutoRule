@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "扣费金额￥53.72\n扣费服务滴滴出行\n扣费内容先乘后付\n支付方式零钱通\n收单机构财付通支付科技有限公司",
+    "source": "微信支付",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 98386,
+    "title": "已扣费¥53.72"
+  }
+}
