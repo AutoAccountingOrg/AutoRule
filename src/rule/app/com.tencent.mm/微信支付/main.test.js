@@ -2,8 +2,8 @@ const { get } = require('./main');
 const fs = require('fs');
 const path = require('path');
 
-test("微信支付扫码付款给个人", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '微信支付扫码付款给个人.txt');
+test("微信支付扫码付款（商家收款码）", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '微信支付扫码付款（商家收款码）.txt');
     const data = fs.readFileSync(dataFilePath, 'utf8')
 
     let result = get(data);
