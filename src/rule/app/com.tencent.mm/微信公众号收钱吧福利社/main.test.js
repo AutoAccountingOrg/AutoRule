@@ -1,15 +1,10 @@
 const { get } = require('./main');
-const fs = require('fs');
-const path = require('path');
 
-test("收钱吧消费通知", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '收钱吧消费通知.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
+const {testAnkioInit, testAnkio} = require("../../../../tests/TestUtils");
+const {DataType} = require("../../../../utils/DataType");
+testAnkioInit(get,__dirname,DataType.App,"com.tencent.mm")
+test("收钱吧消费通知", () => testAnkio('收钱吧消费通知',[
+    {
         type: 0,
         money: 2.00,
         shopName: '三津汤包雅雀湖店',
@@ -20,5 +15,5 @@ test("收钱吧消费通知", () => {
         currency: 'CNY',
         time: '',
         channel: '微信[收钱吧消费通知]'
-    });
-});
+    }
+]))

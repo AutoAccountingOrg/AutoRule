@@ -1,14 +1,10 @@
 const { get } = require('./main');
-const path = require("path");
-const fs = require("fs");
 
-test("支付宝收款码收款", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝收款码收款.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-    let result = get(data);
+const {testAnkioInit, testAnkio} = require("../../../../tests/TestUtils");
+const {DataType} = require("../../../../utils/DataType");
 
-    expect(result).toEqual({
+testAnkioInit(get,__dirname,DataType.App,"com.eg.android.AlipayGphone")
+test("支付宝收款码收款", () => testAnkio('支付宝收款码收款',[{
         type: 1,
         money: 0.01,
         fee: 0,
@@ -19,17 +15,10 @@ test("支付宝收款码收款", () => {
         currency: 'CNY',
         time: 1703055625000,
         channel: '支付宝[收钱码收款]'
-    });
-});
+    }])
+)
 
-test("支付宝收钱码服务费", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝收钱码服务费.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝收钱码服务费", () => testAnkio('支付宝收钱码服务费',[{
         type: 0,
         money: 9.50,
         fee: 0,
@@ -40,19 +29,12 @@ test("支付宝收钱码服务费", () => {
         currency: "CNY",
         time: 1704854659000,
         channel: "支付宝[收钱码服务费]"
-    });
-});
+    }])
+)
 
 
 
-test("支付宝转账收款", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '支付宝转账收款.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
+test("支付宝转账收款", () => testAnkio('支付宝转账收款',[{
         type: 1, // 0为支出，1为收入，2为转账
         money: 0.01,
         fee: 0,
@@ -63,73 +45,49 @@ test("支付宝转账收款", () => {
         currency: "CNY",
         time: 1710075615000,
         channel: "支付宝[转账收款]"
-    });
-});
+    }])
+)
 
-test("支付宝余额转到余额宝", () => {
-
-    var data = []
-
-    for (let i = 1; i < 3; i++) {
-        const dataFilePath = path.join(__dirname, 'tests',`支付宝余额转到余额宝${i}.txt`);
-
-        data.push(fs.readFileSync(dataFilePath, 'utf8'));
-    }
-
-
-
-    const expectResult = [
-        {
-            type: 2,
-            money: 0.01,
-            fee: 0,
-            shopName: "余额宝",
-            shopItem: "转账收款到余额宝",
-            accountNameFrom: "余额",
-            accountNameTo: "余额宝",
-            currency: "CNY",
-            time: 1710046787000,
-            channel: "支付宝[余额宝转账]"
-        },
-        {
-            type: 2,
-            money: 0.01,
-            fee: 0,
-            shopName: "余额宝",
-            shopItem: "转账收款到余额宝",
-            accountNameFrom: "余额",
-            accountNameTo: "余额宝",
-            currency: "CNY",
-            time: 1710075624000,
-            channel: "支付宝[余额宝转账]"
-        }
-    ]
-
-    for (const index in data) {
-        let result = get(data[index]);
-        expect(result).toEqual(expectResult[index]);
-    }
-
-
-});
-
-test("余额宝收益发放", () => {
-    const dataFilePath = path.join(__dirname, 'tests', '余额宝收益发放.txt');
-    // 使用readFileSync来同步读取文件内容
-    const data = fs.readFileSync(dataFilePath, 'utf8')
-
-    let result = get(data);
-
-    expect(result).toEqual({
-        type: 1,
+test("支付宝余额转到余额宝", () => testAnkio('支付宝余额转到余额宝',[
+    {
+        type: 2,
         money: 0.01,
         fee: 0,
-        shopName: "长城基金管理有限公司",
-        shopItem: "余额宝-2024.03.25-收益发放",
-        accountNameFrom: "余额宝",
-        accountNameTo: "",
+        shopName: "余额宝",
+        shopItem: "转账收款到余额宝",
+        accountNameFrom: "余额",
+        accountNameTo: "余额宝",
         currency: "CNY",
-        time: 1711393834000,
-        channel: "支付宝[余额宝收益]"
-    });
-});
+        time: 1710046787000,
+        channel: "支付宝[余额宝转账]"
+    },
+    {
+        type: 2,
+        money: 0.01,
+        fee: 0,
+        shopName: "余额宝",
+        shopItem: "转账收款到余额宝",
+        accountNameFrom: "余额",
+        accountNameTo: "余额宝",
+        currency: "CNY",
+        time: 1710075624000,
+        channel: "支付宝[余额宝转账]"
+    }
+    ])
+)
+
+test("余额宝收益发放", () => testAnkio('余额宝收益发放',[{
+    type: 1,
+    money: 0.01,
+    fee: 0,
+    shopName: "长城基金管理有限公司",
+    shopItem: "余额宝-2024.03.25-收益发放",
+    accountNameFrom: "余额宝",
+    accountNameTo: "",
+    currency: "CNY",
+    time: 1711393834000,
+    channel: "支付宝[余额宝收益]"
+    }])
+)
+
+
