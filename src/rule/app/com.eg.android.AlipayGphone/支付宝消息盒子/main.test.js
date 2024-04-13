@@ -255,3 +255,23 @@ test("支付宝余利宝收益", () => {
         channel:   "支付宝[余利宝收益]"
     });
 });
+
+test("支付宝余利宝收益2", () => {
+    const dataFilePath = path.join(__dirname, 'tests', '支付宝余利宝收益2.txt');
+    // 使用readFileSync来同步读取文件内容
+    const data = fs.readFileSync(dataFilePath, 'utf8')
+    let result = get(data);
+
+    expect(result).toEqual({
+        type: 1, // 假设1表示收入
+        money: 3.16, // 从"+3.16"中提取出3.16
+        fee: 0, // 假设没有费用
+        shopName: "余利宝", // 从文件内容中提取
+        shopItem: "04-10你的余利宝收益已发放", // 从文件内容中提取
+        accountNameFrom: "余利宝", // 假设收益来自余利宝
+        accountNameTo: "", // 假设没有特定的接收账户
+        currency: "CNY", // 假设货币是人民币
+        time: 1712805886000, // 从"gmtCreate"中提取
+        channel: "支付宝[余利宝收益]" // 假设渠道是"支付宝[余利宝收益]"
+    });
+})

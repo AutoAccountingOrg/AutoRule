@@ -19,7 +19,7 @@ test("长沙住房公积金每月汇缴", () => {
         accountNameFrom: '长沙银行（2754）',
         accountNameTo: '',
         currency: 'CNY',
-        time: "04月10日09:03",
+        time: "2024年04月10日09:03",
         channel: '微信[长沙银行交易通知]'
     });
 })
