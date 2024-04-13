@@ -13,6 +13,9 @@ export function get(data) {
     data = JSON.parse(data)
     let pl = JSON.parse(data[0].pl)
     var dataItems = JSON.parse(pl.templateJson)
+    if(pl.templateJson==null){
+        return null;
+    }
     return new RuleObject(
         BillType.Income,
         parseFloat(dataItems.statusLine1Text.replace("元","")),
