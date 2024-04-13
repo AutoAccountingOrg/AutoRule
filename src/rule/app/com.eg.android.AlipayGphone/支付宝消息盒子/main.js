@@ -35,10 +35,12 @@ function parseTransaction(data) {
     catch (e) { throw new Error("[支付宝消息盒子] Invalid data: " + data); }
 
     // 解析pl
-    let pl = JSON.parse(data[0].pl);
-
-    if (pl==null||pl.templateType == null)
+    const pl = JSON.parse(data[0].pl);
+    if (pl == null ||
+        pl.templateType == null
+    ) {
         return null;
+    }
 
     // 初始化result
     let result = initResult(data, pl);
@@ -48,7 +50,7 @@ function parseTransaction(data) {
         "S": parseS
     };
     (actions[pl.templateType] || (() => {
-        console.error(`[支付宝消息盒子] Unknown templateType: ${pl.templateType}`);
+        throw new error(`[支付宝消息盒子] Unknown templateType: ${pl.templateType}`);
     }))(pl, result);
 
     // 若result.type已设置，则返回RuleObject，否则返回null

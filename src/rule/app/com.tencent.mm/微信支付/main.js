@@ -56,12 +56,17 @@ function parseWeChatText(text) {
 export function get(data) {
     const mapItem = JSON.parse(data).mMap;
     if (mapItem.source !== SOURCE_NAME_WECHAT ||
-        !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/, "")))
+        !TITLES_WECHAT.includes(
+            mapItem.title.replace(/\d+\.\d{2}/, "")
+        )
+    ){
         return null;
-
+    }
+    // 解析文本
     const parsedText = parseWeChatText(mapItem.description);
     if (!parsedText || parsedText.type === null) return null;
 
+    // 创建并返回RuleObject对象
     return new RuleObject(
         parsedText.type,
         parsedText.money,
