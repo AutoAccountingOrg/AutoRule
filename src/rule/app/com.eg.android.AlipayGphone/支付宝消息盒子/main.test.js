@@ -195,6 +195,18 @@ test("支付宝余利宝收益", () => testAnkio( '支付宝余利宝收益',[
         currency: "CNY",
         time: 1712805886000,
         channel: "支付宝[余利宝收益]"
+    },
+    {
+        type: 1,
+        money: 3.17,
+        fee: 0,
+        shopName: "余利宝",
+        shopItem: "04-11你的余利宝收益已发放",
+        accountNameFrom: "余利宝",
+        accountNameTo: "",
+        currency: "CNY",
+        time: 1712885083000,
+        channel: "支付宝[余利宝收益]"
     }
 ]))
 
