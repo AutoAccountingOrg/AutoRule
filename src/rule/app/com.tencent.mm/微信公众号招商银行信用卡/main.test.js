@@ -30,3 +30,18 @@ test("招商银行信用卡消费", () => testAnkio('招商银行信用卡消费
         channel: '微信[招行信用卡消费]'
     }
 ]))
+
+test("招商银行信用卡还款", () => testAnkio('招商银行信用卡还款',[
+    {
+        type: 2,
+        money: 324.25,
+        shopName: '',
+        shopItem: "",
+        accountNameTo: '招商银行信用卡',
+        accountNameFrom: '',
+        fee: 0,
+        currency: 'CNY',
+        time: "2024年04月13日17:11:44",
+        channel: '微信[招行信用卡还款]'
+    }
+]))
