@@ -7,7 +7,7 @@ const SOURCE_NAME = "美团";
 const TITLES = ["支付成功通知"];
 
 // 定义用于解析文本的正则表达式
-const regex = /消费账户：(.*?)\n支付金额：(.*?)元\n支付方式：(.*?)\n支付时间：(.+)/;
+const regex = /消费账户：(.*?)\n支付金额：(人民币)?(.*?)元\n支付方式：(.*?)\n支付时间：(.+)/;
 
 /**
  * 解析文本并返回解析结果。
@@ -19,23 +19,17 @@ function parseText(text) {
     if (!match) return null;
 
     // 解析数据
-    let type = BillType.Expend;
-    let time = match[4].trim();
-    let shopName = SOURCE_NAME;
-    let shopItem = match[1];
-    let money = parseFloat(match[2]);
-    let accountNameFrom = match[3];
-    let channel = "微信[美团消费]";
+    const [, shopItem,, money, accountNameFrom, time] = match;
 
     // 返回解析结果
     return {
-        type,
-        time,
-        shopName,
-        shopItem,
-        money,
-        accountNameFrom,
-        channel
+        type: BillType.Expend,
+        time: time.trim(),
+        shopName:SOURCE_NAME,
+        shopItem:shopItem,
+        money:parseFloat(money),
+        accountNameFrom:accountNameFrom,
+        channel:"微信[美团消费]"
     };
 }
 
