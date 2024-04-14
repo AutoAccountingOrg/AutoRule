@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "账户名称：个人消费卡账户\n还款时间：2024年04月13日17:11:44\n还款金额：人民币324.25",
+    "source": "招商银行信用卡",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10033713,
+    "title": "自动还款到账提醒"
+  }
+}
