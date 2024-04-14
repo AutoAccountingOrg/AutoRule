@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "消费账户：185****6220\n支付金额：34.69元\n支付方式：招商银行信用卡(1356)\n支付时间：2024年04月11日 18:05  ",
+    "source": "美团",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 98373,
+    "title": "支付成功通知"
+  }
+}
