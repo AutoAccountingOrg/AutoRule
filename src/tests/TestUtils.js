@@ -39,7 +39,7 @@ export function testAnkio(name,results) {
         }
         const data = getTestFile(filename);
         datas.push(data)
-        const result = results.at(i)
+        const result = results[i]
         const resultData = get(data)
         expect(result).toEqual(resultData);
     }
