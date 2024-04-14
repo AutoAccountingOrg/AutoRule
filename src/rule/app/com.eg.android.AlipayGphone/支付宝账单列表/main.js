@@ -3,11 +3,53 @@ import { RuleObject } from "../../../../utils/RuleObject";
 import { Currency } from "../../../../utils/Currency";
 
 /**
+ * 解析支付宝账单数据
+ * @param {string} data - 包含支付宝账单数据的JSON字符串
+ * @returns {RuleObject|null} - 解析后的规则对象，如果解析失败则返回null
+ */
+export function get(data) {
+    try {
+        // 解析数据
+        const { extension, fields } = JSON.parse(data);
+        if (!extension || !fields) {
+            return null;
+        }
+
+        // 创建结果对象
+        const result = createResultObject(extension);
+
+        // 处理每个字段元素
+        fields.forEach(element => processElement(element, result));
+
+        // 处理业务类型
+        if (!processBizType(extension, result)) {
+            return null;
+        }
+
+        // 创建并返回规则对象
+        return new RuleObject(
+            result.type,
+            result.money,
+            result.shopName,
+            result.shopItem,
+            result.accountNameFrom,
+            result.accountNameTo,
+            result.fee,
+            result.currency,
+            result.time,
+            result.channel
+        );
+    } catch (error) {
+        throw new Error(`[支付宝账单] get function: ${error}`);
+    }
+}
+
+/**
  * 解析元素并更新结果对象
- * @param {Object} element - 要解析的元素对象
+ * @param {Object} element - 字段元素对象
  * @param {Object} result - 结果对象
  */
-const processElement = (element, result) => {
+function processElement(element, result) {
     try {
         if (!element.value) {
             return;
@@ -31,16 +73,16 @@ const processElement = (element, result) => {
                 break;
         }
     } catch (error) {
-        throw new error(`[支付宝账单] Error processing element: ${error}`);
+        throw new Error(`[支付宝账单] Error processing element: ${error}`);
     }
 }
 
 /**
  * 创建结果对象
- * @param {Object} extension - 扩展对象
+ * @param {Object} extension - 扩展数据对象
  * @returns {Object} - 结果对象
  */
-const createResultObject = (extension) => {
+function createResultObject(extension) {
     return {
         type: 0,
         money: 0,
@@ -57,11 +99,11 @@ const createResultObject = (extension) => {
 
 /**
  * 处理业务类型并更新结果对象
- * @param {Object} extension - 扩展对象
+ * @param {Object} extension - 扩展数据对象
  * @param {Object} result - 结果对象
- * @returns {boolean} - 是否成功处理业务类型
+ * @returns {boolean} - 处理结果
  */
-const processBizType = (extension, result) => {
+function processBizType(extension, result) {
     switch (extension.bizType) {
         case "CHARGE":
             result.channel = "支付宝[收钱码服务费]";
@@ -85,41 +127,4 @@ const processBizType = (extension, result) => {
             return false;
     }
     return true;
-}
-
-/**
- * 根据给定的数据获取规则对象
- * @param {string} data - 要解析的数据
- * @returns {RuleObject|null} - 解析后的规则对象，如果解析失败则返回null
- */
-export function get(data) {
-    try {
-        data = JSON.parse(data);
-        const { extension, fields } = data;
-        if (!extension || !fields) {
-            return null;
-        }
-
-        let result = createResultObject(extension);
-
-        fields.forEach(element => processElement(element, result));
-
-        if (!processBizType(extension, result)) {
-            return null;
-        }
-
-        return new RuleObject(
-            result.type,
-            result.money,
-            result.shopName,
-            result.shopItem,
-            result.accountNameFrom,
-            result.accountNameTo,
-            result.fee,
-            result.currency,
-            result.time,
-            result.channel);
-    } catch (error) {
-        throw new error(`[支付宝账单] get function: ${error}`);
-    }
 }

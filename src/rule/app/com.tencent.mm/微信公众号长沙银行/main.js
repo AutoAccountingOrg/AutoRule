@@ -16,21 +16,19 @@ const regex = /交易时间：(.*?)\n交易类型：(.*?)（个人账户：尾�
  * @returns {Object|null} - 解析结果对象，如果解析失败则返回null
  */
 function parseText(text) {
-    let match = text.match(regex);
+    const match = text.match(regex);
     if (!match) return null;
-    let currentYear = new Date().getFullYear();  // 获取当前年份
+    const currentYear = new Date().getFullYear();  // 获取当前年份
 
-    let type = match[2].includes("支付取出") ? BillType.Expend : null;
-    let time = `${currentYear}年${match[1]}`;
-    let shopItem = match[5];
-    let money = parseFloat(match[4]);
-    let accountNameFrom = `长沙银行（${match[3]}）`;
+    // 使用解构赋值从match数组中提取值
+    const [, time, type, account, money, shopItem] = match;
+    const accountNameFrom = `长沙银行（${account}）`;
 
     return {
-        type,
-        time,
+        type: type.includes("支付取出") ? BillType.Expend : null,
+        time: `${currentYear}年${time}`,
         shopItem,
-        money,
+        money: parseFloat(money.replace(",", "")),
         accountNameFrom
     };
 }
@@ -42,16 +40,23 @@ function parseText(text) {
  */
 export function get(data) {
     // 解析数据
-    data = JSON.parse(data);
-    let mapItem = data.mMap;
+    const mapItem = JSON.parse(data).mMap;
 
     // 检查源名称和标题是否匹配
-    if (mapItem.source !== SOURCE_NAME || !TITLES.includes(mapItem.title)) return null;
+    if (mapItem.source !== SOURCE_NAME ||
+        !TITLES.includes(mapItem.title)
+    ) {
+        return null;
+    }
 
     // 解析文本
-    let parsedData = parseText(mapItem.description);
+    const parsedData = parseText(mapItem.description);
     // 检查解析结果是否有效
-    if (!parsedData || parsedData.type===null) return null;
+    if (!parsedData ||
+        parsedData.type === null
+    ) {
+        return null;
+    }
 
     // 创建并返回RuleObject对象
     return new RuleObject(
