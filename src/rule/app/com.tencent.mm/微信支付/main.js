@@ -21,8 +21,7 @@ const regexMap = new Map([
     [/扣费金额￥(\d+\.\d{2})\n扣费服务(.*?)\n扣费内容(.*?)\n支付方式(.*?)\n收单机构.*/, (match) => ({
         money: parseFloat(match[1]),
         accountNameFrom: match[4],
-        shopName: match[2],
-        shopItem: match[3],
+        shopItem: `${match[2]} - ${match[3]}`,
         type: BillType.Expend
     })],
     [/收款金额￥(\d+\.\d{2})\n汇总(.*?)\n备注.*/, (match) => ({
@@ -56,16 +55,21 @@ function parseWeChatText(text) {
 export function get(data) {
     const mapItem = JSON.parse(data).mMap;
     if (mapItem.source !== SOURCE_NAME_WECHAT ||
-        !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/, "")))
+        !TITLES_WECHAT.includes(
+            mapItem.title.replace(/\d+\.\d{2}/, "")
+        )
+    ){
         return null;
-
+    }
+    // 解析文本
     const parsedText = parseWeChatText(mapItem.description);
     if (!parsedText || parsedText.type === null) return null;
 
+    // 创建并返回RuleObject对象
     return new RuleObject(
         parsedText.type,
         parsedText.money,
-        parsedText.shopName,
+        mapItem.display_name,
         parsedText.shopItem,
         parsedText.accountNameFrom,
         "",
