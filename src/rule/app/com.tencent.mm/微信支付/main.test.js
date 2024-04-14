@@ -112,3 +112,18 @@ test("微信支付收款", () => testAnkio('微信支付收款',[
         channel: '微信[微信支付]'
     }
 ]))
+
+test("微信支付转账过期退款", () => testAnkio('微信支付转账过期退款',[
+    {
+        type: 1,
+        money: 1000,
+        fee: 0,
+        shopName: '',
+        shopItem: "微信支付未在24小时内接收你的转账",
+        accountNameFrom: '中国银行（7575）',
+        accountNameTo: '',
+        currency: 'CNY',
+        time: 0,
+        channel: '微信[微信支付]'
+    }
+]))
