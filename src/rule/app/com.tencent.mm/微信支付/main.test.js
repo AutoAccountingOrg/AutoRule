@@ -5,7 +5,7 @@ const {testAnkioInit, testAnkio} = require("../../../../tests/TestUtils");
 const {DataType} = require("../../../../utils/DataType");
 
 testAnkioInit(get,__dirname,DataType.App,"com.tencent.mm")
-test("微信支付扫码付款（商家收款码）", () => testAnkio('微信支付扫码付款（商家收款码）',[
+test("微信支付消费（商家收款）", () => testAnkio('微信支付消费（商家收款）',[
     {
         type: 0,
         money: 14.00,
@@ -20,7 +20,7 @@ test("微信支付扫码付款（商家收款码）", () => testAnkio('微信支
     }
 ]))
 
-test("微信支付扫码付款（第三方收款码）", () => testAnkio('微信支付扫码付款（第三方收款码）',[
+test("微信支付消费（第三方收款）", () => testAnkio('微信支付消费（第三方收款）',[
     {
         type: 0,
         money: 2.00,
@@ -56,6 +56,18 @@ test("微信支付扫码付款（第三方收款码）", () => testAnkio('微信
         currency: 'CNY',
         time: 0,
         channel: '微信[微信支付]'
+    },
+    {
+        type: 0,
+        money: 35.41,
+        fee: 0,
+        shopName: '京东',
+        shopItem: '',
+        accountNameFrom: '中国银行储蓄卡(7575)',
+        accountNameTo: '',
+        currency: 'CNY',
+        time: 0,
+        channel: '微信[微信支付]'
     }
 ]))
 
@@ -64,8 +76,8 @@ test("微信支付自动扣费", () => testAnkio('微信支付自动扣费',[
         type: 0,
         money: 53.72,
         fee: 0,
-        shopName: '滴滴出行',
-        shopItem: '先乘后付',
+        shopName: '',
+        shopItem: '滴滴出行 - 先乘后付',
         accountNameFrom: '零钱通',
         accountNameTo: '',
         currency: 'CNY',
@@ -76,8 +88,8 @@ test("微信支付自动扣费", () => testAnkio('微信支付自动扣费',[
         type: 0,
         money: 51.70,
         fee: 0,
-        shopName: '滴滴出行',
-        shopItem: '先乘后付',
+        shopName: '',
+        shopItem: '滴滴出行 - 先乘后付',
         accountNameFrom: '零钱通',
         accountNameTo: '',
         currency: 'CNY',
