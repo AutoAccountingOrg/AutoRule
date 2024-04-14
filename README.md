@@ -71,7 +71,7 @@ yarn test
 4. 推送到你的分支 (`git push origin feature/AmazingFeature`)
 5. 发起合并请求
 
-> 关于commit的要求：
+### commit要求
 
 commit格式采用： :[类型]: [更改内容] #关联issue
 
@@ -91,6 +91,51 @@ fire  # 删除代码或文件
 recycle  # 重构代码
 boom  # 代码或文件拆分
 ```
+
+### 测试规范
+
+请务必保证所有的测试用例都通过，如果你新增了规则，请务必在`main.test.js`中编写测试用例，以保证规则的正确性。
+
+测试用例编写规范：
+
+```javascript
+
+testAnkioInit(
+    get, //导入main.js的get方法
+    __dirname,//当前文件路径
+    DataType.App,//这个规则类型
+    "com.tencent.mm" //这个规则对应的包名
+)
+test(
+    "收钱吧消费通知",//测试用例名称
+    () => testAnkio('收钱吧消费通知'//测试用例数据名称
+        ,[//数组，如果是多个测试用例请直接补充到数组结尾
+    {
+        type: 0,
+        money: 2.00,
+        shopName: '三津汤包雅雀湖店',
+        shopItem: '门店收款',
+        accountNameFrom: '',
+        accountNameTo: '',
+        fee: 0,
+        currency: 'CNY',
+        time: '',
+        channel: '微信[收钱吧消费通知]'
+    }
+]))
+
+```
+
+测试用例数据的目录格式:
+
+```angular2html
+│   ├── test
+│   │   ├── 收钱吧消费通知.txt
+│   │   ├── 收钱吧消费通知2.txt
+```
+
+如果是多个测试数据，从第二个数据开始加上数字，数字从2开始，第一个不加。
+
 ## 赞助支持
 
 |                             微信                             |                            支付宝                            |
