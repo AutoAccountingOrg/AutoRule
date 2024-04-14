@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "消费账户：133****6923\n支付金额：人民币29.00元\n支付方式：美团月付\n支付时间：2024-04-12 15:29:46",
+    "source": "美团",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10032407,
+    "title": "支付成功通知"
+  }
+}
