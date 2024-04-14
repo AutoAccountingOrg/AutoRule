@@ -4,7 +4,12 @@ import { Currency } from "../../../../utils/Currency";
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = "微信支付";
-const TITLES_WECHAT = ["已支付¥", "已扣费¥", "微信支付收款元"];
+const TITLES_WECHAT = [
+    "已支付¥",
+    "已扣费¥",
+    "微信支付收款元",
+    "转账过期退款到账通知"
+];
 
 // 正则表达式和处理函数的映射关系
 const regexMap = new Map([
@@ -29,6 +34,12 @@ const regexMap = new Map([
         type: BillType.Income,
         shopItem: match[2],
         accountNameFrom: "零钱"
+    })],
+    [/退款金额￥(\d+\.\d{2})\n退款方式退回(.*?)\n退款原因(.*?)\n到账时间(.*?)/, (match) => ({
+        money: parseFloat(match[1]),
+        type: BillType.Income,
+        shopItem: `${match[3]}`,
+        accountNameFrom: match[2]
     })]
 ]);
 
@@ -58,12 +69,16 @@ export function get(data) {
         !TITLES_WECHAT.includes(
             mapItem.title.replace(/\d+\.\d{2}/, "")
         )
-    ){
+    ) {
         return null;
     }
     // 解析文本
     const parsedText = parseWeChatText(mapItem.description);
-    if (!parsedText || parsedText.type === null) return null;
+    if (!parsedText ||
+        parsedText.type === null
+    ) {
+        return null;
+    }
 
     // 创建并返回RuleObject对象
     return new RuleObject(
