@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "还款时间：4月15日\n还款金额：20.49元",
+    "source": "京东白条",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10035139,
+    "title": "还款成功通知"
+  }
+}
