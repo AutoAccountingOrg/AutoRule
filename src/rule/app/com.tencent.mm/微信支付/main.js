@@ -10,6 +10,7 @@ const TITLES_WECHAT = [
     "微信支付收款元",
     "转账过期退款到账通知"
 ];
+var mapItem;
 
 // 正则表达式和处理函数的映射关系
 const regexMap = new Map([
@@ -23,12 +24,21 @@ const regexMap = new Map([
         accountNameFrom: match[2],
         type: BillType.Expend
     })],
-    [/扣费金额￥(\d+\.\d{2})\n扣费服务(.*?)\n扣费内容(.*?)\n支付方式(.*?)\n收单机构.*/, (match) => ({
-        money: parseFloat(match[1]),
-        accountNameFrom: match[4],
-        shopItem: `${match[2]} - ${match[3]}`,
-        type: BillType.Expend
-    })],
+    [/扣费金额￥(\d+\.\d{2})\n(扣费服务(.*?)\n)?扣费(内容|项目)(.*?)\n支付方式(.*?)\n收单机构.*/, (match) => {
+        const [, money, , shopName, , shopItem, accountNameFrom] = match;
+        return {
+            money: parseFloat(money),
+            accountNameFrom,
+            shopName: !mapItem.display_name ? shopName : mapItem.display_name,
+            shopItem:
+                (
+                    !(mapItem.display_name && mapItem.display_name == shopName) ||
+                    !shopName
+                ) ? shopItem :
+                    `${shopName}(${shopItem})`,
+            type: BillType.Expend
+        }
+    }],
     [/收款金额￥(\d+\.\d{2})\n汇总(.*?)\n备注.*/, (match) => ({
         money: parseFloat(match[1]),
         type: BillType.Income,
@@ -66,7 +76,7 @@ function parseWeChatText(text) {
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
 export function get(data) {
-    const mapItem = JSON.parse(data).mMap;
+    mapItem = JSON.parse(data).mMap;
     if (mapItem.source !== SOURCE_NAME_WECHAT ||
         !TITLES_WECHAT.includes(
             mapItem.title.replace(/\d+\.\d{2}/, "")
@@ -86,7 +96,7 @@ export function get(data) {
     return new RuleObject(
         parsedText.type,
         parsedText.money,
-        mapItem.display_name,
+        parsedText.shopName || mapItem.display_name,
         parsedText.shopItem,
         parsedText.accountNameFrom,
         "",
