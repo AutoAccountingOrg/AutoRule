@@ -123,7 +123,19 @@ test("微信支付转账过期退款", () => testAnkio('微信支付转账过期
         accountNameFrom: '中国银行（7575）',
         accountNameTo: '',
         currency: 'CNY',
-        time: 0,
+        time: "2024-04-14 13:02:31",
+        channel: '微信[微信支付]'
+    },
+    {
+        type: 1,
+        money: 0.01,
+        fee: 0,
+        shopName: '',
+        shopItem: '微信支付未在24小时内接收你的转账',
+        accountNameFrom: '零钱',
+        accountNameTo: '',
+        currency: 'CNY',
+        time: "2024-04-15 08:59:11",
         channel: '微信[微信支付]'
     }
 ]))

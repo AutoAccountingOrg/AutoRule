@@ -35,12 +35,14 @@ const regexMap = new Map([
         shopItem: match[2],
         accountNameFrom: "零钱"
     })],
-    [/退款金额￥(\d+\.\d{2})\n退款方式退回(.*?)\n退款原因(.*?)\n到账时间(.*?)/, (match) => ({
-        money: parseFloat(match[1]),
-        type: BillType.Income,
-        shopItem: `${match[3]}`,
-        accountNameFrom: match[2]
-    })]
+    [/退款金额￥(\d+\.\d{2})\n退款方式退回(.*?)\n退款原因(.*?)\n(到账|退款)时间(.*?)\n.*/, (match) => {
+        const [, money, accountNameFrom, shopItem, , time] = match;
+        return {
+            money: parseFloat(money),
+            type: BillType.Income,
+            time, shopItem, accountNameFrom
+        }
+    }]
 ]);
 
 /**
