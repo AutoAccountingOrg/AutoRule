@@ -8,7 +8,8 @@ const TITLES_WECHAT = [
     "已支付¥",
     "已扣费¥",
     "微信支付收款元",
-    "转账过期退款到账通知"
+    "转账过期退款到账通知",
+    "你收到一笔分销佣金"
 ];
 var mapItem;
 
@@ -17,12 +18,14 @@ const regexMap = new Map([
     [/付款金额¥(\d+\.\d{2})\n支付方式(.*?)\n交易状态.*/, (match) => ({
         money: parseFloat(match[1]),
         accountNameFrom: match[2],
-        type: BillType.Expend
+        type: BillType.Expend,
+        channel: "微信[微信支付-付款]"
     })],
     [/付款金额￥(\d+\.\d{2})\n付款方式(.*?)\n收单机构.*/, (match) => ({
         money: parseFloat(match[1]),
         accountNameFrom: match[2],
-        type: BillType.Expend
+        type: BillType.Expend,
+        channel: "微信[微信支付-付款]"
     })],
     [/扣费金额￥(\d+\.\d{2})\n(扣费服务(.*?)\n)?扣费(内容|项目)(.*?)\n支付方式(.*?)\n收单机构.*/, (match) => {
         const [, money, , shopName, , shopItem, accountNameFrom] = match;
@@ -30,26 +33,34 @@ const regexMap = new Map([
             money: parseFloat(money),
             accountNameFrom,
             shopName: !mapItem.display_name ? shopName : mapItem.display_name,
-            shopItem:
-                (
-                    !(mapItem.display_name && mapItem.display_name == shopName) ||
-                    !shopName
-                ) ? shopItem :
-                    `${shopName}(${shopItem})`,
-            type: BillType.Expend
+            shopItem: (!(mapItem.display_name && mapItem.display_name == shopName) || !shopName)
+                ? shopItem
+                : `${shopName}(${shopItem})`,
+            type: BillType.Expend,
+            channel: "微信[微信支付-扣费]"
         }
     }],
     [/收款金额￥(\d+\.\d{2})\n汇总(.*?)\n备注.*/, (match) => ({
         money: parseFloat(match[1]),
         type: BillType.Income,
         shopItem: match[2],
-        accountNameFrom: "零钱"
+        accountNameFrom: "零钱",
+        channel: "微信[微信支付-收款]"
+    })],
+    [/收款金额￥(\d+\.\d{2})\n收款账户(.*?)\n付款商家(.*)/, (match) => ({
+        money: parseFloat(match[1]),
+        type: BillType.Income,
+        accountNameFrom: match[2],
+        shopName: match[3],
+        shopItem: mapItem.title,
+        channel: "微信[微信支付-收款]"
     })],
     [/退款金额￥(\d+\.\d{2})\n退款方式退回(.*?)\n退款原因(.*?)\n(到账|退款)时间(.*?)\n.*/, (match) => {
         const [, money, accountNameFrom, shopItem, , time] = match;
         return {
             money: parseFloat(money),
             type: BillType.Income,
+            channel: "微信[微信支付-退款]",
             time, shopItem, accountNameFrom
         }
     }]
@@ -103,6 +114,6 @@ export function get(data) {
         0,
         Currency['人民币'],
         parsedText.time,
-        `微信[${mapItem.source}]`
+        parsedText.channel
     );
 }
