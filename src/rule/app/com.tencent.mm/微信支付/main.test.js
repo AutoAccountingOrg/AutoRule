@@ -1,6 +1,4 @@
 const { get } = require('./main');
-const fs = require('fs');
-const path = require('path');
 const {testAnkioInit, testAnkio} = require("../../../../tests/TestUtils");
 const {DataType} = require("../../../../utils/DataType");
 
@@ -16,7 +14,7 @@ test("微信支付消费（商家收款）", () => testAnkio('微信支付消费
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-付款]'
     }
 ]))
 
@@ -31,7 +29,7 @@ test("微信支付消费（第三方收款）", () => testAnkio('微信支付消
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-付款]'
     },
     {
         type: 0,
@@ -43,7 +41,7 @@ test("微信支付消费（第三方收款）", () => testAnkio('微信支付消
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-付款]'
     },
     {
         type: 0,
@@ -55,7 +53,7 @@ test("微信支付消费（第三方收款）", () => testAnkio('微信支付消
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-付款]'
     },
     {
         type: 0,
@@ -67,7 +65,7 @@ test("微信支付消费（第三方收款）", () => testAnkio('微信支付消
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-付款]'
     }
 ]))
 
@@ -82,7 +80,7 @@ test("微信支付自动扣费", () => testAnkio('微信支付自动扣费',[
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-扣费]'
     },
     {
         type: 0,
@@ -94,7 +92,7 @@ test("微信支付自动扣费", () => testAnkio('微信支付自动扣费',[
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-扣费]'
     },
     {
         type: 0,
@@ -106,7 +104,7 @@ test("微信支付自动扣费", () => testAnkio('微信支付自动扣费',[
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-扣费]'
     }
 ]))
 
@@ -121,7 +119,7 @@ test("微信支付收款", () => testAnkio('微信支付收款',[
         accountNameTo: '',
         currency: 'CNY',
         time: 0,
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-收款]'
     }
 ]))
 
@@ -136,7 +134,7 @@ test("微信支付转账过期退款", () => testAnkio('微信支付转账过期
         accountNameTo: '',
         currency: 'CNY',
         time: "2024-04-14 13:02:31",
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-退款]'
     },
     {
         type: 1,
@@ -148,6 +146,21 @@ test("微信支付转账过期退款", () => testAnkio('微信支付转账过期
         accountNameTo: '',
         currency: 'CNY',
         time: "2024-04-15 08:59:11",
-        channel: '微信[微信支付]'
+        channel: '微信[微信支付-退款]'
+    }
+]))
+
+test("微信支付收款（分销佣金）", () => testAnkio('微信支付收款（分销佣金）',[
+    {
+        type: 1,
+        money: 0.10,
+        fee: 0,
+        shopName: '宿迁兆盈商服科技有限公司',
+        shopItem: '你收到一笔分销佣金',
+        accountNameFrom: '零钱',
+        accountNameTo: '',
+        currency: 'CNY',
+        time: 0,
+        channel: '微信[微信支付-收款]'
     }
 ]))
