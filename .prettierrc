@@ -1,6 +1,6 @@
 {
   "printWidth": 500,
-  "tabWidth": 4,
+  "tabWidth": 2,
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
@@ -9,5 +9,6 @@
   "bracketSpacing": true,
   "endOfLine": "auto",
   "eslintIntegration": false,
-  "htmlWhitespaceSensitivity": "ignore"
+  "htmlWhitespaceSensitivity": "ignore",
+  "quoteProps": "preserve"
 }
