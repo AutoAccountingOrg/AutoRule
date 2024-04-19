@@ -1,6 +1,7 @@
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('京东白条还款', () =>
@@ -14,7 +15,7 @@ test('京东白条还款', () =>
       accountNameFrom: '',
       accountNameTo: '京东白条',
       currency: 'CNY',
-      time: `${new Date().getFullYear()}年4月15日`,
+      time: formatDate(`4月15日`, 'M月D日'),
       channel: '微信[京东白条 还款]',
     },
   ]));
