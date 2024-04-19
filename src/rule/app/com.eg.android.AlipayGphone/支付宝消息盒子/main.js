@@ -89,6 +89,7 @@ function parseS(pl, result) {
     2015111300788246: handleInvestmentIncome,
     66666708: handleYueLibaoIncome,
     77700207: handleWebBankTransfer,
+    2013110100001907: handleYuEBaoIncome,
   };
   const handler = handlers[pl.appId];
   if (handler) {
@@ -265,6 +266,23 @@ function handleYueLibaoIncome(dataItems, pl, result) {
     shopItem: `${dataItems.assistMsg1}${dataItems.homePageTitle}`,
     accountNameFrom: '余利宝',
     channel: '支付宝[余利宝收益]',
+  });
+}
+
+/**
+ * 处理余额宝收益
+ * @param {Object} dataItems - 数据项对象
+ * @param {Object} pl - 解析后的pl对象
+ * @param {Object} result - 解析后的交易结果对象
+ */
+function handleYuEBaoIncome(dataItems, pl, result) {
+  setResultProperties(result, {
+    type: BillType.Income,
+    money: parseFloat(pl.content.replaceAll('∝', '').replace('+', '')),
+    shopName: pl.title,
+    shopItem: `${dataItems.assistMsg1}`,
+    accountNameFrom: '余额宝',
+    channel: '支付宝[余额宝收益]',
   });
 }
 
