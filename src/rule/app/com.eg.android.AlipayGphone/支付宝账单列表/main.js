@@ -1,6 +1,6 @@
-import { BillType } from "../../../../utils/BillType";
-import { RuleObject } from "../../../../utils/RuleObject";
-import { Currency } from "../../../../utils/Currency";
+import { BillType } from '../../../../utils/BillType';
+import { RuleObject } from '../../../../utils/RuleObject';
+import { Currency } from '../../../../utils/Currency';
 
 /**
  * 解析支付宝账单数据
@@ -19,7 +19,7 @@ export function get(data) {
     const result = createResultObject(extension);
 
     // 处理每个字段元素
-    fields.forEach((element) => processElement(element, result));
+    fields.forEach(element => processElement(element, result));
 
     // 处理业务类型
     if (!processBizType(extension, result)) {
@@ -57,21 +57,21 @@ function processElement(element, result) {
     const elementValue = JSON.parse(element.value);
 
     switch (element.templateId) {
-      case "BLDetailTitle":
+      case 'BLDetailTitle':
         result.shopName = elementValue.content;
         break;
-      case "BLDetailPrice":
-        result.money = parseFloat(elementValue.amount.replace(/[+-]/, ""));
-        const type = elementValue.amount.replace(/\d+\.\d{0,2}/, "");
+      case 'BLDetailPrice':
+        result.money = parseFloat(elementValue.amount.replace(/[+-]/, ''));
+        const type = elementValue.amount.replace(/\d+\.\d{0,2}/, '');
         result.type =
-          type === "+"
+          type === '+'
             ? BillType.Income
-            : type === "-"
+            : type === '-'
               ? BillType.Expend
               : BillType.Transfer;
         break;
-      case "BLDetailCommon":
-      case "BLH5ProductInfo":
+      case 'BLDetailCommon':
+      case 'BLH5ProductInfo':
         if (/商品说明|转账备注/.test(elementValue.title)) {
           result.shopItem = elementValue.data[0].content;
         }
@@ -91,14 +91,14 @@ function createResultObject(extension) {
   return {
     type: 0,
     money: 0,
-    shopName: "",
-    shopItem: "",
-    accountNameFrom: "余额",
-    accountNameTo: "",
+    shopName: '',
+    shopItem: '',
+    accountNameFrom: '余额',
+    accountNameTo: '',
     fee: 0,
-    currency: Currency["人民币"],
+    currency: Currency['人民币'],
     time: Number(extension.gmtBizCreateTime),
-    channel: "",
+    channel: '',
   };
 }
 
@@ -110,23 +110,23 @@ function createResultObject(extension) {
  */
 function processBizType(extension, result) {
   switch (extension.bizType) {
-    case "CHARGE":
-      result.channel = "支付宝[收钱码服务费]";
+    case 'CHARGE':
+      result.channel = '支付宝[收钱码服务费]';
       break;
-    case "TRADE":
-      result.channel = "支付宝[收钱码收款]";
+    case 'TRADE':
+      result.channel = '支付宝[收钱码收款]';
       break;
-    case "D_TRANSFER":
-      result.channel = "支付宝[转账收款]";
+    case 'D_TRANSFER':
+      result.channel = '支付宝[转账收款]';
       break;
-    case "YEB":
-      result.accountNameTo = "余额宝";
-      result.channel = "支付宝[余额宝转账]";
+    case 'YEB':
+      result.accountNameTo = '余额宝';
+      result.channel = '支付宝[余额宝转账]';
       break;
-    case "MINITRANS":
+    case 'MINITRANS':
       result.type = BillType.Income;
-      result.accountNameFrom = "余额宝";
-      result.channel = "支付宝[余额宝收益]";
+      result.accountNameFrom = '余额宝';
+      result.channel = '支付宝[余额宝收益]';
       break;
     default:
       return false;

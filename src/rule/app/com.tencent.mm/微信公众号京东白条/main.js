@@ -1,7 +1,6 @@
 import { RuleObject } from '../../../../utils/RuleObject';
 import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
-import { parseDate } from 'yarn/lib/cli';
 import { formatDate } from '../../../../utils/Time';
 
 // 定义源名称和需要匹配的标题数组
