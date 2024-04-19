@@ -142,6 +142,7 @@ test('微信支付转账过期退款', () =>
       time: formatDate('2024-04-14 13:02:31', 'Y-M-D h:i:s'),
       channel: '微信[微信支付-退款]',
     },
+
     {
       type: 1,
       money: 0.01,
@@ -152,6 +153,18 @@ test('微信支付转账过期退款', () =>
       accountNameTo: '',
       currency: 'CNY',
       time: formatDate('2024-04-15 08:59:11', 'Y-M-D h:i:s'),
+      channel: '微信[微信支付-退款]',
+    },
+    {
+      type: 1,
+      money: 0.01,
+      fee: 0,
+      shopName: '',
+      shopItem: 'send未在24小时内接收你的转账',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024-04-17 20:17:16', 'Y-M-D h:i:s'),
       channel: '微信[微信支付-退款]',
     },
   ]));
