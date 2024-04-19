@@ -1,10 +1,11 @@
-import { RuleObject } from "../../../../utils/RuleObject";
-import { BillType } from "../../../../utils/BillType";
-import { Currency } from "../../../../utils/Currency";
+import { RuleObject } from '../../../../utils/RuleObject';
+import { BillType } from '../../../../utils/BillType';
+import { Currency } from '../../../../utils/Currency';
+import { formatDate } from '../../../../utils/Time';
 
 // 定义源名称和需要匹配的标题数组
-const SOURCE_NAME = "美团";
-const TITLES = ["支付成功通知"];
+const SOURCE_NAME = '美团';
+const TITLES = ['支付成功通知'];
 
 // 定义用于解析文本的正则表达式
 const regex =
@@ -25,12 +26,15 @@ function parseText(text) {
   // 返回解析结果
   return {
     type: BillType.Expend,
-    time: time.trim(),
+    time: formatDate(
+      time.trim(),
+      time.indexOf('年') !== -1 ? 'Y年M月D日 h:i' : 'Y-M-D h:i:s',
+    ),
     shopName: SOURCE_NAME,
     shopItem: shopItem,
     money: parseFloat(money),
     accountNameFrom: accountNameFrom,
-    channel: "微信[美团消费]",
+    channel: '微信[美团消费]',
   };
 }
 
@@ -59,9 +63,9 @@ export function get(data) {
     parsedData.shopName,
     parsedData.shopItem,
     parsedData.accountNameFrom,
-    "",
+    '',
     0,
-    Currency["人民币"],
+    Currency['人民币'],
     parsedData.time,
     parsedData.channel,
   );

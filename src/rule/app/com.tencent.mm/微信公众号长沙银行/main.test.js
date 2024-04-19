@@ -1,6 +1,7 @@
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('长沙银行支付宝支付取出', () =>
@@ -14,7 +15,7 @@ test('长沙银行支付宝支付取出', () =>
       accountNameFrom: '长沙银行（2754）',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月10日09:03',
+      time: formatDate('04月10日09:03', 'M月D日h:i'),
       channel: '微信[长沙银行交易通知]',
     },
   ]));

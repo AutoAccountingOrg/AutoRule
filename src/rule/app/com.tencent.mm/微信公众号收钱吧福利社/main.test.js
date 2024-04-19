@@ -2,6 +2,7 @@ const { get } = require('./main');
 
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('收钱吧消费通知', () =>
   testAnkio('收钱吧消费通知', [
@@ -14,7 +15,7 @@ test('收钱吧消费通知', () =>
       accountNameTo: '',
       fee: 0,
       currency: 'CNY',
-      time: '',
+      time: formatDate(),
       channel: '微信[收钱吧消费通知]',
     },
   ]));

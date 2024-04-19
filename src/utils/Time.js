@@ -22,7 +22,10 @@ export function isTimeInRange(startTime, endTime, currentTime) {
  * @param tpl string 包含格式标记的字符串，例如 "Y-M-D h:i:s"
  * @returns {number}
  */
-export function formatDate(time, tpl) {
+export function formatDate(time = '', tpl = '') {
+  if (time.length === 0) {
+    return Math.floor(Date.now() / 1000) * 1000;
+  }
   const dateObj = {};
   let tplRegex = tpl;
   if (!tpl.match(/[YMDhms]+/g)) {
@@ -31,7 +34,13 @@ export function formatDate(time, tpl) {
 
   //  /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2}) (?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2})$/
 
-  tplRegex = tplRegex.replace(/Y/g, '(?<Y>\\d+)').replace(/M/g, '(?<M>\\d+)').replace(/D/g, '(?<D>\\d+)').replace(/h/g, '(?<h>\\d+)').replace(/i/g, '(?<i>\\d+)').replace(/s/g, '(?<s>\\d+)');
+  tplRegex = tplRegex
+    .replace(/Y/g, '(?<Y>\\d+)')
+    .replace(/M/g, '(?<M>\\d+)')
+    .replace(/D/g, '(?<D>\\d+)')
+    .replace(/h/g, '(?<h>\\d+)')
+    .replace(/i/g, '(?<i>\\d+)')
+    .replace(/s/g, '(?<s>\\d+)');
 
   const match = time.match(new RegExp(`^${tplRegex}$`));
 
@@ -56,5 +65,12 @@ export function formatDate(time, tpl) {
   dateObj.m = match.groups.i || minute;
   dateObj.s = match.groups.s || 0;
 
-  return new Date(dateObj.Y, dateObj.M - 1, dateObj.D, dateObj.h, dateObj.m, dateObj.s).getTime();
+  return new Date(
+    dateObj.Y,
+    dateObj.M - 1,
+    dateObj.D,
+    dateObj.h,
+    dateObj.m,
+    dateObj.s,
+  ).getTime();
 }

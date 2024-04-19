@@ -1,6 +1,7 @@
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('长沙住房公积金每月汇缴', () =>
@@ -14,7 +15,7 @@ test('长沙住房公积金每月汇缴', () =>
       accountNameFrom: '住房公积金账户',
       accountNameTo: '',
       currency: 'CNY',
-      time: '20240410',
+      time: formatDate('20240410', 'YMD'),
       channel: '微信[长沙公积金汇缴]',
     },
   ]));

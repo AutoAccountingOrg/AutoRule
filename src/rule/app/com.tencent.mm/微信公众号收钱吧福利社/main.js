@@ -1,6 +1,7 @@
-import { BillType } from "../../../../utils/BillType";
-import { RuleObject } from "../../../../utils/RuleObject";
-import { Currency } from "../../../../utils/Currency";
+import { BillType } from '../../../../utils/BillType';
+import { RuleObject } from '../../../../utils/RuleObject';
+import { Currency } from '../../../../utils/Currency';
+import { formatDate } from '../../../../utils/Time';
 
 /**
  * 处理数据并返回结果
@@ -13,7 +14,7 @@ export function get(data) {
     const { description, source, title } = JSON.parse(data).mMap;
 
     // 检查源名称和标题是否匹配
-    if (source !== "收钱吧福利社" || title !== "交易完成通知") {
+    if (source !== '收钱吧福利社' || title !== '交易完成通知') {
       return null;
     }
 
@@ -28,11 +29,11 @@ export function get(data) {
       parseFloat(money),
       shopName,
       shopItem,
-      "",
-      "",
+      '',
+      '',
       0,
-      Currency["人民币"],
-      "",
+      Currency['人民币'],
+      formatDate(),
       `微信[收钱吧消费通知]`,
     );
   } catch (error) {
