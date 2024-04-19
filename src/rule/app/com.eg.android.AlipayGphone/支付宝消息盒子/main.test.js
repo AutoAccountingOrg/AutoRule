@@ -1,6 +1,7 @@
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { BillType } = require('../../../../utils/BillType');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.eg.android.AlipayGphone');
 test('支付宝转账收款', () =>
@@ -253,5 +254,21 @@ test('支付宝小荷包', () =>
       currency: 'CNY',
       time: 1713229525000,
       channel: '支付宝[小荷包自动攒]',
+    },
+  ]));
+
+test('支付宝余额宝收益', () =>
+  testAnkio('支付宝余额宝收益', [
+    {
+      type: 1,
+      money: 0.01,
+      fee: 0,
+      shopName: '余额宝',
+      shopItem: '04-15余额宝收益',
+      accountNameFrom: '余额宝',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: 1713275758000,
+      channel: '支付宝[余额宝收益]',
     },
   ]));
