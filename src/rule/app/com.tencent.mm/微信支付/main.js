@@ -35,18 +35,15 @@ const regexMap = new Map([
     }),
   ],
   [
-    /扣费金额￥(\d+\.\d{2})\n(扣费服务(.*?)\n)?扣费(内容|项目)(.*?)\n支付方式(.*?)\n收单机构.*/,
+    /扣费金额￥(\d+\.\d{2})\n(扣费服务(.*?)\n)?扣费(内容|项目)(.*?)\n支付方式(.*?)\n收单机构.*(\n备注(.*?。))?/,
     match => {
-      const [, money, , shopName, , shopItem, accountNameFrom] = match;
+      const [, money, , shopName, , shopItem, accountNameFrom, , remark] =
+        match;
       return {
         money: parseFloat(money),
         accountNameFrom,
-        shopName: !mapItem.display_name ? shopName : mapItem.display_name,
-        shopItem:
-          !(mapItem.display_name && mapItem.display_name === shopName) ||
-          !shopName
-            ? shopItem
-            : `${shopName}(${shopItem})`,
+        shopName: mapItem.display_name ? mapItem.display_name : shopName,
+        shopItem: remark ? shopItem + ', ' + remark : shopItem,
         type: BillType.Expend,
         channel: '微信[微信支付-扣费]',
       };
