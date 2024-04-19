@@ -1,6 +1,7 @@
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('美团消费', () =>
@@ -14,7 +15,7 @@ test('美团消费', () =>
       accountNameFrom: '招商银行信用卡(1356)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月11日 18:05',
+      time: formatDate('2024年04月11日 18:05', 'Y年M月D日 h:i'),
       channel: '微信[美团消费]',
     },
     {
@@ -26,7 +27,7 @@ test('美团消费', () =>
       accountNameFrom: '招商银行信用卡(1356)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月12日 10:53',
+      time: formatDate('2024年04月12日 10:53', 'Y年M月D日 h:i'),
       channel: '微信[美团消费]',
     },
     {
@@ -38,7 +39,7 @@ test('美团消费', () =>
       accountNameFrom: '美团月付',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024-04-12 15:29:46',
+      time: formatDate('2024-04-12 15:29:46', 'Y-M-D h:i:s'),
       channel: '微信[美团消费]',
     },
   ]));

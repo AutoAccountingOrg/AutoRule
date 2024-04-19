@@ -1,6 +1,7 @@
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('微信支付消费（商家收款）', () =>
@@ -14,7 +15,7 @@ test('微信支付消费（商家收款）', () =>
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-付款]',
     },
   ]));
@@ -30,7 +31,7 @@ test('微信支付消费（第三方收款）', () =>
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-付款]',
     },
     {
@@ -42,7 +43,7 @@ test('微信支付消费（第三方收款）', () =>
       accountNameFrom: '零钱通',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-付款]',
     },
     {
@@ -54,7 +55,7 @@ test('微信支付消费（第三方收款）', () =>
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-付款]',
     },
     {
@@ -66,7 +67,7 @@ test('微信支付消费（第三方收款）', () =>
       accountNameFrom: '中国银行储蓄卡(7575)',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-付款]',
     },
   ]));
@@ -82,7 +83,7 @@ test('微信支付自动扣费', () =>
       accountNameFrom: '零钱通',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-扣费]',
     },
     {
@@ -94,7 +95,7 @@ test('微信支付自动扣费', () =>
       accountNameFrom: '零钱通',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-扣费]',
     },
     {
@@ -106,7 +107,7 @@ test('微信支付自动扣费', () =>
       accountNameFrom: '中国银行储蓄卡(7575)',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-扣费]',
     },
   ]));
@@ -122,7 +123,7 @@ test('微信支付收款', () =>
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-收款]',
     },
   ]));
@@ -138,7 +139,7 @@ test('微信支付转账过期退款', () =>
       accountNameFrom: '中国银行（7575）',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024-04-14 13:02:31',
+      time: formatDate('2024-04-14 13:02:31', 'Y-M-D h:i:s'),
       channel: '微信[微信支付-退款]',
     },
     {
@@ -150,7 +151,7 @@ test('微信支付转账过期退款', () =>
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024-04-15 08:59:11',
+      time: formatDate('2024-04-15 08:59:11', 'Y-M-D h:i:s'),
       channel: '微信[微信支付-退款]',
     },
   ]));
@@ -166,7 +167,7 @@ test('微信支付收款（分销佣金）', () =>
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
-      time: 0,
+      time: formatDate(),
       channel: '微信[微信支付-收款]',
     },
   ]));

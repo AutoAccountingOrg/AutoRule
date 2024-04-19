@@ -1,10 +1,11 @@
-import { RuleObject } from "../../../../utils/RuleObject";
-import { BillType } from "../../../../utils/BillType";
-import { Currency } from "../../../../utils/Currency";
+import { RuleObject } from '../../../../utils/RuleObject';
+import { BillType } from '../../../../utils/BillType';
+import { Currency } from '../../../../utils/Currency';
+import { formatDate } from '../../../../utils/Time';
 
 // 定义源名称和需要匹配的标题数组
-const SOURCE_NAME = "长沙银行";
-const TITLES = ["交易成功提醒"];
+const SOURCE_NAME = '长沙银行';
+const TITLES = ['交易成功提醒'];
 
 // 定义用于解析文本的正则表达式
 const regex =
@@ -25,10 +26,10 @@ function parseText(text) {
   const accountNameFrom = `长沙银行（${account}）`;
 
   return {
-    type: type.includes("支付取出") ? BillType.Expend : null,
-    time: `${currentYear}年${time}`,
+    type: type.includes('支付取出') ? BillType.Expend : null,
+    time: `${time}`,
     shopItem,
-    money: parseFloat(money.replace(",", "")),
+    money: parseFloat(money.replace(',', '')),
     accountNameFrom,
   };
 }
@@ -58,13 +59,13 @@ export function get(data) {
   return new RuleObject(
     parsedData.type,
     parsedData.money,
-    "",
+    '',
     parsedData.shopItem,
     parsedData.accountNameFrom,
-    "",
+    '',
     0,
-    Currency["人民币"],
-    parsedData.time,
+    Currency['人民币'],
+    formatDate(parsedData.time, 'M月D日h:i'),
     `微信[长沙银行交易通知]`,
   );
 }
