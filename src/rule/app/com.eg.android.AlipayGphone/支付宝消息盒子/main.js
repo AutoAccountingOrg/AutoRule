@@ -1,6 +1,6 @@
-import { RuleObject } from "../../../../utils/RuleObject";
-import { BillType } from "../../../../utils/BillType";
-import { Currency } from "../../../../utils/Currency";
+import { RuleObject } from '../../../../utils/RuleObject';
+import { BillType } from '../../../../utils/BillType';
+import { Currency } from '../../../../utils/Currency';
 
 //----------------------------------------------------------------------
 
@@ -10,12 +10,7 @@ import { Currency } from "../../../../utils/Currency";
  * @returns {RuleObject|null} - 解析后的交易结果对象，如果无法解析则返回null
  */
 function parseTransaction(data) {
-  try {
-    // 解析data
-    data = JSON.parse(data);
-  } catch (e) {
-    throw new Error("[支付宝消息盒子] Invalid data: " + data);
-  }
+  data = JSON.parse(data);
 
   // 解析pl
   const pl = JSON.parse(data[0].pl);
@@ -66,17 +61,12 @@ function parseTransaction(data) {
  */
 function parseBN(pl, result) {
   // 解析content
-  let contentItems;
-  try {
-    contentItems = JSON.parse(pl.content);
-  } catch (e) {
-    throw new Error("[支付宝消息盒子] Invalid content: " + pl.content);
-  }
+  let contentItems = JSON.parse(pl.content);
 
   // 处理contentItems.money的逻辑
   let money = parseFloat(contentItems.money);
   if (isNaN(money)) {
-    throw new Error("[支付宝消息盒子] Invalid money: " + contentItems.money);
+    throw new Error('[支付宝消息盒子] Invalid money: ' + contentItems.money);
   }
   result.money = money;
 
@@ -93,24 +83,18 @@ function parseBN(pl, result) {
  * @param {Object} result - 解析后的交易结果对象
  */
 function parseS(pl, result) {
-  try {
-    const dataItems = JSON.parse(pl.extraInfo);
-    const handlers = {
-      2021002117633826: handleReceipt,
-      2015111300788246: handleInvestmentIncome,
-      66666708: handleYueLibaoIncome,
-      77700207: handleWebBankTransfer,
-    };
-    const handler = handlers[pl.appId];
-    if (handler) {
-      handler(dataItems, pl, result);
-    } else {
-      throw new Error("[支付宝消息盒子] Unknown appId: " + pl.appId);
-    }
-  } catch (error) {
-    throw new Error(
-      "[支付宝消息盒子] Error parsing S type template: " + error.message,
-    );
+  const dataItems = JSON.parse(pl.extraInfo);
+  const handlers = {
+    2021002117633826: handleReceipt,
+    2015111300788246: handleInvestmentIncome,
+    66666708: handleYueLibaoIncome,
+    77700207: handleWebBankTransfer,
+  };
+  const handler = handlers[pl.appId];
+  if (handler) {
+    handler(dataItems, pl, result);
+  } else {
+    throw new Error('[支付宝消息盒子] Unknown appId: ' + pl.appId);
   }
 }
 
@@ -126,7 +110,7 @@ function setResultProperties(result, properties) {
     Object.assign(result, properties);
   } catch (error) {
     throw new Error(
-      "[支付宝消息盒子] Error setting result properties: " + error.message,
+      '[支付宝消息盒子] Error setting result properties: ' + error.message,
     );
   }
 }
@@ -142,13 +126,13 @@ function initResult(data, pl) {
     type: null,
     money: 0,
     fee: 0,
-    shopName: "",
-    shopItem: "",
-    accountNameFrom: "",
-    accountNameTo: "",
-    currency: Currency["人民币"],
+    shopName: '',
+    shopItem: '',
+    accountNameFrom: '',
+    accountNameTo: '',
+    currency: Currency['人民币'],
     time: data[0].mct,
-    channel: "支付宝" + pl.title,
+    channel: '支付宝' + pl.title,
   };
 }
 
@@ -160,20 +144,20 @@ function initResult(data, pl) {
  * @param {Object} result - 解析后的交易结果对象
  */
 function handleContentItems(contentItems, result) {
-  contentItems.forEach((item) => {
+  contentItems.forEach(item => {
     switch (item.title) {
-      case "交易对象：":
+      case '交易对象：':
         result.shopName = item.content;
         break;
-      case "付款方式：":
-      case "退款方式：":
+      case '付款方式：':
+      case '退款方式：':
         result.accountNameFrom = item.content;
         break;
-      case "扣款说明：":
-      case "退款说明：":
+      case '扣款说明：':
+      case '退款说明：':
         result.shopItem = item.content;
         break;
-      case "付款人：":
+      case '付款人：':
         result.shopName = item.content;
         break;
     }
@@ -187,20 +171,28 @@ function handleContentItems(contentItems, result) {
  */
 function handleLink(pl, result) {
   const dataItems = JSON.parse(pl.extraInfo);
-  const bizType = pl.link.replace(/.*&bizType=(.*?)[&\?].*/, "$1");
+  const bizType = pl.link.replace(/.*&bizType=(.*?)[&\?].*/, '$1');
   const bizTypeMap = {
-    TRADEAP: ["退款", dataItems.sceneExt2.sceneName, BillType.Income],
-    B_TRANSFER: ["发红包", "", BillType.Expend],
-    TRADE: ["消费", "", BillType.Expend],
-    PREAUTHPAY: ["预授权消费", "", BillType.Expend],
-    PPAY: ["亲情卡消费", "", BillType.Expend],
-    D_TRANSFER: ["转账收款", pl.title, BillType.Income, "余额", "", pl.title],
+    TRADEAP: ['退款', dataItems.sceneExt2.sceneName, BillType.Income],
+    B_TRANSFER: ['发红包', '', BillType.Expend],
+    TRADE: ['消费', '', BillType.Expend],
+    PREAUTHPAY: ['预授权消费', '', BillType.Expend],
+    PPAY: ['亲情卡消费', '', BillType.Expend],
+    D_TRANSFER: ['转账收款', pl.title, BillType.Income, '余额', '', pl.title],
     YEB: [
-      "转账到余额宝",
+      '转账到余额宝',
       dataItems.topSubContent,
       BillType.Transfer,
-      "",
-      "余额宝",
+      '',
+      '余额宝',
+      dataItems.topSubContent,
+    ],
+    BIZFUND: [
+      '小荷包自动攒',
+      pl.title,
+      BillType.Transfer,
+      dataItems.assistMsg1,
+      dataItems.assistMsg2,
       dataItems.topSubContent,
     ],
   };
@@ -210,8 +202,8 @@ function handleLink(pl, result) {
       channel,
       shopName,
       type,
-      accountNameFrom = "",
-      accountNameTo = "",
+      accountNameFrom = '',
+      accountNameTo = '',
       shopItem,
     ] = bizTypeMap[bizType];
     result.channel = `支付宝[${channel}]` || result.channel;
@@ -234,11 +226,11 @@ function handleLink(pl, result) {
 function handleReceipt(dataItems, pl, result) {
   setResultProperties(result, {
     type: BillType.Income,
-    money: parseFloat(dataItems.content.replace("收款金额￥", "")),
+    money: parseFloat(dataItems.content.replace('收款金额￥', '')),
     shopName: dataItems.assistMsg2,
     shopItem: dataItems.assistMsg1,
-    accountNameFrom: "支付宝余额",
-    channel: "支付宝[收款码收款]",
+    accountNameFrom: '支付宝余额',
+    channel: '支付宝[收款码收款]',
   });
 }
 
@@ -251,11 +243,11 @@ function handleReceipt(dataItems, pl, result) {
 function handleInvestmentIncome(dataItems, pl, result) {
   setResultProperties(result, {
     type: BillType.Income,
-    money: parseFloat(dataItems.mainText.replace(/∝|\+/g, "")),
+    money: parseFloat(dataItems.mainText.replace(/∝|\+/g, '')),
     shopName: pl.title,
-    shopItem: `${dataItems.assistMsg1}（${dataItems.subCgyLeftKey}：${dataItems.subCgyLeftValue.replace(/∝/g, "")}；${dataItems.subCgyMiddleKey}：${dataItems.subCgyMiddleValue.replace(/∝/g, "")}；${dataItems.subCgyRightKey}：${dataItems.subCgyRightValue.replace(/∝/g, "")}）`,
-    accountNameFrom: "余利宝",
-    channel: "支付宝[理财收益]",
+    shopItem: `${dataItems.assistMsg1}（${dataItems.subCgyLeftKey}：${dataItems.subCgyLeftValue.replace(/∝/g, '')}；${dataItems.subCgyMiddleKey}：${dataItems.subCgyMiddleValue.replace(/∝/g, '')}；${dataItems.subCgyRightKey}：${dataItems.subCgyRightValue.replace(/∝/g, '')}）`,
+    accountNameFrom: '余利宝',
+    channel: '支付宝[理财收益]',
   });
 }
 
@@ -271,8 +263,8 @@ function handleYueLibaoIncome(dataItems, pl, result) {
     money: parseFloat(dataItems.content),
     shopName: pl.title,
     shopItem: `${dataItems.assistMsg1}${dataItems.homePageTitle}`,
-    accountNameFrom: "余利宝",
-    channel: "支付宝[余利宝收益]",
+    accountNameFrom: '余利宝',
+    channel: '支付宝[余利宝收益]',
   });
 }
 
@@ -290,7 +282,7 @@ function handleWebBankTransfer(dataItems, pl, result) {
     shopItem: `${dataItems.homePageTitle}`,
     accountNameFrom: `${dataItems.title}(${dataItems.assistMsg3})`,
     accountNameTo: `${dataItems.assistMsg2}`,
-    channel: "支付宝[网商银行转出]",
+    channel: '支付宝[网商银行转出]',
   });
 }
 

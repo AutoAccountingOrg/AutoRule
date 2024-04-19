@@ -58,7 +58,8 @@ test('支付宝理财收益', () =>
       money: 3.16,
       fee: 0,
       shopName: '蚂蚁财富',
-      shopItem: '2024-03-27总资产收益已更新（灵活取用：+3.16；稳健理财：-0.01；进阶理财：+0.01）',
+      shopItem:
+        '2024-03-27总资产收益已更新（灵活取用：+3.16；稳健理财：-0.01；进阶理财：+0.01）',
       accountNameFrom: '余利宝',
       accountNameTo: '',
       currency: 'CNY',
@@ -236,5 +237,21 @@ test('支付宝网商银行转出', () =>
       currency: 'CNY',
       time: 1712916392000,
       channel: '支付宝[网商银行转出]',
+    },
+  ]));
+
+test('支付宝小荷包', () =>
+  testAnkio('支付宝小荷包', [
+    {
+      type: 2,
+      money: 5,
+      fee: 0,
+      shopName: '支付宝小荷包(某某某的情侣小荷包)',
+      shopItem: '转入成功',
+      accountNameFrom: '余额宝',
+      accountNameTo: '支付宝小荷包(某某某的情侣小荷包)',
+      currency: 'CNY',
+      time: 1713229525000,
+      channel: '支付宝[小荷包自动攒]',
     },
   ]));
