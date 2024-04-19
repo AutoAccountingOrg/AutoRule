@@ -1,5 +1,5 @@
 {
-  "printWidth": 500,
+  "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
@@ -10,5 +10,5 @@
   "endOfLine": "auto",
   "eslintIntegration": false,
   "htmlWhitespaceSensitivity": "ignore",
-  "quoteProps": "preserve"
+  "function-paren-newline": "multiline"
 }

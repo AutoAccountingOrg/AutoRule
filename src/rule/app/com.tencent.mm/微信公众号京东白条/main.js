@@ -1,21 +1,23 @@
-import { RuleObject } from "../../../../utils/RuleObject";
-import { BillType } from "../../../../utils/BillType";
-import { Currency } from "../../../../utils/Currency";
+import { RuleObject } from '../../../../utils/RuleObject';
+import { BillType } from '../../../../utils/BillType';
+import { Currency } from '../../../../utils/Currency';
+import { parseDate } from 'yarn/lib/cli';
+import { formatDate } from '../../../../utils/Time';
 
 // 定义源名称和需要匹配的标题数组
-const SOURCE_NAME_JD = "京东白条";
-const TITLES_JD = ["还款成功通知"];
+const SOURCE_NAME_JD = '京东白条';
+const TITLES_JD = ['还款成功通知'];
 
 // 正则表达式和处理函数的映射关系
 const regexMapJD = new Map([
   [
     /还款时间：(.*?)\n还款金额：([\d\,]+.\d{2})元/,
-    (match) => ({
-      money: parseFloat(match[2].replace(",", "")),
+    match => ({
+      money: parseFloat(match[2].replace(',', '')),
       type: BillType.Expend,
-      time: `${new Date().getFullYear()}年${match[1]}`,
-      accountNameTo: "京东白条",
-      channel: "微信[京东白条 还款]",
+      time: `${match[1]}`,
+      accountNameTo: '京东白条',
+      channel: '微信[京东白条 还款]',
     }),
   ],
 ]);
@@ -61,8 +63,8 @@ export function get(data) {
     parsedText.accountNameFrom,
     parsedText.accountNameTo,
     0,
-    Currency["人民币"],
-    parsedText.time,
+    Currency['人民币'],
+    formatDate(parsedText.time, 'M月D日'),
     parsedText.channel,
   );
 }

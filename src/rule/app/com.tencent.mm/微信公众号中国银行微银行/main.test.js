@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 
@@ -17,7 +18,7 @@ test('中国银行入账', () =>
       accountNameFrom: '中国银行(7575)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月12日18:12',
+      time: formatDate('04月12日18:12', 'M月D日h:i'),
       channel: '微信[中国银行-入账]',
     },
   ]));
@@ -33,7 +34,7 @@ test('中国银行退款', () =>
       accountNameFrom: '中国银行(7575)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月13日13:02',
+      time: formatDate('04月13日13:02', 'M月D日h:i'),
       channel: '微信[中国银行-退款]',
     },
   ]));
@@ -49,7 +50,7 @@ test('中国银行消费', () =>
       accountNameFrom: '中国银行(7575)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月13日13:02',
+      time: formatDate('04月13日13:02', 'M月D日h:i'),
       channel: '微信[中国银行-消费]',
     },
     {
@@ -61,7 +62,7 @@ test('中国银行消费', () =>
       accountNameFrom: '中国银行(7575)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月12日18:28',
+      time: formatDate('04月12日18:28', 'M月D日h:i'),
       channel: '微信[中国银行-消费]',
     },
     {
@@ -73,7 +74,7 @@ test('中国银行消费', () =>
       accountNameFrom: '中国银行(7575)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月64日64:02',
+      time: formatDate('04月14日14:02', 'M月D日h:i'),
       channel: '微信[中国银行-消费]',
     },
     {
@@ -85,7 +86,7 @@ test('中国银行消费', () =>
       accountNameFrom: '中国银行(0464)',
       accountNameTo: '',
       currency: 'CNY',
-      time: '2024年04月12日19:04',
+      time: formatDate('04月12日19:04', 'M月D日h:i'),
       channel: '微信[中国银行-消费]',
     },
   ]));
