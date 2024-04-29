@@ -1,0 +1,43 @@
+                {
+  "trans_status": 2001,
+  "retcode": "0",
+  "retmsg": "ok",
+  "fee": 1700,
+  "fee_type": "1",
+  "refund_bank_type": "BANK",
+  "payer_name": "huanqi5383",
+  "receiver_name": "wxid_9uggr4pqbcut22",
+  "status_desc": "你已收款，资金已存入零钱",
+  "status_supplementary": "\u003c_wc_custom_link_ href\u003d\"weixin://wcpay/transfer/watchbalance\"\u003e零钱余额\u003c/_wc_custom_link_\u003e",
+  "delay_confirm_flag": 0,
+  "is_payer": false,
+  "exposure_info": {
+    "icon": "https://act.weixin.qq.com/static/images/201811/fa7720735f3f4db765f354c4daf5e620.png",
+    "name": "零钱通 七日年化1.73%",
+    "wording": "给小金库再添一笔",
+    "is_show_btn": 1,
+    "btn_wording": "转入",
+    "jump_info": {
+      "type": 3,
+      "url": "weixin://wcpay/lqt/save?operate_id\u003d00005453141700017138442058873690\u0026trace_info\u003dCPqqg4QCEAIaNgoMYXBwX3RyYW5zZmVyEiAxZDU0MjhlOTcyZGI5ZWNlNTg2ZjlmMTkzOGIyYzM2Mxjt35yxBiI2CgxhcHBfdHJhbnNmZXISIDFkNTQyOGU5NzJkYjllY2U1ODZmOWYxOTM4YjJjMzYzGO3fnLEG",
+      "username": "",
+      "pagepath": ""
+    }
+  },
+  "text_info": {},
+  "desc_item_list": [
+    {
+      "key": "转账时间",
+      "value": "2024年04月23日 11:48:26",
+      "item_type": 3
+    },
+    {
+      "key": "收款时间",
+      "value": "2024年04月23日 11:50:05",
+      "item_type": 4
+    }
+  ],
+  "upright_corner_list": [],
+  "customer_info_list": [],
+  "hookUser": "师大123"
+}
