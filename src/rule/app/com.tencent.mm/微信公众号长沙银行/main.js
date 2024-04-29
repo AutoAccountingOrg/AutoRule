@@ -9,7 +9,7 @@ const TITLES = ['交易成功提醒'];
 
 // 定义用于解析文本的正则表达式
 const regex =
-  /交易时间：(.*?)\n交易类型：(.*?)（个人账户：尾号(\d{4})）\n交易金额：人民币(.*?)元\n账户余额：.*?元\n交易说明：(.*)/;
+  /交易时间：(.*?)\n交易类型：(.*?)（个人账户：尾号(\d{4})）\n交易金额：人民币(.*?)元\n账户余额：.*?元\n交易说明：(.*)?/;
 
 /**
  * 解析文本并返回解析结果
@@ -26,7 +26,7 @@ function parseText(text) {
   const accountNameFrom = `长沙银行（${account}）`;
 
   return {
-    type: type.includes('支付取出') ? BillType.Expend : null,
+    type: type.includes('取出') ? BillType.Expend : null,
     time: `${time}`,
     shopItem,
     money: parseFloat(money.replace(',', '')),

@@ -4,8 +4,8 @@ const { DataType } = require('../../../../utils/DataType');
 const { formatDate } = require('../../../../utils/Time');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
-test('长沙银行支付宝支付取出', () =>
-  testAnkio('长沙银行支付宝支付取出', [
+test('长沙银行取出', () =>
+  testAnkio('长沙银行取出', [
     {
       type: 0,
       money: 200,
@@ -16,6 +16,18 @@ test('长沙银行支付宝支付取出', () =>
       accountNameTo: '',
       currency: 'CNY',
       time: formatDate('04月10日09:03', 'M月D日h:i'),
+      channel: '微信[长沙银行交易通知]',
+    },
+    {
+      type: 0,
+      money: 8.49,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '长沙银行（2754）',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('04月17日14:54', 'M月D日h:i'),
       channel: '微信[长沙银行交易通知]',
     },
   ]));
