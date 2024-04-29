@@ -239,3 +239,18 @@ test('微信支付银行卡转账', () =>
       channel: '微信[微信支付-转账]',
     },
   ]));
+test('微信支付收款入账', () =>
+  testAnkio('微信支付收款入账', [
+    {
+      type: 1,
+      money: 0.1,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-收款入账]',
+    },
+  ]));
