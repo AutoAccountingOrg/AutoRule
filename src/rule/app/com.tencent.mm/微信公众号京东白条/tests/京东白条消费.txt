@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "服务商户：京东平台商户\n交易类型：分3期\n交易订单：293087122569\n交易时间：04月28日 18:07:46\n消费金额：23.75元",
+    "source": "京东白条",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10049396,
+    "title": "交易提醒"
+  }
+}
