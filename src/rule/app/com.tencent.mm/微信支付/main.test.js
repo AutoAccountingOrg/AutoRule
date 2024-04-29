@@ -224,3 +224,18 @@ test('微信支付扫码付款', () =>
       channel: '微信[微信支付-付款]',
     },
   ]));
+test('微信支付银行卡转账', () =>
+  testAnkio('微信支付银行卡转账', [
+    {
+      type: 2,
+      money: 1500,
+      fee: 0,
+      shopName: '某某某',
+      shopItem: '',
+      accountNameFrom: '零钱',
+      accountNameTo: '农业银行(8879)',
+      currency: 'CNY',
+      time: formatDate('2024-04-18 17:26', 'Y-M-D h:i'),
+      channel: '微信[微信支付-转账]',
+    },
+  ]));

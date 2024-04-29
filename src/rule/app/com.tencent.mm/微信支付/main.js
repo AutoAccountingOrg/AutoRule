@@ -11,6 +11,8 @@ const TITLES_WECHAT = [
   '微信支付收款元',
   '转账过期退款到账通知',
   '你收到一笔分销佣金',
+  '微信支付凭证',
+  '转账到银行卡到账成功',
 ];
 var mapItem;
 
@@ -99,6 +101,21 @@ const regexMap = new Map([
       };
     },
   ],
+  [
+    /转账金额：¥(\d+\.\d{2})\n收款方：(.*?)\n收款账号：(.*?)\n到账时间：(.*?)\n转账资金已到账对方银行卡账户/,
+    match => {
+      const [, money, shopName, accountNameTo, time] = match;
+      return {
+        money: parseFloat(money),
+        type: BillType.Transfer,
+        shopName: shopName,
+        accountNameTo: accountNameTo,
+        accountNameFrom: '零钱',
+        time: formatDate(time, 'Y-M-D h:i'),
+        channel: '微信[微信支付-转账]',
+      };
+    },
+  ],
 ]);
 
 /**
@@ -123,6 +140,12 @@ function parseWeChatText(text) {
  */
 export function get(data) {
   mapItem = JSON.parse(data).mMap;
+  if (
+    mapItem.source !== SOURCE_NAME_WECHAT ||
+    !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/, ''))
+  ) {
+    return null;
+  }
   // 解析文本
   const parsedText = parseWeChatText(mapItem.description);
   if (!parsedText || parsedText.type === null) {
@@ -136,7 +159,7 @@ export function get(data) {
     parsedText.shopName || mapItem.display_name,
     parsedText.shopItem,
     parsedText.accountNameFrom,
-    '',
+    parsedText.accountNameTo,
     0,
     Currency['人民币'],
     parsedText.time || formatDate(),
