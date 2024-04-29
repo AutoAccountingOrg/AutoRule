@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "收款金额￥5.00\n收款账户零钱\n付款商家兆纳科技\n付款备注淘金城镇",
+    "source": "微信支付",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 48340,
+    "title": "你收到一笔分销佣金"
+  }
+}
