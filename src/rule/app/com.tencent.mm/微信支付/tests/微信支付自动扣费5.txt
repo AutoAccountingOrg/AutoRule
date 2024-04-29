@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "扣费金额￥19.00\n扣费项目Keep会员包月自动续费\n支付方式零钱\n收单机构财付通支付科技有限公司\n备注你的Keep账号（太公摘花）扣费成功。如果对扣费有疑问，请联系商户确认",
+    "source": "微信支付",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 64779,
+    "title": "已扣费¥19.00"
+  }
+}
