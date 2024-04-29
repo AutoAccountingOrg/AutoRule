@@ -209,3 +209,18 @@ test('微信支付收款（分销佣金）', () =>
       channel: '微信[微信支付-收款]',
     },
   ]));
+test('微信支付扫码付款', () =>
+  testAnkio('微信支付扫码付款', [
+    {
+      type: 0,
+      money: 15,
+      fee: 0,
+      shopName: 'ziyii',
+      shopItem: '请你喝奶茶啊',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-付款]',
+    },
+  ]));

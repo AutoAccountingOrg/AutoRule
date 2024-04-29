@@ -84,6 +84,21 @@ const regexMap = new Map([
       };
     },
   ],
+  [
+    /付款金额￥(\d+\.\d{2})\n收款方(.*?)\n付款留言(.*?)\n交易状态支付成功，对方已收款/,
+    match => {
+      //TODO 这里有问题，缺少支付工具，自动记账应该会解析支付工具才对
+      const [, money, shopName, shopItem] = match;
+      return {
+        money: parseFloat(money),
+        type: BillType.Expend,
+        shopName: shopName,
+        shopItem: shopItem,
+        accountNameFrom: '零钱',
+        channel: '微信[微信支付-付款]',
+      };
+    },
+  ],
 ]);
 
 /**
@@ -108,12 +123,6 @@ function parseWeChatText(text) {
  */
 export function get(data) {
   mapItem = JSON.parse(data).mMap;
-  if (
-    mapItem.source !== SOURCE_NAME_WECHAT ||
-    !TITLES_WECHAT.includes(mapItem.title.replace(/\d+\.\d{2}/, ''))
-  ) {
-    return null;
-  }
   // 解析文本
   const parsedText = parseWeChatText(mapItem.description);
   if (!parsedText || parsedText.type === null) {
