@@ -272,3 +272,18 @@ test('支付宝余额宝收益', () =>
       channel: '支付宝[余额宝收益]',
     },
   ]));
+test('支付宝收款到账', () =>
+  testAnkio('支付宝收款到账', [
+    {
+      type: 1,
+      money: 0.3,
+      fee: 0,
+      shopName: '北京快手科技有限公司 bjk***@kuaishou.com',
+      shopItem: '到账成功',
+      accountNameFrom: '',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: 1714212854000,
+      channel: '支付宝[收款到账]',
+    },
+  ]));

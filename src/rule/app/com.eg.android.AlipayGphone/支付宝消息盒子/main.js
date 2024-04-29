@@ -148,6 +148,8 @@ function handleContentItems(contentItems, result) {
   contentItems.forEach(item => {
     switch (item.title) {
       case '交易对象：':
+      case '付款方：':
+      case '付款人：':
         result.shopName = item.content;
         break;
       case '付款方式：':
@@ -157,9 +159,6 @@ function handleContentItems(contentItems, result) {
       case '扣款说明：':
       case '退款说明：':
         result.shopItem = item.content;
-        break;
-      case '付款人：':
-        result.shopName = item.content;
         break;
     }
   });
@@ -189,11 +188,13 @@ function handleLink(pl, result) {
       dataItems.topSubContent,
     ],
     BIZFUND: [
-      '小荷包自动攒',
+      dataItems.topSubContent === '转入成功' ? '小荷包自动攒' : '收款到账',
       pl.title,
-      BillType.Transfer,
-      dataItems.assistMsg1,
-      dataItems.assistMsg2,
+      dataItems.topSubContent === '转入成功'
+        ? BillType.Transfer
+        : BillType.Income,
+      dataItems.topSubContent === '转入成功' ? dataItems.assistMsg1 : null,
+      dataItems.topSubContent === '转入成功' ? dataItems.assistMsg2 : null,
       dataItems.topSubContent,
     ],
   };
