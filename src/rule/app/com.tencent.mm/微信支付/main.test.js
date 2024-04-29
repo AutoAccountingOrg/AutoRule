@@ -123,6 +123,18 @@ test('微信支付自动扣费', () =>
       time: formatDate(),
       channel: '微信[微信支付-扣费]',
     },
+    {
+      type: 0,
+      money: 19,
+      fee: 0,
+      shopName: '',
+      shopItem: 'Keep会员包月自动续费, 你的Keep账号（太公摘花）扣费成功。',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-扣费]',
+    },
   ]));
 
 test('微信支付收款', () =>
