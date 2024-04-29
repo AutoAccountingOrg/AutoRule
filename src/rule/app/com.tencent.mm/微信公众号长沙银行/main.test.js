@@ -30,4 +30,16 @@ test('长沙银行取出', () =>
       time: formatDate('04月17日14:54', 'M月D日h:i'),
       channel: '微信[长沙银行交易通知]',
     },
+    {
+      type: 0,
+      money: 18.86,
+      fee: 0,
+      shopName: '',
+      shopItem: '田利威-商品1',
+      accountNameFrom: '长沙银行（2754）',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('04月18日08:08', 'M月D日h:i'),
+      channel: '微信[长沙银行交易通知]',
+    },
   ]));
