@@ -23,6 +23,7 @@ export function isTimeInRange(startTime, endTime, currentTime) {
  * @returns {number}
  */
 export function formatDate(time = '', tpl = '') {
+  if (time.length === 13) return time;
   if (time.length === 0) {
     return Math.floor(Date.now() / 1000) * 1000;
   }
