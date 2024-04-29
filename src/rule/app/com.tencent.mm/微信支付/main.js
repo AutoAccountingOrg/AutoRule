@@ -13,6 +13,7 @@ const TITLES_WECHAT = [
   '你收到一笔分销佣金',
   '微信支付凭证',
   '转账到银行卡到账成功',
+  '你有一笔收款入账',
 ];
 var mapItem;
 
@@ -113,6 +114,19 @@ const regexMap = new Map([
         accountNameFrom: '零钱',
         time: formatDate(time, 'Y-M-D h:i'),
         channel: '微信[微信支付-转账]',
+      };
+    },
+  ],
+  [
+    /收款金额¥ (\d+\.\d{2})\n收款账户(.*)/,
+    match => {
+      const [, money, accountNameFrom] = match;
+      return {
+        money: parseFloat(money),
+        type: BillType.Income,
+        accountNameFrom: accountNameFrom,
+        time: formatDate(),
+        channel: '微信[微信支付-收款入账]',
       };
     },
   ],
