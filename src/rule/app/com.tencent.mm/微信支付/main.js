@@ -63,13 +63,13 @@ const regexMap = new Map([
     }),
   ],
   [
-    /收款金额￥(\d+\.\d{2})\n收款账户(.*?)\n付款商家(.*)/,
+    /收款金额￥(\d+\.\d{2})\n收款账户(.*?)\n付款商家(.*)(\n付款备注(.*))?/,
     match => ({
       money: parseFloat(match[1]),
       type: BillType.Income,
       accountNameFrom: match[2],
       shopName: match[3],
-      shopItem: mapItem.title,
+      shopItem: match[5] || mapItem.title,
       channel: '微信[微信支付-收款]',
     }),
   ],

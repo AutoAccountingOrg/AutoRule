@@ -208,6 +208,18 @@ test('微信支付收款（分销佣金）', () =>
       time: formatDate(),
       channel: '微信[微信支付-收款]',
     },
+    {
+      type: 1,
+      money: 5,
+      fee: 0,
+      shopName: '兆纳科技',
+      shopItem: '淘金城镇',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-收款]',
+    },
   ]));
 test('微信支付扫码付款', () =>
   testAnkio('微信支付扫码付款', [
