@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "付款金额￥15.00\n收款方ziyii\n付款留言请你喝奶茶啊\n交易状态支付成功，对方已收款",
+    "source": "微信支付",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10283695,
+    "title": "微信支付凭证"
+  }
+}
