@@ -8,7 +8,7 @@ test('微信转账收款', () =>
   testAnkio('微信转账收款', [
     {
       type: 1,
-      money: 1700,
+      money: 17.0,
       fee: 0,
       shopName: '师大123',
       shopItem: '你已收款，资金已存入零钱',

@@ -2,7 +2,7 @@ import { RuleObject } from '../../../../utils/RuleObject';
 import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
 import { formatDate } from '../../../../utils/Time';
-import { DataType } from '../../../../utils/DataType';
+import { toDoubleFloat } from '../../../../utils/Number';
 
 /**
  * @param {string} data - 包含数据的JSON字符串。
@@ -15,7 +15,7 @@ export function get(data) {
   // 创建并返回RuleObject对象
   return new RuleObject(
     BillType.Income,
-    data.fee,
+    toDoubleFloat(data.fee),
     data.hookUser,
     data.status_desc,
     '零钱',
