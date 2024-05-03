@@ -141,10 +141,10 @@ test('微信支付收款', () =>
   testAnkio('微信支付收款', [
     {
       type: 1,
-      money: 12.7,
+      money: 0.02,
       fee: 0,
-      shopName: '',
-      shopItem: '今日第1笔收款，共计￥12.70',
+      shopName: '个人收款服务',
+      shopItem: '热tree他 今日第2笔收款，共计￥0.03',
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
