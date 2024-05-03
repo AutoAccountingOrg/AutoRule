@@ -59,7 +59,7 @@ const regexMap = new Map([
     match => ({
       money: toFloat(match[1]),
       type: BillType.Income,
-      shopItem: match.length > 3 ? match[3] + ' ' + match[4] : match[4],
+      shopItem: match[3] !== undefined ? match[3] + ' ' + match[4] : match[4],
       accountNameFrom: '零钱',
       channel: '微信[微信支付-收款]',
     }),
