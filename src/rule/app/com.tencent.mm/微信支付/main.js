@@ -2,6 +2,7 @@ import { RuleObject } from '../../../../utils/RuleObject';
 import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
 import { formatDate } from '../../../../utils/Time';
+import { toFloat } from '../../../../utils/Number';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
@@ -9,6 +10,7 @@ const TITLES_WECHAT = [
   '已支付¥',
   '已扣费¥',
   '微信支付收款元',
+  '微信支付收款元(朋友到店)',
   '转账过期退款到账通知',
   '你收到一笔分销佣金',
   '微信支付凭证',
@@ -53,11 +55,11 @@ const regexMap = new Map([
     },
   ],
   [
-    /收款金额￥(\d+\.\d{2})\n汇总(.*?)\n备注.*/,
+    /收款金额￥(\d+\.\d{2})\n(付款方备注(.*?)\n)?汇总(.*?)\n备注.*/,
     match => ({
-      money: parseFloat(match[1]),
+      money: toFloat(match[1]),
       type: BillType.Income,
-      shopItem: match[2],
+      shopItem: match.length > 3 ? match[3] + ' ' + match[4] : match[4],
       accountNameFrom: '零钱',
       channel: '微信[微信支付-收款]',
     }),
