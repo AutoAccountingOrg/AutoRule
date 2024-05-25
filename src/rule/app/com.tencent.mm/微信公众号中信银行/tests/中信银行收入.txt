@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间：尾号8137储蓄卡5月7日10:50\n交易类型：实发房补\n交易金额：人民币 1,500.00 元\n卡内余额：人民币 22,685.85 元",
+    "source": "中信银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 598572,
+    "title": "交易提醒"
+  }
+}
