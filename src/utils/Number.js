@@ -15,7 +15,7 @@ function convertToNumber(value) {
  * @returns {number}
  */
 export function toFloat(number) {
-  return +parseFloat(convertToNumber(number).toPrecision(5));
+  return +parseFloat(convertToNumber(number).toFixed(2));
 }
 
 /**
