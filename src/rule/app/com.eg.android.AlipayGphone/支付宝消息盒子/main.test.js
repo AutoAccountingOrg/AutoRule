@@ -51,24 +51,21 @@ test('支付宝收款码收款', () =>
       channel: '支付宝[收款码收款]',
     },
   ]));
-
-test('支付宝理财收益', () =>
-  testAnkio('支付宝理财收益', [
+test('支付宝基金卖出', () =>
+  testAnkio('支付宝基金卖出', [
     {
       type: 1,
-      money: 3.16,
+      money: 37.97,
       fee: 0,
-      shopName: '蚂蚁财富',
-      shopItem:
-        '2024-03-27总资产收益已更新（灵活取用：+3.16；稳健理财：-0.01；进阶理财：+0.01）',
-      accountNameFrom: '余利宝',
+      shopName: '卖出产品',
+      shopItem: '汇添富蓝筹稳健灵活配置混合A',
+      accountNameFrom: '支付宝基金银行卡',
       accountNameTo: '',
       currency: 'CNY',
-      time: 1711609388000,
-      channel: '支付宝[理财收益]',
+      time: 1715135058000,
+      channel: '支付宝[基金卖出]',
     },
   ]));
-
 test('支付宝发红包', () =>
   testAnkio('支付宝发红包', [
     {
