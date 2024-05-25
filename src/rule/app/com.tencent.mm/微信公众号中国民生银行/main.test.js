@@ -22,3 +22,19 @@ test('民生银行收入', () =>
       channel: '微信[中国民生银行-收入]',
     },
   ]));
+
+test('民生银行支出', () =>
+  testAnkio('民生银行支出', [
+    {
+      type: 0,
+      money: 0.01,
+      fee: 0,
+      shopName: '微信转账',
+      shopItem: '财付通-快捷支付-微信转账',
+      accountNameFrom: '中国民生银行借记卡(6510)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024年05月10日 22:24:38', 'Y年M月D日 h:i:s'),
+      channel: '微信[中国民生银行-支出]',
+    },
+  ]));
