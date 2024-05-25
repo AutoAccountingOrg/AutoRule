@@ -21,6 +21,10 @@ const regexMapBOC = new Map([
           matchTypeName = '收入';
           matchType = BillType.Income;
           break;
+        case '支出':
+          matchTypeName = '支出';
+          matchType = BillType.Expend;
+          break;
       }
 
       return {
