@@ -206,8 +206,8 @@ test('微信支付转账过期退款', () =>
     },
   ]));
 
-test('微信支付收款（分销佣金）', () =>
-  testAnkio('微信支付收款（分销佣金）', [
+test('微信支付收款（商家付款）', () =>
+  testAnkio('微信支付收款（商家付款）', [
     {
       type: 1,
       money: 0.1,
@@ -226,6 +226,30 @@ test('微信支付收款（分销佣金）', () =>
       fee: 0,
       shopName: '兆纳科技',
       shopItem: '淘金城镇',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-收款（商家）]',
+    },
+    {
+      type: 1,
+      money: 1.2,
+      fee: 0,
+      shopName: '臻鼎',
+      shopItem: '番茄小说提现',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-收款（商家）]',
+    },
+    {
+      type: 1,
+      money: 10,
+      fee: 0,
+      shopName: '元梦之星',
+      shopItem: '元梦之星',
       accountNameFrom: '零钱',
       accountNameTo: '',
       currency: 'CNY',
@@ -262,17 +286,5 @@ test('微信支付收款入账', () =>
       currency: 'CNY',
       time: formatDate(),
       channel: '微信[微信支付-收款入账]',
-    },
-    {
-      type: 1,
-      money: 1.2,
-      fee: 0,
-      shopName: '臻鼎',
-      shopItem: '番茄小说提现',
-      accountNameFrom: '零钱',
-      accountNameTo: '',
-      currency: 'CNY',
-      time: formatDate(),
-      channel: '微信[微信支付-收款（商家）]',
     },
   ]));
