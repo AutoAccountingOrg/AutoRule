@@ -18,6 +18,7 @@ const regexMapBOC = new Map([
       var shopItem = '';
       switch (matchType) {
         case '实发房补':
+        case '实发工资':
           matchTypeName = '收入';
           shopItem = matchType;
           matchType = BillType.Income;
