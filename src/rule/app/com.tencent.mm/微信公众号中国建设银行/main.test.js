@@ -21,4 +21,16 @@ test('中国建设银行收入', () =>
       time: formatDate('2024年5月8日 00:56:08', 'Y年M月D日 h:i:s'),
       channel: '微信[中国建设银行-收入]',
     },
+    {
+      type: 0,
+      money: 23.6,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '中国建设银行储蓄卡(4053)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024年5月7日 22:30:39', 'Y年M月D日 h:i:s'),
+      channel: '微信[中国建设银行-收入]',
+    },
   ]));
