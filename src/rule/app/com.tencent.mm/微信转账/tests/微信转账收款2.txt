@@ -1,0 +1,43 @@
+{
+  "trans_status": 2001,
+  "retcode": "0",
+  "retmsg": "ok",
+  "fee": 39984,
+  "fee_type": "1",
+  "refund_bank_type": "BANK",
+  "payer_name": "wxid_6jm7j3vzbwsk22",
+  "receiver_name": "wxid_k5ys4kv42tpg22",
+  "status_desc": "你已收款，资金已存入零钱",
+  "status_supplementary": "\u003c_wc_custom_link_ href\u003d\"weixin://wcpay/transfer/watchbalance\"\u003e零钱余额\u003c/_wc_custom_link_\u003e",
+  "delay_confirm_flag": 0,
+  "is_payer": false,
+  "exposure_info": {
+    "icon": "https://act.weixin.qq.com/static/images/201811/fa7720735f3f4db765f354c4daf5e620.png",
+    "name": "零钱通 七日年化1.71%",
+    "wording": "给小金库再添一笔",
+    "is_show_btn": 1,
+    "btn_wording": "转入",
+    "jump_info": {
+      "type": 3,
+      "url": "weixin://wcpay/lqt/save?operate_id\u003d00033459788110017155594806866598\u0026trace_info\u003dCLurvrsMEAIaNgoMYXBwX3RyYW5zZmVyEiBhNjgxMDUxMWU3ZGUwNDczZmFiMjRmNTJkYjE5ODM4ZRi4uIWyBiI2CgxhcHBfdHJhbnNmZXISIGE2ODEwNTExZTdkZTA0NzNmYWIyNGY1MmRiMTk4MzhlGLi4hbIG",
+      "username": "",
+      "pagepath": ""
+    }
+  },
+  "text_info": {},
+  "desc_item_list": [
+    {
+      "key": "转账时间",
+      "value": "2024年05月13日 08:16:31",
+      "item_type": 3
+    },
+    {
+      "key": "收款时间",
+      "value": "2024年05月13日 08:16:33",
+      "item_type": 4
+    }
+  ],
+  "upright_corner_list": [],
+  "customer_info_list": [],
+  "hookUser": "Aa川信24小时自提点"
+}
