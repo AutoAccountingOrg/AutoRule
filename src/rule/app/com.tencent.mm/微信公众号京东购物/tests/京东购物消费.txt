@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "实付金额：￥25.20元\n商品详情：嘻嘻嘻嘻嘻嘻嘻下次..\n收货地址：上海浦东新区xxxx\n订单编号：293233ee7987",
+    "source": "京东购物",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 104183,
+    "title": "付款成功通知"
+  }
+}
