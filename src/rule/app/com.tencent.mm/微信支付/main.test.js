@@ -237,7 +237,7 @@ test('微信支付扫码付款', () =>
   testAnkio('微信支付扫码付款', [
     {
       type: 0,
-      money: 15,
+      money: 10,
       fee: 0,
       shopName: '开心快乐每一天',
       shopItem: '',

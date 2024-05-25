@@ -153,7 +153,7 @@ export function get(data) {
   return new RuleObject(
     parsedText.type,
     parsedText.money,
-    mapItem.display_name || parsedText.cachedPayShop,
+    parsedText.shopName || mapItem.display_name || parsedText.cachedPayShop,
     parsedText.shopItem,
     parsedText.accountNameFrom,
     parsedText.accountNameTo,
