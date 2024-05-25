@@ -71,7 +71,7 @@ const regexMap = new Map([
       accountNameFrom: match[2],
       shopName: match[3],
       shopItem: match[5] || mapItem.title,
-      channel: '微信[微信支付-收款]',
+      channel: '微信[微信支付-收款（商家）]',
     }),
   ],
   [
