@@ -1,0 +1,14 @@
+                {
+  "mMap": {
+    "description": "收款金额￥10.00\n收款账户零钱\n付款商家元梦之星\n付款备注元梦之星",
+    "source": "微信支付",
+    "type": 5,
+    "appId": "",
+    "msgId": 99064,
+    "title": "你收到一笔活动奖励",
+    "display_name": "元梦之星",
+    "cachedPayTools": "零钱",
+    "cachedPayMoney": "￥8.00",
+    "cachedPayShop": "付款给吉祥如意(*芳)"
+  }
+}
