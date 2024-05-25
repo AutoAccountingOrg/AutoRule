@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "退款原因：订单退款，退回【招商银行信用卡(0898)】\n退款金额：52.00元（实际退款金额）",
+    "source": "美团",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10063908,
+    "title": "退款通知"
+  }
+}
