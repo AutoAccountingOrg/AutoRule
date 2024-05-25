@@ -1,6 +1,7 @@
 import { BillType } from '../../../../utils/BillType';
 import { RuleObject } from '../../../../utils/RuleObject';
 import { Currency } from '../../../../utils/Currency';
+import { formatDate } from '../../../../utils/Time';
 
 /**
  * 解析支付宝账单数据
@@ -8,40 +9,36 @@ import { Currency } from '../../../../utils/Currency';
  * @returns {RuleObject|null} - 解析后的规则对象，如果解析失败则返回null
  */
 export function get(data) {
-  try {
-    // 解析数据
-    const { extension, fields } = JSON.parse(data);
-    if (!extension || !fields) {
-      return null;
-    }
-
-    // 创建结果对象
-    const result = createResultObject(extension);
-
-    // 处理每个字段元素
-    fields.forEach(element => processElement(element, result));
-
-    // 处理业务类型
-    if (!processBizType(extension, result)) {
-      return null;
-    }
-
-    // 创建并返回规则对象
-    return new RuleObject(
-      result.type,
-      result.money,
-      result.shopName,
-      result.shopItem,
-      result.accountNameFrom,
-      result.accountNameTo,
-      result.fee,
-      result.currency,
-      result.time,
-      result.channel,
-    );
-  } catch (error) {
-    throw new Error(`[支付宝账单] get function: ${error}`);
+  // 解析数据
+  const { extension, fields } = JSON.parse(data);
+  if (!extension || !fields) {
+    return null;
   }
+
+  // 创建结果对象
+  const result = createResultObject(extension);
+
+  // 处理每个字段元素
+  fields.forEach(element => processElement(element, result));
+
+  // 处理业务类型
+  if (!processBizType(extension, result)) {
+    return null;
+  }
+
+  // 创建并返回规则对象
+  return new RuleObject(
+    result.type,
+    result.money,
+    result.shopName,
+    result.shopItem,
+    result.accountNameFrom,
+    result.accountNameTo,
+    result.fee,
+    result.currency,
+    result.time,
+    result.channel,
+  );
 }
 
 /**
@@ -57,7 +54,7 @@ function processElement(element, result) {
     const elementValue = JSON.parse(element.value);
 
     switch (element.templateId) {
-      case 'BLDetailTitle':
+      case 'BLDetailTitle': //BLDetailTitle
         result.shopName = elementValue.content;
         break;
       case 'BLDetailPrice':
@@ -70,10 +67,12 @@ function processElement(element, result) {
               ? BillType.Expend
               : BillType.Transfer;
         break;
-      case 'BLDetailCommon':
+      case 'BLDetailCommon': //BLDetailCommon
       case 'BLH5ProductInfo':
         if (/商品说明|转账备注/.test(elementValue.title)) {
           result.shopItem = elementValue.data[0].content;
+        } else if (/创建时间/.test(elementValue.title)) {
+          result.data = formatDate(elementValue.data[0].content, 'Y-M-D h:i:s');
         }
         break;
     }
@@ -127,6 +126,9 @@ function processBizType(extension, result) {
       result.type = BillType.Income;
       result.accountNameFrom = '余额宝';
       result.channel = '支付宝[余额宝收益]';
+      break;
+    case 'ISASP':
+      result.channel = '支付宝[医保支付]';
       break;
     default:
       return false;
