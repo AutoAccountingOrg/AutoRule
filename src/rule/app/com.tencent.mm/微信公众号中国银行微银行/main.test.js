@@ -89,4 +89,16 @@ test('中国银行消费', () =>
       time: formatDate('04月12日19:04', 'M月D日h:i'),
       channel: '微信[中国银行-消费]',
     },
+    {
+      type: 0,
+      money: 5,
+      fee: 0,
+      shopName: '',
+      shopItem: 'POS消费',
+      accountNameFrom: '中国银行(0464)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('05月08日00:34', 'M月D日h:i'),
+      channel: '微信[中国银行-消费]',
+    },
   ]));
