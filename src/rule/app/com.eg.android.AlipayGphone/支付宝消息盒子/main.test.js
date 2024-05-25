@@ -135,6 +135,18 @@ test('支付宝消费', () =>
       time: 1712524722000,
       channel: '支付宝[消费]',
     },
+    {
+      type: 0,
+      money: 1,
+      fee: 0,
+      shopName: '深圳壹基金公益基金会',
+      shopItem: '',
+      accountNameFrom: '余额宝',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: 1714961757000,
+      channel: '支付宝[消费]',
+    },
   ]));
 
 test('支付宝退款', () =>
