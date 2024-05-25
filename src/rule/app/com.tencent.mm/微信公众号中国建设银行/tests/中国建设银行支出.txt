@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间：2024年5月7日 20:24:29\n交易类型：支出（尾号4053储蓄卡）\n交易金额：15.80（人民币）",
+    "source": "中国建设银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 212392,
+    "title": "交易提醒"
+  }
+}

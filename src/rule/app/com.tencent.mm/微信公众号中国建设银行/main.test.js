@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('中国建设银行收入', () =>
   testAnkio('中国建设银行收入', [
     {
-      type: 0,
+      type: 1,
       money: 100,
       fee: 0,
       shopName: '',
@@ -22,7 +22,7 @@ test('中国建设银行收入', () =>
       channel: '微信[中国建设银行-收入]',
     },
     {
-      type: 0,
+      type: 1,
       money: 23.6,
       fee: 0,
       shopName: '',
@@ -32,5 +32,20 @@ test('中国建设银行收入', () =>
       currency: 'CNY',
       time: formatDate('2024年5月7日 22:30:39', 'Y年M月D日 h:i:s'),
       channel: '微信[中国建设银行-收入]',
+    },
+  ]));
+test('中国建设银行支出', () =>
+  testAnkio('中国建设银行支出', [
+    {
+      type: 0,
+      money: 15.8,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '中国建设银行储蓄卡(4053)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024年5月7日 20:24:29', 'Y年M月D日 h:i:s'),
+      channel: '微信[中国建设银行-支出]',
     },
   ]));

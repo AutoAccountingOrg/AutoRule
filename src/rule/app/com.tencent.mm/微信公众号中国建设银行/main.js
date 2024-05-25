@@ -10,14 +10,19 @@ const TITLES_BOC = ['交易提醒'];
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = new Map([
   [
-    /交易时间：(.*?)\n交易类型：收入（尾号(\d+)储蓄卡）\n交易金额：(.*?)（(.*?)）/,
+    /交易时间：(.*?)\n交易类型：(收入|支出)（尾号(\d+)储蓄卡）\n交易金额：(.*?)（(.*?)）/,
     match => ({
-      money: parseFloat(match[3].replace(',', '')),
-      type: BillType.Expend,
+      money: parseFloat(match[4].replace(',', '')),
+      type:
+        match[2] === '支出'
+          ? BillType.Expend
+          : match[2] === '收入'
+            ? BillType.Income
+            : null,
       time: match[1],
-      accountNameFrom: `${SOURCE_NAME_BOC}储蓄卡(${match[2]})`,
-      Currency: Currency[match[4]],
-      channel: `微信[${SOURCE_NAME_BOC}-收入]`,
+      accountNameFrom: `${SOURCE_NAME_BOC}储蓄卡(${match[3]})`,
+      Currency: Currency[match[5]],
+      channel: `微信[${SOURCE_NAME_BOC}-${match[2]}]`,
     }),
   ],
 ]);
