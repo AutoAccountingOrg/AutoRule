@@ -20,7 +20,7 @@ test('微信转账收款', () =>
     },
     {
       type: 1,
-      money: 399.8,
+      money: 399.84,
       fee: 0,
       shopName: 'Aa川信24小时自提点',
       shopItem: '你已收款，资金已存入零钱',
