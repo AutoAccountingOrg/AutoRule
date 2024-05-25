@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间：05月08日00:34\n交易类型：POS消费（尾号0464）\n交易金额：人民币 5.00\n账户余额：48.99元\n交易说明：点击查看更多详情",
+    "source": "中国银行微银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 308501,
+    "title": "交易成功提醒"
+  }
+}
