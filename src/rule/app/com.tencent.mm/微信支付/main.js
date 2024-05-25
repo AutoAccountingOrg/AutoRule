@@ -14,7 +14,6 @@ const TITLES_WECHAT = [
   '转账过期退款到账通知',
   '你收到一笔分销佣金',
   '微信支付凭证',
-  '转账到银行卡到账成功',
   '你有一笔收款入账',
 ];
 var mapItem;
@@ -90,32 +89,14 @@ const regexMap = new Map([
     },
   ],
   [
-    /付款金额￥(\d+\.\d{2})\n收款方(.*?)\n付款留言(.*?)\n交易状态支付成功，对方已收款/,
+    /付款金额¥(\d+\.\d{2})\n支付方式(.*?)\n交易状态支付成功，对方已收款/,
     match => {
-      //TODO 这里有问题，缺少支付工具，自动记账应该会解析支付工具才对
-      const [, money, shopName, shopItem] = match;
+      const [money, payTool] = match;
       return {
         money: parseFloat(money),
         type: BillType.Expend,
-        shopName: shopName,
-        shopItem: shopItem,
-        accountNameFrom: '零钱',
+        accountNameFrom: payTool,
         channel: '微信[微信支付-付款]',
-      };
-    },
-  ],
-  [
-    /转账金额：¥(\d+\.\d{2})\n收款方：(.*?)\n收款账号：(.*?)\n到账时间：(.*?)\n转账资金已到账对方银行卡账户/,
-    match => {
-      const [, money, shopName, accountNameTo, time] = match;
-      return {
-        money: parseFloat(money),
-        type: BillType.Transfer,
-        shopName: shopName,
-        accountNameTo: accountNameTo,
-        accountNameFrom: '零钱',
-        time: formatDate(time, 'Y-M-D h:i'),
-        channel: '微信[微信支付-转账]',
       };
     },
   ],
@@ -172,7 +153,7 @@ export function get(data) {
   return new RuleObject(
     parsedText.type,
     parsedText.money,
-    parsedText.shopName || mapItem.display_name,
+    mapItem.display_name || parsedText.cachedPayShop,
     parsedText.shopItem,
     parsedText.accountNameFrom,
     parsedText.accountNameTo,
