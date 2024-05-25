@@ -86,10 +86,10 @@ function parseS(pl, result) {
   const dataItems = JSON.parse(pl.extraInfo);
   const handlers = {
     2021002117633826: handleReceipt,
-    2015111300788246: handleInvestmentIncome,
     66666708: handleYueLibaoIncome,
     77700207: handleWebBankTransfer,
     2013110100001907: handleYuEBaoIncome,
+    20000793: handleFund,
   };
   const handler = handlers[pl.appId];
   if (handler) {
@@ -218,7 +218,23 @@ function handleLink(pl, result) {
 }
 
 //------- parseS子函数 --------------------------------------------------
-
+//handleFund
+/**
+ * 处理基金收益
+ * @param {Object} dataItems - 数据项对象
+ * @param {Object} pl - 解析后的pl对象
+ * @param {Object} result - 解析后的交易结果对象
+ */
+function handleFund(dataItems, pl, result) {
+  setResultProperties(result, {
+    type: BillType.Income,
+    money: parseFloat(dataItems.assistMsg2.replace('元', '')),
+    shopName: dataItems.assistName1,
+    shopItem: dataItems.assistMsg1,
+    accountNameFrom: '支付宝基金' + dataItems.assistMsg3,
+    channel: '支付宝[基金卖出]',
+  });
+}
 /**
  * 处理收款码收款
  * @param {Object} dataItems - 数据项对象
@@ -233,23 +249,6 @@ function handleReceipt(dataItems, pl, result) {
     shopItem: dataItems.assistMsg1,
     accountNameFrom: '支付宝余额',
     channel: '支付宝[收款码收款]',
-  });
-}
-
-/**
- * 处理理财收益
- * @param {Object} dataItems - 数据项对象
- * @param {Object} pl - 解析后的pl对象
- * @param {Object} result - 解析后的交易结果对象
- */
-function handleInvestmentIncome(dataItems, pl, result) {
-  setResultProperties(result, {
-    type: BillType.Income,
-    money: parseFloat(dataItems.mainText.replace(/∝|\+/g, '')),
-    shopName: pl.title,
-    shopItem: `${dataItems.assistMsg1}（${dataItems.subCgyLeftKey}：${dataItems.subCgyLeftValue.replace(/∝/g, '')}；${dataItems.subCgyMiddleKey}：${dataItems.subCgyMiddleValue.replace(/∝/g, '')}；${dataItems.subCgyRightKey}：${dataItems.subCgyRightValue.replace(/∝/g, '')}）`,
-    accountNameFrom: '余利宝',
-    channel: '支付宝[理财收益]',
   });
 }
 
