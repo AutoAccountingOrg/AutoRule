@@ -1,0 +1,14 @@
+                {
+  "mMap": {
+    "description": "收款金额￥1.20\n收款账户零钱\n付款商家臻鼎\n付款备注番茄小说提现",
+    "source": "微信支付",
+    "type": 5,
+    "appId": "",
+    "msgId": 99064,
+    "title": "你有一笔收款入账",
+    "display_name": "臻鼎",
+    "cachedPayTools": "零钱",
+    "cachedPayMoney": "￥8.00",
+    "cachedPayShop": "付款给吉祥如意(*芳)"
+  }
+}

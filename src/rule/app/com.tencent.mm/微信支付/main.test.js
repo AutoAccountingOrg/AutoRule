@@ -218,7 +218,7 @@ test('微信支付收款（分销佣金）', () =>
       accountNameTo: '',
       currency: 'CNY',
       time: formatDate(),
-      channel: '微信[微信支付-收款]',
+      channel: '微信[微信支付-收款（商家）]',
     },
     {
       type: 1,
@@ -230,7 +230,7 @@ test('微信支付收款（分销佣金）', () =>
       accountNameTo: '',
       currency: 'CNY',
       time: formatDate(),
-      channel: '微信[微信支付-收款]',
+      channel: '微信[微信支付-收款（商家）]',
     },
   ]));
 test('微信支付扫码付款', () =>
@@ -262,5 +262,17 @@ test('微信支付收款入账', () =>
       currency: 'CNY',
       time: formatDate(),
       channel: '微信[微信支付-收款入账]',
+    },
+    {
+      type: 1,
+      money: 1.2,
+      fee: 0,
+      shopName: '臻鼎',
+      shopItem: '番茄小说提现',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-收款（商家）]',
     },
   ]));
