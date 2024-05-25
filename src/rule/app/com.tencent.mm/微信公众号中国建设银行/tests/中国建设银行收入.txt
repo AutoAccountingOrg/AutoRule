@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间：2024年5月8日 00:56:08\n交易类型：收入（尾号5926储蓄卡）\n交易金额：100.00（人民币）",
+    "source": "中国建设银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 117418,
+    "title": "交易提醒"
+  }
+}

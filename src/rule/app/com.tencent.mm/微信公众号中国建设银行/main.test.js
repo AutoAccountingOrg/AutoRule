@@ -1,0 +1,24 @@
+const { get } = require('./main');
+const fs = require('fs');
+const path = require('path');
+const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
+const { DataType } = require('../../../../utils/DataType');
+const { formatDate } = require('../../../../utils/Time');
+
+testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
+
+test('中国建设银行收入', () =>
+  testAnkio('中国建设银行收入', [
+    {
+      type: 0,
+      money: 100,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '中国建设银行储蓄卡(5926)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024年5月8日 00:56:08', 'Y年M月D日 h:i:s'),
+      channel: '微信[中国建设银行-收入]',
+    },
+  ]));
