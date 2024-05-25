@@ -12,24 +12,24 @@ test('招商银行信用卡消费', () =>
       money: 34.69,
       shopName: '美团-牛约堡手(旭辉店)',
       shopItem: '',
-      accountNameFrom: '招商银行信用卡（1356）',
+      accountNameFrom: '招商银行信用卡(1356)',
       accountNameTo: '',
       fee: 0,
       currency: 'CNY',
       time: formatDate('04月11日18:05', 'M月D日h:i'),
-      channel: '微信[招行信用卡消费]',
+      channel: '微信[招商银行信用卡-消费]',
     },
     {
       type: 0,
       money: 19.68,
       shopName: '美团-奉天熏六记熏拌鸡架（马坡店）',
       shopItem: '',
-      accountNameFrom: '招商银行信用卡（1356）',
+      accountNameFrom: '招商银行信用卡(1356)',
       accountNameTo: '',
       fee: 0,
       currency: 'CNY',
       time: formatDate('04月12日10:53', 'M月D日h:i'),
-      channel: '微信[招行信用卡消费]',
+      channel: '微信[招商银行信用卡-消费]',
     },
   ]));
 
@@ -45,6 +45,22 @@ test('招商银行信用卡还款', () =>
       fee: 0,
       currency: 'CNY',
       time: formatDate('2024年04月13日17:11:44', 'Y年M月D日h:i:s'),
-      channel: '微信[招行信用卡还款]',
+      channel: '微信[招商银行信用卡-还款]',
+    },
+  ]));
+
+test('招商银行信用卡退货', () =>
+  testAnkio('招商银行信用卡退货', [
+    {
+      type: 1,
+      money: 52,
+      shopName: '美团-美团特约商户',
+      shopItem: '',
+      accountNameTo: '',
+      accountNameFrom: '招商银行信用卡(0898)',
+      fee: 0,
+      currency: 'CNY',
+      time: formatDate('05月11日13:57', 'M月D日h:i'),
+      channel: '微信[招商银行信用卡-退货]',
     },
   ]));

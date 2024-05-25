@@ -12,14 +12,23 @@ const regexMap = new Map([
     /交易时间：尾号(\d+)信用卡(\d{2}月\d{2}日\d{2}:\d{2})\n交易类型：(.*?)\n交易金额：(\d+\.\d{2})(.*?)\n交易商户：(.*?)\n可用额度：.*/,
     match => {
       const [, cardNumber, time, type, money, currency, shopName] = match;
+      let billType = BillType.Expend;
+      switch (type) {
+        case '消费':
+          billType = BillType.Expend;
+          break;
+        case '退货':
+          billType = BillType.Income;
+          break;
+      }
       return {
-        accountNameFrom: `招商银行信用卡（${cardNumber}）`,
+        accountNameFrom: `${SOURCE_NAME}(${cardNumber})`,
         time: formatDate(time, 'M月D日h:i'),
-        type: type === '消费' ? BillType.Expend : null,
+        type: billType,
         money: parseFloat(money),
         shopName: shopName,
         Currency: Currency[currency],
-        Channel: `微信[招行信用卡${type}]`,
+        Channel: `微信[${SOURCE_NAME}-${type}]`,
       };
     },
   ],
@@ -35,7 +44,7 @@ const regexMap = new Map([
         money: parseFloat(money),
         shopName: '',
         Currency: Currency[currency],
-        Channel: `微信[招行信用卡还款]`,
+        Channel: `微信[${SOURCE_NAME}-还款]`,
       };
     },
   ],
