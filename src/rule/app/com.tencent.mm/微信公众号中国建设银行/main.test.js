@@ -49,3 +49,18 @@ test('中国建设银行支出', () =>
       channel: '微信[中国建设银行-支出]',
     },
   ]));
+test('中国建设银行信用卡支出', () =>
+  testAnkio('中国建设银行信用卡支出', [
+    {
+      type: 0,
+      money: 29.9,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '中国建设银行信用卡(8254)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('5月17日 17时52分', 'M月D日 h时i分'),
+      channel: '微信[中国建设银行信用卡-支出]',
+    },
+  ]));

@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间：5月17日 17时52分\n交易类型：尾号8254信用卡人民币消费\n交易金额：29.90元\n可用额度：18224.14元",
+    "source": "中国建设银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 226750,
+    "title": "交易结果通知"
+  }
+}
