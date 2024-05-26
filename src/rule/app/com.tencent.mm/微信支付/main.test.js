@@ -171,7 +171,7 @@ test('微信支付转账过期退款', () =>
       type: 1,
       money: 1000,
       fee: 0,
-      shopName: '',
+      shopName: '微信退款',
       shopItem: '微信支付未在24小时内接收你的转账',
       accountNameFrom: '中国银行（7575）',
       accountNameTo: '',
@@ -192,20 +192,23 @@ test('微信支付转账过期退款', () =>
       time: formatDate('2024-04-15 08:59:11', 'Y-M-D h:i:s'),
       channel: '微信[微信支付-退款]',
     },
+  ]));
+
+test('微信支付转账退款', () =>
+  testAnkio('微信支付转账退款', [
     {
       type: 1,
-      money: 0.01,
+      money: 100,
       fee: 0,
-      shopName: '',
-      shopItem: 'send未在24小时内接收你的转账',
-      accountNameFrom: '零钱',
+      shopName: '微信退款',
+      shopItem: '兰陵喵喵解忧馆退还了你的转账',
+      accountNameFrom: '保定银行（7368）',
       accountNameTo: '',
       currency: 'CNY',
-      time: formatDate('2024-04-17 20:17:16', 'Y-M-D h:i:s'),
+      time: formatDate('2024-05-18 14:54:12', 'Y-M-D h:i:s'),
       channel: '微信[微信支付-退款]',
     },
   ]));
-
 test('微信支付收款（商家付款）', () =>
   testAnkio('微信支付收款（商家付款）', [
     {
