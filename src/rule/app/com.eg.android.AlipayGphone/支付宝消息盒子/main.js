@@ -309,14 +309,24 @@ function handleYueLibaoIncome(dataItems, pl, result) {
  * @param {Object} result - 解析后的交易结果对象
  */
 function handleYuEBaoIncome(dataItems, pl, result) {
-  setResultProperties(result, {
-    type: BillType.Income,
-    money: parseFloat(pl.content.replaceAll('∝', '').replace('+', '')),
-    shopName: pl.title,
-    shopItem: `${dataItems.assistMsg1}`,
-    accountNameFrom: '余额宝',
-    channel: '支付宝[余额宝收益]',
-  });
+  //余额自动转入余额宝成功
+  //余额宝收益到账啦
+
+  switch (dataItems.homePageTitle) {
+    case '余额自动转入余额宝成功':
+      //TODO没有金额信息
+      break;
+    case '余额宝收益到账啦':
+      setResultProperties(result, {
+        type: BillType.Income,
+        money: parseFloat(pl.content.replaceAll('∝', '').replace('+', '')),
+        shopName: pl.title,
+        shopItem: `${dataItems.assistMsg1}`,
+        accountNameFrom: '余额宝',
+        channel: '支付宝[余额宝收益]',
+      });
+      break;
+  }
 }
 
 /**
