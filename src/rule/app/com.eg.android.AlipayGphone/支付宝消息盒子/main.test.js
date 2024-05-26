@@ -382,3 +382,18 @@ test('支付宝收款到账', () =>
       channel: '支付宝[收款到账]',
     },
   ]));
+test('支付宝蚂蚁财富', () =>
+  testAnkio('支付宝蚂蚁财富', [
+    {
+      type: 0,
+      money: 401.03,
+      fee: 0,
+      shopName: '你的总资产收益已更新',
+      shopItem: '2024-05-15总资产收益已更新',
+      accountNameFrom: '支付宝蚂蚁财富',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: 1715843879000,
+      channel: '支付宝[蚂蚁财富]',
+    },
+  ]));
