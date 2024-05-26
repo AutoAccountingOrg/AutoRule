@@ -22,3 +22,18 @@ test('广发信用卡支出', () =>
       channel: '微信[广发信用卡-支出]',
     },
   ]));
+test('广发信用卡退款', () =>
+  testAnkio('广发信用卡退款', [
+    {
+      type: 1,
+      money: 1275.68,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '广发信用卡(4897)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('05月26日20:06', 'M月D日h:i'),
+      channel: '微信[广发信用卡-退款]',
+    },
+  ]));
