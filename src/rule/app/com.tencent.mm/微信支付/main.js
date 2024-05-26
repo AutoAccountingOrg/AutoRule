@@ -18,6 +18,7 @@ const TITLES_WECHAT = [
   '你有一笔收款入账',
   '你收到一笔活动奖励',
   '零钱通定时转入成功通知',
+  '退款到账通知',
 ];
 var mapItem;
 
@@ -137,6 +138,21 @@ const regexMap = new Map([
         shopItem: `累计转入¥${total}`,
         time: formatDate(),
         channel: '微信[微信支付-零钱通定时转入]',
+      };
+    },
+  ],
+  [
+    /退款金额¥(\d+\.\d{2})\n商品详情商户单号.*?\n商户名称(.*?)\n退款方式退回(.*?)\n到账时间(.*?)$/,
+    match => {
+      const [, money, shopName, accountNameFrom, time] = match;
+      return {
+        money: toFloat(money),
+        type: BillType.Income,
+        accountNameFrom: accountNameFrom,
+        shopName: shopName, //2024-05-25 11:21:52
+        shopItem: 'empty',
+        time: formatDate(time, 'Y-M-D h:i:s'),
+        channel: '微信[微信支付-退款]',
       };
     },
   ],
