@@ -288,3 +288,18 @@ test('微信支付收款入账', () =>
       channel: '微信[微信支付-收款入账]',
     },
   ]));
+test('微信支付零钱通定时转入', () =>
+  testAnkio('微信支付零钱通定时转入', [
+    {
+      type: 2,
+      money: 5000,
+      fee: 0,
+      shopName: '零钱通',
+      shopItem: '累计转入¥22500.00',
+      accountNameFrom: '宁波银行(7715)',
+      accountNameTo: '零钱通',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-零钱通定时转入]',
+    },
+  ]));

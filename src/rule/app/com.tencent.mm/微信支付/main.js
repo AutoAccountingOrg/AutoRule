@@ -16,6 +16,7 @@ const TITLES_WECHAT = [
   '微信支付凭证',
   '你有一笔收款入账',
   '你收到一笔活动奖励',
+  '零钱通定时转入成功通知',
 ];
 var mapItem;
 
@@ -111,6 +112,21 @@ const regexMap = new Map([
         accountNameFrom: accountNameFrom,
         time: formatDate(),
         channel: '微信[微信支付-收款入账]',
+      };
+    },
+  ],
+  [
+    /转入金额¥(\d+\.\d{2})\n累计转入¥(\d+\.\d{2})\n扣款账户(.*?)$/,
+    match => {
+      const [, money, total, accountNameFrom] = match;
+      return {
+        money: toFloat(money),
+        type: BillType.Transfer,
+        accountNameFrom: accountNameFrom,
+        accountNameTo: '零钱通',
+        shopItem: `累计转入¥${total}`,
+        time: formatDate(),
+        channel: '微信[微信支付-零钱通定时转入]',
       };
     },
   ],
