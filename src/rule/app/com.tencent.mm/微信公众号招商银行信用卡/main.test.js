@@ -75,4 +75,16 @@ test('招商银行信用卡退货', () =>
       time: formatDate('05月12日09:57', 'M月D日h:i'),
       channel: '微信[招商银行信用卡-退货]',
     },
+    {
+      type: 1,
+      money: 100,
+      shopName: '支付宝',
+      shopItem: '潮很鲜潮汕牛肉火锅',
+      accountNameTo: '',
+      accountNameFrom: '招商银行信用卡(2223)',
+      fee: 0,
+      currency: 'CNY',
+      time: formatDate('05月19日13:04', 'M月D日h:i'),
+      channel: '微信[招商银行信用卡-退货]',
+    },
   ]));
