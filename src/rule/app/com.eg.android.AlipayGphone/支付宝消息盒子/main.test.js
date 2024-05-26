@@ -145,7 +145,21 @@ test('支付宝消费', () =>
       channel: '支付宝[消费]',
     },
   ]));
-
+test('支付宝消费奖励', () =>
+  testAnkio('支付宝消费奖励', [
+    {
+      type: 1,
+      money: 0.02,
+      fee: 0,
+      shopName: '吱信（上海）网络技术有限公司',
+      shopItem: '支付宝发红包，你赚现金奖励',
+      accountNameFrom: '支付宝余额',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: 1715479904000,
+      channel: '支付宝[消费奖励]',
+    },
+  ]));
 test('支付宝退款', () =>
   testAnkio('支付宝退款', [
     {

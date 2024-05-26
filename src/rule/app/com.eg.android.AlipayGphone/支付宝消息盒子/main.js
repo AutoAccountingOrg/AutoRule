@@ -72,7 +72,7 @@ function parseBN(pl, result) {
   result.money = money;
 
   // 处理pl.link的逻辑
-  handleLink(pl, result);
+  handleLink(pl, result, contentItems);
 
   // 处理contentItems.content的逻辑
   handleContentItems(contentItems.content, result);
@@ -171,7 +171,7 @@ function handleContentItems(contentItems, result) {
  * @param {Object} pl - 解析后的pl对象
  * @param {Object} result - 解析后的交易结果对象
  */
-function handleLink(pl, result) {
+function handleLink(pl, result, contentItems) {
   const dataItems = JSON.parse(pl.extraInfo);
   const bizType = pl.link.replace(/.*&bizType=(.*?)[&?].*/, '$1');
   const title = pl.title;
@@ -235,6 +235,12 @@ function handleLink(pl, result) {
         result.channel = '支付宝[收款到账]';
       }
       break;
+    default:
+      if (contentItems.status === '奖励到账成功') {
+        result.channel = '支付宝[消费奖励]';
+        result.accountNameFrom = '支付宝余额';
+        result.type = BillType.Income;
+      }
   }
 }
 
