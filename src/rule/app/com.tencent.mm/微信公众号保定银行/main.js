@@ -3,7 +3,6 @@ import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
 import { formatDate } from '../../../../utils/Time';
 import { toFloat } from '../../../../utils/Number';
-import { b } from 'yarn/lib/cli';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_BOC = '保定银行';
