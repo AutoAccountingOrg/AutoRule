@@ -331,13 +331,17 @@ function handleYuEBaoIncome(dataItems, pl, result) {
   }
 }
 function handleXiaoHeBao(dataItems, pl, result) {
+  var channel = '存入';
+  if (dataItems.homePageTitle.indexOf('昨日收益') !== -1) {
+    channel = '收益';
+  }
   setResultProperties(result, {
     type: BillType.Income,
     money: toFloat(dataItems.content),
     shopName: pl.title,
     shopItem: `${dataItems.homePageTitle}`,
     accountNameFrom: `支付宝小荷包(${dataItems.assistMsg1})`,
-    channel: '支付宝[小荷包存入]',
+    channel: `支付宝[小荷包${channel}]`,
   });
 }
 /**
