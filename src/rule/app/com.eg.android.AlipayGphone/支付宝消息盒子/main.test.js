@@ -46,6 +46,18 @@ test('支付宝余额宝自动转入', () =>
       time: 1716635215000,
       channel: '支付宝[转账到余额宝]',
     },
+    {
+      type: 2,
+      money: 0.15,
+      fee: 0,
+      shopName: '中欧基金管理有限公司',
+      shopItem: '转入成功',
+      accountNameFrom: '支付宝余额',
+      accountNameTo: '余额宝',
+      currency: 'CNY',
+      time: 1716292453000,
+      channel: '支付宝[转账到余额宝]',
+    },
   ]));
 
 test('支付宝收款码收款', () =>
