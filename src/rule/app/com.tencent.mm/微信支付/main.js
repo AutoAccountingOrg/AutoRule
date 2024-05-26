@@ -19,6 +19,7 @@ const TITLES_WECHAT = [
   '你收到一笔活动奖励',
   '零钱通定时转入成功通知',
   '退款到账通知',
+  '转账退款到账通知',
 ];
 var mapItem;
 
@@ -94,6 +95,7 @@ const regexMap = new Map([
       return {
         money: parseFloat(money),
         type: BillType.Income,
+        shopName: '微信退款',
         channel: '微信[微信支付-退款]',
         time: formatDate(time, 'Y-M-D h:i:s'),
         shopItem,
