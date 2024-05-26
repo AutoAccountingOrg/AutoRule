@@ -330,7 +330,14 @@ function handleYuEBaoIncome(dataItems, pl, result) {
   }
 }
 function handleXiaoHeBao(dataItems, pl, result) {
-  //TODO 支付宝小荷包存入
+  setResultProperties(result, {
+    type: BillType.Income,
+    money: toFloat(dataItems.content),
+    shopName: pl.title,
+    shopItem: `${dataItems.homePageTitle}`,
+    accountNameFrom: `支付宝小荷包(${dataItems.assistMsg1})`,
+    channel: '支付宝[小荷包存入]',
+  });
 }
 /**
  * 处理网商银行转出

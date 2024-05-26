@@ -314,6 +314,18 @@ test('支付宝小荷包', () =>
       time: 1713229525000,
       channel: '支付宝[小荷包自动攒]',
     },
+    {
+      type: 1,
+      money: 1000,
+      fee: 0,
+      shopName: '支付宝小荷包',
+      shopItem: '**向支付宝小荷包转入￥1000.00',
+      accountNameFrom: '支付宝小荷包(某某某的情侣小荷包)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: 1716194408000,
+      channel: '支付宝[小荷包存入]',
+    },
   ]));
 
 test('支付宝余额宝收益', () =>
