@@ -9,9 +9,10 @@ const TITLES = ['交易成功提醒', '自动还款到账提醒'];
 // 定义正则表达式，用于匹配交易时间、交易类型、交易金额、交易商户和可用额度
 const regexMap = new Map([
   [
-    /交易时间：尾号(\d+)信用卡(\d{2}月\d{2}日\d{2}:\d{2})\n交易类型：(.*?)\n交易金额：(\d+\.\d{2})(.*?)\n交易商户：(.*?)\n可用额度：.*/,
+    /交易时间：尾号(\d+)信用卡(\d{2}月\d{2}日\d{2}:\d{2})\n交易类型：(.*?)\n交易金额：(\d+\.\d{2})(.*?)\n交易商户：(.*?)-(.*?)\n可用额度：.*/,
     match => {
-      const [, cardNumber, time, type, money, currency, shopName] = match;
+      const [, cardNumber, time, type, money, currency, shopName, shopItem] =
+        match;
       let billType = BillType.Expend;
       switch (type) {
         case '消费':
@@ -27,6 +28,7 @@ const regexMap = new Map([
         type: billType,
         money: parseFloat(money),
         shopName: shopName,
+        shopItem: shopItem,
         Currency: Currency[currency],
         Channel: `微信[${SOURCE_NAME}-${type}]`,
       };
