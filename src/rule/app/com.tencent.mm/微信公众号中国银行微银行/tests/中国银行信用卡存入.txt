@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "账户类型：信用卡\n账号尾号：5248\n交易时间：05月16日11:05\n交易类型：存入\n交易金额：RMB357.00",
+    "source": "中国银行微银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 226294,
+    "title": "交易完成通知"
+  }
+}

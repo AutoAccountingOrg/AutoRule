@@ -2,10 +2,11 @@ import { RuleObject } from '../../../../utils/RuleObject';
 import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
 import { formatDate } from '../../../../utils/Time';
+import { toFloat } from '../../../../utils/Number';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_BOC = '中国银行微银行';
-const TITLES_BOC = ['交易成功提醒'];
+const TITLES_BOC = ['交易成功提醒', '交易完成通知'];
 
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = new Map([
@@ -44,6 +45,36 @@ const regexMapBOC = new Map([
       Currency: Currency[match[4]],
       channel: '微信[中国银行-入账]',
     }),
+  ],
+  //账户类型：信用卡\n账号尾号：5248\n交易时间：05月16日11:05\n交易类型：存入\n交易金额：RMB357.00
+  [
+    /账户类型：信用卡\n账号尾号：(\d+)\n交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)([\d\,]+.\d{2})$/,
+    match => {
+      const [, number, time, type, currency, money] = match;
+
+      var billType = BillType.Income;
+      switch (type) {
+        case '存入':
+          billType = BillType.Income;
+          break;
+      }
+
+      var _currency = 'CNY';
+      switch (currency) {
+        case 'RMB':
+          _currency = 'CNY';
+          break;
+      }
+      return {
+        money: toFloat(money),
+        type: billType,
+        time: time,
+        shopItem: type,
+        accountNameFrom: `中国银行信用卡(${number})`,
+        Currency: _currency,
+        channel: '微信[中国银行信用卡-存入]',
+      };
+    },
   ],
 ]);
 
