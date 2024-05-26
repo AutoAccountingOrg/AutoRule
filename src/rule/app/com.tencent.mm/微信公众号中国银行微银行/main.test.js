@@ -114,3 +114,18 @@ test('中国银行消费', () =>
       channel: '微信[中国银行-消费]',
     },
   ]));
+test('中国银行信用卡存入', () =>
+  testAnkio('中国银行信用卡存入', [
+    {
+      type: 1,
+      money: 357,
+      fee: 0,
+      shopName: '',
+      shopItem: '存入',
+      accountNameFrom: '中国银行信用卡(5248)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('05月16日11:05', 'M月D日h:i'),
+      channel: '微信[中国银行信用卡-存入]',
+    },
+  ]));
