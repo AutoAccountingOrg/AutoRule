@@ -6,6 +6,9 @@
 ## 注意
 
 本仓库不受理任何自动记账规则有误的Issue，Issue请提交到[AutoAccountingOrg/AutoAccounting](https://github.com/AutoAccountingOrg/AutoAccounting/issues)仓库。
+## 更新日志
+
+[![](https://img.shields.io/github/v/release/AutoAccountingOrg/AutoRule.svg)](https://cloud.ankio.net/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98/%E8%87%AA%E5%8A%A8%E8%AE%B0%E8%B4%A6/%E8%A7%84%E5%88%99%E6%9B%B4%E6%96%B0)
 
 ## 简介
 该工具是自动记账App的衍生工具，用于构建自动记账的自动分类规则和自动识别规则。
