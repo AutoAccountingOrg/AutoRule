@@ -315,3 +315,18 @@ test('微信支付零钱通定时转入', () =>
       channel: '微信[微信支付-零钱通定时转入]',
     },
   ]));
+test('微信支付退款', () =>
+  testAnkio('微信支付退款', [
+    {
+      type: 1,
+      money: 10.93,
+      fee: 0,
+      shopName: '拼多多平台商户',
+      shopItem: '',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024-05-25 11:21:52', 'Y-M-D h:i:s'),
+      channel: '微信[微信支付-退款]',
+    },
+  ]));
