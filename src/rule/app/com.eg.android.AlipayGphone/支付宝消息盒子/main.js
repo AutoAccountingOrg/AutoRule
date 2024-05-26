@@ -1,6 +1,7 @@
 import { RuleObject } from '../../../../utils/RuleObject';
 import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
+import { toFloat } from '../../../../utils/Number';
 
 //----------------------------------------------------------------------
 
@@ -64,7 +65,7 @@ function parseBN(pl, result) {
   let contentItems = JSON.parse(pl.content);
 
   // 处理contentItems.money的逻辑
-  let money = parseFloat(contentItems.money);
+  let money = toFloat(contentItems.money);
   if (isNaN(money)) {
     throw new Error('[支付宝消息盒子] Invalid money: ' + contentItems.money);
   }
@@ -158,6 +159,7 @@ function handleContentItems(contentItems, result) {
         break;
       case '扣款说明：':
       case '退款说明：':
+      case '转账备注：':
         result.shopItem = item.content;
         break;
     }
@@ -171,49 +173,68 @@ function handleContentItems(contentItems, result) {
  */
 function handleLink(pl, result) {
   const dataItems = JSON.parse(pl.extraInfo);
-  const bizType = pl.link.replace(/.*&bizType=(.*?)[&\?].*/, '$1');
-  const bizTypeMap = {
-    TRADEAP: ['退款', dataItems.sceneExt2.sceneName, BillType.Income],
-    B_TRANSFER: ['发红包', '', BillType.Expend],
-    TRADE: ['消费', '', BillType.Expend],
-    PREAUTHPAY: ['预授权消费', '', BillType.Expend],
-    PPAY: ['亲情卡消费', '', BillType.Expend],
-    D_TRANSFER: ['转账收款', pl.title, BillType.Income, '余额', '', pl.title],
-    YEB: [
-      '转账到余额宝',
-      dataItems.topSubContent,
-      BillType.Transfer,
-      '',
-      '余额宝',
-      dataItems.topSubContent,
-    ],
-    BIZFUND: [
-      dataItems.topSubContent === '转入成功' ? '小荷包自动攒' : '收款到账',
-      pl.title,
-      dataItems.topSubContent === '转入成功'
-        ? BillType.Transfer
-        : BillType.Income,
-      dataItems.topSubContent === '转入成功' ? dataItems.assistMsg1 : null,
-      dataItems.topSubContent === '转入成功' ? dataItems.assistMsg2 : null,
-      dataItems.topSubContent,
-    ],
-  };
+  const bizType = pl.link.replace(/.*&bizType=(.*?)[&?].*/, '$1');
+  const title = pl.title;
 
-  if (bizTypeMap[bizType]) {
-    const [
-      channel,
-      shopName,
-      type,
-      accountNameFrom = '',
-      accountNameTo = '',
-      shopItem,
-    ] = bizTypeMap[bizType];
-    result.channel = `支付宝[${channel}]` || result.channel;
-    result.shopName = shopName || result.shopName;
-    result.type = type;
-    result.accountNameFrom = accountNameFrom || result.accountNameFrom;
-    result.accountNameTo = accountNameTo || result.accountNameTo;
-    result.shopItem = shopItem || result.shopItem;
+  switch (bizType) {
+    case 'TRADEAP':
+      result.type = BillType.Income;
+      result.shopName = dataItems.sceneExt2.sceneName;
+      result.shopItem = dataItems.assistMsg2;
+      result.accountNameFrom = dataItems.assistMsg1;
+      result.channel = '支付宝[退款]';
+      break;
+    case 'TRADE':
+      result.type = BillType.Expend;
+      result.channel = '支付宝[消费]';
+      break;
+    case 'B_TRANSFER':
+      result.type = BillType.Expend;
+      result.channel = '支付宝[发红包]';
+      break;
+    case 'PREAUTHPAY':
+      result.type = BillType.Expend;
+      result.accountNameFrom = dataItems.assistMsg1;
+      result.shopName = dataItems.assistMsg2;
+      result.channel = '支付宝[预授权消费]';
+      break;
+    case 'PPAY':
+      result.type = BillType.Expend;
+      result.accountNameFrom = dataItems.assistMsg1;
+      //result.shopName = pl.title;
+      result.shopItem = pl.title;
+      result.channel = '支付宝[亲情卡消费]';
+      break;
+    case 'D_TRANSFER':
+      result.type = BillType.Income;
+      result.accountNameFrom = '支付宝余额';
+      result.shopName = dataItems.assistMsg1;
+      result.shopItem = dataItems.topSubContent;
+      result.channel = '支付宝[转账收款]';
+      break;
+    case 'YEB':
+      result.type = BillType.Transfer;
+      result.accountNameFrom = '支付宝余额';
+      result.accountNameTo = '余额宝';
+      result.shopName = dataItems.topSubContent;
+      result.shopItem = dataItems.topSubContent;
+      result.channel = '支付宝[转账到余额宝]';
+      break;
+    case 'BIZFUND':
+      if (dataItems.topSubContent === '转入成功') {
+        result.type = BillType.Transfer;
+        result.accountNameFrom = dataItems.assistMsg1;
+        result.accountNameTo = dataItems.assistMsg2;
+        result.shopName = pl.title;
+        result.shopItem = dataItems.topSubContent;
+        result.channel = '支付宝[小荷包自动攒]';
+      } else if (dataItems.topSubContent === '到账成功') {
+        result.type = BillType.Income;
+        result.shopName = pl.title;
+        result.shopItem = dataItems.topSubContent;
+        result.channel = '支付宝[收款到账]';
+      }
+      break;
   }
 }
 
