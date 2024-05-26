@@ -283,6 +283,18 @@ test('微信支付扫码付款', () =>
       time: formatDate(),
       channel: '微信[微信支付-付款]',
     },
+    {
+      type: 0,
+      money: 9,
+      fee: 0,
+      shopName: '川香源',
+      shopItem: '付款给川香源(**挥)',
+      accountNameFrom: '零钱通',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-付款]',
+    },
   ]));
 
 test('微信支付收款入账', () =>

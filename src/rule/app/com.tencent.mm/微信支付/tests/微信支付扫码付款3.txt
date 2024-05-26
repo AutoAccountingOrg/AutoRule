@@ -1,0 +1,14 @@
+                {
+  "mMap": {
+    "description": "使用零钱通支付¥9.00\n交易状态支付成功，对方已收款",
+    "source": "微信支付",
+    "type": 5,
+    "appId": "",
+    "msgId": 99064,
+    "title": "已支付¥9.00",
+    "display_name": "川香源",
+    "cachedPayTools": "零钱通",
+    "cachedPayMoney": "￥9.00",
+    "cachedPayShop": "付款给川香源(**挥)"
+  }
+}
