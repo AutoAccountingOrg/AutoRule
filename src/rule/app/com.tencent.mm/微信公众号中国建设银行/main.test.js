@@ -48,6 +48,18 @@ test('中国建设银行支出', () =>
       time: formatDate('2024年5月7日 20:24:29', 'Y年M月D日 h:i:s'),
       channel: '微信[中国建设银行-支出]',
     },
+    {
+      type: 0,
+      money: 21.8,
+      fee: 0,
+      shopName: '',
+      shopItem: '',
+      accountNameFrom: '中国建设银行储蓄卡(7789)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024年5月14日 22:12:56', 'Y年M月D日 h:i:s'),
+      channel: '微信[中国建设银行-支出]',
+    },
   ]));
 test('中国建设银行信用卡支出', () =>
   testAnkio('中国建设银行信用卡支出', [
