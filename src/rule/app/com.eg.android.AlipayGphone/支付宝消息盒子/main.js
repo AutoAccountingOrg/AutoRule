@@ -91,6 +91,7 @@ function parseS(pl, result) {
     77700207: handleWebBankTransfer,
     2013110100001907: handleYuEBaoIncome,
     20000793: handleFund,
+    2021001178689171: handleXiaoHeBao,
   };
   const handler = handlers[pl.appId];
   if (handler) {
@@ -328,7 +329,9 @@ function handleYuEBaoIncome(dataItems, pl, result) {
       break;
   }
 }
-
+function handleXiaoHeBao(dataItems, pl, result) {
+  //TODO 支付宝小荷包存入
+}
 /**
  * 处理网商银行转出
  * @param {Object} dataItems - 数据项对象
