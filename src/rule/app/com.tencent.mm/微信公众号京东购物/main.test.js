@@ -21,4 +21,16 @@ test('京东购物消费', () =>
       time: formatDate(),
       channel: '微信[京东购物-消费]',
     },
+    {
+      type: 0,
+      money: 23.9,
+      fee: 0,
+      shopName: '',
+      shopItem: '农夫山泉 饮用天然水 12L/桶',
+      accountNameFrom: '',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[京东购物-消费]',
+    },
   ]));
