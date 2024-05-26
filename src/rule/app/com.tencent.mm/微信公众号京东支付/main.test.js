@@ -21,4 +21,16 @@ test('京东支付消费', () =>
       time: formatDate('2024-05-02 18:58:44', 'Y-M-D h:i:s'),
       channel: '微信[京东支付-消费]',
     },
+    {
+      type: 0,
+      money: 23.9,
+      fee: 0,
+      shopName: '京东平台商户',
+      shopItem: '',
+      accountNameFrom: '招行信用卡(尾号1356)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024-05-12 15:45:36', 'Y-M-D h:i:s'),
+      channel: '微信[京东支付-消费]',
+    },
   ]));
