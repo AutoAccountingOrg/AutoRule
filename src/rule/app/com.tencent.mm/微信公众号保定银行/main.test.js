@@ -21,4 +21,16 @@ test('保定银行支出', () =>
       time: formatDate('2024-05-18 10:32', 'Y-M-D h:i'),
       channel: '微信[保定银行-支出]',
     },
+    {
+      type: 0,
+      money: 357,
+      fee: 0,
+      shopName: '',
+      shopItem: '消费',
+      accountNameFrom: '保定银行直隶卡(7368)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024-05-16 11:05', 'Y-M-D h:i'),
+      channel: '微信[保定银行-支出]',
+    },
   ]));

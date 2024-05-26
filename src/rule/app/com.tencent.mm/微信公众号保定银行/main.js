@@ -17,7 +17,7 @@ const regexMapBOC = new Map([
       const [, card, time, type, number, currency, money] = match;
       var billType = BillType.Income;
       var channel = '支出';
-      if (type.indexOf('支付') !== -1) {
+      if (type.indexOf('支付') !== -1 || type.indexOf('消费') !== -1) {
         billType = BillType.Expend;
       }
 
