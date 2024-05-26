@@ -92,6 +92,7 @@ function parseS(pl, result) {
     2013110100001907: handleYuEBaoIncome,
     20000793: handleFund,
     2021001178689171: handleXiaoHeBao,
+    2015111300788246: handleMaYi,
   };
   const handler = handlers[pl.appId];
   if (handler) {
@@ -342,6 +343,16 @@ function handleXiaoHeBao(dataItems, pl, result) {
     shopItem: `${dataItems.homePageTitle}`,
     accountNameFrom: `支付宝小荷包(${dataItems.assistMsg1})`,
     channel: `支付宝[小荷包${channel}]`,
+  });
+}
+function handleMaYi(dataItems, pl, result) {
+  setResultProperties(result, {
+    type: pl.content.indexOf('-') === -1 ? BillType.Income : BillType.Expend,
+    money: toFloat(pl.content, false),
+    shopName: dataItems.homePageTitle,
+    shopItem: `${dataItems.assistMsg1}`,
+    accountNameFrom: `支付宝蚂蚁财富`,
+    channel: `支付宝[蚂蚁财富]`,
   });
 }
 /**
