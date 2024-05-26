@@ -183,6 +183,7 @@ function handleLink(pl, result, contentItems) {
 
   switch (bizType) {
     case 'TRADEAP':
+    case 'TRU_REFUND':
       result.type = BillType.Income;
       result.shopName = dataItems.sceneExt2.sceneName;
       result.shopItem = dataItems.assistMsg2;
