@@ -155,6 +155,10 @@ function handleContentItems(contentItems, result) {
         break;
       case '付款方式：':
       case '退款方式：':
+        if (item.content === '账户余额') {
+          result.accountNameFrom = '支付宝余额';
+          break;
+        }
         result.accountNameFrom = item.content;
         break;
       case '扣款说明：':
@@ -213,6 +217,7 @@ function handleLink(pl, result, contentItems) {
       result.channel = '支付宝[转账收款]';
       break;
     case 'YEB':
+    case 'FLUX_PROD':
       result.type = BillType.Transfer;
       result.accountNameFrom = '支付宝余额';
       result.accountNameTo = '余额宝';
@@ -220,6 +225,7 @@ function handleLink(pl, result, contentItems) {
       result.shopItem = dataItems.topSubContent;
       result.channel = '支付宝[转账到余额宝]';
       break;
+
     case 'BIZFUND':
       if (dataItems.topSubContent === '转入成功') {
         result.type = BillType.Transfer;
