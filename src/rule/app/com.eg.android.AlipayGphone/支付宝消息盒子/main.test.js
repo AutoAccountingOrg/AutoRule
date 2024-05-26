@@ -210,6 +210,18 @@ test('支付宝退款', () =>
       time: 1710669984000,
       channel: '支付宝[退款]',
     },
+    {
+      type: 1,
+      money: 21.74,
+      fee: 0,
+      shopName: '众安保险',
+      shopItem: '保险承保-退保保费支付[24052031500657910793]',
+      accountNameFrom: '花呗',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: 1716189364000,
+      channel: '支付宝[退款]',
+    },
   ]));
 
 test('支付宝预授权消费', () =>
