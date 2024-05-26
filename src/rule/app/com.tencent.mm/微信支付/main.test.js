@@ -184,7 +184,7 @@ test('微信支付转账过期退款', () =>
       type: 1,
       money: 0.01,
       fee: 0,
-      shopName: '',
+      shopName: '微信退款',
       shopItem: '微信支付未在24小时内接收你的转账',
       accountNameFrom: '零钱',
       accountNameTo: '',
