@@ -2,6 +2,8 @@ function convertToNumber(value) {
   if (typeof value === 'number') {
     return value; // 如果已经是数字，则直接返回
   } else if (typeof value === 'string') {
+    //正则删除非数字部分
+    value = value.replace(/[^\d.-]/g, '');
     // 如果是字符串，则尝试将其转换为数字
     const num = parseFloat(value);
     return isNaN(num) ? 0 : num; // 返回转换后的数字，如果无法转换则返回 undefined
