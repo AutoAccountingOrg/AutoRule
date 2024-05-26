@@ -3,6 +3,7 @@ import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
 import { formatDate } from '../../../../utils/Time';
 import { toFloat } from '../../../../utils/Number';
+import { findNonEmptyString } from '../../../../utils/Html';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
@@ -36,6 +37,15 @@ const regexMap = new Map([
     match => ({
       money: parseFloat(match[1]),
       accountNameFrom: match[2],
+      type: BillType.Expend,
+      channel: '微信[微信支付-付款]',
+    }),
+  ], //使用(.*?)支付¥(\d+\.\d{2})\n交易状态支付成功，对方已收款
+  [
+    /使用(.*?)支付¥(\d+\.\d{2})\n交易状态支付成功，对方已收款/,
+    match => ({
+      money: parseFloat(match[2]),
+      accountNameFrom: match[1],
       type: BillType.Expend,
       channel: '微信[微信支付-付款]',
     }),
@@ -170,8 +180,12 @@ export function get(data) {
   return new RuleObject(
     parsedText.type,
     parsedText.money,
-    parsedText.shopName || mapItem.display_name || parsedText.cachedPayShop,
-    parsedText.shopItem,
+    findNonEmptyString(
+      parsedText.shopName,
+      mapItem.display_name,
+      mapItem.cachedPayShop,
+    ),
+    findNonEmptyString(parsedText.shopItem, mapItem.cachedPayShop),
     parsedText.accountNameFrom,
     parsedText.accountNameTo,
     0,
