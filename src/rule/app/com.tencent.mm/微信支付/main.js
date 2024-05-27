@@ -39,6 +39,7 @@ const regexMap = new Map([
     match => ({
       money: parseFloat(match[1]),
       accountNameFrom: match[2],
+      shopItem: 'empty',
       type: BillType.Expend,
       channel: '微信[微信支付-付款]',
     }),
@@ -123,6 +124,7 @@ const regexMap = new Map([
         money: parseFloat(money),
         type: BillType.Income,
         accountNameFrom: accountNameFrom,
+
         time: formatDate(),
         channel: '微信[微信支付-收款入账]',
       };
