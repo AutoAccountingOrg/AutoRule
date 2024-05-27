@@ -22,3 +22,18 @@ test('工商银行信用卡支出', () =>
       channel: '微信[中国工商银行信用卡-支出]',
     },
   ]));
+test('工商银行信用卡退款', () =>
+  testAnkio('工商银行信用卡退款', [
+    {
+      type: 1,
+      money: 1281.56,
+      fee: 0,
+      shopName: '退款财付通',
+      shopItem: '京东商城平台商户',
+      accountNameFrom: '中国工商银行信用卡(0849)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('2024年5月27日00:30', 'Y年M月D日h:i'),
+      channel: '微信[中国工商银行信用卡-收入]',
+    },
+  ]));

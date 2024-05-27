@@ -11,19 +11,30 @@ const TITLES_BOC = ['动账交易提醒'];
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = new Map([
   [
-    /账号类型：尾号(\d+)的信用卡\n交易时间：(.*?)\n交易类型：(.*?)-(.*?)\n交易金额：出账 ([\d,]+.\d{2}) (.*?)元\n账户余额：登录工行手机银行查看详细信息/,
+    //账号类型：尾号0849的信用卡\n交易时间：2024年5月27日00:30\n交易类型：退款财付通-京东商城平台商户\n交易金额：入账 1,281.56 人民币元\n账户余额：登录工行手机银行查看详细信息
+    /账号类型：尾号(\d+)的信用卡\n交易时间：(.*?)\n交易类型：(.*?)-(.*?)\n交易金额：(出账|入账) ([\d,]+.\d{2}) (.*?)元\n账户余额：登录工行手机银行查看详细信息/,
     match => {
-      const [, number, time, shopName, shopItem, money, currency] = match;
+      const [, number, time, shopName, shopItem, type, money, currency] = match;
+
+      let billType = BillType.Expend;
+      let channel = ``;
+      if (type.includes('入账')) {
+        billType = BillType.Income;
+        channel = `收入`;
+      } else if (type.includes('出账')) {
+        billType = BillType.Expend;
+        channel = `支出`;
+      }
 
       return {
         money: toFloat(money),
-        type: BillType.Expend,
+        type: billType,
         time: formatDate(time, 'Y年M月D日h:i'), //2024年5月26日20:12
         shopItem: shopItem,
         shopName: shopName,
         accountNameFrom: `中国工商银行信用卡(${number})`,
         Currency: Currency[currency],
-        channel: `微信[中国工商银行信用卡-支出]`,
+        channel: `微信[中国工商银行信用卡-${channel}]`,
       };
     },
   ],
