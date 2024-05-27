@@ -2,6 +2,7 @@ import { RuleObject } from '../../../../utils/RuleObject';
 import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
 import { formatDate } from '../../../../utils/Time';
+import { toFloat } from '../../../../utils/Number';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_BOC = '中信银行';
@@ -34,6 +35,32 @@ const regexMapBOC = new Map([
         shopItem: shopItem,
         accountNameFrom: `${SOURCE_NAME_BOC}储蓄卡(${match[1]})`,
         Currency: Currency[match[4]],
+        channel: `微信[${SOURCE_NAME_BOC}-${matchTypeName}]`,
+      };
+    },
+  ],
+  [
+    //5月7日10:50
+    /银行卡尾号：(.*?)（银联）\n交易时间：(.*?)\n交易类型：(.*?)，(.*?)－(.*?)\n交易金额：(.*?)([\d,]+.\d{2})元\n可用余额：人民币([\d,]+.\d{2})元/,
+    //银行卡尾号：9500（银联）\n交易时间：05月27日00:38\n交易类型：消费，京东支付－京东商城业务\n交易金额：人民币1275.68元\n可用余额：人民币48724.32元
+    match => {
+      const [, number, time, type, shopName, shopItem, currency, money, total] =
+        match;
+      var matchTypeName = '';
+      var billType = BillType.Expend;
+      if (type.includes('消费')) {
+        matchTypeName = '支出';
+        billType = BillType.Income;
+      }
+
+      return {
+        money: toFloat(money),
+        type: billType,
+        time: time,
+        shopName: shopName,
+        shopItem: shopItem,
+        accountNameFrom: `${SOURCE_NAME_BOC}银联(${number})`,
+        Currency: Currency[currency],
         channel: `微信[${SOURCE_NAME_BOC}-${matchTypeName}]`,
       };
     },
