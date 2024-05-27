@@ -2,6 +2,7 @@ import { RuleObject } from '../../../../utils/RuleObject';
 import { BillType } from '../../../../utils/BillType';
 import { Currency } from '../../../../utils/Currency';
 import { formatDate } from '../../../../utils/Time';
+import { toFloat } from '../../../../utils/Number';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_BOC = '徽商银行';
@@ -10,16 +11,30 @@ const TITLES_BOC = ['交易提醒'];
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = new Map([
   [
-    /交易时间：(.*?)\n交易类型：快捷支付-(.*?)\n交易金额：(.*?)\(尾号(\d+)(.*?)\)\n卡内余额：(.*?)/,
-    match => ({
-      money: parseFloat(match[3].replace(',', '')),
-      type: BillType.Expend,
-      time: `${match[1]}`,
-      shopItem: match[2],
-      accountNameFrom: `${match[5]}(${match[4]})`,
-      Currency: Currency['人民币'],
-      channel: `微信[${SOURCE_NAME_BOC}-消费]`,
-    }),
+    //交易时间：05月06日 12:09:34\n交易类型：快捷支付-财付通\n交易金额：10.00(尾号3449徽商借记卡)\n卡内余额：6,666.66
+    //交易时间：05月27日 15:36:09\n交易类型：网银跨行转入\n交易金额：79.40(尾号3449徽商借记卡)\n卡内余额：666.66
+    /交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)\(尾号(\d+)(.*?)\)\n卡内余额：(.*?)/,
+    match => {
+      const [, time, type, money, number, card, total] = match;
+      var billType = BillType.Expend;
+      var channel = '消费';
+      if (type.includes('转入')) {
+        billType = BillType.Income;
+        channel = '收入';
+      } else if (type.includes('支付')) {
+        billType = BillType.Expend;
+        channel = '消费';
+      }
+      return {
+        money: toFloat(money),
+        type: billType,
+        time: time,
+        shopItem: type,
+        accountNameFrom: `${card}(${number})`,
+        Currency: Currency['人民币'],
+        channel: `微信[${SOURCE_NAME_BOC}-${channel}]`,
+      };
+    },
   ],
   [
     /交易时间：(.*?)\n交易类型：退款-(.*?)\n交易金额：(.*?)\(尾号(\d+)(.*?)\)\n卡内余额：(.*?)/,

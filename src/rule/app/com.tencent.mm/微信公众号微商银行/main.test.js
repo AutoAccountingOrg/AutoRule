@@ -14,7 +14,7 @@ test('微商银行消费', () =>
       money: 66.66,
       fee: 0,
       shopName: '',
-      shopItem: '财付通',
+      shopItem: '快捷支付-财付通',
       accountNameFrom: '徽商借记卡(3449)',
       accountNameTo: '',
       currency: 'CNY',
@@ -26,12 +26,27 @@ test('微商银行消费', () =>
       money: 10,
       fee: 0,
       shopName: '',
-      shopItem: '财付通',
+      shopItem: '快捷支付-财付通',
       accountNameFrom: '徽商借记卡(3449)',
       accountNameTo: '',
       currency: 'CNY',
       time: formatDate('05月06日 12:09:34', 'M月D日 h:i:s'),
       channel: '微信[徽商银行-消费]',
+    },
+  ]));
+test('微商银行收入', () =>
+  testAnkio('微商银行收入', [
+    {
+      type: 1,
+      money: 79.4,
+      fee: 0,
+      shopName: '',
+      shopItem: '网银跨行转入',
+      accountNameFrom: '徽商借记卡(3449)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('05月27日 15:36:09', 'M月D日 h:i:s'),
+      channel: '微信[徽商银行-收入]',
     },
   ]));
 test('微商银行退款', () =>

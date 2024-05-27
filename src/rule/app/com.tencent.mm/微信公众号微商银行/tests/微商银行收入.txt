@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间：05月27日 15:36:09\n交易类型：网银跨行转入\n交易金额：79.40(尾号3449徽商借记卡)\n卡内余额：666.66",
+    "source": "徽商银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10350745,
+    "title": "交易提醒"
+  }
+}
