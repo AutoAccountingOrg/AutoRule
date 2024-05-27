@@ -33,4 +33,16 @@ test('中信银行收入', () =>
       time: formatDate('5月7日10:49', 'M月D日h:i'),
       channel: '微信[中信银行-收入]',
     },
+    {
+      type: 1,
+      money: 37.13,
+      fee: 0,
+      shopName: '',
+      shopItem: '财付通快捷支付存入-京东商城平台商户',
+      accountNameFrom: '中信银行储蓄卡(5174)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('5月27日00:42', 'M月D日h:i'),
+      channel: '微信[中信银行-收入]',
+    },
   ]));

@@ -16,13 +16,10 @@ const regexMapBOC = new Map([
       var matchType = match[3];
       var matchTypeName = '';
       var shopItem = '';
-      switch (matchType) {
-        case '实发房补':
-        case '实发工资':
-          matchTypeName = '收入';
-          shopItem = matchType;
-          matchType = BillType.Income;
-          break;
+      if (matchType.includes('实发') || matchType.includes('存入')) {
+        matchTypeName = '收入';
+        shopItem = matchType;
+        matchType = BillType.Income;
       }
 
       return {
