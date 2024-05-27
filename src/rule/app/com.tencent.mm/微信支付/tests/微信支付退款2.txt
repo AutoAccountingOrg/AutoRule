@@ -1,0 +1,14 @@
+                {
+  "mMap": {
+    "description": "退款金额¥37.13\n商品详情京东-订单编号293431364505\n商户名称京东商城平台商户\n退款方式退回经营账户\n到账时间2024-05-27 00:55:06",
+    "source": "微信支付",
+    "type": 5,
+    "appId": "",
+    "msgId": 99064,
+    "title": "退款到账通知",
+    "display_name": "",
+    "cachedPayTools": "建设银行信用卡(4243)",
+    "cachedPayMoney": "￥37.13",
+    "cachedPayShop": "（个人信息删除）"
+  }
+}

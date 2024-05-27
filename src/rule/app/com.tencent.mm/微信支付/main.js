@@ -146,15 +146,17 @@ const regexMap = new Map([
     },
   ],
   [
-    /退款金额¥(\d+\.\d{2})\n商品详情商户单号.*?\n商户名称(.*?)\n退款方式退回(.*?)\n到账时间(.*?)$/,
+    //退款金额¥37.13\n商品详情京东-订单编号293431364505\n商户名称京东商城平台商户\n退款方式退回经营账户\n到账时间2024-05-27 00:55:06
+    //退款金额¥10.93\n商品详情商户单号XP1124052116500189874886000731\n商户名称拼多多平台商户\n退款方式退回零钱\n到账时间2024-05-25 11:21:52
+    /退款金额¥(\d+\.\d{2})\n商品详情(.*?)\n商户名称(.*?)\n退款方式退回(.*?)\n到账时间(.*?)$/,
     match => {
-      const [, money, shopName, accountNameFrom, time] = match;
+      const [, money, shopItem, shopName, accountNameFrom, time] = match;
       return {
         money: toFloat(money),
         type: BillType.Income,
         accountNameFrom: accountNameFrom,
         shopName: shopName, //2024-05-25 11:21:52
-        shopItem: 'empty',
+        shopItem: shopItem,
         time: formatDate(time, 'Y-M-D h:i:s'),
         channel: '微信[微信支付-退款]',
       };
