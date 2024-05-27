@@ -46,3 +46,18 @@ test('中信银行收入', () =>
       channel: '微信[中信银行-收入]',
     },
   ]));
+test('中信银行支出', () =>
+  testAnkio('中信银行支出', [
+    {
+      type: 0,
+      money: 37.13,
+      fee: 0,
+      shopName: '',
+      shopItem: '财付通快捷支付支出-京东商城平台商户',
+      accountNameFrom: '中信银行储蓄卡(5174)',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate('5月27日00:41', 'M月D日h:i'),
+      channel: '微信[中信银行-支出]',
+    },
+  ]));

@@ -12,6 +12,7 @@ const regexMapBOC = new Map([
   [
     //5月7日10:50
     /交易时间：尾号(.*?)储蓄卡(.*?)\n交易类型：(.*?)\n交易金额：(.*?) ([\d,]+.\d{2}) 元\n卡内余额：人民币 ([\d,]+.\d{2}) 元/,
+    //交易时间：尾号5174储蓄卡5月27日00:41\n交易类型：财付通快捷支付支出-京东商城平台商户\n交易金额：人民币 37.13 元\n卡内余额：人民币 0.00 元
     match => {
       var matchType = match[3];
       var matchTypeName = '';
@@ -20,6 +21,10 @@ const regexMapBOC = new Map([
         matchTypeName = '收入';
         shopItem = matchType;
         matchType = BillType.Income;
+      } else if (matchType.includes('支付') || matchType.includes('支出')) {
+        matchTypeName = '支出';
+        shopItem = matchType;
+        matchType = BillType.Expend;
       }
 
       return {
