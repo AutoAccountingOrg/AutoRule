@@ -298,6 +298,18 @@ test('微信支付扫码付款', () =>
       time: formatDate(),
       channel: '微信[微信支付-付款]',
     },
+    {
+      type: 0,
+      money: 5,
+      fee: 0,
+      shopName: '小碗菜',
+      shopItem: '付款给小碗菜(**珑)',
+      accountNameFrom: '零钱',
+      accountNameTo: '',
+      currency: 'CNY',
+      time: formatDate(),
+      channel: '微信[微信支付-付款]',
+    },
   ]));
 
 test('微信支付收款入账', () =>
