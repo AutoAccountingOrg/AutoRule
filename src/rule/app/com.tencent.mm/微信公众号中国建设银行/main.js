@@ -6,7 +6,7 @@ import { toFloat } from '../../../../utils/Number';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_BOC = '中国建设银行';
-const TITLES_BOC = ['交易提醒', '交易结果通知'];
+const TITLES_BOC = ['交易提醒', '交易结果通知', '实时交易提醒'];
 
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = new Map([
@@ -27,6 +27,7 @@ const regexMapBOC = new Map([
     }),
   ],
   [
+    //交易时间：5月17日 17时52分\n交易类型：尾号8254信用卡人民币消费\n交易金额：29.90元\n可用额度：18224.14元
     /交易时间：(.*?)\n交易类型：尾号(\d+)信用卡(.*?)消费\n交易金额：(.*?)\n可用额度：(.*?)元/,
     match => {
       const [, time, number, currency, money, available] = match;
@@ -40,7 +41,23 @@ const regexMapBOC = new Map([
       };
     },
   ],
-  //交易时间：5月17日 17时52分\n交易类型：尾号8254信用卡人民币消费\n交易金额：29.90元\n可用额度：18224.14元
+
+  [
+    //交易时间：2024年05月27日02时16分\n交易类型：尾号4243信用卡消费退款/退税\n交易金额：74.26（人民币）
+    /交易时间：(.*?)\n交易类型：尾号(\d+)信用卡(.*?)\n交易金额：(.*?)（(.*?)）/,
+    match => {
+      const [, time, number, type, money, currency] = match;
+      return {
+        money: toFloat(money),
+        type: BillType.Income, //5月17日 17时52分
+        time: formatDate(time, 'Y年M月D日h时i分'),
+        shopItem: type,
+        accountNameFrom: `${SOURCE_NAME_BOC}信用卡(${number})`,
+        Currency: Currency[currency],
+        channel: `微信[${SOURCE_NAME_BOC}信用卡-收入]`,
+      };
+    },
+  ],
 ]);
 
 /**
