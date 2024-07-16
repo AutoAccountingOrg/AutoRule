@@ -1,11 +1,11 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-const crypto = require("crypto");
+const crypto = require('crypto');
 function calculateMD5(input) {
-  const hash = crypto.createHash("md5");
+  const hash = crypto.createHash('md5');
   hash.update(input);
-  return hash.digest("hex");
+  return hash.digest('hex');
 }
 
 /**
@@ -14,8 +14,8 @@ function calculateMD5(input) {
  * @returns {string}
  */
 function getTestFile(name) {
-  const dataFilePath = path.join(dirname, "tests", `${name}.txt`);
-  return fs.readFileSync(dataFilePath, "utf8");
+  const dataFilePath = path.join(dirname, 'tests', `${name}.txt`);
+  return fs.readFileSync(dataFilePath, 'utf8');
 }
 
 let get = null;
@@ -51,7 +51,7 @@ export function testAnkio(name, results) {
     app: app,
   };
   //判断dist文件夹是否不存在，不存在就创建
-  const dist = path.join(__dirname, "..", "..", "dist");
+  const dist = path.join(__dirname, '..', '..', 'tests');
   if (!fs.existsSync(dist)) {
     fs.mkdirSync(dist);
   }

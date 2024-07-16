@@ -62,33 +62,43 @@ fs.writeFileSync(
   path.join('dist', 'rules.json'),
   JSON.stringify(rules, null, 2),
 );
-
+let moduleName = 'common';
 outputs.push({
   input: path.join('src', 'utils', 'index.js'),
   output: {
-    file: path.join('dist', 'common.js'), // 输出文件路径
+    file: path.join('dist', `${moduleName}.js`), // 输出文件路径
     format: 'iife', // 输出格式为 IIFE
-    name: 'common', // 全局变量名
+    name: moduleName, // 全局变量名
     footer: `
-          let BillType = common.BillType;
-          let Currency = common.Currency;
-          let DataType = common.DataType;
-          let RuleObject = common.RuleObject;
-          let findNonEmptyString = common.findNonEmptyString;
-          let formatDate = common.formatDate;
-          let isTimeInRange = common.isTimeInRange;
-          let stripHtml = common.stripHtml;
-          let toDoubleFloat = common.toDoubleFloat;
-          let toFloat = common.toFloat;
+          let BillType = ${moduleName}.BillType;
+          let Currency = ${moduleName}.Currency;
+          let DataType = ${moduleName}.DataType;
+          let RuleObject = ${moduleName}.RuleObject;
+          let Html = {
+          findNonEmptyString: ${moduleName}.findNonEmptyString,
+          stripHtml: ${moduleName}.stripHtml,
+          };
+          let Number = {
+          toDoubleFloat: ${moduleName}.toDoubleFloat,
+          toFloat: ${moduleName}.toFloat,
+          };
+          let Time ={
+          formatDate: ${moduleName}.formatDate,
+          isTimeInRange: ${moduleName}.isTimeInRange,
+          };
       `,
   },
-  plugins: [
-    terser(),
-    {
-      name: 'process-code', // 插件名称
-    },
-  ],
-  //external: id => externalFilter(id),
+  plugins: [terser()],
+});
+
+outputs.push({
+  input: path.join('src', 'category', 'main.js'),
+  output: {
+    file: path.join('dist', `category.js`), // 输出文件路径
+    format: 'iife', // 输出格式为 IIFE
+    name: 'category', // 全局变量名
+  },
+  plugins: [terser()],
 });
 
 export default outputs;
