@@ -69,27 +69,23 @@ outputs.push({
     file: path.join('dist', 'common.js'), // 输出文件路径
     format: 'iife', // 输出格式为 IIFE
     name: 'common', // 全局变量名
+    footer: `
+          let BillType = common.BillType;
+          let Currency = common.Currency;
+          let DataType = common.DataType;
+          let RuleObject = common.RuleObject;
+          let findNonEmptyString = common.findNonEmptyString;
+          let formatDate = common.formatDate;
+          let isTimeInRange = common.isTimeInRange;
+          let stripHtml = common.stripHtml;
+          let toDoubleFloat = common.toDoubleFloat;
+          let toFloat = common.toFloat;
+      `,
   },
   plugins: [
     terser(),
     {
       name: 'process-code', // 插件名称
-      transform(code, id) {
-        // 在这里可以添加对输出代码的处理逻辑
-        return `
-          ${code}
-     //     let BillType = common.BillType; // 将 BillType 直接挂载到 window 对象上
-      //    let Currency = common.Currency; // 将 Currency 直接挂载到 window 对象上
-     //     let DataType = common.DataType; // 将 DataType 直接挂载到 window 对象上
-      //    let RuleObject = common.RuleObject; // 将 RuleObject 直接挂载到 window 对象上
-       //   let findNonEmptyString = common.findNonEmptyString; // 将 findNonEmptyString 直接挂载到 window 对象上
-      //    let formatDate = common.formatDate; // 将 formatDate 直接挂载到 window 对象上
-      //    let isTimeInRange = common.isTimeInRange; // 将 isTimeInRange 直接挂载到 window 对象上
-      //    let stripHtml = common.stripHtml; // 将 stripHtml 直接挂载到 window 对象上
-      //    let toDoubleFloat = common.toDoubleFloat; // 将 toDoubleFloat 直接挂载到 window 对象上
-       //   let toFloat = common.toFloat; // 将 toFloat 直接挂载到 window 对象上
-        `;
-      },
     },
   ],
   //external: id => externalFilter(id),
