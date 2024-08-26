@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { createFilter } from '@rollup/pluginutils';
 import { terser } from 'rollup-terser';
+import babel from '@rollup/plugin-babel';
 
 // 递归地获取所有规则文件
 function getRuleFiles(dirPath) {
@@ -21,6 +22,7 @@ function getRuleFiles(dirPath) {
   return files;
 }
 const rulesFolder = path.join('src', 'rule');
+const utilsFolder = path.join('src', 'utils');
 const ruleFiles = getRuleFiles(rulesFolder);
 const externalFilter = createFilter([], null, { resolve: false });
 const rules = [];
@@ -48,13 +50,41 @@ const outputs = ruleFiles.map(file => {
       //  exports: 'none', // 禁止导出模块的方式
       //  banner: `let ${ruleName} = {};`,
       // footer: `let ${ruleName} = ${ruleName};`, // 将变量暴露到全局对象 window 上
+      globals: {
+        './src/utils/RuleObject': 'RuleObject',
+        './src/utils/BillType': 'BillType',
+        './src/utils/Currency': 'Currency',
+        './src/utils/Time': 'Time',
+        './src/utils/Number': 'Number',
+      },
     },
-    plugins: [terser()],
-    external: id => externalFilter(id),
+    plugins: [
+      terser(),
+      // resolve('', ''), // 解析 node_modules 中的模块
+      // commonjs(), // 将 CommonJS 模块转换为 ES6 模块
+      babel({
+        babelHelpers: 'bundled', // Babel 帮助程序类型
+        exclude: 'node_modules/**', // 排除 node_modules 目录
+        presets: [
+          '@babel/preset-env', // 使用 Babel 预设
+        ],
+      }),
+    ],
+    external: [
+      './src/utils/RuleObject',
+      './src/utils/BillType',
+      './src/utils/Currency',
+      './src/utils/Time',
+      './src/utils/Number',
+    ],
   };
 });
 // 删除dist文件夹
-fs.rmdirSync(path.join('dist'), { recursive: true });
+// 如果dist文件夹存在就删除文件夹
+// TODO
+try {
+  fs.rmSync(path.join('dist'), { recursive: true });
+} catch (e) {}
 // 创建dist文件夹
 fs.mkdirSync(path.join('dist'), { recursive: true });
 // 将规则信息写入rules.json文件
@@ -88,7 +118,16 @@ outputs.push({
           };
       `,
   },
-  plugins: [terser()],
+  plugins: [
+    terser(),
+    babel({
+      babelHelpers: 'bundled', // Babel 帮助程序类型
+      exclude: 'node_modules/**', // 排除 node_modules 目录
+      presets: [
+        '@babel/preset-env', // 使用 Babel 预设
+      ],
+    }),
+  ],
 });
 
 outputs.push({
