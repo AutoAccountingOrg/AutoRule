@@ -53,5 +53,4 @@ jobs:
         with:
           body: ${{steps.github_release.outputs.changelog}}
           files: |
-            dist/category.js
-            dist/rule.js
+            dist/*
