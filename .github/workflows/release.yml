@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies with Yarn
         run: |
           yarn install
-          yarn webpack --mode production
+          yarn rollup -c
 
       - name: Build Changelog
         id: github_release
