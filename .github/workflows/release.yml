@@ -45,12 +45,11 @@ jobs:
         env:
           CHANGELOG: ${{steps.github_release.outputs.changelog}}
           GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
-          HOST_ENV_VAR: ${{ secrets.HOST_ENV_VAR }}
-          USERNAME_ENV_VAR: ${{ secrets.USERNAME_ENV_VAR }}
-          PASSWORD_ENV_VAR: ${{ secrets.PASSWORD_ENV_VAR }}
+          ALIST_TOKEN: ${{ secrets.ALIST_TOKEN }}
+          FORUMS_API_KEY: ${{ secrets.FORUMS_API_KEY }}
       - name: Create Release
         uses: mikepenz/action-gh-release@v0.2.0-a03 #softprops/action-gh-release
         with:
           body: ${{steps.github_release.outputs.changelog}}
           files: |
-            dist/*
+            dist/*/*

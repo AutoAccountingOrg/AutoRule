@@ -98,7 +98,7 @@ def send_bot():
 在社区发帖
 """
 def send_forums(api_key,title,content):
-    url = "https://forum.ez-book.org/posts"
+    url = "https://forum.ez-book.org/posts.json"
     headers = {
         "Content-Type": "application/json",
         "Api-Key": api_key,
