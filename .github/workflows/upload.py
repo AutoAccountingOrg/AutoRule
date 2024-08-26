@@ -35,9 +35,8 @@ def upload(filename, filename_new):
         'Authorization': os.getenv("ALIST_TOKEN"),
         'file-path': filename_new
     }
-    dir = os.getenv("GITHUB_WORKSPACE")
     # 读取文件内容
-    with open(dir+filename, 'rb') as file:
+    with open(filename, 'rb') as file:
         file_data = file.read()
     res = requests.put(url=url2, data=file_data, headers=headers)
     print(res.text)
