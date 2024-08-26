@@ -52,4 +52,4 @@ jobs:
         with:
           body: ${{steps.github_release.outputs.changelog}}
           files: |
-            dist/*/*
+            dist/**
