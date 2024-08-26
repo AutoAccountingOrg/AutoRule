@@ -24,7 +24,9 @@ function getRuleFiles(dirPath) {
 const rulesFolder = path.join('src', 'rule');
 const utilsFolder = path.join('src', 'utils');
 const ruleFiles = getRuleFiles(rulesFolder);
-const externalFilter = createFilter([], null, { resolve: false });
+const externalFilter = createFilter([], [], {
+  resolve: false,
+});
 const rules = [];
 const outputs = ruleFiles.map(file => {
   const ruleChineseName = path.basename(path.dirname(file));
@@ -50,13 +52,6 @@ const outputs = ruleFiles.map(file => {
       //  exports: 'none', // 禁止导出模块的方式
       //  banner: `let ${ruleName} = {};`,
       // footer: `let ${ruleName} = ${ruleName};`, // 将变量暴露到全局对象 window 上
-      globals: {
-        './src/utils/RuleObject': 'RuleObject',
-        './src/utils/BillType': 'BillType',
-        './src/utils/Currency': 'Currency',
-        './src/utils/Time': 'Time',
-        './src/utils/Number': 'Number',
-      },
     },
     plugins: [
       terser(),
@@ -70,13 +65,7 @@ const outputs = ruleFiles.map(file => {
         ],
       }),
     ],
-    external: [
-      './src/utils/RuleObject',
-      './src/utils/BillType',
-      './src/utils/Currency',
-      './src/utils/Time',
-      './src/utils/Number',
-    ],
+    external: id => externalFilter(id),
   };
 });
 // 删除dist文件夹

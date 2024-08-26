@@ -8,7 +8,5 @@
   "arrowParens": "avoid",
   "bracketSpacing": true,
   "endOfLine": "auto",
-  "eslintIntegration": false,
-  "htmlWhitespaceSensitivity": "ignore",
-  "function-paren-newline": "multiline"
+  "htmlWhitespaceSensitivity": "ignore"
 }
