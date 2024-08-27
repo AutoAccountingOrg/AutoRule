@@ -69,23 +69,18 @@ def put_file():
 """
 上传到网盘
 """
-def upload_pan():
+def upload_pan(name):
     # 获取GITHUB_WORKSPACE环境变量并拼接dist目录
     dir = os.getenv("GITHUB_WORKSPACE") + "/dist"
-
+    # 将dir目录压缩为zip
+    os.system("zip -r "+name+".zip " + dir)
     # 获取目录长度，后面用于生成相对路径
-    dir_len = len(dir)
 
-    # 遍历目录和子目录
-    for root, dirs, files in os.walk(dir):
-        for file in files:
-            filename = os.path.join(root, file)
+    upload(dir + "/index.json", "/index.json")
 
-            # 生成相对路径
-            filename_new = filename[dir_len:]
+    upload(dir + "/README.md", "/README.md")
 
-            # 上传文件
-            upload(filename, filename_new)
+    upload(dir + "/"+name+".zip", "/"+name+".zip")
 
 
 """
@@ -125,5 +120,5 @@ def send_notify(title,content):
 
 if __name__ == '__main__':
     name, t, markdown_log = put_file()
-    upload_pan()
+    upload_pan(name)
     send_notify(name,markdown_log)
