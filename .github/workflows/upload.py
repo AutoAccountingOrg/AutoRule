@@ -73,14 +73,14 @@ def upload_pan(name):
     # 获取GITHUB_WORKSPACE环境变量并拼接dist目录
     dir = os.getenv("GITHUB_WORKSPACE") + "/dist"
     # 将dir目录压缩为zip
-    os.system("zip -r "+name+".zip " + dir)
+    os.system("zip -r "+os.getenv("GITHUB_WORKSPACE") + "/" +name+".zip " + dir)
     # 获取目录长度，后面用于生成相对路径
 
     upload(dir + "/index.json", "/index.json")
 
     upload(dir + "/README.md", "/README.md")
 
-    upload(dir + "/"+name+".zip", "/"+name+".zip")
+    upload(os.getenv("GITHUB_WORKSPACE") + "/"+name+".zip", "/"+name+".zip")
 
 
 """
