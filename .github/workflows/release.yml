@@ -53,5 +53,3 @@ jobs:
           body: ${{steps.github_release.outputs.changelog}}
           files: |
             *.zip
-            *.md
-            *.json
