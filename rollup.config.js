@@ -30,10 +30,8 @@ const externalFilter = createFilter([], [], {
 const rules = [];
 const outputs = ruleFiles.map(file => {
   const ruleChineseName = path.basename(path.dirname(file));
-  const ruleApp = path.basename(path.dirname(path.dirname(file)));
-  const ruleType = path.basename(
-    path.dirname(path.dirname(path.dirname(file))),
-  );
+  const ruleType = path.basename(path.dirname(path.dirname(file)));
+  const ruleApp = path.basename(path.dirname(path.dirname(path.dirname(file))));
   const ruleName = 'rule_' + rules.length;
   const out = `${ruleType}/${ruleApp}/${ruleChineseName}.js`;
   rules.push({
