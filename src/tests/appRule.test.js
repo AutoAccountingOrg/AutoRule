@@ -4,7 +4,7 @@ import fs from 'fs';
 
 const { execSync } = require('child_process');
 
-execSync('yarn dev', { stdio: 'inherit' });
+execSync('yarn dev', { "stdio": 'inherit' });
 
 const distDirPath = path.join(__dirname, '..', '..', 'dist');
 
@@ -24,7 +24,7 @@ let js = fs.readFileSync(path.join(distDirPath, 'common.js'), 'utf8');
 // ]
 
 const rules = JSON.parse(
-  fs.readFileSync(path.join(distDirPath, 'rules.json'), 'utf8'),
+  fs.readFileSync(path.join(distDirPath, 'rules.json'), 'utf8')
 );
 
 for (const rule of rules) {
@@ -47,7 +47,7 @@ const fileNames = fs.readdirSync(tests);
 
 // 过滤出所有的.json文件名
 const jsonFileNames = fileNames.filter(
-  fileName => path.extname(fileName) === '.json',
+  fileName => path.extname(fileName) === '.json'
 );
 
 // 读取每个.json文件的内容
@@ -65,8 +65,8 @@ test('App规则调用校验', () => {
       const result = results[i];
       const data = datas[i];
       var window = {
-        data: data,
-        rules: [],
+        "data": data,
+        "rules": []
       };
       function print(callbackResult) {
         expect(callbackResult).toEqual(result);

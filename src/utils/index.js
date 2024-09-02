@@ -15,5 +15,5 @@ export {
   formatDate,
   toFloat,
   toDoubleFloat,
-  RuleObject,
+  RuleObject
 };

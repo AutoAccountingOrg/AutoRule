@@ -23,14 +23,14 @@ const regexMap = new Map([
           break;
       }
       return {
-        accountNameFrom: `${SOURCE_NAME}(${cardNumber})`,
-        time: formatDate(time, 'M月D日h:i'),
-        type: billType,
-        money: parseFloat(money),
-        shopName: shopName,
-        shopItem: shopItem,
-        Currency: Currency[currency],
-        Channel: `微信[${SOURCE_NAME}-${type}]`,
+        "accountNameFrom": `${SOURCE_NAME}(${cardNumber})`,
+        "time": formatDate(time, 'M月D日h:i'),
+        "type": billType,
+        "money": parseFloat(money),
+        "shopName": shopName,
+        "shopItem": shopItem,
+        "Currency": Currency[currency],
+        "Channel": `微信[${SOURCE_NAME}-${type}]`,
       };
     },
   ],
@@ -39,14 +39,14 @@ const regexMap = new Map([
     match => {
       const [, time, currency, money] = match;
       return {
-        accountNameFrom: '招商银行信用卡自动还款账户',
-        accountNameTo: '招商银行信用卡',
-        time: formatDate(time, 'Y年M月D日h:i:s'),
-        type: BillType.Transfer,
-        money: parseFloat(money),
-        shopName: '',
-        Currency: Currency[currency],
-        Channel: `微信[${SOURCE_NAME}-还款]`,
+        "accountNameFrom": '招商银行信用卡自动还款账户',
+        "accountNameTo": '招商银行信用卡',
+        "time": formatDate(time, 'Y年M月D日h:i:s'),
+        "type": BillType.Transfer,
+        "money": parseFloat(money),
+        "shopName": '',
+        "Currency": Currency[currency],
+        "Channel": `微信[${SOURCE_NAME}-还款]`,
       };
     },
   ],
@@ -91,6 +91,5 @@ export function get(data) {
     0,
     parsedText.Currency,
     parsedText.time,
-    parsedText.Channel,
-  );
+    parsedText.Channel  );
 }

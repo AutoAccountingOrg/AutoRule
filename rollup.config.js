@@ -25,7 +25,7 @@ const rulesFolder = path.join('src', 'rule');
 const utilsFolder = path.join('src', 'utils');
 const ruleFiles = getRuleFiles(rulesFolder);
 const externalFilter = createFilter([], [], {
-  resolve: false,
+  "resolve": false,
 });
 const rules = [];
 const outputs = ruleFiles.map(file => {
@@ -39,54 +39,54 @@ const outputs = ruleFiles.map(file => {
     ruleChineseName,
     ruleApp,
     ruleType,
-    path: out,
+    "path": out,
   });
   return {
-    input: file,
-    output: {
-      file: path.join('dist', out), // 使用父文件夹名称作为输出文件名
-      format: 'iife',
-      name: ruleName, // 使用父文件夹名称作为全局变量名
+    "input": file,
+    "output": {
+      "file": path.join('dist', out), // 使用父文件夹名称作为输出文件名
+      "format": 'iife',
+      "name": ruleName, // 使用父文件夹名称作为全局变量名
       //  exports: 'none', // 禁止导出模块的方式
       //  banner: `let ${ruleName} = {};`,
       // footer: `let ${ruleName} = ${ruleName};`, // 将变量暴露到全局对象 window 上
     },
-    plugins: [
+    "plugins": [
       terser(),
       // resolve('', ''), // 解析 node_modules 中的模块
       // commonjs(), // 将 CommonJS 模块转换为 ES6 模块
       babel({
-        babelHelpers: 'bundled', // Babel 帮助程序类型
-        exclude: 'node_modules/**', // 排除 node_modules 目录
-        presets: [
+        "babelHelpers": 'bundled', // Babel 帮助程序类型
+        "exclude": 'node_modules/**', // 排除 node_modules 目录
+        "presets": [
           '@babel/preset-env', // 使用 Babel 预设
         ],
       }),
     ],
-    external: id => externalFilter(id),
+    "external": id => externalFilter(id),
   };
 });
 // 删除dist文件夹
 // 如果dist文件夹存在就删除文件夹
 // TODO
 try {
-  fs.rmSync(path.join('dist'), { recursive: true });
+  fs.rmSync(path.join('dist'), { "recursive": true });
 } catch (e) {}
 // 创建dist文件夹
-fs.mkdirSync(path.join('dist'), { recursive: true });
+fs.mkdirSync(path.join('dist'), { "recursive": true });
 // 将规则信息写入rules.json文件
 fs.writeFileSync(
   path.join('dist', 'rules.json'),
-  JSON.stringify(rules, null, 2),
+  JSON.stringify(rules, null, 2)
 );
 let moduleName = 'common';
 outputs.push({
-  input: path.join('src', 'utils', 'index.js'),
-  output: {
-    file: path.join('dist', `${moduleName}.js`), // 输出文件路径
-    format: 'iife', // 输出格式为 IIFE
-    name: moduleName, // 全局变量名
-    footer: `
+  "input": path.join('src', 'utils', 'index.js'),
+  "output": {
+    "file": path.join('dist', `${moduleName}.js`), // 输出文件路径
+    "format": 'iife', // 输出格式为 IIFE
+    "name": moduleName, // 全局变量名
+    "footer": `
           let BillType = ${moduleName}.BillType;
           let Currency = ${moduleName}.Currency;
           let DataType = ${moduleName}.DataType;
@@ -105,12 +105,12 @@ outputs.push({
           };
       `,
   },
-  plugins: [
+  "plugins": [
     terser(),
     babel({
-      babelHelpers: 'bundled', // Babel 帮助程序类型
-      exclude: 'node_modules/**', // 排除 node_modules 目录
-      presets: [
+      "babelHelpers": 'bundled', // Babel 帮助程序类型
+      "exclude": 'node_modules/**', // 排除 node_modules 目录
+      "presets": [
         '@babel/preset-env', // 使用 Babel 预设
       ],
     }),
@@ -118,13 +118,13 @@ outputs.push({
 });
 
 outputs.push({
-  input: path.join('src', 'category', 'main.js'),
-  output: {
-    file: path.join('dist', `category.js`), // 输出文件路径
-    format: 'iife', // 输出格式为 IIFE
-    name: 'category', // 全局变量名
+  "input": path.join('src', 'category', 'main.js'),
+  "output": {
+    "file": path.join('dist', `category.js`), // 输出文件路径
+    "format": 'iife', // 输出格式为 IIFE
+    "name": 'category', // 全局变量名
   },
-  plugins: [terser()],
+  "plugins": [terser()],
 });
 
 export default outputs;

@@ -44,11 +44,11 @@ export function testAnkio(name, results) {
     expect(result).toEqual(resultData);
   }
   var testObject = {
-    name: name,
-    results: results,
-    datas: datas,
-    type: type,
-    app: app,
+    "name": name,
+    "results": results,
+    "datas": datas,
+    "type": type,
+    "app": app
   };
   //判断dist文件夹是否不存在，不存在就创建
   const dist = path.join(__dirname, '..', '..', 'tests');
@@ -58,6 +58,6 @@ export function testAnkio(name, results) {
   //写入到dist文件中，取name的md5
   fs.writeFileSync(
     path.join(dist, `${calculateMD5(name)}.json`),
-    JSON.stringify(testObject, null, 2),
+    JSON.stringify(testObject, null, 2)
   );
 }

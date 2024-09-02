@@ -21,13 +21,13 @@ const regexMapBOC = new Map([
       }
 
       return {
-        money: toFloat(money),
-        type: billType,
-        time: formatDate(time, 'Y-M-D h:i'), //2024-05-12 17:51
-        shopItem: type,
-        accountNameFrom: `${SOURCE_NAME_BOC}${card}(${number})`,
-        Currency: Currency[currency],
-        channel: `微信[${SOURCE_NAME_BOC}-${channel}]`,
+        "money": toFloat(money),
+        "type": billType,
+        "time": formatDate(time, 'Y-M-D h:i'), //2024-05-12 17:51
+        "shopItem": type,
+        "accountNameFrom": `${SOURCE_NAME_BOC}${card}(${number})`,
+        "Currency": Currency[currency],
+        "channel": `微信[${SOURCE_NAME_BOC}-${channel}]`,
       };
     },
   ],
@@ -79,6 +79,5 @@ export function get(data) {
     0,
     parsedText.Currency,
     parsedText.time, //2024-05-02 18:58:44
-    parsedText.channel,
-  );
+    parsedText.channel  );
 }

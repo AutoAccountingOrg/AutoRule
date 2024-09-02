@@ -26,10 +26,10 @@ function parseText(text) {
   const accountNameFrom = `长沙银行（${account}）`;
 
   return {
-    type: type.includes('取出') ? BillType.Expend : null,
-    time: `${time}`,
+    "type": type.includes('取出') ? BillType.Expend : null,
+    "time": `${time}`,
     shopItem,
-    money: parseFloat(money.replace(',', '')),
+    "money": parseFloat(money.replace(',', '')),
     accountNameFrom,
   };
 }
@@ -66,6 +66,5 @@ export function get(data) {
     0,
     Currency['人民币'],
     formatDate(parsedData.time, 'M月D日h:i'),
-    `微信[长沙银行交易通知]`,
-  );
+    `微信[长沙银行交易通知]`  );
 }

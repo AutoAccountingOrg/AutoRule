@@ -21,12 +21,12 @@ function parseText(text) {
   const [, shopName, time, , fee, money] = match;
 
   return {
-    type: BillType.Expend,
+    "type": BillType.Expend,
     time,
     shopName,
-    fee: toFloat(fee),
-    money: toFloat(money),
-    channel: `微信[${SOURCE_NAME} - 消费]`,
+    "fee": toFloat(fee),
+    "money": toFloat(money),
+    "channel": `微信[${SOURCE_NAME} - 消费]`,
   };
 }
 
@@ -53,6 +53,5 @@ export function get(data) {
     parsedData.fee,
     Currency['人民币'],
     formatDate(parsedData.time, 'Y年M月D日 h:i'),
-    parsedData.channel,
-  );
+    parsedData.channel  );
 }

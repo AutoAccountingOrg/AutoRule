@@ -20,8 +20,7 @@ export function get(data) {
 
     // 使用解构赋值从description.match数组中提取值
     const [_, money, , shopName, shopItem] = description.match(
-      /订单金额：(\d+(\.\d{2})?)元\n商品详情：(.*?) (.*?)?\n订单编号：\d+/,
-    );
+      /订单金额：(\d+(\.\d{2})?)元\n商品详情：(.*?) (.*?)?\n订单编号：\d+/  );
 
     // 创建并返回RuleObject对象
     return new RuleObject(
@@ -34,8 +33,7 @@ export function get(data) {
       0,
       Currency['人民币'],
       formatDate(),
-      `微信[收钱吧消费通知]`,
-    );
+      `微信[收钱吧消费通知]`  );
   } catch (error) {
     throw new Error(`[微信公众号收钱吧福利社] get function: ${error}`);
   }

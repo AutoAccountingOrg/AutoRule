@@ -23,14 +23,14 @@ const regexMapBOC = new Map([
           break;
       }
       return {
-        money: toFloat(money),
-        type: billType,
-        time: formatDate(time, 'M月D日h:i'), //05月26日20:01
-        shopItem: shopItem,
-        shopName: shopName,
-        accountNameFrom: `${SOURCE_NAME_BOC}(${number})`,
-        Currency: Currency[currency],
-        channel: `微信[${SOURCE_NAME_BOC}-支出]`,
+        "money": toFloat(money),
+        "type": billType,
+        "time": formatDate(time, 'M月D日h:i'), //05月26日20:01
+        "shopItem": shopItem,
+        "shopName": shopName,
+        "accountNameFrom": `${SOURCE_NAME_BOC}(${number})`,
+        "Currency": Currency[currency],
+        "channel": `微信[${SOURCE_NAME_BOC}-支出]`,
       };
     },
   ],
@@ -40,14 +40,14 @@ const regexMapBOC = new Map([
     match => {
       const [, currency, money, number, time] = match;
       return {
-        money: toFloat(money),
-        type: BillType.Income,
-        time: formatDate(time, 'M月D日h:i'), //05月26日20:01
-        shopItem: '',
-        shopName: '',
-        accountNameFrom: `${SOURCE_NAME_BOC}(${number})`,
-        Currency: Currency[currency],
-        channel: `微信[${SOURCE_NAME_BOC}-退款]`,
+        "money": toFloat(money),
+        "type": BillType.Income,
+        "time": formatDate(time, 'M月D日h:i'), //05月26日20:01
+        "shopItem": '',
+        "shopName": '',
+        "accountNameFrom": `${SOURCE_NAME_BOC}(${number})`,
+        "Currency": Currency[currency],
+        "channel": `微信[${SOURCE_NAME_BOC}-退款]`,
       };
     },
   ],
@@ -99,6 +99,5 @@ export function get(data) {
     0,
     parsedText.Currency,
     parsedText.time, //2024-05-02 18:58:44
-    parsedText.channel,
-  );
+    parsedText.channel  );
 }

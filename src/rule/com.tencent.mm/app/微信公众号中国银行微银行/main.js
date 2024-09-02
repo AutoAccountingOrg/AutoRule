@@ -13,37 +13,37 @@ const regexMapBOC = new Map([
   [
     /交易时间：(.*?)\n交易类型：(.*支付|.*消费)（尾号(\d+)）\n交易金额：(.*?) ([\d\,]+.\d{2})\n账户余额：.*元\n交易说明：点击查看更多详情/,
     match => ({
-      money: parseFloat(match[5].replace(',', '')),
-      type: BillType.Expend,
-      time: `${match[1]}`,
-      shopItem: match[2],
-      accountNameFrom: `中国银行(${match[3]})`,
-      Currency: Currency[match[4]],
-      channel: '微信[中国银行-消费]',
+      "money": parseFloat(match[5].replace(',', '')),
+      "type": BillType.Expend,
+      "time": `${match[1]}`,
+      "shopItem": match[2],
+      "accountNameFrom": `中国银行(${match[3]})`,
+      "Currency": Currency[match[4]],
+      "channel": '微信[中国银行-消费]',
     }),
   ],
   [
     /交易时间：(.*?)\n交易类型：(.*退款)（尾号(\d+)）\n交易金额：(.*?) ([\d\,]+.\d{2})\n账户余额：.*元\n交易说明：点击查看更多详情/,
     match => ({
-      money: parseFloat(match[5].replace(',', '')),
-      type: BillType.Income,
-      time: `${match[1]}`,
-      shopItem: match[2],
-      accountNameFrom: `中国银行(${match[3]})`,
-      Currency: Currency[match[4]],
-      channel: '微信[中国银行-退款]',
+      "money": parseFloat(match[5].replace(',', '')),
+      "type": BillType.Income,
+      "time": `${match[1]}`,
+      "shopItem": match[2],
+      "accountNameFrom": `中国银行(${match[3]})`,
+      "Currency": Currency[match[4]],
+      "channel": '微信[中国银行-退款]',
     }),
   ],
   [
     /交易时间：(.*?)\n交易类型：(.*入账)（尾号(\d+)）\n交易金额：(.*?) ([\d\,]+.\d{2})\n账户余额：.*元\n交易说明：点击查看更多详情/,
     match => ({
-      money: parseFloat(match[5].replace(',', '')),
-      type: BillType.Income,
-      time: `${match[1]}`,
-      shopItem: match[2],
-      accountNameFrom: `中国银行(${match[3]})`,
-      Currency: Currency[match[4]],
-      channel: '微信[中国银行-入账]',
+      "money": parseFloat(match[5].replace(',', '')),
+      "type": BillType.Income,
+      "time": `${match[1]}`,
+      "shopItem": match[2],
+      "accountNameFrom": `中国银行(${match[3]})`,
+      "Currency": Currency[match[4]],
+      "channel": '微信[中国银行-入账]',
     }),
   ],
   //账户类型：信用卡\n账号尾号：5248\n交易时间：05月16日11:05\n交易类型：存入\n交易金额：RMB357.00
@@ -66,13 +66,13 @@ const regexMapBOC = new Map([
           break;
       }
       return {
-        money: toFloat(money),
-        type: billType,
-        time: time,
-        shopItem: type,
-        accountNameFrom: `中国银行信用卡(${number})`,
-        Currency: _currency,
-        channel: '微信[中国银行信用卡-存入]',
+        "money": toFloat(money),
+        "type": billType,
+        "time": time,
+        "shopItem": type,
+        "accountNameFrom": `中国银行信用卡(${number})`,
+        "Currency": _currency,
+        "channel": '微信[中国银行信用卡-存入]',
       };
     },
   ],
@@ -124,6 +124,5 @@ export function get(data) {
     0,
     parsedText.Currency,
     formatDate(parsedText.time, 'M月D日h:i'),
-    parsedText.channel,
-  );
+    parsedText.channel  );
 }

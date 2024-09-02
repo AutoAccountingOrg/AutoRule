@@ -23,6 +23,5 @@ export function get(data) {
     0,
     Currency['人民币'],
     formatDate(data.desc_item_list[1].value, 'Y年M月D日 h:i:s'),
-    '微信[转账收款]',
-  );
+    '微信[转账收款]'  );
 }

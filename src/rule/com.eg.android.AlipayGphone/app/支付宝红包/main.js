@@ -25,6 +25,6 @@ export function get(data) {
     0,
     Currency['人民币'],
     data[0].mct,
-    '支付宝[收红包]',
+    '支付宝[收红包]'
   );
 }

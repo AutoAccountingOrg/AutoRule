@@ -28,28 +28,28 @@ const regexMap = new Map([
   [
     /付款金额¥(\d+\.\d{2})\n支付方式(.*?)\n交易状态.*/,
     match => ({
-      money: parseFloat(match[1]),
-      accountNameFrom: match[2],
-      type: BillType.Expend,
-      channel: '微信[微信支付-付款]',
+      "money": parseFloat(match[1]),
+      "accountNameFrom": match[2],
+      "type": BillType.Expend,
+      "channel": '微信[微信支付-付款]',
     }),
   ],
   [
     /付款金额￥(\d+\.\d{2})\n付款方式(.*?)\n收单机构.*/,
     match => ({
-      money: parseFloat(match[1]),
-      accountNameFrom: match[2],
-      type: BillType.Expend,
-      channel: '微信[微信支付-付款]',
+      "money": parseFloat(match[1]),
+      "accountNameFrom": match[2],
+      "type": BillType.Expend,
+      "channel": '微信[微信支付-付款]',
     }),
   ], //使用(.*?)支付¥(\d+\.\d{2})\n交易状态支付成功，对方已收款
   [
     /使用(.*?)支付¥(\d+\.\d{2})\n交易状态支付成功，对方已收款/,
     match => ({
-      money: parseFloat(match[2]),
-      accountNameFrom: match[1],
-      type: BillType.Expend,
-      channel: '微信[微信支付-付款]',
+      "money": parseFloat(match[2]),
+      "accountNameFrom": match[1],
+      "type": BillType.Expend,
+      "channel": '微信[微信支付-付款]',
     }),
   ],
   [
@@ -58,34 +58,34 @@ const regexMap = new Map([
       const [, money, , shopName, , shopItem, accountNameFrom, , remark] =
         match;
       return {
-        money: parseFloat(money),
+        "money": parseFloat(money),
         accountNameFrom,
-        shopName: mapItem.display_name ? mapItem.display_name : shopName,
-        shopItem: remark ? shopItem + ', ' + remark : shopItem,
-        type: BillType.Expend,
-        channel: '微信[微信支付-扣费]',
+        "shopName": mapItem.display_name ? mapItem.display_name : shopName,
+        "shopItem": remark ? shopItem + ', ' + remark : shopItem,
+        "type": BillType.Expend,
+        "channel": '微信[微信支付-扣费]',
       };
     },
   ],
   [
     /收款金额￥(\d+\.\d{2})\n(付款方备注(.*?)\n)?汇总(.*?)\n备注.*/,
     match => ({
-      money: toFloat(match[1]),
-      type: BillType.Income,
-      shopItem: match[3] !== undefined ? match[3] + ' ' + match[4] : match[4],
-      accountNameFrom: '零钱',
-      channel: '微信[微信支付-收款]',
+      "money": toFloat(match[1]),
+      "type": BillType.Income,
+      "shopItem": match[3] !== undefined ? match[3] + ' ' + match[4] : match[4],
+      "accountNameFrom": '零钱',
+      "channel": '微信[微信支付-收款]',
     }),
   ],
   [
     /收款金额￥(\d+\.\d{2})\n收款账户(.*?)\n付款商家(.*)(\n付款备注(.*))?/,
     match => ({
-      money: parseFloat(match[1]),
-      type: BillType.Income,
-      accountNameFrom: match[2],
-      shopName: match[3],
-      shopItem: match[5] || mapItem.title,
-      channel: '微信[微信支付-收款（商家）]',
+      "money": parseFloat(match[1]),
+      "type": BillType.Income,
+      "accountNameFrom": match[2],
+      "shopName": match[3],
+      "shopItem": match[5] || mapItem.title,
+      "channel": '微信[微信支付-收款（商家）]',
     }),
   ],
   [
@@ -93,11 +93,11 @@ const regexMap = new Map([
     match => {
       const [, money, accountNameFrom, shopItem, , time] = match;
       return {
-        money: parseFloat(money),
-        type: BillType.Income,
-        shopName: '微信退款',
-        channel: '微信[微信支付-退款]',
-        time: formatDate(time, 'Y-M-D h:i:s'),
+        "money": parseFloat(money),
+        "type": BillType.Income,
+        "shopName": '微信退款',
+        "channel": '微信[微信支付-退款]',
+        "time": formatDate(time, 'Y-M-D h:i:s'),
         shopItem,
         accountNameFrom,
       };
@@ -108,10 +108,10 @@ const regexMap = new Map([
     match => {
       const [money, payTool] = match;
       return {
-        money: parseFloat(money),
-        type: BillType.Expend,
-        accountNameFrom: payTool,
-        channel: '微信[微信支付-付款]',
+        "money": parseFloat(money),
+        "type": BillType.Expend,
+        "accountNameFrom": payTool,
+        "channel": '微信[微信支付-付款]',
       };
     },
   ],
@@ -120,11 +120,11 @@ const regexMap = new Map([
     match => {
       const [, money, accountNameFrom] = match;
       return {
-        money: parseFloat(money),
-        type: BillType.Income,
-        accountNameFrom: accountNameFrom,
-        time: formatDate(),
-        channel: '微信[微信支付-收款入账]',
+        "money": parseFloat(money),
+        "type": BillType.Income,
+        "accountNameFrom": accountNameFrom,
+        "time": formatDate(),
+        "channel": '微信[微信支付-收款入账]',
       };
     },
   ],
@@ -133,13 +133,13 @@ const regexMap = new Map([
     match => {
       const [, money, total, accountNameFrom] = match;
       return {
-        money: toFloat(money),
-        type: BillType.Transfer,
-        accountNameFrom: accountNameFrom,
-        accountNameTo: '零钱通',
-        shopItem: `累计转入¥${total}`,
-        time: formatDate(),
-        channel: '微信[微信支付-零钱通定时转入]',
+        "money": toFloat(money),
+        "type": BillType.Transfer,
+        "accountNameFrom": accountNameFrom,
+        "accountNameTo": '零钱通',
+        "shopItem": `累计转入¥${total}`,
+        "time": formatDate(),
+        "channel": '微信[微信支付-零钱通定时转入]',
       };
     },
   ],
@@ -148,13 +148,13 @@ const regexMap = new Map([
     match => {
       const [, money, shopName, accountNameFrom, time] = match;
       return {
-        money: toFloat(money),
-        type: BillType.Income,
-        accountNameFrom: accountNameFrom,
-        shopName: shopName, //2024-05-25 11:21:52
-        shopItem: 'empty',
-        time: formatDate(time, 'Y-M-D h:i:s'),
-        channel: '微信[微信支付-退款]',
+        "money": toFloat(money),
+        "type": BillType.Income,
+        "accountNameFrom": accountNameFrom,
+        "shopName": shopName, //2024-05-25 11:21:52
+        "shopItem": 'empty',
+        "time": formatDate(time, 'Y-M-D h:i:s'),
+        "channel": '微信[微信支付-退款]',
       };
     },
   ],
@@ -201,14 +201,12 @@ export function get(data) {
     findNonEmptyString(
       parsedText.shopName,
       mapItem.display_name,
-      mapItem.cachedPayShop,
-    ),
+      mapItem.cachedPayShop  ),
     findNonEmptyString(parsedText.shopItem, mapItem.cachedPayShop),
     parsedText.accountNameFrom,
     parsedText.accountNameTo,
     0,
     Currency['人民币'],
     parsedText.time || formatDate(),
-    parsedText.channel,
-  );
+    parsedText.channel  );
 }

@@ -9,10 +9,8 @@
     "ecmaVersion": 6,
     "sourceType": "module" // 设置源代码类型为模块
   },
-
-  "extends": ["prettier"],
-  "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "quote-props": ["error", "always"]
   }
+
 }

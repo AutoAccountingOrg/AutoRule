@@ -13,13 +13,13 @@ const regexMapBOC = new Map([
   [
     /支付金额：¥([\d,]+.\d{2})\n交易商户：(.*?)\n交易时间：(.*?)\n支付方式：(.*?)\n交易单号：\d+/,
     match => ({
-      money: toFloat(match[1].replace(',', '')),
-      type: BillType.Expend,
-      time: `${match[3]}`, //2024-05-02 18:58:44
-      shopName: match[2],
-      accountNameFrom: match[4],
-      Currency: Currency['人民币'],
-      channel: `微信[${SOURCE_NAME_BOC}-消费]`,
+      "money": toFloat(match[1].replace(',', '')),
+      "type": BillType.Expend,
+      "time": `${match[3]}`, //2024-05-02 18:58:44
+      "shopName": match[2],
+      "accountNameFrom": match[4],
+      "Currency": Currency['人民币'],
+      "channel": `微信[${SOURCE_NAME_BOC}-消费]`,
     }),
   ],
 ]);
@@ -70,6 +70,5 @@ export function get(data) {
     0,
     parsedText.Currency,
     formatDate(parsedText.time, 'Y-M-D h:i:s'), //2024-05-02 18:58:44
-    parsedText.channel,
-  );
+    parsedText.channel  );
 }

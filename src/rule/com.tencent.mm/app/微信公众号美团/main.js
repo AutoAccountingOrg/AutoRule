@@ -16,16 +16,16 @@ const regexMap = new Map([
 
       // 返回解析结果
       return {
-        type: BillType.Expend,
-        time: formatDate(
+        "type": BillType.Expend,
+        "time": formatDate(
           time.trim(),
-          time.indexOf('年') !== -1 ? 'Y年M月D日 h:i' : 'Y-M-D h:i:s',
+          time.indexOf('年') !== -1 ? 'Y年M月D日 h:i' : 'Y-M-D h:i:s'
         ),
-        shopName: SOURCE_NAME,
-        shopItem: shopItem,
-        money: parseFloat(money),
-        accountNameFrom: accountNameFrom,
-        channel: `微信[${SOURCE_NAME}-消费]`,
+        "shopName": SOURCE_NAME,
+        "shopItem": shopItem,
+        "money": parseFloat(money),
+        "accountNameFrom": accountNameFrom,
+        "channel": `微信[${SOURCE_NAME}-消费]`,
       };
     },
   ],
@@ -36,13 +36,13 @@ const regexMap = new Map([
 
       // 返回解析结果
       return {
-        type: BillType.Income,
-        shopName: SOURCE_NAME,
-        shopItem: shopItem,
-        money: toFloat(money),
-        accountNameFrom: accountNameFrom,
-        channel: `微信[${SOURCE_NAME}-退款]`,
-        time: formatDate(),
+        "type": BillType.Income,
+        "shopName": SOURCE_NAME,
+        "shopItem": shopItem,
+        "money": toFloat(money),
+        "accountNameFrom": accountNameFrom,
+        "channel": `微信[${SOURCE_NAME}-退款]`,
+        "time": formatDate(),
       };
     },
   ],
@@ -92,6 +92,5 @@ export function get(data) {
     0,
     Currency['人民币'],
     parsedData.time,
-    parsedData.channel,
-  );
+    parsedData.channel  );
 }

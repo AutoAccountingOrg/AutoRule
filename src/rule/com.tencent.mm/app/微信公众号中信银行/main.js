@@ -26,13 +26,13 @@ const regexMapBOC = new Map([
       }
 
       return {
-        money: parseFloat(match[5].replace(',', '')),
-        type: matchType,
-        time: match[2],
-        shopItem: shopItem,
-        accountNameFrom: `${SOURCE_NAME_BOC}储蓄卡(${match[1]})`,
-        Currency: Currency[match[4]],
-        channel: `微信[${SOURCE_NAME_BOC}-${matchTypeName}]`,
+        "money": parseFloat(match[5].replace(',', '')),
+        "type": matchType,
+        "time": match[2],
+        "shopItem": shopItem,
+        "accountNameFrom": `${SOURCE_NAME_BOC}储蓄卡(${match[1]})`,
+        "Currency": Currency[match[4]],
+        "channel": `微信[${SOURCE_NAME_BOC}-${matchTypeName}]`,
       };
     },
   ],
@@ -82,6 +82,6 @@ export function get(data) {
     0,
     parsedText.Currency, //5月7日10:50
     formatDate(parsedText.time, 'M月D日h:i'),
-    parsedText.channel,
+    parsedText.channel
   );
 }

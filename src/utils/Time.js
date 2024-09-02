@@ -72,6 +72,6 @@ export function formatDate(time = '', tpl = '') {
     dateObj.D,
     dateObj.h,
     dateObj.m,
-    dateObj.s,
+    dateObj.s
   ).getTime();
 }

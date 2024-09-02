@@ -37,7 +37,7 @@ export function get(data) {
     result.fee,
     result.currency,
     result.time,
-    result.channel,
+    result.channel
   );
 }
 
@@ -88,16 +88,16 @@ function processElement(element, result) {
  */
 function createResultObject(extension) {
   return {
-    type: 0,
-    money: 0,
-    shopName: '',
-    shopItem: '',
-    accountNameFrom: '余额',
-    accountNameTo: '',
-    fee: 0,
-    currency: Currency['人民币'],
-    time: Number(extension.gmtBizCreateTime),
-    channel: '',
+    "type": 0,
+    "money": 0,
+    "shopName": '',
+    "shopItem": '',
+    "accountNameFrom": '余额',
+    "accountNameTo": '',
+    "fee": 0,
+    "currency": Currency['人民币'],
+    "time": Number(extension.gmtBizCreateTime),
+    "channel": '',
   };
 }
 

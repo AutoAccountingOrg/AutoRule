@@ -24,9 +24,9 @@ function parseText(text) {
   return {
     type,
     time,
-    shopName: SOURCE_NAME,
+    "shopName": SOURCE_NAME,
     shopItem,
-    money: parseFloat(money),
+    "money": parseFloat(money),
     accountNameFrom,
     channel,
   };
@@ -55,6 +55,5 @@ export function get(data) {
     0,
     Currency['人民币'],
     formatDate(parsedData.time, 'YMD'),
-    parsedData.channel,
-  );
+    parsedData.channel  );
 }

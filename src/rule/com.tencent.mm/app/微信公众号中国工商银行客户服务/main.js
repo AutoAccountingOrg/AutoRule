@@ -16,14 +16,14 @@ const regexMapBOC = new Map([
       const [, number, time, shopName, shopItem, money, currency] = match;
 
       return {
-        money: toFloat(money),
-        type: BillType.Expend,
-        time: formatDate(time, 'Y年M月D日h:i'), //2024年5月26日20:12
-        shopItem: shopItem,
-        shopName: shopName,
-        accountNameFrom: `中国工商银行信用卡(${number})`,
-        Currency: Currency[currency],
-        channel: `微信[中国工商银行信用卡-支出]`,
+        "money": toFloat(money),
+        "type": BillType.Expend,
+        "time": formatDate(time, 'Y年M月D日h:i'), //2024年5月26日20:12
+        "shopItem": shopItem,
+        "shopName": shopName,
+        "accountNameFrom": `中国工商银行信用卡(${number})`,
+        "Currency": Currency[currency],
+        "channel": `微信[中国工商银行信用卡-支出]`,
       };
     },
   ],
@@ -75,6 +75,5 @@ export function get(data) {
     0,
     parsedText.Currency,
     parsedText.time, //2024-05-02 18:58:44
-    parsedText.channel,
-  );
+    parsedText.channel  );
 }
