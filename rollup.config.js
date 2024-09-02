@@ -27,9 +27,11 @@ function getRuleFiles (dirPath) {
 }
 
 const rulesFolder = path.join('src', 'rule');
-const utilsFolder = path.join('src', 'utils');
+path.join('src', 'utils');
 const ruleFiles = getRuleFiles(rulesFolder);
-const externalFilter = createFilter([], [], {
+createFilter([], [
+
+], {
   'resolve': false
 });
 const rules = [];
@@ -51,14 +53,18 @@ const outputs = ruleFiles.map(file => {
     'output': {
       'file': path.join('dist', out), // 使用父文件夹名称作为输出文件名
       'format': 'iife',
-      'name': ruleName // 使用父文件夹名称作为全局变量名
+      'name': ruleName, // 使用父文件夹名称作为全局变量名
+      "globals": {
+
+      },
     },
+
+    "external": id => /(\.\.\/\.\.\/\.\.\/utils\/)/.test(id), // 匹配所有从 utils 文件夹中导入的模块
+
     'plugins': [
       babel(babelConfig),
       terser(),
-
-    ],
-    'external': id => externalFilter(id)
+    ]
   };
 });
 // 删除dist文件夹
@@ -82,22 +88,22 @@ outputs.push({
     'format': 'iife', // 输出格式为 IIFE
     'name': moduleName, // 全局变量名
     'footer': `
-          var BillType = ${moduleName}.BillType;
-          var Currency = ${moduleName}.Currency;
-          var DataType = ${moduleName}.DataType;
-          var RuleObject = ${moduleName}.RuleObject;
-          var Html = {
+          var BillType = {BillType:${moduleName}.BillType};
+          var Currency = {Currency:${moduleName}.Currency};
+          var DataType = {DataType:${moduleName}.DataType};
+          var RuleObject = {RuleObject:${moduleName}.RuleObject};
+          var Html = {Html:{
           findNonEmptyString: ${moduleName}.findNonEmptyString,
           stripHtml: ${moduleName}.stripHtml,
-          };
-          var Number = {
+          }};
+          var Number = {Number:{
           toDoubleFloat: ${moduleName}.toDoubleFloat,
           toFloat: ${moduleName}.toFloat,
-          };
-          var Time ={
+          }};
+          var Time ={Time:{
           formatDate: ${moduleName}.formatDate,
           isTimeInRange: ${moduleName}.isTimeInRange,
-          };
+          }};
       `
   },
   'plugins': [
