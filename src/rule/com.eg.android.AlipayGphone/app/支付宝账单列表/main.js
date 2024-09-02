@@ -96,7 +96,7 @@ function createResultObject(extension) {
     "accountNameTo": '',
     "fee": 0,
     "currency": Currency['人民币'],
-    "time": Number(extension.gmtBizCreateTime),
+    "time": parseInt(extension.gmtBizCreateTime),
     "channel": '',
   };
 }
