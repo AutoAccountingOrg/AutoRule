@@ -68,7 +68,6 @@ const outputs = ruleFiles.map(file => {
 });
 // 删除dist文件夹
 // 如果dist文件夹存在就删除文件夹
-// TODO
 try {
   fs.rmSync(path.join('dist'), { "recursive": true });
 } catch (e) {}
@@ -126,5 +125,33 @@ outputs.push({
   },
   "plugins": [terser()],
 });
+
+function putCategoryNames(){
+  const file = path.join('src', 'category', 'main.js');
+  fs.readFile(file,function(error,data) {
+    const content = data.toString();
+    const regex = /["']([\u4e00-\u9fa5]+)["']/g;
+    let match;
+    let results = [];
+
+    while ((match = regex.exec(content)) !== null) {
+      results.push(match[1]);  // match[1] 包含了捕获组中的中文字符串
+    }
+    results = results.filter(item => item !== "默认账本");
+    //results去重
+    results = [...new Set(results)];
+
+
+    //写入文件
+    fs.writeFileSync(
+      path.join('dist', 'category.json'),
+      JSON.stringify(results, null, 2)
+    );
+  })
+
+}
+
+putCategoryNames();
+
 
 export default outputs;
