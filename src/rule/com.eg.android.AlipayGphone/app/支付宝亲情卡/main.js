@@ -3,6 +3,10 @@ import { RuleObject, BillType, Currency, toFloat, AliTools } from 'common/index.
 export function get(data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
+  //非亲情卡不管
+  if (pl.link.indexOf('bizType=PPAY') === -1) {
+    return null;
+  }
   let t = json.mct;
   //这里只有消费的记录，所以先按照消费计算
   let obj = new RuleObject();
