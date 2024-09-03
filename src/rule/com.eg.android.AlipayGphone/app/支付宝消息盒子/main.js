@@ -1,7 +1,4 @@
-import { RuleObject } from '../../../../utils/RuleObject';
-import { BillType } from '../../../../utils/BillType';
-import { Currency } from '../../../../utils/Currency';
-import { toFloat } from '../../../../utils/Number';
+import { RuleObject,BillType,Currency,toFloat } from 'common/index.js';
 
 //----------------------------------------------------------------------
 

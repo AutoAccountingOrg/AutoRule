@@ -1,7 +1,4 @@
-import { BillType } from '../../../../utils/BillType';
-import { RuleObject } from '../../../../utils/RuleObject';
-import { Currency } from '../../../../utils/Currency';
-import { stripHtml } from '../../../../utils/Html';
+import { BillType, Currency, RuleObject, stripHtml } from 'common/index.js';
 
 /**
  * 从给定的数据中提取支付宝红包的相关信息并返回规则对象。

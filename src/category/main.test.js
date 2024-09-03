@@ -1,5 +1,5 @@
 const { get } = require('./main');
-const { BillType } = require('../utils/BillType');
+const { BillType } = require('../utils/index.js');
 
 //支出项目
 

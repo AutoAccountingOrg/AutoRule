@@ -1,7 +1,7 @@
-import { BillType } from '../../../../utils/BillType';
-import { RuleObject } from '../../../../utils/RuleObject';
-import { Currency } from '../../../../utils/Currency';
-import { formatDate } from '../../../../utils/Time';
+import { BillType } from 'common/index.js';
+import { RuleObject } from 'common/index.js';
+import { Currency } from 'common/index.js';
+import { formatDate } from 'common/index.js';
 
 /**
  * 处理数据并返回结果

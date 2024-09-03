@@ -2,7 +2,7 @@ const { get } = require('./main');
 
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
-const { formatDate } = require('../../../../utils/Time');
+const { formatDate } = require('common/index.js');
 testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
 test('收钱吧消费通知', () =>
   testAnkio('收钱吧消费通知', [

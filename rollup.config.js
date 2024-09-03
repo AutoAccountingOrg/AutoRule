@@ -48,6 +48,8 @@ const outputs = ruleFiles.map(file => {
     ruleType,
     'path': out
   });
+
+
   return {
     'input': file,
     'output': {
@@ -55,12 +57,13 @@ const outputs = ruleFiles.map(file => {
       'format': 'iife',
       'name': ruleName, // 使用父文件夹名称作为全局变量名
       "globals": {
-
+        'common/index.js': 'common'
       },
     },
 
-    "external": id => /(\.\.\/\.\.\/\.\.\/utils\/)/.test(id), // 匹配所有从 utils 文件夹中导入的模块
-
+    "external":[
+      "common/index.js"
+    ],
     'plugins': [
       babel(babelConfig),
       terser(),
@@ -87,24 +90,6 @@ outputs.push({
     'file': path.join('dist', `${moduleName}.js`), // 输出文件路径
     'format': 'iife', // 输出格式为 IIFE
     'name': moduleName, // 全局变量名
-    'footer': `
-          var BillType = {BillType:${moduleName}.BillType};
-          var Currency = {Currency:${moduleName}.Currency};
-          var DataType = {DataType:${moduleName}.DataType};
-          var RuleObject = {RuleObject:${moduleName}.RuleObject};
-          var Html = {Html:{
-          findNonEmptyString: ${moduleName}.findNonEmptyString,
-          stripHtml: ${moduleName}.stripHtml,
-          }};
-          var Number = {Number:{
-          toDoubleFloat: ${moduleName}.toDoubleFloat,
-          toFloat: ${moduleName}.toFloat,
-          }};
-          var Time ={Time:{
-          formatDate: ${moduleName}.formatDate,
-          isTimeInRange: ${moduleName}.isTimeInRange,
-          }};
-      `
   },
   'plugins': [
     babel(babelConfig),

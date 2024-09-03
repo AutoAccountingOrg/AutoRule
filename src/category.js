@@ -1,4 +1,4 @@
-import { BillType } from './utils/BillType';
+import { BillType } from 'common/index.js';
 
 const money = window.money || 0;
 const type = window.type || BillType.Expend;

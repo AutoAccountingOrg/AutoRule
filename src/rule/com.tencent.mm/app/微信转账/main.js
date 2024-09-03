@@ -1,8 +1,8 @@
-import { RuleObject } from '../../../../utils/RuleObject';
-import { BillType } from '../../../../utils/BillType';
-import { Currency } from '../../../../utils/Currency';
-import { formatDate } from '../../../../utils/Time';
-import { toDoubleFloat } from '../../../../utils/Number';
+import { RuleObject } from 'common/index.js';
+import { BillType } from 'common/index.js';
+import { Currency } from 'common/index.js';
+import { formatDate } from 'common/index.js';
+import { toDoubleFloat } from 'common/index.js';
 
 /**
  * @param {string} data - 包含数据的JSON字符串。

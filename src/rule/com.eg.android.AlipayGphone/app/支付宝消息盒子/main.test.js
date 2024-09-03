@@ -1,7 +1,7 @@
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { DataType } = require('../../../../utils/DataType');
-const { BillType } = require('../../../../utils/BillType');
+const { BillType } = require('common/index.js');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.eg.android.AlipayGphone');
 test('支付宝转账收款', () =>

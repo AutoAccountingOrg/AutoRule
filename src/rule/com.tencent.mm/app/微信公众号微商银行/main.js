@@ -1,7 +1,7 @@
-import { RuleObject } from '../../../../utils/RuleObject';
-import { BillType } from '../../../../utils/BillType';
-import { Currency } from '../../../../utils/Currency';
-import { formatDate } from '../../../../utils/Time';
+import { RuleObject } from 'common/index.js';
+import { BillType } from 'common/index.js';
+import { Currency } from 'common/index.js';
+import { formatDate } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_BOC = '徽商银行';

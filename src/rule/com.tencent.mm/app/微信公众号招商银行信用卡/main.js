@@ -1,7 +1,7 @@
-import { RuleObject } from '../../../../utils/RuleObject';
-import { BillType } from '../../../../utils/BillType';
-import { Currency } from '../../../../utils/Currency';
-import { formatDate } from '../../../../utils/Time';
+import { RuleObject } from 'common/index.js';
+import { BillType } from 'common/index.js';
+import { Currency } from 'common/index.js';
+import { formatDate } from 'common/index.js';
 
 const SOURCE_NAME = '招商银行信用卡';
 const TITLES = ['交易成功提醒', '自动还款到账提醒'];
