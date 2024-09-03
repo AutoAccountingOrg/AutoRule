@@ -5,6 +5,7 @@ import { stripHtml, findNonEmptyString } from './Html.js';
 import { isTimeInRange, formatDate } from './Time.js';
 import { toFloat, toDoubleFloat } from './Number.js';
 import { RuleObject } from './RuleObject.js';
+import { AliTools } from './AliTools.js';
 export {
   BillType,
   Currency,
@@ -15,5 +16,6 @@ export {
   formatDate,
   toFloat,
   toDoubleFloat,
-  RuleObject
+  RuleObject,
+  AliTools,
 };
