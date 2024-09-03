@@ -23,7 +23,7 @@ const regexMapBOC = new Map([
         "shopName": shopName,
         "accountNameFrom": `${SOURCE_NAME_BOC}(${number})`,
         "Currency": Currency['人民币'],
-        "channel": `微信[${SOURCE_NAME_BOC}-${channel}]`,
+        "channel": `微信[${SOURCE_NAME_BOC}-支出]`,
       };
     },
   ],

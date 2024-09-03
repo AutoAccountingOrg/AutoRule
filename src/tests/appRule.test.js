@@ -59,15 +59,17 @@ const jsonFilesContent = jsonFileNames.map(jsonFileName => {
 
 test('App规则调用校验', () => {
   //读取dist目录下所有的json
-  let total = 0;
+  let total = []
   jsonFilesContent.forEach(jsonFileContent => {
     const { name, results, datas, type, app } = jsonFileContent;
     for (let i = 0; i < results.length; i++) {
       const result = results[i];
       const data = datas[i];
-      total++;
+      total.push(name);
       function print(callbackResult) {
-        total--;
+
+        total = total.filter(item => item !== name);
+
         console.log("callbackResult: "+name,callbackResult)
         let json = JSON.parse(callbackResult);
         json.time = 0;
@@ -106,7 +108,8 @@ for (const rule of rules) {
 
     }
   });
-  if (total !== 0) {
+  if (total.length > 0) {
+    console.log(total);
     throw new Error('测试用例未全部执行=> ' + total);
   }
 });

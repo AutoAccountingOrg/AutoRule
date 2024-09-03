@@ -24,7 +24,7 @@
       "locationPage": "main",
       "templateId": "BLDetailPrice",
       "type": "birdNest",
-      "value": "{\"amount\":\"-0.00\",\"status\":\"支付成功\"}"
+      "value": "{\"amount\":\"-12.00\",\"status\":\"支付成功\"}"
     },
     {
       "locationPage": "main",

@@ -99,7 +99,7 @@ test('支付宝医保支付', () =>
   testAnkio('支付宝医保支付', [
     {
       "type": 0,
-      "money": 0,
+      "money": 12,
       "fee": 0,
       "shopName": '这是药房店名',
       "shopItem": '医保支付(不含自费)',
