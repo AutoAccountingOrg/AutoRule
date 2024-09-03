@@ -85,14 +85,14 @@
   "pr_template": "- **${{TITLE}}**",
   "label_extractor": [
     {
-      "pattern": ":(.+): (.+)",
+      "pattern": ":(.*?): (.+)",
       "target": "$1",
       "on_property": "title"
     }
   ],
   "transformers": [
     {
-      "pattern": ":(.+): (.+)",
+      "pattern": ":(.*?): (.+)",
       "target": "$2"
     }
   ],
