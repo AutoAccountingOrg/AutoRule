@@ -1,3 +1,7 @@
+import { toFloat } from 'common/Number.js';
+import { formatDate } from 'common/Time.js';
+import { BillType } from 'common/BillType.js';
+
 export const AliTools = {
   /**
    * 处理contentItems.content的逻辑
@@ -25,6 +29,41 @@ export const AliTools = {
         case '转账备注：':
           result.shopItem = item.content;
           break;
+      }
+    });
+  },
+  handleBillItems(fields, result){
+    fields.forEach(element => {
+      if (element.value === undefined) return
+      const elementValue = JSON.parse(element.value);
+      switch (element.templateId) {
+        case 'BLDetailTitle':
+          result.shopName = elementValue.content;
+          break;
+        case 'BLDetailPrice':
+          result.money = toFloat(elementValue.amount);
+          if (result.money < 0){
+            result.money = -result.money
+          }
+          if (elementValue.amount.includes('-')){
+            result.type = BillType.Expend;
+          } else if (elementValue.amount.includes('+')){
+            result.type = BillType.Income;
+          } else {
+            result.type = BillType.Transfer;
+          }
+          break;
+        default:
+          if (/创建时间/.test(elementValue.title)){
+            result.time = formatDate(elementValue.data[0].content, 'Y-M-D h:i:s');
+          } else if (/付款方式/.test(elementValue.title)){
+            result.accountNameFrom = elementValue.data[0].content;
+            if (/账户余额|余额/.test(result.accountNameFrom)){
+              result.accountNameFrom = '支付宝余额';
+            }
+          }else if (/商品说明|转账备注/.test(elementValue.title)){
+          result.shopItem = elementValue.data[0].content;
+        }
       }
     });
   }
