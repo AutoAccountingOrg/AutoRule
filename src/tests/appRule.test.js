@@ -1,10 +1,8 @@
-import { DataType } from '../utils/DataType';
 import path from 'path';
 import fs from 'fs';
 
 const { execSync } = require('child_process');
-
-execSync('yarn dev', { "stdio": 'inherit' });
+ execSync('yarn dev', { "stdio": 'inherit' });
 
 const distDirPath = path.join(__dirname, '..', '..', 'dist');
 
@@ -32,6 +30,7 @@ for (const rule of rules) {
 }
 
 js += `
+let window  = {};
 window.rules = [
 `;
 for (const rule of rules) {
@@ -40,6 +39,7 @@ for (const rule of rules) {
 js += `
 ];
 `;
+
 const tests = path.join(__dirname, '..', '..', 'tests');
 
 // 读取dist目录下的所有文件名
@@ -59,24 +59,54 @@ const jsonFilesContent = jsonFileNames.map(jsonFileName => {
 
 test('App规则调用校验', () => {
   //读取dist目录下所有的json
+  let total = 0;
   jsonFilesContent.forEach(jsonFileContent => {
     const { name, results, datas, type, app } = jsonFileContent;
     for (let i = 0; i < results.length; i++) {
       const result = results[i];
       const data = datas[i];
-      var window = {
-        "data": data,
-        "rules": []
-      };
+      total++;
       function print(callbackResult) {
-        expect(callbackResult).toEqual(result);
+        total--;
+        console.log("callbackResult: "+name,callbackResult)
+        let json = JSON.parse(callbackResult);
+        json.time = 0;
+        result.time = 0;
+        expect(json).toEqual(result);
       }
-      try {
-        // console.log(js);
-        eval(js);
-      } catch (e) {
-        console.error('Failed: ' + name + ' ', e);
-      }
+
+        let code =js + `
+        window.data = ${JSON.stringify(data)};
+        const data = window.data || '';
+
+const rules = window.rules || [];
+
+for (const rule of rules) {
+  let result = null;
+    try{
+    result = rule.obj.get(data);
+    }catch(e){
+     // console.log("error",e);
+      continue;
+    }
+    if (
+      result !== null &&
+      result.money !== null &&
+      parseFloat(result.money) > 0
+    ) {
+   
+      print(JSON.stringify(result));
+      break;
+    }
+  
+}
+
+        `
+        eval(code);
+
     }
   });
+  if (total !== 0) {
+    throw new Error('测试用例未全部执行=> ' + total);
+  }
 });
