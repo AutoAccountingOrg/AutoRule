@@ -27,21 +27,20 @@ export function formatDate(time = '', tpl = '') {
   if (time.length === 0) {
     return Math.floor(Date.now() / 1000) * 1000;
   }
+
   const dateObj = {};
   let tplRegex = tpl;
   if (!tpl.match(/[YMDhms]+/g)) {
     throw new Error('Invalid format string');
   }
 
-  //  /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2}) (?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2})$/
-
   tplRegex = tplRegex
-    .replace(/Y/g, '(?<Y>\\d+)')
-    .replace(/M/g, '(?<M>\\d+)')
-    .replace(/D/g, '(?<D>\\d+)')
-    .replace(/h/g, '(?<h>\\d+)')
-    .replace(/i/g, '(?<i>\\d+)')
-    .replace(/s/g, '(?<s>\\d+)');
+    .replace(/Y/g, '(\\d+)')
+    .replace(/M/g, '(\\d+)')
+    .replace(/D/g, '(\\d+)')
+    .replace(/h/g, '(\\d+)')
+    .replace(/i/g, '(\\d+)')
+    .replace(/s/g, '(\\d+)');
 
   const match = time.match(new RegExp(`^${tplRegex}$`));
 
@@ -50,21 +49,21 @@ export function formatDate(time = '', tpl = '') {
     throw new Error('Invalid time format');
   }
 
-  //获取上海当前时间
+  // Get the current Shanghai time
   const date = new Date();
-
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const hour = date.getHours() + 8;
   const minute = date.getMinutes();
 
-  dateObj.Y = match.groups.Y || year;
-  dateObj.M = match.groups.M || month;
-  dateObj.D = match.groups.D || day;
-  dateObj.h = match.groups.h || hour;
-  dateObj.m = match.groups.i || minute;
-  dateObj.s = match.groups.s || 0;
+  // Map the matches to the corresponding date parts
+  dateObj.Y = match[1] || year;
+  dateObj.M = match[2] || month;
+  dateObj.D = match[3] || day;
+  dateObj.h = match[4] || hour;
+  dateObj.m = match[5] || minute;
+  dateObj.s = match[6] || 0;
 
   return new Date(
     dateObj.Y,
@@ -75,3 +74,4 @@ export function formatDate(time = '', tpl = '') {
     dateObj.s
   ).getTime();
 }
+
