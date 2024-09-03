@@ -4,8 +4,8 @@ const { DataType } = require('../../../../utils/DataType');
 
 testAnkioInit(get, __dirname, DataType.App, 'com.eg.android.AlipayGphone');
 
-test('支付宝红包', () =>
-  testAnkio('支付宝红包', [
+test('支付宝收红包', () =>
+  testAnkio('支付宝收红包', [
     {
       "type": 1,
       "money": 0.01,
@@ -16,6 +16,6 @@ test('支付宝红包', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 1702972951000,
-      "channel": '支付宝[收红包]',
+      "channel": '支付宝[红包-收入]',
     },
   ]));

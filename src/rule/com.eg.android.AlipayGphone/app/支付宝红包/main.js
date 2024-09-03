@@ -1,27 +1,29 @@
-import { BillType, Currency, RuleObject, stripHtml } from 'common/index.js';
+import { BillType, Currency, RuleObject, stripHtml, toFloat } from 'common/index.js';
 
-/**
- * 从给定的数据中提取支付宝红包的相关信息并返回规则对象。
- * @param {string} data - 包含支付宝红包信息的字符串数据。
- * @returns {RuleObject} - 包含支付宝红包相关信息的规则对象。
- */
+function income(templateJson,t){
+  var dataItems = JSON.parse(templateJson);
+
+  let obj = new RuleObject(BillType.Income);
+
+  obj.channel = `支付宝[红包-收入]`;
+
+  obj.time = t;
+  obj.shopName = stripHtml(dataItems.subtitle);
+  obj.money =  toFloat(dataItems.statusLine1Text);
+  obj.shopItem = dataItems.title;
+  obj.accountNameFrom = '支付宝余额';
+  return obj;
+}
+
+
+
 export function get(data) {
   data = JSON.parse(data);
   let pl = JSON.parse(data[0].pl);
-  var dataItems = JSON.parse(pl.templateJson);
-  if (pl.templateJson == null) {
-    return null;
+  let t = data[0].mct;
+  if (pl.templateJson !== null) {
+    return income(pl.templateJson, t);
   }
-  return new RuleObject(
-    BillType.Income,
-    parseFloat(dataItems.statusLine1Text.replace('元', '')),
-    stripHtml(dataItems.subtitle),
-    dataItems.title,
-    '支付宝余额',
-    '',
-    0,
-    Currency['人民币'],
-    data[0].mct,
-    '支付宝[收红包]'
-  );
+
+  return null;
 }
