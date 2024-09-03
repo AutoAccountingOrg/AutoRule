@@ -26,7 +26,7 @@ function income(pl,t){
   obj.money =  toFloat(content.money);
   obj.shopItem = obj.shopItem || pl.homePageTitle;
   obj.shopName = obj.shopName || pl.title;
-  obj.accountNameFrom = '支付宝余额';
+  obj.accountNameFrom = obj.accountNameFrom || '支付宝余额';
   return obj;
 }
 

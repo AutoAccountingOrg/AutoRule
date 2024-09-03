@@ -65,7 +65,7 @@ test('支付宝收入', () =>
       "fee": 0,
       "shopName": '退款通知',
       "shopItem": '退款-麻爪爪·酸辣凤爪·卤味小吃(大朗里悦里店)外卖订单',
-      "accountNameFrom": '支付宝余额',
+      "accountNameFrom": '农业银行储蓄卡(9979)',
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 1710669984000,
