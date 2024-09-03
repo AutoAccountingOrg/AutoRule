@@ -1,7 +1,4 @@
-import { AliTools, BillType } from 'common/index.js';
-import { RuleObject } from 'common/index.js';
-import { Currency } from 'common/index.js';
-import { formatDate } from 'common/index.js';
+import { AliTools, BillType, RuleObject } from 'common/index.js';
 
 /**
  * 解析支付宝账单数据

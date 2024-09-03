@@ -1,11 +1,12 @@
 import { BillType } from './BillType.js';
 import { Currency } from './Currency.js';
 import { DataType } from './DataType.js';
-import { stripHtml, findNonEmptyString } from './Html.js';
-import { isTimeInRange, formatDate } from './Time.js';
-import { toFloat, toDoubleFloat } from './Number.js';
+import { findNonEmptyString, stripHtml } from './Html.js';
+import { formatDate, isTimeInRange } from './Time.js';
+import { toDoubleFloat, toFloat } from './Number.js';
 import { RuleObject } from './RuleObject.js';
 import { AliTools } from './AliTools.js';
+
 export {
   BillType,
   Currency,

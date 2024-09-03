@@ -1,7 +1,4 @@
-import { RuleObject } from 'common/index.js';
-import { BillType } from 'common/index.js';
-import { Currency } from 'common/index.js';
-import { formatDate } from 'common/index.js';
+import { BillType, Currency, formatDate, RuleObject } from 'common/index.js';
 
 const SOURCE_NAME = '长沙住房公积金';
 const TITLES = ['公积金账户资金变动提醒'];

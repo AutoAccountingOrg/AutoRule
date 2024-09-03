@@ -1,4 +1,4 @@
-import { AliTools, BillType, Currency, RuleObject, stripHtml, toFloat } from 'common/index.js';
+import { AliTools, BillType, RuleObject, toFloat } from 'common/index.js';
 
 function expend(pl,t){
   let obj = new RuleObject(BillType.Expend);

@@ -1,7 +1,4 @@
-import { RuleObject, BillType, Currency, toFloat, AliTools } from 'common/index.js';
-
-
-
+import { BillType, RuleObject, toFloat } from 'common/index.js';
 
 function income(pl,t){
   let obj = new RuleObject(BillType.Income);

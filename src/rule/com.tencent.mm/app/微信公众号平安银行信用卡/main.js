@@ -1,8 +1,4 @@
-import { RuleObject } from 'common/index.js';
-import { BillType } from 'common/index.js';
-import { Currency } from 'common/index.js';
-import { formatDate } from 'common/index.js';
-import { toFloat } from 'common/index.js';
+import { BillType, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
 
 const SOURCE_NAME = '平安银行信用卡';
 const TITLES = ['消费成功通知'];

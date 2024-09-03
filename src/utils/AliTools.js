@@ -1,6 +1,6 @@
-import { toFloat } from 'common/Number.js';
-import { formatDate } from 'common/Time.js';
-import { BillType } from 'common/BillType.js';
+import { toFloat } from './Number.js';
+import { formatDate } from './Time.js';
+import { BillType } from './BillType.js';
 
 export const AliTools = {
   /**

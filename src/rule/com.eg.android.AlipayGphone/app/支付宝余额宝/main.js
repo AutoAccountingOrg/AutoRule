@@ -1,5 +1,4 @@
-import { RuleObject, BillType, Currency, toFloat, AliTools } from 'common/index.js';
-
+import { BillType, RuleObject, toFloat } from 'common/index.js';
 
 function autoTransfer(pl,t){
   let obj = new RuleObject(BillType.Transfer);

@@ -1,4 +1,4 @@
-import { BillType, Currency, RuleObject, stripHtml, toFloat } from 'common/index.js';
+import { BillType, RuleObject, stripHtml, toFloat } from 'common/index.js';
 
 function income(templateJson,t){
   var dataItems = JSON.parse(templateJson);

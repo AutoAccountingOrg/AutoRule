@@ -1,4 +1,4 @@
-import { RuleObject, BillType, Currency, toFloat, AliTools } from 'common/index.js';
+import { BillType, RuleObject, toFloat } from 'common/index.js';
 
 export function get(data) {
   let json = JSON.parse(data)[0];
