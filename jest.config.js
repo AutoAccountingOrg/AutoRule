@@ -3,4 +3,7 @@ export default {
   "transform": {
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
+  "moduleNameMapper": {
+    '^common(.*)$': '<rootDir>/src/utils$1'
+  }
 };
