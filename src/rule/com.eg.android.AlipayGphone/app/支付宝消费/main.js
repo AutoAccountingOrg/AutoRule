@@ -25,6 +25,7 @@ function income(pl,t){
   obj.time = t;
   obj.money =  toFloat(content.money);
   obj.shopItem = obj.shopItem || pl.homePageTitle;
+  obj.shopName = obj.shopName || pl.title;
   obj.accountNameFrom = '支付宝余额';
   return obj;
 }
@@ -36,7 +37,7 @@ export function get(data) {
   let t = data[0].mct;
   if (pl.title.indexOf('付款成功') !== -1 || pl.title.indexOf('自动扣款') !== -1) {
     return expend(pl, t);
-  }else if (pl.homePageTitle.indexOf('收到一笔奖励') !== -1 || pl.title.indexOf('资金到账通知') !== -1 ) {
+  }else if (pl.homePageTitle.indexOf('收到一笔奖励') !== -1 || pl.title.indexOf('资金到账通知') !== -1  || pl.title.indexOf('退款通知') !== -1) {
     return income(pl, t);
   }
 

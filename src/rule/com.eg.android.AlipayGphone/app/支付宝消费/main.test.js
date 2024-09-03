@@ -59,4 +59,16 @@ test('支付宝收入', () =>
       "time": 1714212854000,
       "channel": '支付宝[消费-收入]',
     },
+    {
+      "type": 1,
+      "money": 29.82,
+      "fee": 0,
+      "shopName": '退款通知',
+      "shopItem": '退款-麻爪爪·酸辣凤爪·卤味小吃(大朗里悦里店)外卖订单',
+      "accountNameFrom": '支付宝余额',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1710669984000,
+      "channel": '支付宝[消费-收入]',
+    },
   ]));
