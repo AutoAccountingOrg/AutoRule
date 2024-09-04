@@ -22,9 +22,8 @@
 
 - 基础环境：`NodeJS` 
 - 包管理器：`yarn`
-- 构建工具：`webpack`
+- 构建工具：`rollup`
 - 代码风格: `eslint`
-- 代码格式化: `prettier`
 - 测试工具: `jest`
 - 依赖安装：`yarn install`
 
