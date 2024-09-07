@@ -10,7 +10,6 @@ import { AliTools } from './AliTools.js';
 export {
   BillType,
   Currency,
-  DataType,
   stripHtml,
   findNonEmptyString,
   isTimeInRange,
