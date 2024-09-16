@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝收红包', () =>
   testAnkio('支付宝收红包', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.01,
       "fee": 0,
       "shopName": '来自从前慢',

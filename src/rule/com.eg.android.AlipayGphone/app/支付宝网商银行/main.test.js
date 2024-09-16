@@ -8,7 +8,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝网商银行转出', () =>
   testAnkio('支付宝网商银行转出', [
     {
-      "type": 2,
+      "type": "Transfer",
       "money": 20000,
       "fee": 0,
       "shopName": '网商银行',

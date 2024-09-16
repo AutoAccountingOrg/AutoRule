@@ -8,7 +8,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('招商银行信用卡消费', () =>
   testAnkio('招商银行信用卡消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 34.69,
       "shopName": '美团',
       "shopItem": '牛约堡手(旭辉店)',
@@ -20,7 +20,7 @@ test('招商银行信用卡消费', () =>
       "channel": '微信[招商银行信用卡-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 19.68,
       "shopName": '美团',
       "shopItem": '奉天熏六记熏拌鸡架（马坡店）',
@@ -36,7 +36,7 @@ test('招商银行信用卡消费', () =>
 test('招商银行信用卡还款', () =>
   testAnkio('招商银行信用卡还款', [
     {
-      "type": 2,
+      "type": "Transfer",
       "money": 324.25,
       "shopName": '',
       "shopItem": '',
@@ -52,7 +52,7 @@ test('招商银行信用卡还款', () =>
 test('招商银行信用卡退货', () =>
   testAnkio('招商银行信用卡退货', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 52,
       "shopName": '美团',
       "shopItem": '美团特约商户',
@@ -64,7 +64,7 @@ test('招商银行信用卡退货', () =>
       "channel": '微信[招商银行信用卡-退货]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.07,
       "shopName": '京东支付',
       "shopItem": '京东商城业务',
@@ -76,7 +76,7 @@ test('招商银行信用卡退货', () =>
       "channel": '微信[招商银行信用卡-退货]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 100,
       "shopName": '支付宝',
       "shopItem": '潮很鲜潮汕牛肉火锅',

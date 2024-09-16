@@ -8,7 +8,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝商家收款', () =>
   testAnkio('支付宝商家收款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.01,
       "fee": 0,
       "shopName": '老顾客消费',

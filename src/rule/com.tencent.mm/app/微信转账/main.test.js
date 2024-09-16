@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('微信转账收款', () =>
   testAnkio('微信转账收款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 17.0,
       "fee": 0,
       "shopName": '师大123',
@@ -19,7 +19,7 @@ test('微信转账收款', () =>
       "channel": '微信[转账收款]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 399.84,
       "fee": 0,
       "shopName": 'Aa川信24小时自提点',

@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('饿了么本地生活消费', () =>
   testAnkio('饿了么本地生活消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 22.29,
       "fee": 0,
       "shopName": '饿了么',

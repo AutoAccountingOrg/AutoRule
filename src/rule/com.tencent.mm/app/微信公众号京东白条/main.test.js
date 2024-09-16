@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('京东白条还款', () =>
   testAnkio('京东白条还款', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 20.49,
       "fee": 0,
       "shopName": '',
@@ -23,7 +23,7 @@ test('京东白条还款', () =>
 test('京东白条消费', () =>
   testAnkio('京东白条消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 23.75,
       "fee": 0,
       "shopName": '京东平台商户',

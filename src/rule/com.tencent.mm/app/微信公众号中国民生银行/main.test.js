@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('民生银行收入', () =>
   testAnkio('民生银行收入', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 14214.2,
       "fee": 0,
       "shopName": '西安隆基乐叶光伏科技有限公司',
@@ -26,7 +26,7 @@ test('民生银行收入', () =>
 test('民生银行支出', () =>
   testAnkio('民生银行支出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 0.01,
       "fee": 0,
       "shopName": '微信转账',

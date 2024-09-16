@@ -6,7 +6,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('微信支付消费（商家收款）', () =>
   testAnkio('微信支付消费（商家收款）', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 14.0,
       "fee": 0,
       "shopName": '',
@@ -22,7 +22,7 @@ test('微信支付消费（商家收款）', () =>
 test('微信支付消费（第三方收款）', () =>
   testAnkio('微信支付消费（第三方收款）', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 2.0,
       "fee": 0,
       "shopName": '',
@@ -34,7 +34,7 @@ test('微信支付消费（第三方收款）', () =>
       "channel": '微信[微信支付-付款]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 6.2,
       "fee": 0,
       "shopName": '',
@@ -46,7 +46,7 @@ test('微信支付消费（第三方收款）', () =>
       "channel": '微信[微信支付-付款]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 12.7,
       "fee": 0,
       "shopName": '',
@@ -58,7 +58,7 @@ test('微信支付消费（第三方收款）', () =>
       "channel": '微信[微信支付-付款]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 35.41,
       "fee": 0,
       "shopName": '京东',
@@ -74,7 +74,7 @@ test('微信支付消费（第三方收款）', () =>
 test('微信支付自动扣费', () =>
   testAnkio('微信支付自动扣费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 53.72,
       "fee": 0,
       "shopName": '滴滴出行',
@@ -86,7 +86,7 @@ test('微信支付自动扣费', () =>
       "channel": '微信[微信支付-扣费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 51.7,
       "fee": 0,
       "shopName": '滴滴出行',
@@ -98,7 +98,7 @@ test('微信支付自动扣费', () =>
       "channel": '微信[微信支付-扣费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 25,
       "fee": 0,
       "shopName": '深圳市迅雷网络技术有限公司',
@@ -111,7 +111,7 @@ test('微信支付自动扣费', () =>
       "channel": '微信[微信支付-扣费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 18.5,
       "fee": 0,
       "shopName": '江苏联通',
@@ -123,7 +123,7 @@ test('微信支付自动扣费', () =>
       "channel": '微信[微信支付-扣费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 19,
       "fee": 0,
       "shopName": '',
@@ -139,7 +139,7 @@ test('微信支付自动扣费', () =>
 test('微信支付收款', () =>
   testAnkio('微信支付收款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.02,
       "fee": 0,
       "shopName": '个人收款服务',
@@ -151,7 +151,7 @@ test('微信支付收款', () =>
       "channel": '微信[微信支付-收款]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.01,
       "fee": 0,
       "shopName": '个人收款服务',
@@ -167,7 +167,7 @@ test('微信支付收款', () =>
 test('微信支付转账过期退款', () =>
   testAnkio('微信支付转账过期退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 1000,
       "fee": 0,
       "shopName": '微信退款',
@@ -180,7 +180,7 @@ test('微信支付转账过期退款', () =>
     },
 
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.01,
       "fee": 0,
       "shopName": '微信退款',
@@ -196,7 +196,7 @@ test('微信支付转账过期退款', () =>
 test('微信支付转账退款', () =>
   testAnkio('微信支付转账退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 100,
       "fee": 0,
       "shopName": '微信退款',
@@ -211,7 +211,7 @@ test('微信支付转账退款', () =>
 test('微信支付收款（商家付款）', () =>
   testAnkio('微信支付收款（商家付款）', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.1,
       "fee": 0,
       "shopName": '宿迁兆盈商服科技有限公司',
@@ -223,7 +223,7 @@ test('微信支付收款（商家付款）', () =>
       "channel": '微信[微信支付-收款（商家）]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 5,
       "fee": 0,
       "shopName": '兆纳科技',
@@ -235,7 +235,7 @@ test('微信支付收款（商家付款）', () =>
       "channel": '微信[微信支付-收款（商家）]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 1.2,
       "fee": 0,
       "shopName": '臻鼎',
@@ -247,7 +247,7 @@ test('微信支付收款（商家付款）', () =>
       "channel": '微信[微信支付-收款（商家）]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 10,
       "fee": 0,
       "shopName": '元梦之星',
@@ -262,7 +262,7 @@ test('微信支付收款（商家付款）', () =>
 test('微信支付扫码付款', () =>
   testAnkio('微信支付扫码付款', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 10,
       "fee": 0,
       "shopName": '开心快乐每一天',
@@ -274,7 +274,7 @@ test('微信支付扫码付款', () =>
       "channel": '微信[微信支付-付款]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 70,
       "fee": 0,
       "shopName": '酱骨头焖面',
@@ -286,7 +286,7 @@ test('微信支付扫码付款', () =>
       "channel": '微信[微信支付-付款]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 9,
       "fee": 0,
       "shopName": '川香源',
@@ -302,7 +302,7 @@ test('微信支付扫码付款', () =>
 test('微信支付收款入账', () =>
   testAnkio('微信支付收款入账', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.1,
       "fee": 0,
       "shopName": '',
@@ -317,7 +317,7 @@ test('微信支付收款入账', () =>
 test('微信支付零钱通定时转入', () =>
   testAnkio('微信支付零钱通定时转入', [
     {
-      "type": 2,
+      "type": "Transfer",
       "money": 5000,
       "fee": 0,
       "shopName": '零钱通',
@@ -332,7 +332,7 @@ test('微信支付零钱通定时转入', () =>
 test('微信支付退款', () =>
   testAnkio('微信支付退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 10.93,
       "fee": 0,
       "shopName": '拼多多平台商户',

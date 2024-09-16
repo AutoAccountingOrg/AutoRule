@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('保定银行支出', () =>
   testAnkio('保定银行支出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 100,
       "fee": 0,
       "shopName": '',
@@ -22,7 +22,7 @@ test('保定银行支出', () =>
       "channel": '微信[保定银行-支出]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 357,
       "fee": 0,
       "shopName": '',

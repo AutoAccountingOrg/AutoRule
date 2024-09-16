@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('中国建设银行收入', () =>
   testAnkio('中国建设银行收入', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 100,
       "fee": 0,
       "shopName": '',
@@ -22,7 +22,7 @@ test('中国建设银行收入', () =>
       "channel": '微信[中国建设银行-收入]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 23.6,
       "fee": 0,
       "shopName": '',
@@ -37,7 +37,7 @@ test('中国建设银行收入', () =>
 test('中国建设银行支出', () =>
   testAnkio('中国建设银行支出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 15.8,
       "fee": 0,
       "shopName": '',
@@ -49,7 +49,7 @@ test('中国建设银行支出', () =>
       "channel": '微信[中国建设银行-支出]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 21.8,
       "fee": 0,
       "shopName": '',
@@ -64,7 +64,7 @@ test('中国建设银行支出', () =>
 test('中国建设银行信用卡支出', () =>
   testAnkio('中国建设银行信用卡支出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 29.9,
       "fee": 0,
       "shopName": '',
@@ -79,7 +79,7 @@ test('中国建设银行信用卡支出', () =>
 test('中国建设银行信用卡退款', () =>
   testAnkio('中国建设银行信用卡退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 74.26,
       "fee": 0,
       "shopName": '',

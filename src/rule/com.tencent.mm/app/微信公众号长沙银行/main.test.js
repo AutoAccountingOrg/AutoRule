@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('长沙银行取出', () =>
   testAnkio('长沙银行取出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 200,
       "fee": 0,
       "shopName": '',
@@ -19,7 +19,7 @@ test('长沙银行取出', () =>
       "channel": '微信[长沙银行交易通知]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 8.49,
       "fee": 0,
       "shopName": '',
@@ -31,7 +31,7 @@ test('长沙银行取出', () =>
       "channel": '微信[长沙银行交易通知]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 18.86,
       "fee": 0,
       "shopName": '',

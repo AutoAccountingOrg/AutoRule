@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('中信银行收入', () =>
   testAnkio('中信银行收入', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 1500,
       "fee": 0,
       "shopName": '',
@@ -22,7 +22,7 @@ test('中信银行收入', () =>
       "channel": '微信[中信银行-收入]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 4770.33,
       "fee": 0,
       "shopName": '',

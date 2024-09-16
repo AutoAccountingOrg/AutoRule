@@ -6,7 +6,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝余利宝收益', () =>
   testAnkio('支付宝余利宝收益', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 9.49,
       "fee": 0,
       "shopName": '余利宝',

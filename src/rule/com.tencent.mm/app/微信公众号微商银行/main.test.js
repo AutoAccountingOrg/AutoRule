@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('微商银行消费', () =>
   testAnkio('微商银行消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 66.66,
       "fee": 0,
       "shopName": '',
@@ -22,7 +22,7 @@ test('微商银行消费', () =>
       "channel": '微信[徽商银行-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 10,
       "fee": 0,
       "shopName": '',
@@ -37,7 +37,7 @@ test('微商银行消费', () =>
 test('微商银行退款', () =>
   testAnkio('微商银行退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 39.9,
       "fee": 0,
       "shopName": '',

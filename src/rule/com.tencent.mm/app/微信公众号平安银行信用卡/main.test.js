@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('平安银行信用卡消费', () =>
   testAnkio('平安银行信用卡消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 51.02,
       "fee": 5,
       "shopName": '信用卡5元刷卡金已使用',

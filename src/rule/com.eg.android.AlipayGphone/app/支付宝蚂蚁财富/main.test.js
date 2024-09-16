@@ -8,7 +8,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝蚂蚁财富', () =>
   testAnkio('支付宝蚂蚁财富', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 401.03,
       "fee": 0,
       "shopName": '蚂蚁财富',

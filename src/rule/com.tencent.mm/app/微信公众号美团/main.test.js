@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('美团消费', () =>
   testAnkio('美团消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 34.69,
       "fee": 0,
       "shopName": '美团',
@@ -19,7 +19,7 @@ test('美团消费', () =>
       "channel": '微信[美团-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 19.68,
       "fee": 0,
       "shopName": '美团',
@@ -31,7 +31,7 @@ test('美团消费', () =>
       "channel": '微信[美团-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 29,
       "fee": 0,
       "shopName": '美团',
@@ -46,7 +46,7 @@ test('美团消费', () =>
 test('美团退款', () =>
   testAnkio('美团退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 52,
       "fee": 0,
       "shopName": '美团',

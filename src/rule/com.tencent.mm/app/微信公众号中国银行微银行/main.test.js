@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('中国银行入账', () =>
   testAnkio('中国银行入账', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 14800.0,
       "fee": 0,
       "shopName": '',
@@ -26,7 +26,7 @@ test('中国银行入账', () =>
 test('中国银行退款', () =>
   testAnkio('中国银行退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 1000.0,
       "fee": 0,
       "shopName": '',
@@ -42,7 +42,7 @@ test('中国银行退款', () =>
 test('中国银行消费', () =>
   testAnkio('中国银行消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 1000,
       "fee": 0,
       "shopName": '',
@@ -54,7 +54,7 @@ test('中国银行消费', () =>
       "channel": '微信[中国银行-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 31.78,
       "fee": 0,
       "shopName": '',
@@ -66,7 +66,7 @@ test('中国银行消费', () =>
       "channel": '微信[中国银行-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 1000,
       "fee": 0,
       "shopName": '',
@@ -78,7 +78,7 @@ test('中国银行消费', () =>
       "channel": '微信[中国银行-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 30,
       "fee": 0,
       "shopName": '',
@@ -90,7 +90,7 @@ test('中国银行消费', () =>
       "channel": '微信[中国银行-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 5,
       "fee": 0,
       "shopName": '',
@@ -102,7 +102,7 @@ test('中国银行消费', () =>
       "channel": '微信[中国银行-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 1,
       "fee": 0,
       "shopName": '',
@@ -117,7 +117,7 @@ test('中国银行消费', () =>
 test('中国银行信用卡存入', () =>
   testAnkio('中国银行信用卡存入', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 357,
       "fee": 0,
       "shopName": '',

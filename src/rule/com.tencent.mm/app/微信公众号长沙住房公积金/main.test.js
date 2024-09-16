@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('长沙住房公积金每月汇缴', () =>
   testAnkio('长沙住房公积金每月汇缴', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 2154,
       "fee": 0,
       "shopName": '长沙住房公积金',

@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('京东购物消费', () =>
   testAnkio('京东购物消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 25.2,
       "fee": 0,
       "shopName": '',
@@ -22,7 +22,7 @@ test('京东购物消费', () =>
       "channel": '微信[京东购物-消费]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 23.9,
       "fee": 0,
       "shopName": '',

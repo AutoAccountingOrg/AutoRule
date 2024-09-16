@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('工商银行信用卡支出', () =>
   testAnkio('工商银行信用卡支出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 1281.56,
       "fee": 0,
       "shopName": '消费财付通',

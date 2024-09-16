@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝消费', () =>
   testAnkio('支付宝消费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 19.9,
       "fee": 0,
       "shopName": '广州市动景计算机科技有限公司',
@@ -19,7 +19,7 @@ test('支付宝消费', () =>
       "channel": '支付宝[消费-支出]',
     },
     {
-      "type": 0,
+      "type": "Expend",
       "money": 183,
       "fee": 0,
       "shopName": '滴滴平台第三方油站',
@@ -36,7 +36,7 @@ test('支付宝消费', () =>
 test('支付宝收入', () =>
   testAnkio('支付宝收入', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.02,
       "fee": 0,
       "shopName": '吱信（上海）网络技术有限公司',
@@ -48,7 +48,7 @@ test('支付宝收入', () =>
       "channel": '支付宝[消费-收入]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.3,
       "fee": 0,
       "shopName": '北京快手科技有限公司 bjk***@kuaishou.com',
@@ -60,7 +60,7 @@ test('支付宝收入', () =>
       "channel": '支付宝[消费-收入]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 29.82,
       "fee": 0,
       "shopName": '退款通知',

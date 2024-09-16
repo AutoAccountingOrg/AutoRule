@@ -7,7 +7,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝收款码收款', () =>
   testAnkio('支付宝收款码收款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.01,
       "fee": 0,
       "shopName": '**江',
@@ -23,7 +23,7 @@ test('支付宝收款码收款', () =>
 test('支付宝收钱码服务费', () =>
   testAnkio('支付宝收钱码服务费', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 9.5,
       "fee": 0,
       "shopName": '支付宝(中国)网络技术有限公司',
@@ -39,7 +39,7 @@ test('支付宝收钱码服务费', () =>
 test('支付宝转账收款', () =>
   testAnkio('支付宝转账收款', [
     {
-      "type": 1, // 0为支出，1为收入，2为转账
+      "type": "Income", // 0为支出，1为收入，2为转账
       "money": 0.01,
       "fee": 0,
       "shopName": '从前慢',
@@ -55,7 +55,7 @@ test('支付宝转账收款', () =>
 test('支付宝余额转到余额宝', () =>
   testAnkio('支付宝余额转到余额宝', [
     {
-      "type": 2,
+      "type": "Transfer",
       "money": 0.01,
       "fee": 0,
       "shopName": '余额宝',
@@ -67,7 +67,7 @@ test('支付宝余额转到余额宝', () =>
       "channel": '支付宝[余额宝转账]',
     },
     {
-      "type": 2,
+      "type": "Transfer",
       "money": 0.01,
       "fee": 0,
       "shopName": '余额宝',
@@ -83,7 +83,7 @@ test('支付宝余额转到余额宝', () =>
 test('余额宝收益发放', () =>
   testAnkio('余额宝收益发放', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.01,
       "fee": 0,
       "shopName": '长城基金管理有限公司',

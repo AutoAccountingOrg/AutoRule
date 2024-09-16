@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('广发信用卡支出', () =>
   testAnkio('广发信用卡支出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 1275.68,
       "fee": 0,
       "shopName": '（特约）京东支付',
@@ -25,7 +25,7 @@ test('广发信用卡支出', () =>
 test('广发信用卡退款', () =>
   testAnkio('广发信用卡退款', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 1275.68,
       "fee": 0,
       "shopName": '',

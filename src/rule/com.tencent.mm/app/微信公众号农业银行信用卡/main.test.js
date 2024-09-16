@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('农业银行信用卡支出', () =>
   testAnkio('农业银行信用卡支出', [
     {
-      "type": 0,
+      "type": "Expend",
       "money": 1281.56,
       "fee": 0,
       "shopName": '财付通，微信支付',

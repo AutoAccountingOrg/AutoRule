@@ -6,7 +6,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝余额宝收益', () =>
   testAnkio('支付宝余额宝收益', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.01,
       "fee": 0,
       "shopName": '余额宝',
@@ -23,7 +23,7 @@ test('支付宝余额宝收益', () =>
 test('支付宝余额宝自动转入', () =>
   testAnkio('支付宝余额宝自动转入', [
     {
-      "type": 2,
+      "type": "Transfer",
       "money": 0.01,
       "fee": 0,
       "shopName": '余额宝',

@@ -6,7 +6,7 @@ testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝小荷包', () =>
   testAnkio('支付宝小荷包', [
     {
-      "type": 2,
+      "type": "Transfer",
       "money": 5,
       "fee": 0,
       "shopName": '支付宝小荷包(某某某的情侣小荷包)',
@@ -18,7 +18,7 @@ test('支付宝小荷包', () =>
       "channel": '支付宝[小荷包-收入]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 1000,
       "fee": 0,
       "shopName": '某某某的情侣小荷包',
@@ -30,7 +30,7 @@ test('支付宝小荷包', () =>
       "channel": '支付宝[小荷包-收入]',
     },
     {
-      "type": 1,
+      "type": "Income",
       "money": 0.15,
       "fee": 0,
       "shopName": '某某某的情侣小荷包',

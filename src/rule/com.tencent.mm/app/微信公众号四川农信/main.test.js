@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('四川农信收入', () =>
   testAnkio('四川农信收入', [
     {
-      "type": 1,
+      "type": "Income",
       "money": 11.02,
       "fee": 0,
       "shopName": '',
