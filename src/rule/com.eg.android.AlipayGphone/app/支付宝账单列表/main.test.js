@@ -1,9 +1,9 @@
 const { get } = require('./main');
 
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
-const { DataType } = require('../../../../utils/DataType');
 
-testAnkioInit(get, __dirname, DataType.App, 'com.eg.android.AlipayGphone');
+
+testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝收款码收款', () =>
   testAnkio('支付宝收款码收款', [
     {

@@ -20,7 +20,7 @@ const TITLES_WECHAT = [
 var mapItem;
 
 // 正则表达式和处理函数的映射关系
-const regexMap = new Map([
+const regexMap =[
   [
     /付款金额¥(\d+\.\d{2})\n支付方式(.*?)\n交易状态.*/,
     match => ({
@@ -154,7 +154,7 @@ const regexMap = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析微信支付文本

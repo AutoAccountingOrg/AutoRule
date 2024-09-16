@@ -1,8 +1,8 @@
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
-const { DataType } = require('../../../../utils/DataType');
 
-testAnkioInit(get, __dirname, DataType.App, 'com.eg.android.AlipayGphone');
+
+testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
 test('支付宝余利宝收益', () =>
   testAnkio('支付宝余利宝收益', [
     {

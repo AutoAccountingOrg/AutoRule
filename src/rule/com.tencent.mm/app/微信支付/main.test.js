@@ -1,9 +1,8 @@
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
-const { DataType } = require('../../../../utils/DataType');
 const { formatDate } = require('common/index.js');
 
-testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
+testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('微信支付消费（商家收款）', () =>
   testAnkio('微信支付消费（商家收款）', [
     {

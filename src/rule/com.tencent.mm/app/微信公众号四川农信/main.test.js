@@ -2,10 +2,10 @@ const { get } = require('./main');
 const fs = require('fs');
 const path = require('path');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
-const { DataType } = require('../../../../utils/DataType');
+
 const { formatDate } = require('common/index.js');
 
-testAnkioInit(get, __dirname, DataType.App, 'com.tencent.mm');
+testAnkioInit(get, __dirname, 'com.tencent.mm');
 
 test('四川农信收入', () =>
   testAnkio('四川农信收入', [
