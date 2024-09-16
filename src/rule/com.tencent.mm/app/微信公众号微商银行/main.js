@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '徽商银行';
 const TITLES_BOC = ['交易提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /交易时间：(.*?)\n交易类型：快捷支付-(.*?)\n交易金额：(.*?)\(尾号(\d+)(.*?)\)\n卡内余额：(.*?)/,
     match => ({
@@ -30,7 +30,7 @@ const regexMapBOC = new Map([
       "channel": `微信[${SOURCE_NAME_BOC}-退款]`,
     }),
   ],
-]);
+];
 
 /**
  * @param {string} text - 需要解析的文本

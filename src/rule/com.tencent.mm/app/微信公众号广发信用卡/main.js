@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '广发信用卡';
 const TITLES_BOC = ['交易成功提醒', '交易结果提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /交易时间：尾号(\d+)广发卡(.*?)\n交易类型：(.*?)\n交易金额：(.*?)([\d,]+.\d{2})元\n交易商户：(.*?)-(.*?)\n可用额度：人民币.*?元。点详情查分期还款优惠方案！/,
     match => {
@@ -47,7 +47,7 @@ const regexMapBOC = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析文本

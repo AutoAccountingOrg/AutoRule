@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '中国银行微银行';
 const TITLES_BOC = ['交易成功提醒', '交易完成通知'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /交易时间：(.*?)\n交易类型：(.*支付|.*消费)（尾号(\d+)）\n交易金额：(.*?) ([\d\,]+.\d{2})\n账户余额：.*元\n交易说明：点击查看更多详情/,
     match => ({
@@ -72,7 +72,7 @@ const regexMapBOC = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析中国银行文本

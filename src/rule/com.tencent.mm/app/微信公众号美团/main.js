@@ -4,7 +4,7 @@ import { BillType, Currency, formatDate, RuleObject, toFloat } from 'common/inde
 const SOURCE_NAME = '美团';
 const TITLES = ['支付成功通知', '退款通知'];
 
-const regexMap = new Map([
+const regexMap = [
   [
     /消费账户：(.*?)\n支付金额：(人民币)?(.*?)元\n支付方式：(.*?)\n支付时间：(.+)/,
     match => {
@@ -42,7 +42,7 @@ const regexMap = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析文本并返回解析结果。

@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '平安银行';
 const TITLES_BOC = ['交易提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /账号：尾号(\d+)的账户\n交易时间：(.*?)\n交易类型：(.*?)\((.*?)\)\n交易币种：(.*?)\n交易金额：([\d,]+.\d{2})$/,
     match => {
@@ -28,7 +28,7 @@ const regexMapBOC = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析文本

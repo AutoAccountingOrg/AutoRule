@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '京东支付';
 const TITLES_BOC = ['交易成功提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /支付金额：¥([\d,]+.\d{2})\n交易商户：(.*?)\n交易时间：(.*?)\n支付方式：(.*?)\n交易单号：\d+/,
     match => ({
@@ -18,7 +18,7 @@ const regexMapBOC = new Map([
       "channel": `微信[${SOURCE_NAME_BOC}-消费]`,
     }),
   ],
-]);
+];
 
 /**
  * 解析文本

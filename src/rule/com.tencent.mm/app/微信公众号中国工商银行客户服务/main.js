@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '中国工商银行客户服务';
 const TITLES_BOC = ['动账交易提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /账号类型：尾号(\d+)的信用卡\n交易时间：(.*?)\n交易类型：(.*?)-(.*?)\n交易金额：出账 ([\d,]+.\d{2}) (.*?)元\n账户余额：登录工行手机银行查看详细信息/,
     match => {
@@ -23,7 +23,7 @@ const regexMapBOC = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析文本

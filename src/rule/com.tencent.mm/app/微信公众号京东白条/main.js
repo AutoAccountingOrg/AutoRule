@@ -5,7 +5,7 @@ const SOURCE_NAME_JD = '京东白条';
 const TITLES_JD = ['还款成功通知', '交易提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapJD = new Map([
+const regexMapJD = [
   [
     /还款时间：(.*?)\n还款金额：([\d,]+.\d{2})元/,
     match => ({
@@ -28,7 +28,7 @@ const regexMapJD = new Map([
       "channel": '微信[京东白条 消费]',
     }),
   ],
-]);
+];
 
 /**
  * 解析京东白条还款文本

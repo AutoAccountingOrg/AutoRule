@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '农业银行信用卡';
 const TITLES_BOC = ['交易成功通知'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /交易时间：(.*?)\n交易类型：卡号尾号（(\d+)），网上支付\n交易金额：([\d,]+.\d{2})元\n可用余额：.*?元\n交易地址：(.*?)-(.*?)$/,
     match => {
@@ -23,7 +23,7 @@ const regexMapBOC = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析文本

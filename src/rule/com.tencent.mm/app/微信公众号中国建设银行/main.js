@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '中国建设银行';
 const TITLES_BOC = ['交易提醒', '交易结果通知', '实时交易提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /交易时间：(.*?)\n交易类型：(收入|支出)（尾号(\d+)储蓄卡）\n交易金额：(.*?)（(.*?)）/,
     match => ({
@@ -54,7 +54,7 @@ const regexMapBOC = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * @param {string} text - 需要解析的文本

@@ -5,7 +5,7 @@ const SOURCE_NAME_BOC = '饿了么本地生活';
 const TITLES_BOC = ['支付成功提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = new Map([
+const regexMapBOC = [
   [
     /支付单号：\d+\n支付时间：(.*?)\n支付金额：([\d,]+.\d{2})元\n支付方式：(.*?)$/,
     match => {
@@ -28,7 +28,7 @@ const regexMapBOC = new Map([
       };
     },
   ],
-]);
+];
 
 /**
  * 解析文本
