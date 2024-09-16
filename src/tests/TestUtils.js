@@ -20,13 +20,11 @@ function getTestFile(name) {
 
 let get = null;
 let dirname = null;
-let type = null;
 let app = null;
 
-export function testAnkioInit(getFn, pathUrl, appType, packageName) {
+export function testAnkioInit(getFn, pathUrl, packageName) {
   get = getFn;
   dirname = pathUrl;
-  type = appType;
   app = packageName;
 }
 
@@ -47,7 +45,6 @@ export function testAnkio(name, results) {
     "name": name,
     "results": results,
     "datas": datas,
-    "type": type,
     "app": app
   };
   //判断dist文件夹是否不存在，不存在就创建
