@@ -2,6 +2,7 @@ import { BillType, RuleObject, toFloat } from 'common/index.js';
 
 function pay(pl,t){
   let obj = new RuleObject(BillType.Income);
+  if (pl.content.indexOf("∝")===-1)return null
   obj.money =  toFloat(pl.content);
   if (obj.money < 0) {
     obj.type = BillType.Expend;
