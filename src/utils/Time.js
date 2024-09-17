@@ -24,16 +24,19 @@ export function isTimeInRange(startTime, endTime, currentTime) {
  */
 export function formatDate(time = '', tpl = '') {
 
+  console.log('time:', time);
+  console.log('tpl:', tpl);
+
   // 如果时间为13位，直接返回（可能已是毫秒级时间戳）
   if (time.length === 13) return parseInt(time);
 
   // 如果时间为空，返回当前时间的毫秒级时间戳
   if (time.length === 0) {
-    return Math.floor(Date.now() / 1000) * 1000;
+    return Math.floor(Date.now() / 10000) * 10000;
   }
 
   // 确保提供的模板字符串合法
-  if (!tpl.match(/[YMDhms]+/g)) {
+  if (!tpl.match(/[YMDhis]+/g)) {
     throw new Error('Invalid format string');
   }
 
@@ -53,12 +56,14 @@ export function formatDate(time = '', tpl = '') {
   }
 
   // 提取tpl
-  const match2 = tpl.match(/[YMDhms]/g);
+  const match2 = tpl.match(/[YMDhis]/g);
 
   const matchObj = {};
   for (let i = 0; i < match2.length; i++) {
     matchObj[match2[i]] = match[i + 1];
   }
+
+  console.log('matchObj:', matchObj);
 
   // 提取并填充默认值
   const now = new Date();
@@ -66,8 +71,8 @@ export function formatDate(time = '', tpl = '') {
     "Y": matchObj["Y"] || now.getFullYear(),
     "M": matchObj["M"] || now.getMonth() + 1,
     "D": matchObj["D"] || now.getDate(),
-    "h": matchObj["h"] || now.getHours(),
-    "m": matchObj["m"] || now.getMinutes(),
+    "h": matchObj["h"] || now.getHours() + 8,
+    "m": matchObj["i"] || now.getMinutes(),
     "s": matchObj["s"] || now.getSeconds(),
   };
   // 构造日期对象
