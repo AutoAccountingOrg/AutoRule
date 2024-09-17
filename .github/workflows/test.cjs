@@ -26,6 +26,8 @@ function runYarnCommands() {
     exec('yarn rollup -c && yarn quickTest', (error, stdout, stderr) => {
       if (error) {
         console.error(`执行yarn命令出错: ${error}`);
+
+        process.exit(1);
         return reject(stderr);
       }
       console.log('yarn命令执行完成');
@@ -80,6 +82,8 @@ async function processIssue() {
 
     if (!codeBlock) {
       console.log('没有提取到有效的代码块');
+
+      process.exit(0);
       return;
     }
 
@@ -101,6 +105,7 @@ async function processIssue() {
     }
   } catch (error) {
     console.error(`处理issue出错: ${error.message}`);
+    process.exit(1);
   }
 }
 
