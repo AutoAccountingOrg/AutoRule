@@ -34,3 +34,18 @@ test('支付宝转账提现', () =>
       "channel": '支付宝[转账-提现]',
     },
   ]));
+test('支付宝转账支出', () =>
+  testAnkio('支付宝转账支出', [
+    {
+      "type": "Expend",
+      "money": 1,
+      "fee": 0,
+      "shopName": '百强(**强) 118***@qq.com',
+      "shopItem": '转账成功',
+      "accountNameFrom": '余额宝',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1723816676000,
+      "channel": '支付宝[转账-支出]',
+    },
+  ]));
