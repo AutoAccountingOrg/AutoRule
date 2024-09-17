@@ -1,5 +1,6 @@
-const fs = require('fs');
-const exec = require('child_process').exec;
+import fs from 'fs';
+import { exec } from 'child_process';
+import { Octokit } from '@octokit/rest';
 
 // 假设你通过GitHub API获取了issue的内容
 async function getIssueContent() {
@@ -26,7 +27,6 @@ function runYarnCommands() {
     exec('yarn rollup -c && yarn quickTest', (error, stdout, stderr) => {
       if (error) {
         console.error(`执行yarn命令出错: ${error}`);
-
         process.exit(1);
         return reject(stderr);
       }
@@ -44,7 +44,6 @@ function extractTestResult(output) {
 
 // 给issue打标签并关闭issue
 async function handleIssue(issueNumber, resultContent) {
-  const { Octokit } = require("@octokit/rest");
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
   const owner = process.env.GITHUB_REPOSITORY_OWNER;
   const repo = process.env.GITHUB_REPOSITORY;
@@ -82,7 +81,6 @@ async function processIssue() {
 
     if (!codeBlock) {
       console.log('没有提取到有效的代码块');
-
       process.exit(0);
       return;
     }
