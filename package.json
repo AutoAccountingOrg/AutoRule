@@ -7,6 +7,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
+    "quickTest": "node ./src/rule/tests.cjs",
     "test": "jest",
     "dev": "rollup -c",
     "format": "eslint --fix .",
