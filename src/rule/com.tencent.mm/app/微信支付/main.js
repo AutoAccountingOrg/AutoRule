@@ -1,5 +1,4 @@
-import { BillType, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
-import { findNonEmptyString } from 'common/Html.js';
+import { BillType, Currency, formatDate, RuleObject, toFloat,findNonEmptyString } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
