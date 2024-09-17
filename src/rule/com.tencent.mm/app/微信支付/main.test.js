@@ -220,6 +220,24 @@ test('微信支付转账过期退款', () =>
     },
   ]));
 
+test('微信支付红包退款', () =>
+  testAnkio('微信支付红包退款', [
+    {
+      "type": "Income",
+      "money": 0.01,
+      "fee": 0,
+      "shopName": '微信退款',
+      "shopItem": '朋友"JHL"未在24小时内领取你发的红包',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024-08-22 18:53:34', 'Y-M-D h:i:s'),
+      "channel": '微信[微信支付-退款]',
+    },
+
+  ]));
+
+
 test('微信支付转账退款', () =>
   testAnkio('微信支付转账退款', [
     {

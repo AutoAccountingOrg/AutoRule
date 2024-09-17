@@ -1,0 +1,14 @@
+                {
+  "mMap": {
+    "description": "退款金额￥0.01\n退款方式退回零钱\n退款原因朋友\"JHL\"未在24小时内领取你发的红包\n到账时间2024-08-22 18:53:34\n备注退款资金已到账",
+    "source": "微信支付",
+    "type": 5,
+    "appId": "",
+    "msgId": 99064,
+    "title": "红包退款到账通知",
+    "display_name": "",
+    "cachedPayTools": "零钱",
+    "cachedPayMoney": "￥1543.00",
+    "cachedPayShop": "向新园老味道(*静)转账"
+  }
+}
