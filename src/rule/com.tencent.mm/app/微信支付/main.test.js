@@ -18,6 +18,21 @@ test('微信支付消费（商家收款）', () =>
       "channel": '微信[微信支付-付款]',
     },
   ]));
+test('微信支付消费（个人收款）', () =>
+  testAnkio('微信支付消费（个人收款）', [
+    {
+      "type": "Expend",
+      "money": 9.0,
+      "fee": 0,
+      "shopName": '重庆小吃',
+      "shopItem": '付款给重庆小吃(*艳)',
+      "accountNameFrom": '零钱通',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate(),
+      "channel": '微信[微信支付-付款]',
+    },
+  ]));
 
 test('微信支付消费（第三方收款）', () =>
   testAnkio('微信支付消费（第三方收款）', [
