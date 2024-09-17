@@ -23,55 +23,64 @@ export function isTimeInRange(startTime, endTime, currentTime) {
  * @returns {number}
  */
 export function formatDate(time = '', tpl = '') {
-  if (time.length === 13) return time;
+
+  // 如果时间为13位，直接返回（可能已是毫秒级时间戳）
+  if (time.length === 13) return parseInt(time);
+
+  // 如果时间为空，返回当前时间的毫秒级时间戳
   if (time.length === 0) {
-    return Math.floor(Date.now() / 1000) * 1000;
+    return Date.now();
   }
 
-  const dateObj = {};
-  let tplRegex = tpl;
+  // 确保提供的模板字符串合法
   if (!tpl.match(/[YMDhms]+/g)) {
     throw new Error('Invalid format string');
   }
 
-  tplRegex = tplRegex
-    .replace(/Y/g, '(\\d+)')
-    .replace(/M/g, '(\\d+)')
-    .replace(/D/g, '(\\d+)')
-    .replace(/h/g, '(\\d+)')
-    .replace(/i/g, '(\\d+)')
-    .replace(/s/g, '(\\d+)');
-
+  // 将模板中的符号替换为正则表达式模式
+  const tplRegex = tpl
+    .replace(/Y/g, '(\\d{4})')  // 捕获4位的年份
+    .replace(/M/g, '(\\d{1,2})')  // 捕获1-2位的月份
+    .replace(/D/g, '(\\d{1,2})')  // 捕获1-2位的日期
+    .replace(/h/g, '(\\d{1,2})')  // 捕获1-2位的小时
+    .replace(/i/g, '(\\d{1,2})')  // 捕获1-2位的分钟
+    .replace(/s/g, '(\\d{1,2})'); // 捕获1-2位的秒
+  // 匹配输入的时间字符串与模板
   const match = time.match(new RegExp(`^${tplRegex}$`));
-
   if (!match) {
     console.log(tplRegex, time, match);
     throw new Error('Invalid time format');
   }
 
-  // Get the current Shanghai time
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hour = date.getHours() + 8;
-  const minute = date.getMinutes();
+  // 提取tpl
+  const match2 = tpl.match(/[YMDhms]/g);
 
-  // Map the matches to the corresponding date parts
-  dateObj.Y = match[1] || year;
-  dateObj.M = match[2] || month;
-  dateObj.D = match[3] || day;
-  dateObj.h = match[4] || hour;
-  dateObj.m = match[5] || minute;
-  dateObj.s = match[6] || 0;
+  const matchObj = {};
+  for (let i = 0; i < match2.length; i++) {
+    matchObj[match2[i]] = match[i + 1];
+  }
 
-  return new Date(
+  // 提取并填充默认值
+  const now = new Date();
+  const dateObj = {
+    "Y": matchObj["Y"] || now.getFullYear(),
+    "M": matchObj["M"] || now.getMonth() + 1,
+    "D": matchObj["D"] || now.getDate(),
+    "h": matchObj["h"] || now.getHours(),
+    "m": matchObj["m"] || now.getMinutes(),
+    "s": matchObj["s"] || now.getSeconds(),
+  };
+  // 构造日期对象
+  const formattedDate = new Date(
     dateObj.Y,
-    dateObj.M - 1,
+    dateObj.M - 1, // 月份从0开始
     dateObj.D,
     dateObj.h,
     dateObj.m,
     dateObj.s
-  ).getTime();
+  );
+
+  // 输出为UTC时间的时间戳（毫秒）
+  return formattedDate.getTime();
 }
 
