@@ -17,7 +17,8 @@ const TITLES_WECHAT = [
   '转账退款到账通知',
   '红包退款到账通知',
   '个人收款码到账¥',
-  '亲属卡扣款凭证'
+  '亲属卡扣款凭证',
+  '微信支付收款元(新顾客消费)'
 ];
 var mapItem;
 
@@ -180,6 +181,22 @@ const regexMap =[
         "shopItem": shopItem,
         "time": formatDate(),
         "channel": '微信[微信支付-亲属卡消费]',
+      };
+    },
+  ],
+  [
+    // 收款金额￥1500.00\n收款店铺jyf\n顾客信息新顾客消费\n备注收款成功，已存入经营账户
+    /收款金额￥(\d+\.\d{2})\n收款店铺(.*?)\n顾客信息(.*?)\n备注(.*?)$/,
+    match => {
+      const [, money, shopName, , shopItem] = match;
+      return {
+        "money": toFloat(money),
+        "type": BillType.Income,
+        "accountNameFrom": "微信经营账户",
+        "shopName": shopName, //2024-05-25 11:21:52
+        "shopItem": shopItem,
+        "time": formatDate(),
+        "channel": '微信[微信支付-经营收款]',
       };
     },
   ],
