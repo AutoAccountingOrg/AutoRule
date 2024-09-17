@@ -154,15 +154,16 @@ const regexMap =[
     },
   ],
   [
-    /退款金额¥(\d+\.\d{2})\n商品详情商户单号.*?\n商户名称(.*?)\n退款方式退回(.*?)\n到账时间(.*?)$/,
+    // 退款金额¥166.60\n商品详情美团订单-24052911100400001306304144901069\n商户名称美团\n退款方式退回支付卡(建设银行8254)\n退款原因[2406010080800792069]退交易\n到账时间2024-06-01 20:35:34",
+    /退款金额¥(\d+\.\d{2})\n商品详情(.*?)\n商户名称(.*?)\n退款方式退回(.*?)\n(退款原因.*?\n)?到账时间(.*?)$/,
     match => {
-      const [, money, shopName, accountNameFrom, time] = match;
+      const [, money,shopItem, shopName, accountNameFrom,, time] = match;
       return {
         "money": toFloat(money),
         "type": BillType.Income,
         "accountNameFrom": accountNameFrom,
         "shopName": shopName, //2024-05-25 11:21:52
-        "shopItem": 'empty',
+        "shopItem": shopItem,
         "time": formatDate(time, 'Y-M-D h:i:s'),
         "channel": '微信[微信支付-退款]',
       };
