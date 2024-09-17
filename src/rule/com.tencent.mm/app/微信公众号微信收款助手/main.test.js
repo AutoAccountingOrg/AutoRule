@@ -14,7 +14,7 @@ test('提现到账', () =>
       "accountNameFrom": '微信经营账户',
       "accountNameTo": '四川农信(1586)',
       "currency": 'CNY',
-      "time": formatDate("2024-05-31 08:23:16","Y-M-D h:i:s"),
+      "time": formatDate("2024-05-31 08:23:27","Y-M-D h:i:s"),
       "channel": '微信[微信收款助手-提现]',
     },
   ]));

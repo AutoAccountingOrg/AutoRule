@@ -125,19 +125,25 @@ test('中国银行消费', () =>
       "time": formatDate('07月04日07:54', 'M月D日h:i'),
       "channel": '微信[中国银行-消费]',
     },
+
+  ]));
+
+test('中国银行数字人民币', () =>
+  testAnkio('中国银行数字人民币',[
     {
-      "type": "Expend",
+      "type": "Transfer",
       "money": 207.35,
       "fee": 0,
       "shopName": '',
       "shopItem": '数字人民币随用随充',
       "accountNameFrom": '中国银行(2119)',
-      "accountNameTo": '',
+      "accountNameTo": '数字人民币',
       "currency": 'CNY',
       "time": formatDate('06月13日10:59', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      "channel": '微信[中国银行-数字人民币充值]',
     },
   ]));
+
 test('中国银行信用卡存入', () =>
   testAnkio('中国银行信用卡存入', [
     {
