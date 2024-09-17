@@ -189,6 +189,18 @@ test('微信支付收款', () =>
       "time": formatDate(),
       "channel": '微信[微信支付-收款]',
     },
+    {
+      "type": "Income",
+      "money": 10,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '今日第1笔收款，共计￥10.00',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate(),
+      "channel": '微信[微信支付-收款]',
+    },
   ]));
 
 test('微信支付转账过期退款', () =>

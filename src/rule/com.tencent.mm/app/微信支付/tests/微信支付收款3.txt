@@ -1,0 +1,14 @@
+                {
+  "mMap": {
+    "description": "收款金额￥10.00\n汇总今日第1笔收款，共计￥10.00\n备注收款成功，已存入零钱。点击可查看详情",
+    "source": "微信支付",
+    "type": 5,
+    "appId": "",
+    "msgId": 99064,
+    "title": "个人收款码到账¥10.00",
+    "display_name": "",
+    "cachedPayTools": "零钱通",
+    "cachedPayMoney": "支付有优惠提现券-￥0.10",
+    "cachedPayShop": ""
+  }
+}
