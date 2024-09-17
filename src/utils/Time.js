@@ -24,8 +24,6 @@ export function isTimeInRange(startTime, endTime, currentTime) {
  */
 export function formatDate(time = '', tpl = '') {
 
-  console.log('time:', time);
-  console.log('tpl:', tpl);
 
   // 如果时间为13位，直接返回（可能已是毫秒级时间戳）
   if (time.length === 13) return parseInt(time);
@@ -63,7 +61,6 @@ export function formatDate(time = '', tpl = '') {
     matchObj[match2[i]] = match[i + 1];
   }
 
-  console.log('matchObj:', matchObj);
 
   // 提取并填充默认值
   const now = new Date();
