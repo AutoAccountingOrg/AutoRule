@@ -1,3 +1,4 @@
+name: Test If Issue is an adaptation request
 on:
   issues:
     types:
