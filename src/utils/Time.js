@@ -29,7 +29,7 @@ export function formatDate(time = '', tpl = '') {
 
   // 如果时间为空，返回当前时间的毫秒级时间戳
   if (time.length === 0) {
-    return Date.now();
+    return Math.floor(Date.now() / 1000) * 1000;
   }
 
   // 确保提供的模板字符串合法

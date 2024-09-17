@@ -76,11 +76,22 @@ const regexMap =[
   [
     /收款金额￥(\d+\.\d{2})\n收款账户(.*?)\n付款商家(.*)(\n付款备注(.*))?/,
     match => ({
-      "money": parseFloat(match[1]),
+      "money": toFloat(match[1]),
       "type": BillType.Income,
       "accountNameFrom": match[2],
       "shopName": match[3],
       "shopItem": match[5] || mapItem.title,
+      "channel": '微信[微信支付-收款（商家）]',
+    }),
+  ],
+  [
+    /收款金额￥(\d+\.\d{2})\n收款方式(.*?)$/,
+    match => ({
+      "money": toFloat(match[1]),
+      "type": BillType.Income,
+      "accountNameFrom": match[2],
+      "shopName":"",
+      "shopItem":  mapItem.title,
       "channel": '微信[微信支付-收款（商家）]',
     }),
   ],

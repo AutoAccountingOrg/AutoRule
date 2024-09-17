@@ -303,6 +303,18 @@ test('微信支付收款（商家付款）', () =>
       "time": formatDate(),
       "channel": '微信[微信支付-收款（商家）]',
     },
+    {
+      "type": "Income",
+      "money": 0.1,
+      "fee": 0,
+      "shopName": '宿迁兆盈商服科技有限公司',
+      "shopItem": '你收到一笔分销佣金',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate(),
+      "channel": '微信[微信支付-收款（商家）]',
+    },
   ]));
 test('微信支付扫码付款', () =>
   testAnkio('微信支付扫码付款', [

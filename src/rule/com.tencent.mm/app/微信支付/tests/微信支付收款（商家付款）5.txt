@@ -1,0 +1,14 @@
+                {
+  "mMap": {
+    "description": "收款金额￥0.10\n收款方式零钱",
+    "source": "微信支付",
+    "type": 5,
+    "appId": "",
+    "msgId": 99064,
+    "title": "你收到一笔分销佣金",
+    "display_name": "宿迁兆盈商服科技有限公司",
+    "cachedPayTools": "建设银行储蓄卡(5047)",
+    "cachedPayMoney": "￥2.66",
+    "cachedPayShop": ""
+  }
+}
