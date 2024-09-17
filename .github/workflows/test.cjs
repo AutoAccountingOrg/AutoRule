@@ -23,7 +23,7 @@ function writeToFile(content) {
 // 执行yarn build && yarn quickTest
 function runYarnCommands() {
   return new Promise((resolve, reject) => {
-    exec('yarn build && yarn quickTest', (error, stdout, stderr) => {
+    exec('rollup -c && yarn quickTest', (error, stdout, stderr) => {
       if (error) {
         console.error(`执行yarn命令出错: ${error}`);
         return reject(stderr);
