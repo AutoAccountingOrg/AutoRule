@@ -7,15 +7,16 @@ const TITLES_BOC = ['动账交易提醒'];
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = [
   [
-    /账号类型：尾号(\d+)的信用卡\n交易时间：(.*?)\n交易类型：(.*?)-(.*?)\n交易金额：出账 ([\d,]+.\d{2}) (.*?)元\n账户余额：登录工行手机银行查看详细信息/,
+    // 账号类型：尾号0849的信用卡\n交易时间：2024年6月3日23:58\n交易类型：跨行消费\n交易金额：出账 427.14 人民币元\n账户余额：登录工行手机银行查看详细信息
+    /账号类型：尾号(\d+)的信用卡\n交易时间：(.*?)\n交易类型：(.*?)\n交易金额：出账 ([\d,]+.\d{2}) (.*?)元\n账户余额：登录工行手机银行查看详细信息/,
     match => {
-      const [, number, time, shopName, shopItem, money, currency] = match;
+      const [, number, time, shopName, money, currency] = match;
 
       return {
         "money": toFloat(money),
         "type": BillType.Expend,
         "time": formatDate(time, 'Y年M月D日h:i'), //2024年5月26日20:12
-        "shopItem": shopItem,
+        "shopItem": '',
         "shopName": shopName,
         "accountNameFrom": `中国工商银行信用卡(${number})`,
         "Currency": Currency[currency],
