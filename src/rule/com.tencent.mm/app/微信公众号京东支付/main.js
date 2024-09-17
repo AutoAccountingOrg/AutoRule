@@ -7,13 +7,14 @@ const TITLES_BOC = ['交易成功提醒'];
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = [
   [
-    /支付金额：¥([\d,]+.\d{2})\n交易商户：(.*?)\n交易时间：(.*?)\n支付方式：(.*?)\n交易单号：\d+/,
+    // 支付金额：¥17.03  (已优惠¥0.02)\n交易商户：京东平台商户\n交易时间：2024-06-13 07:38:27\n支付方式：江苏银行信用卡(尾号6706)\n交易单号：14081252406130738270946452746
+    /支付金额：¥([\d,]+.\d{2})(.*?)?\n交易商户：(.*?)\n交易时间：(.*?)\n支付方式：(.*?)\n交易单号：\d+/,
     match => ({
       "money": toFloat(match[1].replace(',', '')),
       "type": BillType.Expend,
-      "time": `${match[3]}`, //2024-05-02 18:58:44
-      "shopName": match[2],
-      "accountNameFrom": match[4],
+      "time": `${match[4]}`, //2024-05-02 18:58:44
+      "shopName": match[3],
+      "accountNameFrom": match[5],
       "Currency": Currency['人民币'],
       "channel": `微信[${SOURCE_NAME_BOC}-消费]`,
     }),

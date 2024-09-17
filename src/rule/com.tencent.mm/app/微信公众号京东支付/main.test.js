@@ -33,4 +33,16 @@ test('京东支付消费', () =>
       "time": formatDate('2024-05-12 15:45:36', 'Y-M-D h:i:s'),
       "channel": '微信[京东支付-消费]',
     },
+    {
+      "type": "Expend",
+      "money": 17.03,
+      "fee": 0,
+      "shopName": '京东平台商户',
+      "shopItem": '',
+      "accountNameFrom": '江苏银行信用卡(尾号6706)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024-06-13 07:38:27', 'Y-M-D h:i:s'),
+      "channel": '微信[京东支付-消费]',
+    },
   ]));
