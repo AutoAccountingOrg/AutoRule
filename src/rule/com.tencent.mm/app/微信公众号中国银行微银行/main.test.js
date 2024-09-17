@@ -113,6 +113,18 @@ test('中国银行消费', () =>
       "time": formatDate('05月24日17:45', 'M月D日h:i'),
       "channel": '微信[中国银行-消费]',
     },
+    {
+      "type": "Expend",
+      "money": 298.78,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '转账支出',
+      "accountNameFrom": '中国银行(6960)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('07月04日07:54', 'M月D日h:i'),
+      "channel": '微信[中国银行-消费]',
+    },
   ]));
 test('中国银行信用卡存入', () =>
   testAnkio('中国银行信用卡存入', [
