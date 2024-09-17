@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间:2024-07-04 08:08:26\n交易类型:支付宝支付\n交易金额:人民币30.00元",
+    "source": "网商银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 10350146,
+    "title": "交易提醒"
+  }
+}
