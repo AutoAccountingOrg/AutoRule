@@ -16,7 +16,8 @@ const TITLES_WECHAT = [
   '退款到账通知',
   '转账退款到账通知',
   '红包退款到账通知',
-  '个人收款码到账¥'
+  '个人收款码到账¥',
+  '亲属卡扣款凭证'
 ];
 var mapItem;
 
@@ -163,6 +164,22 @@ const regexMap =[
         "shopItem": 'empty',
         "time": formatDate(time, 'Y-M-D h:i:s'),
         "channel": '微信[微信支付-退款]',
+      };
+    },
+  ],
+  [
+    // 扣款金额￥18.00\n交易用户Nigori\n支付场景姚先生饸饹面\n支付方式招商银行储蓄卡(1956)
+    /扣款金额￥(\d+\.\d{2})\n交易用户(.*?)\n支付场景(.*?)\n支付方式(.*?)$/,
+    match => {
+      const [, money, shopName, shopItem, accountNameFrom] = match;
+      return {
+        "money": toFloat(money),
+        "type": BillType.Expend,
+        "accountNameFrom": accountNameFrom,
+        "shopName": shopName, //2024-05-25 11:21:52
+        "shopItem": shopItem,
+        "time": formatDate(),
+        "channel": '微信[微信支付-亲属卡消费]',
       };
     },
   ],
