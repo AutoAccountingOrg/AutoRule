@@ -69,8 +69,8 @@ export function formatDate(time = '', tpl = '') {
     "M": matchObj["M"] || now.getMonth() + 1,
     "D": matchObj["D"] || now.getDate(),
     "h": matchObj["h"] || now.getHours() + 8,
-    "m": matchObj["i"] || now.getMinutes(),
-    "s": matchObj["s"] || now.getSeconds(),
+    "m": matchObj["i"] || 0,
+    "s": matchObj["s"] || 0,
   };
   // 构造日期对象
   const formattedDate = new Date(
