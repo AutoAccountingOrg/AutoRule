@@ -32,6 +32,18 @@ test('微信支付消费（个人收款）', () =>
       "time": formatDate(),
       "channel": '微信[微信支付-付款]',
     },
+    {
+      "type": "Expend",
+      "money": 10,
+      "fee": 0,
+      "shopName": '御膳叉骨好吃',
+      "shopItem": 'QQ红包',
+      "accountNameFrom": '餘額',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate(),
+      "channel": '微信[微信支付-付款]',
+    },
   ]));
 
 test('微信支付消费（第三方收款）', () =>
