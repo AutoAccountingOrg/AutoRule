@@ -19,3 +19,18 @@ test('支付宝转账收款', () =>
       "channel": '支付宝[转账-收入]',
     },
   ]));
+test('支付宝转账提现', () =>
+  testAnkio('支付宝转账提现', [
+    {
+      "type": "Transfer",
+      "money": 161,
+      "fee": 0,
+      "shopName": '招商银行（6876）刘金龙',
+      "shopItem": '提现到账成功',
+      "accountNameFrom": '支付宝余额',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1719663370000,
+      "channel": '支付宝[转账-提现]',
+    },
+  ]));

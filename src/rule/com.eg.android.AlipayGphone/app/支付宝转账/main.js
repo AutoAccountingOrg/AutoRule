@@ -3,7 +3,13 @@ import { BillType, RuleObject, toFloat } from 'common/index.js';
 function income(pl,t){
   let obj = new RuleObject(BillType.Income);
 
-  obj.channel = `支付宝[转账-收入]`;
+  if (pl.title.indexOf('提现') !== -1) {
+    obj.type = BillType.Transfer;
+    obj.channel = `支付宝[转账-提现]`;
+  }else{
+    obj.channel = `支付宝[转账-收入]`;
+  }
+
 
   obj.time = t;
   let extras = JSON.parse(pl.extraInfo);
