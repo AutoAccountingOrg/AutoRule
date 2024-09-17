@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"服务商户：京东平台商户\n交易类型：不分期\n交易订单：296852399806\n交易时间：09月17日 05:04:45\n消费金额：28.39元(已优惠0.02元)","source":"京东白条","arg":"msgId","type":5,"appId":"","msgId":11177637,"title":"交易提醒"}}
