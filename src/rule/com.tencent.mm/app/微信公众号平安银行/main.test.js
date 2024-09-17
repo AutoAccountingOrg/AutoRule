@@ -18,4 +18,16 @@ test('平安银行消费', () =>
       "time": formatDate('2024年05月23日09:14', 'Y年M月D日h:i'),
       "channel": '微信[平安银行-消费]',
     },
+    {
+      "type": "Expend",
+      "money": 0.01,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '',
+      "accountNameFrom": '平安银行(6274)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('6月14日 16:33', 'M月D日 h:i'),
+      "channel": '微信[平安银行-消费]',
+    },
   ]));
