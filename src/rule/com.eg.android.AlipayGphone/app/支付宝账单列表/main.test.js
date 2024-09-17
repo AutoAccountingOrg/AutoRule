@@ -4,8 +4,8 @@ const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 
 
 testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
-test('支付宝收款码收款', () =>
-  testAnkio('支付宝收款码收款', [
+test('支付宝普通交易', () =>
+  testAnkio('支付宝普通交易', [
     {
       "type": "Income",
       "money": 0.01,
@@ -16,7 +16,19 @@ test('支付宝收款码收款', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 1703055625000,
-      "channel": '支付宝[收钱码收款]',
+      "channel": '支付宝[普通交易]',
+    },
+    {
+      "type": "Expend",
+      "money": 40,
+      "fee": 0,
+      "shopName": '叮咚买菜',
+      "shopItem": '叮咚买菜-2406084744529149231',
+      "accountNameFrom": '支付宝余额',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1717858508000,
+      "channel": '支付宝[普通交易]',
     },
   ]));
 

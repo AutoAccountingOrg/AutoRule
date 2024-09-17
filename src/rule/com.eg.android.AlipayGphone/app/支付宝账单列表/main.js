@@ -34,7 +34,7 @@ function processBizType(extension, result) {
       break;
     case 'TRADE':
       result.accountNameFrom = '支付宝余额';
-      result.channel = '支付宝[收钱码收款]';
+      result.channel = '支付宝[普通交易]';
       break;
     case 'D_TRANSFER':
       result.accountNameFrom = '支付宝余额';

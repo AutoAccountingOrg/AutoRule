@@ -54,7 +54,7 @@ export const AliTools = {
           }
           break;
         default:
-          if (/创建时间/.test(elementValue.title)){
+          if (/创建时间/.test(elementValue.title) || /支付时间/.test(elementValue.title)){
             result.time = formatDate(elementValue.data[0].content, 'Y-M-D h:i:s');
           } else if (/付款方式/.test(elementValue.title)){
             result.accountNameFrom = elementValue.data[0].content;
