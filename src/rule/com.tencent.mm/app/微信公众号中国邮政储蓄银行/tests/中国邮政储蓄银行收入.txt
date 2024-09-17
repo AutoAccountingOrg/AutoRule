@@ -1,0 +1,12 @@
+                {
+  "mMap": {
+    "tableName": "AppMessage",
+    "description": "交易时间：2024年06月14日23:19\n交易类型：(尾号7618)薪酬\n交易金额：(人民币)8683.33元",
+    "source": "中国邮政储蓄银行",
+    "arg": "msgId",
+    "type": 5,
+    "appId": "",
+    "msgId": 212970,
+    "title": "交易提醒"
+  }
+}
