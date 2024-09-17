@@ -1,12 +1,14 @@
                 {
   "mMap": {
-    "tableName": "AppMessage",
-    "description": "交易时间：尾号4542广发卡05月29日19:39\n交易类型：消费\n交易金额：人民币2.18元\n交易商户：（特约）美团\n可用额度：人民币49693.72元。点详情查分期还款优惠方案！",
-    "source": "广发信用卡",
-    "arg": "msgId",
+    "description": "扣款金额￥0.10\n交易用户美美多🏪\n支付场景微信红包\n支付方式零钱",
+    "source": "微信支付",
     "type": 5,
     "appId": "",
-    "msgId": 10124304,
-    "title": "交易成功提醒"
+    "msgId": 99064,
+    "title": "亲属卡扣款凭证",
+    "display_name": "",
+    "cachedPayTools": "零钱通",
+    "cachedPayMoney": "￥119.03",
+    "cachedPayShop": "向曾越(*越)转账"
   }
 }
