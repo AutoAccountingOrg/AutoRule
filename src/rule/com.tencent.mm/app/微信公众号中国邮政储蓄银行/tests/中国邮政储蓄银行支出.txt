@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易时间：2024年09月18日08:18\n交易类型：(尾号8057)快捷支付\n交易金额：(人民币)24.92元","source":"中国邮政储蓄银行","arg":"msgId","type":5,"appId":"","msgId":554442,"title":"交易提醒"}}
