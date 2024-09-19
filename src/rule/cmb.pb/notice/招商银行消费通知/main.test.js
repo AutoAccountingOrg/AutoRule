@@ -3,7 +3,7 @@ const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
 
 
-testAnkioInit(get, __dirname, 'com.eg.android.AlipayGphone');
+testAnkioInit(get, __dirname, 'cmb.pb');
 test('招商银行消费', () =>
   testAnkio('招商银行消费', [
     {
