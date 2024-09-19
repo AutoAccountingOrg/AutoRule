@@ -243,9 +243,9 @@ export function get(data) {
     parsedText.money,
     findNonEmptyString(
       parsedText.shopName,
-      mapItem.display_name,
-      mapItem.cachedPayShop  ),
-    findNonEmptyString(parsedText.shopItem, mapItem.cachedPayShop),
+      mapItem.display_name
+       ),
+    parsedText.shopItem,
     parsedText.accountNameFrom,
     parsedText.accountNameTo,
     0,
