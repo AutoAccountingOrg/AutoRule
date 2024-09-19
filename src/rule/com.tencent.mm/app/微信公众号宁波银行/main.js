@@ -8,14 +8,18 @@ const TITLES_BOC = ['交易提醒'];
 const regexMapBOC = [
   [
     //交易类型:尾号2582-工资-人民币\n交易时间:09月15日 17:00\n交易对象:大夏公司\n交易金额:1696.49\n可用余额:428.97
+    //交易类型:尾号2582-网络支付消费-人民币\n交易时间:09月16日 10:29\n交易对象:拼多多平台商户\n交易金额:58.75\n可用余额:370.22
     /交易类型:尾号(\d{4})-(.*?)-人民币\n交易时间:(.*?)\n交易对象:(.*?)\n交易金额:([\d,]+.\d{2})\n可用余额:([\d,]+.\d{2})$/,
     match => {
       let [,number,shopItem,time,shopName,money,] = match
-
+      let billType = BillType.Income;
+      if (shopItem.indexOf("消费") !==-1 || shopItem.indexOf("支付")!==-1){
+        billType = BillType.Expend;
+      }
 
       return {
         "money": toFloat(money),
-        "type": BillType.Income,
+        "type": billType,
         "time": formatDate(time,"M月D日 h:i"),
         "shopItem": shopItem,
         "shopName":shopName,

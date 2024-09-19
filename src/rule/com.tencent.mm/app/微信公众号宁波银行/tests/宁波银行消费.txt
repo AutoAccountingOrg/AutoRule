@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易类型:尾号2582-网络支付消费-人民币\n交易时间:09月16日 10:29\n交易对象:拼多多平台商户\n交易金额:58.75\n可用余额:370.22","source":"宁波银行","arg":"msgId","type":5,"appId":"","msgId":553603,"title":"交易提醒"}}

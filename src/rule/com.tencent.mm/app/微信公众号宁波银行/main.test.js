@@ -22,3 +22,18 @@ test('宁波银行收入', () =>
       "channel": '微信[宁波银行-收入]',
     },
   ]));
+test('宁波银行消费', () =>
+  testAnkio('宁波银行消费', [
+    {
+      "type": "Expend",
+      "money": 58.75,
+      "fee": 0,
+      "shopName": '拼多多平台商户',
+      "shopItem": '网络支付消费',
+      "accountNameFrom": '宁波银行(2582)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('09月16日 10:29', 'M月D日 h:i'),
+      "channel": '微信[宁波银行-收入]',
+    },
+  ]));
