@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易类型:尾号2582-工资-人民币\n交易时间:09月15日 17:00\n交易对象:大夏公司\n交易金额:1696.49\n可用余额:428.97","source":"宁波银行","arg":"msgId","type":5,"appId":"","msgId":553241,"title":"交易提醒"}}
