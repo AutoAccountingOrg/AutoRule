@@ -5,9 +5,10 @@ import { terser } from 'rollup-terser';
 import babel from '@rollup/plugin-babel';
 
 let babelConfig = {
-  "babelHelpers": 'bundled',  // 保持这个配置
-  "exclude": 'node_modules/**',
+  'babelHelpers': 'bundled',  // 保持这个配置
+  'exclude': 'node_modules/**'
 };
+
 // 递归地获取所有规则文件
 function getRuleFiles (dirPath) {
   let files = [];
@@ -29,9 +30,7 @@ function getRuleFiles (dirPath) {
 const rulesFolder = path.join('src', 'rule');
 path.join('src', 'utils');
 const ruleFiles = getRuleFiles(rulesFolder);
-createFilter([], [
-
-], {
+createFilter([], [], {
   'resolve': false
 });
 const rules = [];
@@ -49,24 +48,23 @@ const outputs = ruleFiles.map(file => {
     'path': out
   });
 
-
   return {
     'input': file,
     'output': {
       'file': path.join('dist', out), // 使用父文件夹名称作为输出文件名
       'format': 'iife',
       'name': ruleName, // 使用父文件夹名称作为全局变量名
-      "globals": {
+      'globals': {
         'common/index.js': 'common'
-      },
+      }
     },
 
-    "external":[
-      "common/index.js"
+    'external': [
+      'common/index.js'
     ],
     'plugins': [
       babel(babelConfig),
-      terser(),
+      terser()
     ]
   };
 });
@@ -89,7 +87,7 @@ outputs.push({
   'output': {
     'file': path.join('dist', `${moduleName}.js`), // 输出文件路径
     'format': 'iife', // 输出格式为 IIFE
-    'name': moduleName, // 全局变量名
+    'name': moduleName // 全局变量名
   },
   'plugins': [
     babel(babelConfig),
@@ -102,8 +100,15 @@ outputs.push({
   'output': {
     'file': path.join('dist', `category.js`), // 输出文件路径
     'format': 'iife', // 输出格式为 IIFE
-    'name': 'category' // 全局变量名
+    'name': 'category', // 全局变量名
+    'globals': {
+      'common/index.js': 'common'
+    }
   },
+
+  'external': [
+    'common/index.js'
+  ],
   'plugins': [
     babel(babelConfig),
     terser()]
