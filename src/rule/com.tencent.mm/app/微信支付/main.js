@@ -18,7 +18,8 @@ const TITLES_WECHAT = [
   '红包退款到账通知',
   '个人收款码到账¥',
   '亲属卡扣款凭证',
-  '微信支付收款元(新顾客消费)'
+  '微信支付收款元(新顾客消费)',
+  '转账到银行卡到账成功'
 ];
 var mapItem;
 
@@ -198,6 +199,24 @@ const regexMap =[
         "shopItem": shopItem,
         "time": formatDate(),
         "channel": '微信[微信支付-经营收款]',
+      };
+    },
+  ],
+
+  [
+    //转账金额¥1500.00\n收款方鲍灯兴\n收款账号农业银行(8879)\n到账时间2024-09-19 11:42\n备注转账资金已到账对方银行卡账户
+    /转账金额¥(\d+\.\d{2})\n收款方(.*?)\n收款账号(.*?)\n到账时间(.*?)\n备注(.*?)$/,
+    match => {
+      const [, money, shopName, accountTo,time, shopItem] = match;
+      return {
+        "money": toFloat(money),
+        "type": BillType.Transfer,
+        "accountNameFrom": "微信零钱",
+        "accountNameTo":accountTo,
+        "shopName": shopName, //2024-09-19 11:42
+        "shopItem": shopItem,
+        "time": formatDate(time,"Y-M-D h:i"),
+        "channel": '微信[微信支付-转账到银行卡]',
       };
     },
   ],

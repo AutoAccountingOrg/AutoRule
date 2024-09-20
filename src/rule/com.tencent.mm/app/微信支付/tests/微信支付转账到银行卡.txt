@@ -1,0 +1,1 @@
+{"mMap":{"description":"转账金额¥1500.00\n收款方鲍灯兴\n收款账号农业银行(8879)\n到账时间2024-09-19 11:42\n备注转账资金已到账对方银行卡账户","source":"微信支付","type":5,"appId":"","msgId":99064,"title":"转账到银行卡到账成功","display_name":"","cachedPayTools":"零钱","cachedPayMoney":"￥1.50","cachedPayShop":"若转账失败,资金将原路返回。"}}
