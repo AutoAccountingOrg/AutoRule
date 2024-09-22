@@ -12,7 +12,7 @@ function income(pl,t){
   if (pl.title.indexOf('提现') !== -1) {
     obj.type = BillType.Transfer;
     obj.channel = `支付宝[转账-提现]`;
-  }else if(pl.title.indexOf('转账成功')!==-1){
+  }else if(pl.title.indexOf('转账成功')!==-1 || pl.title.indexOf('Transfer successful')!==-1){
     obj.type = BillType.Expend;
     AliTools.handleContentItems(JSON.parse(pl.content).content,obj)
     obj.channel = `支付宝[转账-支出]`;

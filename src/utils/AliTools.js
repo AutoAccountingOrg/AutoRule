@@ -16,6 +16,7 @@ export const AliTools = {
         case '付款人：':
         case '对方账户：':
         case 'Trading partner：':
+        case 'Counterparty account：':
           result.shopName = item.content;
           break;
         case '付款方式：':

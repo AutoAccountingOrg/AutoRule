@@ -49,3 +49,35 @@ test('支付宝转账支出', () =>
       "channel": '支付宝[转账-支出]',
     },
   ]));
+
+test('支付宝转账支出-英文', () =>
+  testAnkio('支付宝转账支出-英文', [
+    {
+      "type": "Expend",
+      "money": 0.01,
+      "fee": 0,
+      "shopName": '1(1) 1**********',
+      "shopItem": 'Transfer successful',
+      "accountNameFrom": '支付宝余额',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1727001374000,
+      "channel": '支付宝[转账-支出]',
+    },
+  ]));
+
+test('支付宝转账收款-英文', () =>
+  testAnkio('支付宝转账收款-英文', [
+    {
+      "type": "Income",
+      "money": 0.01,
+      "fee": 0,
+      "shopName": '11451 1**********',
+      "shopItem": 'Transfer received',
+      "accountNameFrom": '支付宝余额',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1727004014000,
+      "channel": '支付宝[转账-收入]',
+    },
+  ]));
