@@ -35,7 +35,7 @@ export function get(data) {
   data = JSON.parse(data);
   let pl = JSON.parse(data[0].pl);
   let t = data[0].mct;
-  if (pl.title.indexOf('付款成功') !== -1 || pl.title.indexOf('自动扣款') !== -1) {
+  if (pl.title.indexOf('付款成功') !== -1 || pl.title.indexOf('自动扣款') !== -1 || pl.title.indexOf('Payment successful') !== -1) {
     return expend(pl, t);
   }else if (pl.homePageTitle.indexOf('收到一笔奖励') !== -1 || pl.title.indexOf('资金到账通知') !== -1  || pl.title.indexOf('退款通知') !== -1) {
     return income(pl, t);

@@ -85,3 +85,31 @@ test('支付宝收入', () =>
       "channel": '支付宝[消费-收入]',
     },
   ]));
+
+  test('支付宝消费-英文', () =>
+    testAnkio('支付宝消费-英文', [
+      {
+        "type": "Expend",
+        "money": 14.9,
+        "fee": 0,
+        "shopName": '东南大学',
+        "shopItem": 'Payment successful￥14.90 ',
+        "accountNameFrom": 'BOC Debit Card(9372)',
+        "accountNameTo": '',
+        "currency": 'CNY',
+        "time": 1726910854000,
+        "channel": '支付宝[消费-支出]',
+      },
+      {
+        "type": "Expend",
+        "money": 12.5,
+        "fee": 0,
+        "shopName": '东南大学',
+        "shopItem": 'Payment successful￥12.50 ',
+        "accountNameFrom": 'BOC Debit Card(9372)',
+        "accountNameTo": '',
+        "currency": 'CNY',
+        "time": 1726996018000,
+        "channel": '支付宝[消费-支出]',
+      },
+    ]));
