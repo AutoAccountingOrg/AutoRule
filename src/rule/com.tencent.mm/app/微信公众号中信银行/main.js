@@ -1,49 +1,50 @@
-import { BillType, Currency, formatDate, RuleObject } from 'common/index.js';
+import { BillType, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
-const SOURCE_NAME_BOC = '中信银行';
-const TITLES_BOC = ['交易提醒'];
+const SOURCE = '中信银行';
+const TITLE = ['交易提醒'];
 
 // 正则表达式和处理函数的映射关系
-const regexMapBOC = [
-  [
+const rules = [
+  {
     //5月7日10:50
-    /交易时间：尾号(.*?)储蓄卡(.*?)\n交易类型：(.*?)\n交易金额：(.*?) ([\d,]+.\d{2}) 元\n卡内余额：人民币 ([\d,]+.\d{2}) 元/,
-    match => {
-      var matchType = match[3];
-      var matchTypeName = '';
-      var shopItem = '';
-      switch (matchType) {
-        case '实发房补':
-        case '实发工资':
-          matchTypeName = '收入';
-          shopItem = matchType;
-          matchType = BillType.Income;
-          break;
+    "regex": /交易时间：尾号(.*?)储蓄卡(.*?)\n交易类型：(.*?)\n交易金额：(.*?) ([\d,]+.\d{2}) 元\n卡内余额：人民币 ([\d,]+.\d{2}) 元/,
+    "match": (match) => {
+      let [, number, time, type, currency, money, balance] = match;
+      let matchType = BillType.Expend
+      let shopItem = type;
+      let matchTypeName = "支出";
+      if (type.indexOf('实发') !== -1) {
+        shopItem = type;
+        matchType = BillType.Income;
+        matchTypeName = "收入";
       }
 
-      return {
-        "money": parseFloat(match[5].replace(',', '')),
-        "type": matchType,
-        "time": match[2],
-        "shopItem": shopItem,
-        "accountNameFrom": `${SOURCE_NAME_BOC}储蓄卡(${match[1]})`,
-        "Currency": Currency[match[4]],
-        "channel": `微信[${SOURCE_NAME_BOC}-${matchTypeName}]`,
-      };
-    },
-  ],
+      return new RuleObject(
+        matchType,
+        toFloat(money),
+        '',
+        shopItem,
+        `中信银行储蓄卡(${number})`,
+        '',
+        0.0,
+        Currency[currency], // 5月7日10:50
+        formatDate(time, 'M月D日h:i'),
+        `微信[${SOURCE}-${matchTypeName}]`
+      );
+    }
+  }
 ];
 
 /**
  * @param {string} text - 需要解析的文本
  * @returns {Object|null} - 解析结果对象，如果解析失败则返回null
  */
-function parseBOCText(text) {
-  for (let [regex, handler] of regexMapBOC) {
-    const match = text.match(regex);
+function parseText(text) {
+  for (let rule of rules) {
+    const match = text.match(rule.regex);
     if (match) {
-      return handler(match);
+      return rule.match(match);
     }
   }
   return null;
@@ -55,30 +56,7 @@ function parseBOCText(text) {
  */
 export function get(data) {
   const mapItem = JSON.parse(data).mMap;
-  if (
-    mapItem.source !== SOURCE_NAME_BOC ||
-    !TITLES_BOC.includes(mapItem.title)
-  ) {
-    return null;
-  }
+  if (mapItem.source !== SOURCE || !TITLE.includes(mapItem.title)) return null;
 
-  // 解析文本
-  const parsedText = parseBOCText(mapItem.description);
-  if (!parsedText || parsedText.type === null) {
-    return null;
-  }
-
-  // 创建并返回RuleObject对象
-  return new RuleObject(
-    parsedText.type,
-    parsedText.money,
-    parsedText.shopName,
-    parsedText.shopItem,
-    parsedText.accountNameFrom,
-    parsedText.accountNameTo,
-    0,
-    parsedText.Currency, //5月7日10:50
-    formatDate(parsedText.time, 'M月D日h:i'),
-    parsedText.channel
-  );
+  return parseText(mapItem.description)
 }
