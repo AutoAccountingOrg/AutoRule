@@ -1,6 +1,4 @@
 const { get } = require('./main');
-const fs = require('fs');
-const path = require('path');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 
 const { formatDate } = require('common/index.js');

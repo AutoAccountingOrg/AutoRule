@@ -17,7 +17,6 @@ const rules = [
         toFloat(money),
         shopName,
         '',
-
         `中国工商银行信用卡(${number})`,
         '',
         0.0,
