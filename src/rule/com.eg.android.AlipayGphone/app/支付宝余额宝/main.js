@@ -12,6 +12,14 @@ function autoTransfer(pl,t){
   obj.time = t;
   obj.accountNameFrom = '支付宝余额';
   obj.accountNameTo = '余额宝';
+
+  if (pl.content.indexOf('奖励') !== -1) {
+    obj.channel = `支付宝[余额宝-红包]`;
+    obj.type = BillType.Income;
+    obj.accountNameFrom = '余额宝';
+    obj.accountNameTo = '';
+  }
+
   return obj;
 
 }
