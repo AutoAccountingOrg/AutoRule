@@ -17,6 +17,6 @@ test('中信银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('07月11日19:22', 'M月D日h:i'),
-      "channel": '微信[中信银行信用卡-消费]',
+      "channel": '微信[中信银行信用卡-支出]',
     },
   ]));
