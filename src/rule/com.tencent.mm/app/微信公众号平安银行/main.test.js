@@ -23,7 +23,7 @@ test('平安银行消费', () =>
       "money": 0.01,
       "fee": 0,
       "shopName": '',
-      "shopItem": '',
+      "shopItem": '转账转出',
       "accountNameFrom": '平安银行(6274)',
       "accountNameTo": '',
       "currency": 'CNY',
