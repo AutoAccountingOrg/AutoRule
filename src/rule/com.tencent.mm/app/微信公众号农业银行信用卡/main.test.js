@@ -19,6 +19,6 @@ test('农业银行信用卡支出', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('2024-05-26 20:09:20', 'Y-M-D h:i:s'),
-      "channel": '微信[农业银行信用卡-支出]',
+      "channel": '微信[农业银行信用卡-消费]',
     },
   ]));
