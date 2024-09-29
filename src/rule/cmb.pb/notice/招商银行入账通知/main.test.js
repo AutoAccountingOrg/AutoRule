@@ -15,7 +15,7 @@ test('招商银行入账', () =>
       "accountNameFrom": '招商银行(6598)',
       "accountNameTo": '',
       "currency": 'CNY',
-      "time": formatDate(),
+      "time": 1711393810000,
       "channel": '招商银行[入账]',
     },
   ]));
