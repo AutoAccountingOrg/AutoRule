@@ -161,3 +161,8 @@ export const Currency = {
   "赞比亚克瓦查": 'ZMW',
   "津巴布韦元": 'ZWL'
 };
+export function transferCurrency (currency) {
+  if (currency === "RMB")return "CNY";
+  return Currency[currency] || currency;
+
+}
