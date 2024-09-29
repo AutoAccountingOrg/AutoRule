@@ -42,6 +42,18 @@ test('支付宝消费', () =>
       "time": 1712723745000,
       "channel": '支付宝[消费-支出]',
     },
+    {
+      "type": "Expend",
+      "money": 19,
+      "fee": 0,
+      "shopName": '武汉供电公司',
+      "shopItem": '付款成功￥19.00 ',
+      "accountNameFrom": '花呗',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1726901065000,
+      "channel": '支付宝[消费-支出]',
+    },
 
   ]));
 

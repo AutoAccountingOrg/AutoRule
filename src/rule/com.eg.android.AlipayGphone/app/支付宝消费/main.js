@@ -11,6 +11,10 @@ function expend(pl,t){
   obj.time = t;
   obj.money =  toFloat(content.money);
   obj.shopItem = obj.shopItem || pl.homePageTitle;
+
+  let extras = JSON.parse(pl.extraInfo);
+  obj.shopName = obj.shopName || extras.sceneExt2.sceneName;
+
   return obj;
 }
 
