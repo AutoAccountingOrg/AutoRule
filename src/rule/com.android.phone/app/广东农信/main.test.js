@@ -1,7 +1,7 @@
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
-testAnkioInit(get, __dirname, 'cmb.pb');
+testAnkioInit(get, __dirname, 'com.android.phone');
 test('广东农信收入', () =>
   testAnkio('广东农信收入', [
     {
