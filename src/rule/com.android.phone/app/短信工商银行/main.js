@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, RuleObject, splitSms, toFloat } from 'common/index.js';
+import { BillType, formatDate, RuleObject, splitSms, toFloat } from 'common/index.js';
 
 let rules = [
   {
