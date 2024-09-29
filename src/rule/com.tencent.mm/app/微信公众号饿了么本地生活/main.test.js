@@ -13,7 +13,7 @@ test('饿了么本地生活消费', () =>
       "type": "Expend",
       "money": 22.29,
       "fee": 0,
-      "shopName": '饿了么',
+      "shopName": '饿了么本地生活',
       "shopItem": '',
       "accountNameFrom": '',
       "accountNameTo": '',

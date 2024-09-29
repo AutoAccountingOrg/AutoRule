@@ -54,7 +54,7 @@ test('美团退款', () =>
       "accountNameFrom": '招商银行信用卡(0898)',
       "accountNameTo": '',
       "currency": 'CNY',
-      "time": formatDate(),
+      "time": 1712638021000,
       "channel": '微信[美团-退款]',
     },
   ]));

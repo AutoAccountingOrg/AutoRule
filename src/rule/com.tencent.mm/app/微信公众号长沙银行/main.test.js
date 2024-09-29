@@ -16,7 +16,7 @@ test('长沙银行取出', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月10日09:03', 'M月D日h:i'),
-      "channel": '微信[长沙银行交易通知]',
+      "channel": '微信[长沙银行-交易]',
     },
     {
       "type": "Expend",
@@ -28,7 +28,7 @@ test('长沙银行取出', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月17日14:54', 'M月D日h:i'),
-      "channel": '微信[长沙银行交易通知]',
+      "channel": '微信[长沙银行-交易]',
     },
     {
       "type": "Expend",
@@ -40,6 +40,6 @@ test('长沙银行取出', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月18日08:08', 'M月D日h:i'),
-      "channel": '微信[长沙银行交易通知]',
+      "channel": '微信[长沙银行-交易]',
     },
   ]));

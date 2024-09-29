@@ -16,6 +16,6 @@ test('收钱吧消费通知', () =>
       "fee": 0,
       "currency": 'CNY',
       "time": formatDate(),
-      "channel": '微信[收钱吧消费通知]',
+      "channel": '微信[收钱吧福利社-消费通知]',
     },
   ]));
