@@ -30,6 +30,18 @@ test('支付宝普通交易', () =>
       "time": 1717858508000,
       "channel": '支付宝[普通交易]',
     },
+    {
+      "type": "Expend",
+      "money":  24.8,
+      "fee": 0,
+      "shopName": '小白**店',
+      "shopItem": '【活动价】小白心里软爆浆鸡蛋仔早餐蛋糕整箱面包健康充饥零食夜宵小吃',
+      "accountNameFrom": '支付宝余额',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1726382698000,
+      "channel": '支付宝[普通交易]',
+    },
   ]));
 
 test('支付宝收钱码服务费', () =>

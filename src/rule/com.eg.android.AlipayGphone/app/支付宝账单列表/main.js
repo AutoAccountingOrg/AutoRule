@@ -15,7 +15,7 @@ export function get(data) {
   let obj = new RuleObject();
 
   AliTools.handleBillItems(json.fields, obj);
-  processBizType(json.extension, obj)
+  processBizType(json.extension, obj,json.innerLoopModelView)
 
   return obj;
 }
@@ -26,7 +26,7 @@ export function get(data) {
  * @param {Object} result - 结果对象
  * @returns {boolean} - 处理结果
  */
-function processBizType(extension, result) {
+function processBizType(extension, result,innerLoopModelView) {
   switch (extension.bizType) {
     case 'CHARGE':
       result.accountNameFrom = '支付宝余额';
@@ -35,6 +35,7 @@ function processBizType(extension, result) {
     case 'TRADE':
       result.accountNameFrom = '支付宝余额';
       result.channel = '支付宝[普通交易]';
+      result.shopItem = result.shopItem || innerLoopModelView.params.consumeTitle;
       break;
     case 'D_TRANSFER':
       result.accountNameFrom = '支付宝余额';
