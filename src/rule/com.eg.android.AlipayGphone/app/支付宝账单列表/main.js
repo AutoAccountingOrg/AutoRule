@@ -41,7 +41,13 @@ function processBizType(extension, result) {
       result.channel = '支付宝[转账收款]';
       break;
     case 'YEB':
-      result.accountNameTo = '余额宝';
+      if (result.shopItem.indexOf('奖励') !== -1) {
+        result.type = BillType.Income;
+        result.accountNameFrom = '余额宝';
+      }else{
+        result.accountNameTo = '余额宝';
+      }
+
       result.channel = '支付宝[余额宝转账]';
       break;
     case 'MINITRANS':
