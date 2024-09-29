@@ -1,8 +1,8 @@
 import { BillType, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
-const SOURCE_NAME_BOC = '中国建设银行';
-const TITLES_BOC = ['交易提醒', '交易结果通知', '实时交易提醒'];
+const SOURCE = '中国建设银行';
+const TITLES = ['交易提醒', '交易结果通知', '实时交易提醒'];
 
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = [
@@ -17,9 +17,9 @@ const regexMapBOC = [
             ? BillType.Income
             : null,
       "time": formatDate(match[1], 'Y年M月D日 h:i:s'),
-      "accountNameFrom": `${SOURCE_NAME_BOC}储蓄卡(${match[3]})`,
+      "accountNameFrom": `${SOURCE}储蓄卡(${match[3]})`,
       "Currency": Currency[match[5]],
-      "channel": `微信[${SOURCE_NAME_BOC}-${match[2]}]`,
+      "channel": `微信[${SOURCE}-${match[2]}]`,
     }),
   ],
   [
@@ -31,9 +31,9 @@ const regexMapBOC = [
         "money": toFloat(money),
         "type": BillType.Expend, //5月17日 17时52分
         "time": formatDate(time, 'M月D日 h时i分'),
-        "accountNameFrom": `${SOURCE_NAME_BOC}信用卡(${number})`,
+        "accountNameFrom": `${SOURCE}信用卡(${number})`,
         "Currency": Currency[currency],
-        "channel": `微信[${SOURCE_NAME_BOC}信用卡-支出]`,
+        "channel": `微信[${SOURCE}信用卡-支出]`,
       };
     },
   ],
@@ -48,9 +48,9 @@ const regexMapBOC = [
         "type": BillType.Income, //5月17日 17时52分
         "time": formatDate(time, 'Y年M月D日h时i分'),
         "shopItem": type,
-        "accountNameFrom": `${SOURCE_NAME_BOC}信用卡(${number})`,
+        "accountNameFrom": `${SOURCE}信用卡(${number})`,
         "Currency": Currency[currency],
-        "channel": `微信[${SOURCE_NAME_BOC}信用卡-收入]`,
+        "channel": `微信[${SOURCE}信用卡-收入]`,
       };
     },
   ],
@@ -77,8 +77,8 @@ function parseBOCText(text) {
 export function get(data) {
   const mapItem = JSON.parse(data).mMap;
   if (
-    mapItem.source !== SOURCE_NAME_BOC ||
-    !TITLES_BOC.includes(mapItem.title)
+    mapItem.source !== SOURCE ||
+    !TITLES.includes(mapItem.title)
   ) {
     return null;
   }

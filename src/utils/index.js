@@ -6,6 +6,7 @@ import { toDoubleFloat, toFloat } from './Number.js';
 import { RuleObject } from './RuleObject.js';
 import { AliTools } from './AliTools.js';
 import { splitSms } from './SmsTools.js';
+import { parseWechat}  from 'common/WechatTools.js';
 
 export {
   BillType,
@@ -19,4 +20,5 @@ export {
   RuleObject,
   AliTools,
   splitSms,
+  parseWechat
 };

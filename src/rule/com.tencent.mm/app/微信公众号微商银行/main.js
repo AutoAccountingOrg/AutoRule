@@ -1,8 +1,8 @@
 import { BillType, Currency, formatDate, RuleObject } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
-const SOURCE_NAME_BOC = '徽商银行';
-const TITLES_BOC = ['交易提醒'];
+const SOURCE = '徽商银行';
+const TITLES = ['交易提醒'];
 
 // 正则表达式和处理函数的映射关系
 const regexMapBOC = [
@@ -15,7 +15,7 @@ const regexMapBOC = [
       "shopItem": match[2],
       "accountNameFrom": `${match[5]}(${match[4]})`,
       "Currency": Currency['人民币'],
-      "channel": `微信[${SOURCE_NAME_BOC}-消费]`,
+      "channel": `微信[${SOURCE}-消费]`,
     }),
   ],
   [
@@ -27,7 +27,7 @@ const regexMapBOC = [
       "shopItem": match[2],
       "accountNameFrom": `${match[5]}(${match[4]})`,
       "Currency": Currency['人民币'],
-      "channel": `微信[${SOURCE_NAME_BOC}-退款]`,
+      "channel": `微信[${SOURCE}-退款]`,
     }),
   ],
 ];
@@ -53,8 +53,8 @@ function parseBOCText(text) {
 export function get(data) {
   const mapItem = JSON.parse(data).mMap;
   if (
-    mapItem.source !== SOURCE_NAME_BOC ||
-    !TITLES_BOC.includes(mapItem.title)
+    mapItem.source !== SOURCE ||
+    !TITLES.includes(mapItem.title)
   ) {
     return null;
   }
