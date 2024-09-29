@@ -38,7 +38,11 @@ export function get(data) {
   let pl = JSON.parse(data[0].pl);
   let t = data[0].mct;
   if (pl.title.indexOf('网商银行') === -1 ) {
-   return null
+   return null;
+  }
+
+  if (pl.content.indexOf('做任务') !== -1){
+    return null;
   }
 
   if (pl.templateName.indexOf("交易成功提醒")===-1){
@@ -46,6 +50,4 @@ export function get(data) {
   }
 
   return expand(pl,t);
-
-  return null;
 }
