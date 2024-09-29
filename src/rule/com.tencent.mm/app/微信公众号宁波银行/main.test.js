@@ -34,6 +34,6 @@ test('宁波银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('09月16日 10:29', 'M月D日 h:i'),
-      "channel": '微信[宁波银行-收入]',
+      "channel": '微信[宁波银行-支出]',
     },
   ]));
