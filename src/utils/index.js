@@ -5,6 +5,7 @@ import { formatDate, isTimeInRange } from './Time.js';
 import { toDoubleFloat, toFloat } from './Number.js';
 import { RuleObject } from './RuleObject.js';
 import { AliTools } from './AliTools.js';
+import { splitSms } from './SmsTools.js';
 
 export {
   BillType,
@@ -17,4 +18,5 @@ export {
   toDoubleFloat,
   RuleObject,
   AliTools,
+  splitSms,
 };
