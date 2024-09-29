@@ -1,34 +1,35 @@
 import { BillType, isTimeInRange } from 'common/index.js';
 
+
+function getLevel2 (category) {
+  switch (category) {
+    case '三餐':
+      if (isTimeInRange('06:00', '09:30', time)) {
+        return '早餐';
+      }
+      if (isTimeInRange('9:30', '10:30', time)) {
+        return '早茶';
+      }
+      if (isTimeInRange('10:30', '14:30', time)) {
+        return '午餐';
+      }
+      if (isTimeInRange('14:30', '16:00', time)) {
+        return '下午茶';
+      }
+      if (isTimeInRange('16:00', '21:30', time)) {
+        return '晚餐';
+      }
+      if (isTimeInRange('21:30', '06:00', time)) {
+        return '夜宵';
+      }
+  }
+  return category;
+}
+
+
 export function get(money, type, shopName, shopItem, time) {
   let string = `${shopName}_${shopItem}`;
-  /**
-   * 根据其他条件获取二级分类
-   */
-  function getLevel2(category) {
-    switch (category) {
-      case '三餐':
-        if (isTimeInRange('06:00', '09:30', time)) {
-          return '早餐';
-        }
-        if (isTimeInRange('9:30', '10:30', time)) {
-          return '早茶';
-        }
-        if (isTimeInRange('10:30', '14:30', time)) {
-          return '午餐';
-        }
-        if (isTimeInRange('14:30', '16:00', time)) {
-          return '下午茶';
-        }
-        if (isTimeInRange('16:00', '21:30', time)) {
-          return '晚餐';
-        }
-        if (isTimeInRange('21:30', '06:00', time)) {
-          return '夜宵';
-        }
-    }
-    return category;
-  }
+
   const publicRule = {
     "快赎理财": /(余[额利]宝)|朝朝宝|活期\+/,
     "基金": /基金(?!会)/,
@@ -61,7 +62,7 @@ export function get(money, type, shopName, shopItem, time) {
 
       "烟酒": /烟酒|[香云]烟|酒(?![店楼家])|雪茄|芙蓉王|大中华|红双喜|中南海|玉溪|红河|利群|金圣|野山茶|五粮液|茅台|国窖1573|[天海梦]之蓝|水井坊|剑南春|四特|稻花香|二锅头|马尿|老(白干|村长)|波尔多|拉菲|黑桃A|赤霞珠|[干甜][红白]|香槟|白兰地|伏特加|威士忌|纯生|乌苏|百威|燕京|雪[津花]|麦之初|科罗娜/i,
 
-      "搬家": /搬家|货拉拉/,
+      "搬家": /搬家|货拉拉|货运/,
 
       "购物": /小卖部|拼多多|[保免]税店|七件事|蔚然锦和|超市|便利|建材|五金|.*客隆|家.{0,2}福|快乐惠|世纪联华|联华超市|大润发|华润万家|苏果|沃尔玛|物美|新一佳|好又多|华联|文峰大世界|TESCO乐购|易初莲花|麦德龙|中百连锁仓储|人人乐|家家悦|潍坊百货|欧尚|永辉|武商量贩|新华都|步步高商业|永旺|红旗连锁|三江购物|互惠|美廉美|百佳超市|易买得|维客|美特好|保龙仓|华普|利客来|良友金伴|美宜佳|华冠|家润多|华之友|好家乡|惠友|民生家乐|思达|雅家乐|天惠|新江厦|喜洋洋|乐尔乐|汇米巴|山姆|家[用居具]|厨[房具]|工具|[餐炒炖炸蒸烤食煨煮卤饺煎馍](?=.*[用器])|炖[盅锅]|餐[具盘巾勺桌椅]|炒[锅勺冰板栗用]|蒸[笼屉锅片布箱柜]|炸[锅]|烤[箱架盘火炉]|饭[碗锅勺]|枕头|[床被][单套]|床上用品|凉席|阀门|开关|扎带|购物/,
 
@@ -144,5 +145,5 @@ export function get(money, type, shopName, shopItem, time) {
       break;
     }
   }
-  return { "category": getLevel2(category), "book": '默认账本' };
+  return { "parent":category,"category": getLevel2(category), "book": '默认账本' };
 }
