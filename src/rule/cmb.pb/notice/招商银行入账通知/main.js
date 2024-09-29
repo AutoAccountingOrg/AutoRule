@@ -10,8 +10,6 @@ export function get(data) {
   }
   let [,number,currency,money] = match;
 
-  if (money <= 0)return null;
-
   let obj = new RuleObject();
 
   obj.money = toFloat(money);
