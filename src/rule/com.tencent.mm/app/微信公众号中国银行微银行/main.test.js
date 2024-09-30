@@ -23,6 +23,21 @@ test('中国银行入账', () =>
     },
   ]));
 
+test('中国银行跨行转入', () =>
+  testAnkio('中国银行跨行转入', [
+    {
+      "type": "Income",
+      "money":  780.22,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '跨行转入',
+      "accountNameFrom": '中国银行(2119)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('09月26日17:25', 'M月D日h:i'),
+      "channel": '微信[中国银行-入账]',
+    },
+  ]));
 test('中国银行退款', () =>
   testAnkio('中国银行退款', [
     {
