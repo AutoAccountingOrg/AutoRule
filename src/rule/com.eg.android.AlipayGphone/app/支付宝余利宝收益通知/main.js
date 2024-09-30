@@ -3,7 +3,7 @@ import { BillType, RuleObject, toFloat } from 'common/index.js';
 export function get(data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
-  if (pl.link.indexOf('alipay-yulibao') === -1) {
+  if (pl.title.indexOf('余利宝') === -1) {
     return null;
   }
   let t = json.mct;
