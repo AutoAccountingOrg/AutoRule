@@ -1,0 +1,39 @@
+{
+    "trans_status": 2001,
+    "retcode": "0",
+    "retmsg": "ok",
+    "fee": 1,
+    "fee_type": "1",
+    "refund_bank_type": "BANK",
+    "payer_name": "wxid_whdi24xachzt12",
+    "receiver_name": "wxid_ls2ejlicad8b22",
+    "status_desc": "%s已收款",
+    "status_supplementary": "",
+    "delay_confirm_flag": 0,
+    "is_payer": true,
+    "desc_item_list": [
+        {
+            "key": "转账时间",
+            "value": "2024年09月21日 21:20:06",
+            "item_type": 3
+        },
+        {
+            "key": "收款时间",
+            "value": "2024年09月21日 21:20:08",
+            "item_type": 4
+        }
+    ],
+    "upright_corner_list": [
+        {
+            "wording": "帮助与反馈",
+            "jump_info": {
+                "type": 1,
+                "url": "https:\/\/pay.weixin.qq.com\/mmpaykf\/faqmanage?ver=v1&trans_id=53010000960123202409211023609795&create_time=1726924806&scene_code=transfer_bill#wechat_redirect"
+            }
+        }
+    ],
+    "customer_info_list": [
+
+    ],
+    "hookUser": "刘坤洋"
+}

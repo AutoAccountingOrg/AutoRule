@@ -31,3 +31,18 @@ test('微信转账收款', () =>
       "channel": '微信[转账收款]',
     },
   ]));
+test('微信转账付款', () =>
+  testAnkio('微信转账付款', [
+    {
+      "type": "Expend",
+      "money": 0.01,
+      "fee": 0,
+      "shopName": '刘坤洋',
+      "shopItem": '已收款',
+      "accountNameFrom": '',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年09月21日 21:20:06', 'Y年M月D日 h:i:s'),
+      "channel": '微信[转账付款]',
+    },
+  ]));

@@ -8,16 +8,29 @@ export function get(data) {
   // 解析数据
   data = JSON.parse(data);
 
+  let billType = BillType.Income
+  let payTools, channel,t
+  if (data.is_payer){
+    billType = BillType.Expend
+    payTools = data.cachedPayTools
+    channel = '微信[转账付款]'
+    t = formatDate(data.desc_item_list[0].value, 'Y年M月D日 h:i:s')
+  }else {
+    payTools = data.status_desc.replace("你已收款，资金已存入","")
+    channel = '微信[转账收款]'
+    t = formatDate(data.desc_item_list[1].value, 'Y年M月D日 h:i:s')
+  }
+
   // 创建并返回RuleObject对象
   return new RuleObject(
-    BillType.Income,
+    billType,
     toDoubleFloat(data.fee),
     data.hookUser,
-    data.status_desc,
-    '零钱',
+    data.status_desc.replace("%s",""),
+    payTools,
     '',
     0,
     Currency['人民币'],
-    formatDate(data.desc_item_list[1].value, 'Y年M月D日 h:i:s'),
-    '微信[转账收款]'  );
+    t,
+    `${channel}`  );
 }
