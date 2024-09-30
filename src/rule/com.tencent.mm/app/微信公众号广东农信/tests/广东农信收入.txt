@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易账号:借记卡（尾号0666）\n交易时间:2024-09-25 12:09\n交易类型:收入\n交易金额:人民币1000.00元\n可用余额:人民币8888.12元","source":"广东农信","arg":"msgId","type":5,"appId":"","msgId":12897673,"title":"交易提醒"}}
