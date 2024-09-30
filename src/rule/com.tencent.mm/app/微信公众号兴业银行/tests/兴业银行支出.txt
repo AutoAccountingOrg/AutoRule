@@ -1,0 +1,12 @@
+{
+    "mMap": {
+        "tableName": "AppMessage",
+        "description": "交易时间：2024年09月22日  20:40\n交易类型：借记卡*4715跨行消费支出\n交易金额：5,192.00 元\n卡内余额：624.18 元",
+        "source": "兴业银行",
+        "arg": "msgId",
+        "type": 5,
+        "appId": "",
+        "msgId": 10060340,
+        "title": "交易提醒"
+    }
+}
