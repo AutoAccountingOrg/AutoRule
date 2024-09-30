@@ -25,9 +25,10 @@ const rules = [
     }
   ],
   [
-    /服务商户：(.*?)\n交易类型：(.*?)\n交易订单：\d+\n交易时间：(.*?)\n消费金额：(\d+.\d{2})元/,
+  // 服务商户：京东平台商户\n交易类型：不分期\n交易订单：付款先享后付\n交易时间：09月25日 08:31:56\n消费金额：15.07元
+    /服务商户：(.*?)\n交易类型：(.*?)\n交易订单：(.*?)\n交易时间：(.*?)\n消费金额：(\d+.\d{2})元/,
     match => {
-    const [, shopName, shopItem, time, money] = match;
+    const [, shopName, shopItem, ,time, money] = match;
       return new RuleObject(
         BillType.Expend,
         parseFloat(money),

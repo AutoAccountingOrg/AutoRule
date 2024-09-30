@@ -46,4 +46,16 @@ test('京东白条消费', () =>
       "time": formatDate(`09月17日 05:04:45`, 'M月D日 h:i:s'),
       "channel": '微信[京东白条-消费]',
     },
+    {
+      "type": "Expend",
+      "money": 15.07,
+      "fee": 0,
+      "shopName": '京东平台商户',
+      "shopItem": '不分期',
+      "accountNameFrom": '京东白条',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate(`09月25日 08:31:56`, 'M月D日 h:i:s'),
+      "channel": '微信[京东白条-消费]',
+    },
   ]));
