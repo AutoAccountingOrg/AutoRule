@@ -1,29 +1,6 @@
 import { BillType, isTimeInRange } from 'common/index.js';
 
-function getLevel2 (category) {
-  switch (category) {
-    case '三餐':
-      if (isTimeInRange('06:00', '09:30', time)) {
-        return '早餐';
-      }
-      if (isTimeInRange('9:30', '10:30', time)) {
-        return '早茶';
-      }
-      if (isTimeInRange('10:30', '14:30', time)) {
-        return '午餐';
-      }
-      if (isTimeInRange('14:30', '16:00', time)) {
-        return '下午茶';
-      }
-      if (isTimeInRange('16:00', '21:30', time)) {
-        return '晚餐';
-      }
-      if (isTimeInRange('21:30', '06:00', time)) {
-        return '夜宵';
-      }
-  }
-  return category;
-}
+
 
 
 export function get(money, type, shopName, shopItem, time) {
@@ -137,6 +114,30 @@ export function get(money, type, shopName, shopItem, time) {
     });
   }
 
+  function getLevel2 (category) {
+    switch (category) {
+      case '三餐':
+        if (isTimeInRange('06:00', '09:30', time)) {
+          return '早餐';
+        }
+        if (isTimeInRange('9:30', '10:30', time)) {
+          return '早茶';
+        }
+        if (isTimeInRange('10:30', '14:30', time)) {
+          return '午餐';
+        }
+        if (isTimeInRange('14:30', '16:00', time)) {
+          return '下午茶';
+        }
+        if (isTimeInRange('16:00', '21:30', time)) {
+          return '晚餐';
+        }
+        if (isTimeInRange('21:30', '06:00', time)) {
+          return '夜宵';
+        }
+    }
+    return category;
+  }
   let category = '其他';
   for (const key in rules) {
     if (rules[key].test(string)) {
