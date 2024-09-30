@@ -20,3 +20,21 @@ test('江苏银行信用卡消费', () =>
     },
 
   ]));
+
+
+test('江苏银行信用卡还款', () =>
+  testAnkio('江苏银行信用卡还款', [
+    {
+      "type": "Transfer",
+      "money": 1795.68,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '支付宝-信用卡还款信用卡还款 ',
+      "accountNameFrom": '',
+      "accountNameTo": '江苏银行(6706)',
+      "currency": 'CNY',
+      "time": formatDate('09月26日 12:21', 'M月D日 h:i'),
+      "channel": '微信[江苏银行-消费]',
+    },
+
+  ]));
