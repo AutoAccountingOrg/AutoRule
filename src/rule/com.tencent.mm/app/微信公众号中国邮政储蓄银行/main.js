@@ -14,7 +14,11 @@ const rules = [
       let [, time,number,shopItem,money] = match;
       let type  = BillType.Income;
       let typeName = "收入"
-      if (shopItem.indexOf("支付")!==-1){
+      let expendList = [
+        "银联快捷",
+        "快捷支付"
+      ]
+      if (expendList.includes(shopItem)) {
         type = BillType.Expend;
         typeName = "支出"
       }
