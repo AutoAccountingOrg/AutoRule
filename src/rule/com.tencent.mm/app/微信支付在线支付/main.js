@@ -3,7 +3,8 @@ import { BillType, Currency, formatDate, RuleObject, toFloat, findNonEmptyString
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
 const TITLE_WECHAT = [
-  '已支付¥'
+  '已支付¥',
+  '¥ paid'
 ];
 
 // 正则表达式和处理函数的映射关系
@@ -37,6 +38,25 @@ const rules =[
         item.display_name,
         '',
         accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-在线支付]'
+      );
+    },
+  ],
+  [
+    //Paid by Balance¥3900.00\nAcquirer财付通支付科技有限公司
+    /Paid by (.*?)¥(\d+\.\d{2})\nAcquirer(.*?)$/,
+    (match,t,item) => {
+      let [, accountNameFrom, money,shopName] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        item.display_name,
+        shopName,
+        accountNameFrom === "Balance"? '微信零钱': accountNameFrom,
         '',
         0.0,
         Currency['人民币'],
