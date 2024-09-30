@@ -49,3 +49,19 @@ test('工商银行入账', () =>
       "channel": '微信[中国工商银行借记卡-收入]',
     },
 ]));
+
+test('工商银行出账', () =>
+  testAnkio('工商银行出账', [
+    {
+      "type": "Expend",
+      "money": 0.1,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '充值财付通-微信零钱充值账户',
+      "accountNameFrom": '中国工商银行借记卡(9821)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年9月19日07:56', 'Y年M月D日h:i'),
+      "channel": '微信[中国工商银行借记卡-支出]',
+    },
+  ]));
