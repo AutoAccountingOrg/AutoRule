@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"车牌号:******\n入口站点:广东浸潭站\n出口站点:广东清新站\n出口时间:2024-09-22 19:45:04\n消费金额:19.95元\n","source":"广东粤通卡ETC服务","arg":"msgId","type":5,"appId":"","msgId":803079,"title":"高速通行通知"}}
