@@ -10,15 +10,15 @@ const TITLE_WECHAT = [
 const rules =[
   [
     // 扣费金额￥4.50\n扣费项目成都地铁微信免密支付\n扣费方式工商银行\n收单机构财付通支付科技有限公司\n乘车路线5号线皇花园-6号线牛王庙\n乘车时间2024-09-23 09:15:38\n备注你在成都地铁的账号成都地铁扣费成功，你可以点击消息管理你的扣费项目
-
-    /扣费金额￥(\d+\.\d{2})\n扣费项目(.*?)\n扣费方式(.*?)\n收单机构(.*?)\n乘车路线(.*?)\n乘车时间(.*?)\n备注(.*?)扣费成功，你可以点击消息管理你的扣费项目/,
+    // 扣费金额￥1.80\n扣费项目长春地区公交微信免密支付\n扣费方式零钱\n收单机构财付通支付科技有限公司\n乘车时间2024-09-26 14:41:59\n备注你在长春市科云科技有限公司的账号199****0759扣费成功，你可以点击消息管理你的扣费项目
+    /扣费金额￥(\d+\.\d{2})\n扣费项目(.*?)\n扣费方式(.*?)\n收单机构(.*?)(\n乘车路线(.*?))?\n乘车时间(.*?)\n备注(.*?)，你可以点击消息管理你的扣费项目/,
     (match,t,item) => {
-      const [, money, shopName, accountNameFrom,,shopItem, time,  remark] = match;
+      const [, money, shopName, accountNameFrom,,,shopItem, time,  remark] = match;
       return new RuleObject(
         BillType.Expend,
         toFloat(money),
         shopName,
-        shopItem,
+        findNonEmptyString(shopItem,remark),
         accountNameFrom,
         '',
         0.0,

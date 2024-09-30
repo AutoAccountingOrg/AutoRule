@@ -79,4 +79,16 @@ test('微信支付自动扣费', () =>
       "time": 0,
       "channel": '微信[微信支付-扣款]',
     },
+    {
+      "type": "Expend",
+      "money": 1.8,
+      "fee": 0,
+      "shopName": '长春地区公交微信免密支付',
+      "shopItem": '你在长春市科云科技有限公司的账号199****0759扣费成功',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 0,
+      "channel": '微信[微信支付-扣款]',
+    },
   ]));
