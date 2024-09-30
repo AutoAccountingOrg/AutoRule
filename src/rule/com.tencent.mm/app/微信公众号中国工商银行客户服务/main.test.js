@@ -32,3 +32,20 @@ test('工商银行信用卡支出', () =>
       "channel": '微信[中国工商银行信用卡-支出]',
     },
   ]));
+
+
+test('工商银行入账', () =>
+  testAnkio('工商银行入账', [
+    {
+      "type": "Income",
+      "money": 100,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '差旅费',
+      "accountNameFrom": '中国工商银行借记卡(7091)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年9月23日11:31', 'Y年M月D日h:i'),
+      "channel": '微信[中国工商银行借记卡-收入]',
+    },
+]));

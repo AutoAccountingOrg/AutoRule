@@ -26,6 +26,26 @@ const rules = [
       );
     },
   ],
+  // 账号类型：尾号7091的借记卡\n交易时间：2024年9月23日11:31\n交易类型：差旅费\n交易金额：入账 100 人民币元\n账户余额：100 人民币元。点此查明细详情
+  [
+    /账号类型：尾号(\d+)的借记卡\n交易时间：(.*?)\n交易类型：(.*?)\n交易金额：入账 ([\d,]+(.\d{2})?) (.*?)元\n账户余额：/,
+    match => {
+      const [, number, time, shopItem, money,, currency] = match;
+
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        '',
+        shopItem,
+        `中国工商银行借记卡(${number})`,
+        '',
+        0.0,
+        Currency[currency],
+        formatDate(time, 'Y年M月D日h:i'),
+        `微信[中国工商银行借记卡-收入]`
+      );
+    },
+  ],
 ];
 
 
