@@ -39,6 +39,24 @@ const rules =[
     },
   ],
   [
+    /收款金额￥(\d+\.\d{2})\n收款方式(.*?)\n转账备注(.*)$/,
+    (match,t,item) => {
+      let [, money, accountNameFrom, shopItem] = match;
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        item.title,
+        shopItem,
+        accountNameFrom,
+        '',
+        0.0,
+        transferCurrency("人民币"),
+        t,
+        '微信[微信支付-收款（商家）]'
+      );
+    },
+  ],
+  [
     /收款金额￥(\d+\.\d{2})\n收款方式(.*?)$/,
     (match,t,item) => {
   let [, money, accountNameFrom] = match;

@@ -1,0 +1,1 @@
+{"mMap":{"description":"收款金额￥0.66\n收款方式零钱\n转账备注COSTA 开盖100%中奖 ￥6666天天送","source":"微信支付","type":5,"appId":"","msgId":99064,"title":"你收到一笔活动奖励","display_name":"可口可乐","cachedPayTools":"零钱","cachedPayMoney":"￥19.35","cachedPayShop":"向银行卡或手机号转账"}}
