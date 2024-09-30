@@ -9,7 +9,12 @@ export function get(data) {
 
   let obj = new RuleObject(BillType.Expend);
 
-  obj.money = toFloat(json.text);
+  // [4条]微信支付: 已支付¥34.88
+
+  let index= json.text.indexOf("¥");
+  let money = json.text.substring(index+1);
+
+  obj.money = toFloat(money);
   obj.channel = `微信[微信通知-消费]`;
   obj.currency = transferCurrency("人民币");
   obj.shopName = '';

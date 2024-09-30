@@ -18,3 +18,19 @@ test('提现到账', () =>
       "channel": '微信[微信收款助手-提现]',
     },
   ]));
+
+test('微信商家收款', () =>
+  testAnkio('微信商家收款', [
+    {
+      "type": "Income",
+      "money": 1.5,
+      "fee": 0,
+      "shopName": 'A创印（恒晟）广告图文1线',
+      "shopItem": '该顾客累计消费4次(捧场老客)',
+      "accountNameFrom": '微信经营账户',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 0,
+      "channel": '微信[微信收款助手-经营收款]',
+    },
+  ]));

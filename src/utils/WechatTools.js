@@ -18,7 +18,7 @@ function parseText(text,rules,t,item) {
 
 export function parseWechat (data,rules,SOURCE,TITLE) {
   const mapItem = JSON.parse(data).mMap;
-  if (mapItem.source !== SOURCE || !TITLE.includes(mapItem.title.replace(/\d+\.\d{2}/, ''))) return null;
+  if (mapItem.source !== SOURCE || !TITLE.includes(mapItem.title.replace(/[\d.,]+/g, ''))) return null;
 
   return parseText(mapItem.description,rules,mapItem.t,mapItem)
 }
