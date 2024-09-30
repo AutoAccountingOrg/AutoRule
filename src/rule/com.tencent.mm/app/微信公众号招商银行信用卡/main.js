@@ -1,7 +1,7 @@
 import { BillType, Currency, formatDate, parseWechat, RuleObject, transferCurrency } from 'common/index.js';
 
 const SOURCE_NAME = '招商银行信用卡';
-const TITLE = ['交易成功提醒', '自动还款到账提醒'];
+const TITLE = ['交易成功提醒', '自动还款到账提醒','还款提醒'];
 
 // 定义正则表达式，用于匹配交易时间、交易类型、交易金额、交易商户和可用额度
 const rules = [
@@ -34,6 +34,7 @@ const rules = [
     },
   ],
   [
+    // 账户类型:个人消费卡账户\n还款时间:09月26日 12:20:40\n还款金额:人民币3661.60元\n还款结果:账单已还清
     /账户名称：.*?\n还款时间：(.*?)\n还款金额：(.*?)(\d+\.\d{2})/,
     match => {
       const [, time, currency, money] = match;
@@ -47,6 +48,25 @@ const rules = [
         0.0,
         transferCurrency(currency),
         formatDate(time, 'Y年M月D日h:i:s'),
+        `微信[${SOURCE_NAME}-还款]`
+      )
+    },
+  ],
+  [
+    // 账户类型:个人消费卡账户\n还款时间:09月26日 12:20:40\n还款金额:人民币3661.60元\n还款结果:账单已还清
+    /账户类型:个人消费卡账户\n还款时间:(.*?)\n还款金额:(.*?)(\d+\.\d{2})元\n还款结果:(.*?)$/,
+    match => {
+      const [, time, currency, money,shopItem] = match;
+      return new RuleObject(
+        BillType.Transfer,
+        parseFloat(money),
+        '',
+        shopItem,
+        '',
+        SOURCE_NAME,
+        0.0,
+        transferCurrency(currency),
+        formatDate(time, 'M月D日 h:i:s'),
         `微信[${SOURCE_NAME}-还款]`
       )
     },

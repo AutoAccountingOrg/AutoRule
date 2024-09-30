@@ -1,0 +1,12 @@
+{
+    "mMap": {
+        "tableName": "AppMessage",
+        "description": "账户类型:个人消费卡账户\n还款时间:09月26日 12:20:40\n还款金额:人民币3661.60元\n还款结果:账单已还清",
+        "source": "招商银行信用卡",
+        "arg": "msgId",
+        "type": 5,
+        "appId": "",
+        "msgId": 129299,
+        "title": "还款提醒"
+    }
+}

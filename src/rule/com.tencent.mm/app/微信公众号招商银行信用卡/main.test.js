@@ -47,6 +47,18 @@ test('招商银行信用卡还款', () =>
       "time": formatDate('2024年04月13日17:11:44', 'Y年M月D日h:i:s'),
       "channel": '微信[招商银行信用卡-还款]',
     },
+    {
+      "type": "Transfer",
+      "money": 3661.6,
+      "shopName": '',
+      "shopItem": '账单已还清',
+      "accountNameTo": '招商银行信用卡',
+      "accountNameFrom": '',
+      "fee": 0,
+      "currency": 'CNY',
+      "time": formatDate('09月26日 12:20:40', 'M月D日 h:i:s'),
+      "channel": '微信[招商银行信用卡-还款]',
+    },
   ]));
 
 test('招商银行信用卡退货', () =>
