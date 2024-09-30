@@ -1,7 +1,5 @@
 import { AliTools, BillType, RuleObject, toFloat } from 'common/index.js';
 
-
-
 function income(pl,t){
   let obj = new RuleObject(BillType.Income);
 

@@ -1,14 +1,4 @@
-import {
-  BillType,
-  Currency,
-  formatDate,
-  RuleObject,
-  findNonEmptyString,
-  parseWechat,
-  toDoubleFloat
-} from 'common/index.js';
-
-
+import { BillType, Currency, RuleObject, toDoubleFloat } from 'common/index.js';
 
 /**
  * 获取规则对象

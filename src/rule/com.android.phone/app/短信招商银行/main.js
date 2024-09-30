@@ -1,4 +1,5 @@
 import { BillType, Currency, formatDate, RuleObject, splitSms, toFloat } from 'common/index.js';
+
 export function get(data) {
   let { sender,bankName,text,t } = splitSms(data);
   if (bankName !== "招商银行") return null;

@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, RuleObject, toFloat, findNonEmptyString, parseWechat } from 'common/index.js';
+import { BillType, Currency, parseWechat, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';

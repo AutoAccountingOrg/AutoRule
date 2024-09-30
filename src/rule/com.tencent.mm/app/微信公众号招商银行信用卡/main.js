@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, transferCurrency } from 'common/index.js';
+import { BillType, formatDate, parseWechat, RuleObject, transferCurrency } from 'common/index.js';
 
 const SOURCE_NAME = '招商银行信用卡';
 const TITLE = ['交易成功提醒', '自动还款到账提醒','还款提醒'];

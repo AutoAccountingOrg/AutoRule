@@ -1,4 +1,5 @@
 import { BillType, Currency, formatDate, parseWechat, RuleObject } from 'common/index.js';
+
 const SOURCE_NAME = '收钱吧福利社';
 const TITLE = ['交易完成通知'];
 

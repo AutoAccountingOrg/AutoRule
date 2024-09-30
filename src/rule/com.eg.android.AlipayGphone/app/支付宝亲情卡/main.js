@@ -1,8 +1,4 @@
-import { AliTools, RuleObject, toFloat } from 'common/index.js';
-
-
-
-
+import { RuleObject, toFloat } from 'common/index.js';
 
 export function get(data) {
   let json = JSON.parse(data)[0];

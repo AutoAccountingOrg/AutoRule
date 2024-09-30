@@ -1,7 +1,4 @@
-import { BillType, Currency, formatDate, RuleObject, toFloat, transferCurrency } from 'common/index.js';
-
-
-
+import { BillType, RuleObject, toFloat, transferCurrency } from 'common/index.js';
 
 export function get(data) {
   let json = JSON.parse(data)

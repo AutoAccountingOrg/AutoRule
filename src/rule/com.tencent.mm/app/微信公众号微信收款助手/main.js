@@ -1,4 +1,4 @@
-import { BillType, formatDate, RuleObject, toFloat, findNonEmptyString, parseWechat } from 'common/index.js';
+import { BillType, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '微信收款助手';

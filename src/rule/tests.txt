@@ -1,1 +1,1 @@
-{"mMap":{"tableName":"AppMessage","description":"收款金额￥0.10\n汇总今日第1笔收款，共计￥0.10\n备注收款成功，已存入零钱。点击可查看详情","source":"微信收款助手","arg":"msgId","type":5,"appId":"","msgId":10248143,"title":"微信支付收款0.10元(老顾客到店[朋友])"}}
+{"mMap":{"tableName":"AppMessage","description":"交易时间：09月26日19:05\n交易类型：电子钱包取现（尾号0464）\n交易金额：人民币 36.00\n账户余额：61.04元\n交易说明：点击查看更多详情","source":"中国银行微银行","arg":"msgId","type":5,"appId":"","msgId":385312,"title":"交易成功提醒"}}

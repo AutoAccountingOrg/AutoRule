@@ -1,6 +1,5 @@
 import { BillType, isTimeInRange } from 'common/index.js';
 
-
 function getLevel2 (category) {
   switch (category) {
     case '三餐':

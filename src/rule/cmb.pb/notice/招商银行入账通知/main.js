@@ -1,4 +1,5 @@
-import { BillType, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
+import { BillType, Currency, RuleObject, toFloat } from 'common/index.js';
+
 // {"title":"招商银行","text":"您尾号6598的招行一卡通入账人民币1442.00元",t}
 export function get(data) {
   let json = JSON.parse(data)

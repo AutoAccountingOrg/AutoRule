@@ -1,5 +1,4 @@
-import { AliTools, BillType, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
-
+import { BillType, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
 
 // 您账户6598于09月19日08:46在【财付通-理财通-腾安基金销售（深圳）有限公司】发生快捷支付扣款，人民币2500.00
 

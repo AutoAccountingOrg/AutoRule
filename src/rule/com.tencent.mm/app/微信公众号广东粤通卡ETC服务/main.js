@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
+import { BillType, formatDate, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
 
 const SOURCE_NAME = '广东粤通卡ETC服务';
 const TITLE = ['高速通行通知'];
