@@ -144,5 +144,5 @@ export function get(money, type, shopName, shopItem, time) {
       break;
     }
   }
-  return { "parent":category,"category": getLevel2(category), "book": '默认账本' };
+  return {"category": getLevel2(category), "book": '默认账本' };
 }

@@ -4,9 +4,8 @@ function pay(pl,t){
   let obj = new RuleObject(BillType.Income);
   if (pl.content.indexOf("∝")===-1)return null
   obj.money =  toFloat(pl.content);
-  if (obj.money < 0) {
+  if (pl.content.indexOf("-")!==-1) {
     obj.type = BillType.Expend;
-    obj.money = -obj.money;
   }
   obj.channel = `支付宝[蚂蚁财富]`;
 
