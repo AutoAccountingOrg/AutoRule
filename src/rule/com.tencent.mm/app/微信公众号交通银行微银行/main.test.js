@@ -21,5 +21,22 @@ test('交通银行收入', () =>
       "time": formatDate('2024-09-27 14:17', 'Y-M-D h:i'),
       "channel": '微信[交通银行微银行-收入]',
     },
+
   ]));
 
+test('交通银行支出', () =>
+  testAnkio('交通银行支出', [
+    {
+      "type": "Expend",
+      "money": 22.6,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '网络支付消费',
+      "accountNameFrom": '交通银行账户(7237)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024-09-25 11:03', 'Y-M-D h:i'),
+      "channel": '微信[交通银行微银行-支出]',
+    },
+
+  ]));
