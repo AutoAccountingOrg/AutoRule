@@ -33,6 +33,9 @@ export const AliTools = {
         case '转账备注：':
           result.shopItem = item.content;
           break;
+        case '还款到：':
+          result.accountNameTo = item.content;
+          break;
       }
     });
   },
