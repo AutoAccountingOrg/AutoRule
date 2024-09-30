@@ -17,3 +17,20 @@ test('江苏银行信用卡还款', () =>
       "channel": '江苏银行信用卡[还款]',
     },
   ]));
+
+test('江苏银行信用卡消费', () =>
+  testAnkio('江苏银行信用卡消费', [
+    {
+      "type": "Expend",
+      "money": 1169,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '',
+      "accountNameFrom": '',
+      "accountNameTo": '江苏银行信用卡(6706)',
+      "currency": 'CNY',
+      "time": formatDate("9月29日","M月D日"),
+      "channel": '江苏银行信用卡[消费]',
+    },
+  ]));
+
