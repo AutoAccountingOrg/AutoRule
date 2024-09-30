@@ -4,7 +4,7 @@ import { BillType, formatDate, RuleObject, toFloat, findNonEmptyString, parseWec
 const SOURCE = '微信收款助手';
 const TITLE = [
   '经营账户提现到账',
-  '微信支付收款元(老顾客第次消费)'
+  '微信支付收款.*'
 ];
 
 // 正则表达式和处理函数的映射关系
@@ -30,6 +30,7 @@ const rules =[
   ],
   // 收款金额￥1.50\n收款店铺A创印（恒晟）广告图文1线\n顾客信息该顾客累计消费4次(捧场老客)\n备注收款成功，已存入经营账户，该笔获得2积分
   [
+    // 收款金额￥0.10\n汇总今日第1笔收款，共计￥0.10\n备注收款成功，已存入零钱。点击可查看详情"
     /收款金额￥(\d+\.\d{2})\n收款店铺(.*?)\n顾客信息(.*?)\n备注收款成功/,
     (match,t,item) => {
       const [, money, shopName, shopItem] = match;
@@ -39,6 +40,26 @@ const rules =[
         shopName,
         shopItem,
         '微信经营账户',
+        '',
+        0.0,
+        'CNY',
+        t,
+        `微信[${SOURCE}-经营收款]`
+      );
+    },
+  ],
+
+  [
+    // 收款金额￥0.10\n汇总今日第1笔收款，共计￥0.10\n备注收款成功，已存入零钱。点击可查看详情"
+    /收款金额￥(\d+\.\d{2})\n汇总(.*?)\n备注/,
+    (match,t,item) => {
+      const [, money,  shopItem] = match;
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        '',
+        shopItem,
+        '微信零钱',
         '',
         0.0,
         'CNY',

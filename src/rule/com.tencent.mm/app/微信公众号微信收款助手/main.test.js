@@ -33,4 +33,16 @@ test('微信商家收款', () =>
       "time": 0,
       "channel": '微信[微信收款助手-经营收款]',
     },
+    {
+      "type": "Income",
+      "money": 0.1,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '今日第1笔收款，共计￥0.10',
+      "accountNameFrom": '微信零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 0,
+      "channel": '微信[微信收款助手-经营收款]',
+    },
   ]));

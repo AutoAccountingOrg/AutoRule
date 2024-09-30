@@ -1,10 +1,8 @@
 import {
   BillType,
   Currency,
-  formatDate,
   RuleObject,
   toFloat,
-  findNonEmptyString,
   parseWechat,
   transferCurrency
 } from 'common/index.js';
@@ -12,7 +10,7 @@ import {
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
 const TITLE_WECHAT = [
-  '微信支付收款元(新顾客消费)'
+  '微信支付收款.*'
 ];
 
 // 正则表达式和处理函数的映射关系
