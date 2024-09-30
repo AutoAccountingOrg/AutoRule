@@ -9,6 +9,24 @@ const TITLE_WECHAT = [
 // 正则表达式和处理函数的映射关系
 const rules =[
   [
+    /付款金额￥(\d+\.\d{2})\n付款方式(.*?)\n收单机构.*/,
+    (match,t,item) => {
+        let [, money, accountNameFrom] = match;
+        return new RuleObject(
+          BillType.Expend,
+          toFloat(money),
+          item.display_name,
+          item.cachedPayShop,
+          accountNameFrom,
+          '',
+          0.0,
+          Currency['人民币'],
+          t,
+          '微信[微信支付-付款]'
+        );
+    },
+  ],
+  [
     // 付款金额¥10.00\n支付方式徽商银行储蓄卡\n交易状态支付成功，对方已收款
     /付款金额¥(\d+\.\d{2})\n支付方式(.*?)\n交易状态(.*?)$/,
     (match,t,item) => {
