@@ -7,11 +7,23 @@ const TITLE = ['交易提醒'];
 // 正则表达式和处理函数的映射关系
 const rules = [
   [
-    /交易时间：(.*?)\n交易类型：快捷支付-(.*?)\n交易金额：(.*?)\(尾号(\d+)(.*?)\)\n卡内余额：(.*?)/,
+    // 交易时间：09月30日 09:42:55\n交易类型：网银跨行转入\n交易金额：9,999.99(尾号3449徽商借记卡)\n卡内余额：9,999.99
+    /交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)\(尾号(\d+)(.*?)\)\n卡内余额：(.*?)/,
     match => {
       const [, time, shopItem, money, number,card, balance] = match;
+
+      let type = BillType.Expend;
+      let typeStr = "支出";
+      if(
+        shopItem.indexOf('转入') !== -1 ||
+        shopItem.indexOf('退款') !== -1
+      ){
+        type = BillType.Income;
+        typeStr = "收入";
+      }
+
       return new RuleObject(
-        BillType.Expend,
+        type,
         toFloat(money),
         '',
         shopItem,
@@ -20,27 +32,9 @@ const rules = [
         0.0,
         Currency['人民币'],
         formatDate(time, 'M月D日 h:i:s'),
-        `微信[${SOURCE}-消费]`
+        `微信[${SOURCE}-${typeStr}]`
       );
     }
-  ],
-  [
-    /交易时间：(.*?)\n交易类型：退款-(.*?)\n交易金额：(.*?)\(尾号(\d+)(.*?)\)\n卡内余额：(.*?)/,
-    match => {
-      const [, time, shopItem, money, number, currency, balance] = match;
-      return new RuleObject(
-        BillType.Income,
-        toFloat(money),
-        '',
-        shopItem,
-        `${SOURCE}(${number})`,
-        '',
-        0.0,
-        Currency['人民币'],
-        formatDate(time, 'M月D日 h:i:s'),
-        `微信[${SOURCE}-退款]`
-      );
-    },
   ],
 ];
 
