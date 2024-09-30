@@ -26,6 +26,26 @@ const rules =[
       );
     },
   ],
+  [
+    //
+    /使用(.*?)支付¥(\d+\.\d{2})\n收单机构.*/,
+    (match,t,item) => {
+      let [, accountNameFrom,money] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        item.display_name,
+        '',
+        accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-在线支付]'
+      );
+    },
+  ],
+  //
 ];
 
 

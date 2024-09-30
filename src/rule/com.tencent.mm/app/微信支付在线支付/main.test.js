@@ -17,4 +17,16 @@ test('微信支付在线支付', () =>
       "time": 0,
       "channel": '微信[微信支付-在线支付]',
     },
+    {
+      "type": "Expend",
+      "money": 69,
+      "fee": 0,
+      "shopName": '淘宝平台商户',
+      "shopItem": '',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 0,
+      "channel": '微信[微信支付-在线支付]',
+    },
   ]));
