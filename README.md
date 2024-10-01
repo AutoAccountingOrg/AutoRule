@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://socialify.git.ci/Auto-Accounting/AutoRule/image?description=1&descriptionEditable=%E8%87%AA%E5%8A%A8%E8%AE%B0%E8%B4%A6%E8%A7%84%E5%88%99%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6&forks=1&issues=1&logo=https%3A%2F%2Fpic.dreamn.cn%2Fruler-svgrepo-com.svg&name=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light" alt="AutoRule" width="640" height="320" />
+<img src="https://socialify.git.ci/AutoAccountingOrg/AutoRule/image?description=1&descriptionEditable=%E8%87%AA%E5%8A%A8%E8%AE%B0%E8%B4%A6%E8%A7%84%E5%88%99%E6%9E%84%E5%BB%BA%E6%A1%86%E6%9E%B6&forks=1&issues=1&logo=https%3A%2F%2Fpic.dreamn.cn%2Fruler-svgrepo-com.svg&name=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light" alt="AutoRule" width="640" height="320" />
 </p>
 
 
