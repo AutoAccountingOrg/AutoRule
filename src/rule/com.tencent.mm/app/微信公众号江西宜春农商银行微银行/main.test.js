@@ -5,8 +5,8 @@ const { formatDate } = require('common/index.js');
 
 testAnkioInit(get, __dirname, 'com.tencent.mm');
 
-test('支出', () =>
-  testAnkio('支出', [
+test('江西宜春农商银行微银行支出', () =>
+  testAnkio('江西宜春农商银行微银行支出', [
     {
       "type": "Expend",
       "money": 500,
@@ -20,8 +20,8 @@ test('支出', () =>
       "channel": '微信[江西宜春农商银行微银行-支出]',
     },
   ]));
-test('收入', () =>
-  testAnkio('收入', [
+test('江西宜春农商银行微银行收入', () =>
+  testAnkio('江西宜春农商银行微银行收入', [
     {
       "type": "Income",
       "money": 1896,
