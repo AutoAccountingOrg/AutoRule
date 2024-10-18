@@ -91,4 +91,16 @@ test('微信支付自动扣费', () =>
       "time": 0,
       "channel": '微信[微信支付-扣款]',
     },
+    {
+      "type": "Expend",
+      "money": 35.82,
+      "fee": 0,
+      "shopName": '湖南电信话费自动缴费',
+      "shopItem": '你的中国电信湖南网厅账号（19314326581）扣费成功',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1727808197266,
+      "channel": '微信[微信支付-扣款]',
+    },
   ]));
