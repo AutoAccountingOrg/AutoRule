@@ -8,13 +8,14 @@ const TITLE = ['账户变动提醒'];
 const rules = [
   [
     //5月7日10:50
+    //交易时间：2024年10月12日 16:43:23\n交易类型：乡补绩效-转入\n交易金额：人民币1,896.00元
     /交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)([\d,]+.\d{2})元/,
      match => {
       let [, time, type, currency, money] = match;
       let matchType = BillType.Expend
       let shopItem = type;
       let matchTypeName = "支出";
-      if (type.indexOf('实发') !== -1) {
+      if (type.indexOf('转入') !== -1) {
         shopItem = type;
         matchType = BillType.Income;
         matchTypeName = "收入";

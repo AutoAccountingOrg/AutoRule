@@ -20,3 +20,18 @@ test('支出', () =>
       "channel": '微信[江西宜春农商银行微银行-支出]',
     },
   ]));
+test('收入', () =>
+  testAnkio('收入', [
+    {
+      "type": "Income",
+      "money": 1896,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '乡补绩效-转入',
+      "accountNameFrom": '江西宜春农商银行',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年10月12日 16:43:23', 'Y年M月D日 h:i:s'),
+      "channel": '微信[江西宜春农商银行微银行-收入]',
+    },
+  ]));
