@@ -7,7 +7,7 @@ test('支付宝小猪存钱罐', () =>
   testAnkio('支付宝小猪存钱罐', [
     {
       "type": "Transfer",
-      "money": 0.01,
+      "money": 50,
       "fee": 0,
       "shopName": '余额宝',
       "shopItem": '小猪攒钱罐',

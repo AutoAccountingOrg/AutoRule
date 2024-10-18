@@ -14,7 +14,7 @@ export function get(data) {
 
   let content = JSON.parse( pl.content);
   AliTools.handleContentItems(content.content, obj);
-
+  obj.money = toFloat(content.money);
   obj.channel = `支付宝[余额宝-小猪攒钱罐]`;
   obj.time = t;
   obj.type = BillType.Transfer;
