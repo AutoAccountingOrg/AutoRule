@@ -44,6 +44,25 @@ const rules = [
       )
     },
   ],
+  //交易时间：10月04日 14:51 \n交易类型：尾号6706的信用卡,退货通知\n交易金额：人民币538.00元\n可用额度：8984.78 元,点击查看热门活动\n交易说明：支付宝-成都卓祥贸易有限公司
+  [
+    /交易时间：(.*?) \n交易类型：尾号(\d+)的信用卡,退货通知\n交易金额：人民币(.*?)元\n可用额度：.*? 元,点击查看热门活动\n交易说明：(.*?)$/,
+    match => {
+      const [, time, number, money, shopItem] = match;
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        '',
+        shopItem,
+        '',
+        `江苏银行(${number})`,
+        0.0,
+        Currency['人民币'],
+        formatDate(time, 'M月D日 h:i'),
+        `微信[${SOURCE}-退货]`
+      )
+    },
+  ],
 ];
 
 

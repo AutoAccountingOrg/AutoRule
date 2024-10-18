@@ -38,3 +38,21 @@ test('江苏银行信用卡还款', () =>
     },
 
   ]));
+
+
+test('江苏银行信用卡退货', () =>
+  testAnkio('江苏银行信用卡退货', [
+    {
+      "type": "Income",
+      "money": 538,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '支付宝-成都卓祥贸易有限公司 ',
+      "accountNameFrom": '',
+      "accountNameTo": '江苏银行(6706)',
+      "currency": 'CNY',
+      "time": formatDate('10月04日 14:51', 'M月D日 h:i'),
+      "channel": '微信[江苏银行-退货]',
+    },
+
+  ]));
