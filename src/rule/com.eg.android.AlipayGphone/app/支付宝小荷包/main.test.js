@@ -15,7 +15,7 @@ test('支付宝小荷包', () =>
       "accountNameTo": '支付宝小荷包(某某某的情侣小荷包)',
       "currency": 'CNY',
       "time": 1713229525000,
-      "channel": '支付宝[小荷包-收入]',
+      "channel": '支付宝[小荷包-自动攒]',
     },
     {
       "type": "Income",
@@ -40,6 +40,18 @@ test('支付宝小荷包', () =>
       "currency": 'CNY',
       "time": 1716081246000,
       "channel": '支付宝[小荷包-收入]',
+    },
+    {
+      "type": "Transfer",
+      "money": 30,
+      "fee": 0,
+      "shopName": '某某的小荷包',
+      "shopItem": '自动攒执行成功转入30.00元',
+      "accountNameFrom": '',
+      "accountNameTo": '某某的小荷包',
+      "currency": 'CNY',
+      "time": 1727744614000,
+      "channel": '支付宝[小荷包-自动攒]',
     },
   ]));
 

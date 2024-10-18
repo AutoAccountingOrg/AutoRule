@@ -19,7 +19,7 @@ function handleFundTransfer(pl, t) {
 function autoIncome(pl, t) {
   let obj = new RuleObject(BillType.Transfer);
 
-  obj.channel = `支付宝[小荷包-收入]`;
+  obj.channel = `支付宝[小荷包-自动攒]`;
 
   let content = JSON.parse(pl.content);
 
@@ -34,6 +34,24 @@ function autoIncome(pl, t) {
 
   return obj;
 }
+
+function autoIncome2(pl, t) {
+  let obj = new RuleObject(BillType.Transfer);
+
+  obj.channel = `支付宝[小荷包-自动攒]`;
+
+  let extra = JSON.parse(pl.extraInfo);
+
+  obj.money = toFloat(extra.content);
+  obj.shopName = extra.assistMsg1;
+  obj.shopItem = extra.content;
+  obj.time = t;
+
+  obj.accountNameTo = extra.assistMsg1;
+
+  return obj;
+}
+
 
 function handleAnt (pl,t) {
   let obj = new RuleObject(BillType.Income);
@@ -59,6 +77,8 @@ if (pl.title.indexOf('支付宝小荷包') ===-1)return null;
 
   if (pl.title.indexOf('自动攒') !== -1) {
     return autoIncome(pl, t);
+  }else if (pl.content.indexOf('自动攒') !== -1) {
+    return autoIncome2(pl, t);
   } else if (pl.content.indexOf('小荷包转入') !== -1 ) {
     return handleFundTransfer(pl, t);
   } else if (pl.templateName.indexOf('蚂蚁合花') !== -1) {
