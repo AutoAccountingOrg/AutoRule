@@ -6,13 +6,14 @@ import { BillType, formatDate, RuleObject, toFloat } from 'common/index.js';
 export function get(data) {
   let json = JSON.parse(data)
   // 【美团月付】成功支付126.00元
+  //【美团月付】成功下单17.23元
  // let regex  = /您尾号(\d{4})的招行一卡通入账人民币([\d,]+.\d{2})元/
-  let regex = /【美团月付】成功支付([\d,]+.\d{2})元/
+  let regex = /【美团月付】成功(支付|下单)([\d,]+.\d{2})元/
   const match = json.title.match(regex);
   if (!match) {
     return null;
   }
-  let [,money] = match;
+  let [,,money] = match;
   let obj = new RuleObject();
 
   obj.money = toFloat(money);
