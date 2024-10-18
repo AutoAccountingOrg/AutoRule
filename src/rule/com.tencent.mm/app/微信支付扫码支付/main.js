@@ -3,7 +3,8 @@ import { BillType, Currency, parseWechat, RuleObject, toFloat } from 'common/ind
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
 const TITLE_WECHAT = [
-  '已支付¥'
+  '已支付¥',
+  '微信支付凭证'
 ];
 
 // 正则表达式和处理函数的映射关系
@@ -38,6 +39,26 @@ const rules =[
         item.display_name,
         item.cachedPayShop,
         accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-付款]'
+      );
+    },
+  ],
+  [
+    // 付款金额￥5.00\n收款方发财\n交易状态支付成功，对方已收款
+    /付款金额￥(\d+\.\d{2})\n收款方(.*?)\n交易状态(.*?)$/,
+    (match,t,item) => {
+      const [, money, shopName,shopItem] = match;
+
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        shopName,
+        item.cachedPayShop,
+        item.cachedPayTools,
         '',
         0.0,
         Currency['人民币'],

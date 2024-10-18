@@ -42,4 +42,16 @@ test('微信支付扫码付款', () =>
       "time": 0,
       "channel": '微信[微信支付-付款]',
     },
+    {
+      "type": "Expend",
+      "money": 5,
+      "fee": 0,
+      "shopName": '发财',
+      "shopItem": '面对面红包',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1727788529055,
+      "channel": '微信[微信支付-付款]',
+    },
   ]));
