@@ -1,0 +1,13 @@
+{
+"mMap": {
+"tableName": "AppMessage",
+"description": "交易时间：10月1日 15时51分\n交易类型：信用卡一键还款\n交易金额：4659.66（人民币）",
+"source": "中国建设银行",
+"t": 1727769073490,
+"arg": "msgId",
+"type": 5,
+"appId": "",
+"msgId": 805193,
+"title": "实时交易提醒"
+}
+}

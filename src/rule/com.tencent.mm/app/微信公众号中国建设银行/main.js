@@ -64,6 +64,26 @@ const rules = [
       );
     },
   ],
+
+  [
+    //交易时间：10月1日 15时51分\n交易类型：信用卡一键还款\n交易金额：4659.66（人民币）
+    /交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)（(.*?)）/,
+    match => {
+      const [, time, type, money, currency] = match;
+      return new RuleObject(
+        BillType.Transfer,
+        toFloat(money),
+        '',
+        type,
+        '',
+        `${SOURCE}信用卡`,
+        0.0,
+        Currency[currency],
+        formatDate(time, 'M月D日 h时i分'),
+        `微信[${SOURCE}信用卡-还款]`
+      );
+    },
+  ],
 ];
 
 

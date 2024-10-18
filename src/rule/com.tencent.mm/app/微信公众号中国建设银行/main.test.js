@@ -89,3 +89,18 @@ test('中国建设银行信用卡退款', () =>
       "channel": '微信[中国建设银行信用卡-收入]',
     },
   ]));
+test('中国建设银行信用卡还款', () =>
+  testAnkio('中国建设银行信用卡还款', [
+    {
+      "type": "Transfer",
+      "money": 4659.66,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '信用卡一键还款',
+      "accountNameFrom": '',
+      "accountNameTo": '中国建设银行信用卡',
+      "currency": 'CNY',
+      "time": formatDate('10月1日 15时51分', 'M月D日 h时i分'),
+      "channel": '微信[中国建设银行信用卡-还款]',
+    },
+  ]));
