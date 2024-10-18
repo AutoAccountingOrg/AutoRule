@@ -58,4 +58,16 @@ test('京东白条消费', () =>
       "time": formatDate(`09月25日 08:31:56`, 'M月D日 h:i:s'),
       "channel": '微信[京东白条-消费]',
     },
+    {
+      "type": "Transfer",
+      "money": 11.73,
+      "fee": 0,
+      "shopName": '福建乐摩物联科技股份有限公司',
+      "shopItem": '1396172787903633744174',
+      "accountNameFrom": '京东白条',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate(`10月02日14:24`, 'M月D日h:i'),
+      "channel": '微信[京东白条-消费]',
+    },
   ]));
