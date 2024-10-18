@@ -6,9 +6,10 @@ const TITLE = ['交易成功提醒', '自动还款到账提醒','还款提醒'];
 // 定义正则表达式，用于匹配交易时间、交易类型、交易金额、交易商户和可用额度
 const rules = [
   [
-    /交易时间：尾号(\d+)信用卡(\d{2}月\d{2}日\d{2}:\d{2})\n交易类型：(.*?)\n交易金额：(\d+\.\d{2})(.*?)\n交易商户：(.*?)-(.*?)\n可用额度：.*/,
+    //交易时间：尾号8995信用卡10月07日01:56\n交易类型：消费\n交易金额：200.50人民币\n交易商户：网上国网\n可用额度：￥104750.75
+    /交易时间：尾号(\d+)信用卡(\d{2}月\d{2}日\d{2}:\d{2})\n交易类型：(.*?)\n交易金额：(\d+\.\d{2})(.*?)\n交易商户：(.*?)\n可用额度：.*/,
     match => {
-      const [, cardNumber, time, type, money, currency, shopName, shopItem] =
+      const [, cardNumber, time, type, money, currency, shopName] =
         match;
       let billType = BillType.Expend;
       switch (type) {
@@ -23,7 +24,7 @@ const rules = [
         billType,
         parseFloat(money),
         shopName,
-        shopItem,
+        '',
         `${SOURCE_NAME}(${cardNumber})`,
         '',
         0.0,
