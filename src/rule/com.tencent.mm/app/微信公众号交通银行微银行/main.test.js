@@ -21,7 +21,18 @@ test('交通银行收入', () =>
       "time": formatDate('2024-09-27 14:17', 'Y-M-D h:i'),
       "channel": '微信[交通银行微银行-收入]',
     },
-
+    {
+      "type": "Income",
+      "money": 6205.2,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '跨行汇款转入',
+      "accountNameFrom": '交通银行(4720)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年10月18日 10:43', 'Y年M月D日 h:i'),
+      "channel": '微信[交通银行微银行-收入]',
+    },
   ]));
 
 test('交通银行支出', () =>
