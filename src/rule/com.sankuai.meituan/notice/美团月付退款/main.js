@@ -5,23 +5,25 @@ import { BillType, formatDate, RuleObject, toFloat } from 'common/index.js';
 
 export function get(data) {
   let json = JSON.parse(data)
-  // 【美团月付】成功支付126.00元
- // let regex  = /您尾号(\d{4})的招行一卡通入账人民币([\d,]+.\d{2})元/
-  let regex = /【美团月付】成功支付([\d,]+.\d{2})元/
-  const match = json.title.match(regex);
+  // 【美团月付】退款通知
+  if (json.title!=="【美团月付】退款通知")
+    return null;
+
+  let regex  = /(.*?)退款成功，([\d,]+.\d{2})元已退回美团月付，并抵扣\d+月账单。点击查看详情>/
+  const match = json.text.match(regex);
   if (!match) {
     return null;
   }
-  let [,money] = match;
+  let [,shopItem,money] = match;
   let obj = new RuleObject();
 
   obj.money = toFloat(money);
-  obj.channel = `美团月付[支出]`;
+  obj.channel = `美团月付[退款]`;
   obj.shopName ="美团";
-  obj.shopItem = json.text;
-  obj.time = json.t;
+  obj.shopItem = shopItem;
+  obj.time = json.t ;
 
-  obj.type = BillType.Expend
+  obj.type = BillType.Income
 
   obj.accountNameFrom = `美团月付`;
   return obj;

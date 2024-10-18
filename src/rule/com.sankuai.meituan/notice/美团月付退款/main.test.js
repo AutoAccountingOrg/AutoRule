@@ -4,18 +4,18 @@ const { formatDate } = require('common/Time.js');
 
 
 testAnkioInit(get, __dirname, 'com.sankuai.meituan');
-test('美团月付支出', () =>
-  testAnkio('美团月付支出', [
+test('美团月付退款', () =>
+  testAnkio('美团月付退款', [
     {
-      "type": "Expend",
-      "money": 126,
+      "type": "Income",
+      "money": 64.89,
       "fee": 0,
       "shopName": '美团',
-      "shopItem": '还款日每月8号，记得按时还款，查看额度变化>>',
+      "shopItem": '一家东北烤肉2人餐',
       "accountNameFrom": '美团月付',
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 1729028895496,
-      "channel": '美团月付[支出]',
+      "channel": '美团月付[退款]',
     },
   ]));
