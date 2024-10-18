@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"账号：*7237\n账户名称：交通银行账户\n交易时间：2024-10-09 08:31\n交易类型：支付平台快捷支付\n交易金额：500.00","source":"交通银行微银行","arg":"msgId","type":5,"appId":"","msgId":10070805,"title":"账户变动提醒"}}

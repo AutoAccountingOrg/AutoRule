@@ -38,5 +38,16 @@ test('交通银行支出', () =>
       "time": formatDate('2024-09-25 11:03', 'Y-M-D h:i'),
       "channel": '微信[交通银行微银行-支出]',
     },
-
+    {
+      "type": "Expend",
+      "money": 500,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '支付平台快捷支付',
+      "accountNameFrom": '交通银行账户(7237)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024-10-09 08:31', 'Y-M-D h:i'),
+      "channel": '微信[交通银行微银行-支出]',
+    },
   ]));
