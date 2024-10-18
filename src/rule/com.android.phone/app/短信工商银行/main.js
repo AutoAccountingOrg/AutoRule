@@ -43,10 +43,30 @@ let rules = [
       obj.accountNameFrom = `工商银行(${number})`;
       return obj;
     }
+  },
+  {
+    //尊敬的ETC客户：您好！您的车辆（****6V2）于2024-10-14，在天津茶淀镇收费站驶入，至北京北京京津台湖主站驶出，共计消费63.65元，如您有任何疑问，可通过天津4007554007/乐速通APP/津易行小程序/天津高速ETC公众号进行查询和咨询，我们将竭诚为您服务。
+    'regex': /您的车辆（(.*?)）于(.*?)，(.*?)，共计消费([\d,]+.\d{2})元，如您有任何疑问/,
+    'match': (match) => {
+      let [, car,date, shopItem, money] = match;
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `工商银行[ETC支出]`;
+      obj.shopName = car;
+      obj.shopItem = shopItem;
+      obj.time = formatDate(date, 'Y-M-D');
+
+      obj.type = BillType.Expend;
+
+      obj.accountNameFrom = `工商银行ETC`;
+      return obj;
+    }
   }
 ];
 
 export function get (data) {
+  data = data.replace(/【ETC通行提醒】/g, '');
   let { sender, bankName, text, t } = splitSms(data);
   if (bankName !== '工商银行') {
     return null;

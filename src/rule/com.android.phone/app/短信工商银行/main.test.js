@@ -58,5 +58,17 @@ test('工商银行ETC支出', () =>
       "time": formatDate("2024年09月26日","Y年M月D日"),
       "channel": '工商银行[ETC支出]',
     },
+    {
+      "type": "Expend",
+      "money": 63.65,
+      "fee": 0,
+      "shopName": '****6V2',
+      "shopItem": '在天津茶淀镇收费站驶入，至北京北京京津台湖主站驶出',
+      "accountNameFrom": '工商银行ETC',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate("2024-10-14","Y-M-D"),
+      "channel": '工商银行[ETC支出]',
+    },
   ]));
 
