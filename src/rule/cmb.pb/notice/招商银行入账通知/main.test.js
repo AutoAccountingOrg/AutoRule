@@ -18,4 +18,16 @@ test('招商银行入账', () =>
       "time": 1711393810000,
       "channel": '招商银行[入账]',
     },
+    {
+      "type": "Income",
+      "money": 1245,
+      "fee": 0,
+      "shopName": '账户',
+      "shopItem": '入账',
+      "accountNameFrom": '招商银行(6598)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1729137578155,
+      "channel": '招商银行[入账]',
+    },
   ]));
