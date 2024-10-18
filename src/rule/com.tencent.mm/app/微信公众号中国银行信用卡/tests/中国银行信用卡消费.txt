@@ -1,0 +1,13 @@
+{
+"mMap": {
+"tableName": "AppMessage",
+"description": "交易时间：10月11日 11:30\n交易类型：消费-钱袋宝支付\n交易金额：RMB14.16",
+"source": "中国银行信用卡",
+"t": 1728617437762,
+"arg": "msgId",
+"type": 5,
+"appId": "",
+"msgId": 10092597,
+"title": "交易提醒"
+}
+}

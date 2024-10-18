@@ -20,3 +20,20 @@ test('中国银行信用卡还款', () =>
       "channel": '微信[中国银行信用卡-支出]',
     },
   ]));
+
+test('中国银行信用卡消费', () =>
+  testAnkio('中国银行信用卡消费', [
+    {
+      "type": "Expend",
+      "money": 14.16,
+      "fee": 0,
+      "shopName": '消费-钱袋宝支付',
+      "shopItem": '',
+      "accountNameFrom": '中国银行信用卡',
+      "accountNameTo": '',
+      "currency": 'RMB',
+      "time": formatDate('10月11日 11:30', 'M月D日 h:i'),
+      "channel": '微信[中国银行信用卡-支出]',
+    },
+  ]));
+
