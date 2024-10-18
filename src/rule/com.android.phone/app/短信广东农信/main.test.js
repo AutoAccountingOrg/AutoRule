@@ -17,3 +17,19 @@ test('广东农信收入', () =>
       "channel": '广东农信[收入]',
     },
   ]));
+
+test('广东农信支出', () =>
+  testAnkio('广东农信支出', [
+    {
+      "type": "Expend",
+      "money": 5,
+      "fee": 0,
+      "shopName": '广东农信',
+      "shopItem": '财付通支付',
+      "accountNameFrom": '广东农信(0000)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate("10月01日00:05","M月D日h:i"),
+      "channel": '广东农信[支出]',
+    },
+  ]));
