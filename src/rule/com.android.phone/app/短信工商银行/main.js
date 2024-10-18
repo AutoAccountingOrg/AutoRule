@@ -3,18 +3,22 @@ import { BillType, formatDate, RuleObject, splitSms, toFloat } from 'common/inde
 let rules = [
   {
     // 尾号1234卡9月27日18:55支出(消费支付宝-北京三快在线科技有限公司)45元，余额1,333.22元。【工商银行】
-    'regex': /尾号(\d{4})卡(.*?)支出\((.*?)-(.*?)\)([\d,]+(.\d{2})?)元，余额([\d,]+.\d{2})元。/,
+    // 尾号1234卡10月9日19:12收入(微信零钱提现财付通)6.70元，余额0.64元。【工商银行】
+    'regex': /尾号(\d{4})卡(.*?)(支出|收入)\((.*?)\)([\d,]+(.\d{2})?)元，余额([\d,]+.\d{2})元。/,
     'match': (match) => {
-      let [, number, date, shopName, shopItem, money, ] = match;
+      let [, number, date,type, shopName, money, ] = match;
       let obj = new RuleObject();
 
       obj.money = toFloat(money);
-      obj.channel = `工商银行[支出]`;
+      obj.channel = `工商银行[${type}]`;
       obj.shopName = shopName;
-      obj.shopItem = shopItem;
       obj.time = formatDate(date, 'M月D日h:i');
 
-      obj.type = BillType.Expend;
+      if (type === '支出') {
+        obj.type = BillType.Expend;
+      }else{
+        obj.type = BillType.Income;
+      }
 
       obj.accountNameFrom = `工商银行(${number})`;
       return obj;

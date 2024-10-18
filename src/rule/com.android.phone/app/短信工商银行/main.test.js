@@ -8,8 +8,8 @@ test('工商银行支出', () =>
       "type": "Expend",
       "money": 45,
       "fee": 0,
-      "shopName": '消费支付宝',
-      "shopItem": '北京三快在线科技有限公司',
+      "shopName": '消费支付宝-北京三快在线科技有限公司',
+      "shopItem": '',
       "accountNameFrom": '工商银行(1234)',
       "accountNameTo": '',
       "currency": 'CNY',
@@ -17,7 +17,21 @@ test('工商银行支出', () =>
       "channel": '工商银行[支出]',
     },
   ]));
-
+test('工商银行收入', () =>
+  testAnkio('工商银行收入', [
+    {
+      "type": "Income",
+      "money": 6.7,
+      "fee": 0,
+      "shopName": '微信零钱提现财付通',
+      "shopItem": '',
+      "accountNameFrom": '工商银行(1234)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate("10月9日19:12","M月D日h:i"),
+      "channel": '工商银行[收入]',
+    },
+  ]));
 test('工商银行ETC支出', () =>
   testAnkio('工商银行ETC支出', [
     {
