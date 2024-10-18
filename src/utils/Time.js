@@ -40,7 +40,7 @@ export function formatDate(time = '', tpl = '') {
 
   // 将模板中的符号替换为正则表达式模式
   const tplRegex = tpl
-    .replace(/Y/g, '(\\d{4})')  // 捕获4位的年份
+    .replace(/Y/g, '(\\d{2,4})')  // 捕获4位的年份
     .replace(/M/g, '(\\d{1,2})')  // 捕获1-2位的月份
     .replace(/D/g, '(\\d{1,2})')  // 捕获1-2位的日期
     .replace(/h/g, '(\\d{1,2})')  // 捕获1-2位的小时
@@ -72,6 +72,9 @@ export function formatDate(time = '', tpl = '') {
     "m": matchObj["i"] || 0,
     "s": matchObj["s"] || 0,
   };
+  if (dateObj.Y.length === 2) {
+    dateObj.Y = "20"+dateObj.Y;
+  }
   // 构造日期对象
   const formattedDate = new Date(
     dateObj.Y,
