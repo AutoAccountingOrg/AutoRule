@@ -4,7 +4,8 @@ let rules = [
   {
     // 尾号1234卡9月27日18:55支出(消费支付宝-北京三快在线科技有限公司)45元，余额1,333.22元。【工商银行】
     // 尾号1234卡10月9日19:12收入(微信零钱提现财付通)6.70元，余额0.64元。【工商银行】
-    'regex': /尾号(\d{4})卡(.*?)(支出|收入)\((.*?)\)([\d,]+(.\d{2})?)元，余额([\d,]+.\d{2})元。/,
+    // 尾号1234卡10月14日23:41网上银行支出(无卡支付)4.78元，余额3.46元。
+    'regex': /尾号(\d{4})卡(.*?)(网上银行支出|支出|收入)\((.*?)\)([\d,]+(.\d{2})?)元，余额([\d,]+.\d{2})元。/,
     'match': (match) => {
       let [, number, date,type, shopName, money, ] = match;
       let obj = new RuleObject();
@@ -14,7 +15,7 @@ let rules = [
       obj.shopName = shopName;
       obj.time = formatDate(date, 'M月D日h:i');
 
-      if (type === '支出') {
+      if (type.indexOf('支出') !==-1) {
         obj.type = BillType.Expend;
       }else{
         obj.type = BillType.Income;
