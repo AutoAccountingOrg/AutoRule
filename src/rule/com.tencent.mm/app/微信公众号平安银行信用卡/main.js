@@ -1,10 +1,29 @@
 import { BillType, formatDate, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
 
 const SOURCE_NAME = '平安银行信用卡';
-const TITLE = ['消费成功通知','退款入账提醒'];
+const TITLE = ['消费成功通知','退款入账提醒','交易提醒'];
 
 
 let rules = [
+  [
+    /交易时间:(.*?)\n交易类型:尾号(\d{4})信用卡-消费\n交易商户:(.*?)\n交易金额:(.*?)([\d,]+.\d{2})\n可用额度:/,
+    (match) =>{
+      const [, time,number, shopItem, currency,totalMoney] = match;
+
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(totalMoney),
+        '',
+        shopItem,
+        `${SOURCE_NAME}(${number})`,
+        '',
+        0.0,
+        transferCurrency(currency),//
+        formatDate(time, 'Y年M月D日 h:i'),
+        `微信[${SOURCE_NAME}-消费]`
+      )
+    }
+  ],
   [
     /消费商家：(.*?)\n消费时间：(.*?)\n消费金额：(.*?)([\d,]+.\d{2})元\n优惠金额：RMB([\d,]+.\d{2})元\n实际金额：RMB(.*?)元/,
     match =>{

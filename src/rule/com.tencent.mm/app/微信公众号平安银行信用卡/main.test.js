@@ -18,6 +18,19 @@ test('平安银行信用卡消费', () =>
       "time": formatDate('2024年04月30日 16:21', 'Y年M月D日 h:i'),
       "channel": '微信[平安银行信用卡-消费]',
     },
+    {
+      "type": "Expend",
+      "money": 15,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '财付通-高新开发区创印图文制作中心',
+      "accountNameFrom": '平安银行信用卡(7402)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年10月16日 11:08', 'Y年M月D日 h:i'),
+      "channel": '微信[平安银行信用卡-消费]',
+    }
+    ,
   ]));
 
 test('平安银行信用卡退款', () =>
