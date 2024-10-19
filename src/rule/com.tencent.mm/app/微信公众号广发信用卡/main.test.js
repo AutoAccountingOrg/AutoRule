@@ -50,6 +50,22 @@ test('广发信用卡退款', () =>
       "channel": '微信[广发信用卡-退款]',
     },
   ]));
+
+test('广发信用卡还款', () =>
+  testAnkio('广发信用卡还款', [
+    {
+      "type": "Transfer",
+      "money": 300,
+      "fee": 0,
+      "shopName": '发现精彩转账还款',
+      "shopItem": '',
+      "accountNameFrom": '发现精彩转账还款',
+      "accountNameTo": '广发信用卡(1976)',
+      "currency": 'CNY',
+      "time": formatDate('10月16日00:12', 'M月D日h:i'),
+      "channel": '微信[广发信用卡-还款]',
+    },
+  ]));
 test('广发信用卡收入', () =>
   testAnkio('广发信用卡收入', [
     {
