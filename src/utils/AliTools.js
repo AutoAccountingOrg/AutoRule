@@ -75,6 +75,8 @@ export const AliTools = {
           result.shopItem = content;
         }else if (/收款方全称|对方账户/.test(elementValue.title)){
             result.shopName = content;
+          } else if(/还款到/.test(elementValue.title)){
+            result.accountNameTo = content;
           }
       }
     });

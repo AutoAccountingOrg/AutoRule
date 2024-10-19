@@ -131,3 +131,21 @@ test('余额宝收益发放', () =>
       "channel": '支付宝[余额宝收益]',
     },
   ]));
+
+
+
+test('支付宝花呗还款', () =>
+  testAnkio('支付宝花呗还款', [
+    {
+      "type": "Transfer",
+      "money": 1754.87,
+      "fee": 0,
+      "shopName": '花呗',
+      "shopItem": '花呗自动还款-2024年10月账单',
+      "accountNameFrom": '余额宝',
+      "accountNameTo": '花呗',
+      "currency": 'CNY',
+      "time": 1728534325000,
+      "channel": '支付宝[还款]',
+    },
+  ]));

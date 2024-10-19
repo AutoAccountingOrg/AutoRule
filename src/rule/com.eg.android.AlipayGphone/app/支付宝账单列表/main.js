@@ -15,7 +15,7 @@ export function get(data) {
   let obj = new RuleObject();
 
   AliTools.handleBillItems(json.fields, obj);
-  processBizType(json.extension, obj,json.innerLoopModelView)
+  processBizType(json.extension, obj,json)
 
   return obj;
 }
@@ -26,7 +26,7 @@ export function get(data) {
  * @param {Object} result - 结果对象
  * @returns {boolean} - 处理结果
  */
-function processBizType(extension, result,innerLoopModelView) {
+function processBizType(extension, result,json) {
   switch (extension.bizType) {
     case 'CHARGE':
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
@@ -35,7 +35,7 @@ function processBizType(extension, result,innerLoopModelView) {
     case 'TRADE':
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
       result.channel = '支付宝[普通交易]';
-      result.shopItem = result.shopItem || (innerLoopModelView && innerLoopModelView.params.consumeTitle) || "";
+      result.shopItem = result.shopItem || (json.innerLoopModelView && json.innerLoopModelView.params.consumeTitle) || "";
       break;
     case 'D_TRANSFER':
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
@@ -58,6 +58,10 @@ function processBizType(extension, result,innerLoopModelView) {
       break;
     case 'ISASP':
       result.channel = '支付宝[医保支付]';
+      break;
+    case 'PCC':
+      result.shopItem = result.shopItem || (json.bizBillViewModel.title) || '信用卡还款';
+      result.channel = '支付宝[还款]';
       break;
     default:
       return false;
