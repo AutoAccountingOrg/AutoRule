@@ -19,3 +19,19 @@ test('平安银行信用卡消费', () =>
       "channel": '微信[平安银行信用卡-消费]',
     },
   ]));
+
+test('平安银行信用卡退款', () =>
+  testAnkio('平安银行信用卡退款', [
+    {
+      "type": "Income",
+      "money": 184.9,
+      "fee": 0,
+      "shopName": '信用卡退款',
+      "shopItem": '抵扣10月账单',
+      "accountNameFrom": '平安银行信用卡',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('10月09日', 'M月D日'),
+      "channel": '微信[平安银行信用卡-退款]',
+    },
+  ]));

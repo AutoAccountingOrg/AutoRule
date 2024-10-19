@@ -1,7 +1,7 @@
 import { BillType, formatDate, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
 
 const SOURCE_NAME = '平安银行信用卡';
-const TITLE = ['消费成功通知'];
+const TITLE = ['消费成功通知','退款入账提醒'];
 
 
 let rules = [
@@ -21,6 +21,25 @@ let rules = [
         transferCurrency(currency),
         formatDate(time, 'Y年M月D日 h:i'),
         `微信[${SOURCE_NAME}-消费]`
+      )
+    }
+  ],
+  [
+    /退款金额：([A-Z]+)([\d,]+.\d{2})\n退款时间：(.*?)\n退款账户：(.*?)\n抵扣账单月份：(\d+)月/,
+    match =>{
+      const [, currency,money, time, cardName,month] = match;
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        '信用卡退款',
+        `抵扣${month}月账单`,
+        SOURCE_NAME,
+        '',
+        0.0,
+        transferCurrency(currency),
+        // 10月09日
+        formatDate(time, 'M月D日'),
+        `微信[${SOURCE_NAME}-退款]`
       )
     }
   ]
