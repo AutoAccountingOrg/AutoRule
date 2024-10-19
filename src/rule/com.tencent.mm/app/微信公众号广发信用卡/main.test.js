@@ -50,3 +50,18 @@ test('广发信用卡退款', () =>
       "channel": '微信[广发信用卡-退款]',
     },
   ]));
+test('广发信用卡收入', () =>
+  testAnkio('广发信用卡收入', [
+    {
+      "type": "Income",
+      "money": 100,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '消费达标20%加油返还',
+      "accountNameFrom": '广发信用卡(2282)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1728867733714,
+      "channel": '微信[广发信用卡-收入]',
+    },
+  ]));

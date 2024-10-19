@@ -52,6 +52,26 @@ const rules = [
       )
     },
   ],
+  [
+    //交易时间：20241013，尾号2282卡\n交易类型：【赠送】消费达标20%加油返还\n交易金额：100.00元，点击查看明细
+    /交易时间：(.*?)，尾号(\d+)卡\n交易类型：【赠送】(.*?)\n交易金额：([\d,]+.\d{2})元，点击查看明细/,
+    //   /交易时间：尾号(\d+)广发卡(.*?)\n交易类型：(.*?)\n交易金额：(.*?)([\d,]+.\d{2})元\n交易商户：(.*?)-(.*?)\n可用额度：人民币.*?元。点详情查分期还款优惠方案！/,
+    (match,t) => {
+      const [, time, number,remark, money] = match;
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        '',
+        remark,
+        `${SOURCE}(${number})`,
+        '',
+        0.0,
+        transferCurrency('CNY'),
+        t,
+        `微信[${SOURCE}-收入]`
+      )
+    },
+  ],
 ];
 
 
