@@ -1,0 +1,13 @@
+{
+"mMap": {
+"tableName": "AppMessage",
+"description": "还款金额：RMB36614.17\n还款日期：10月15日23:58本期账单已还清。",
+"source": "平安银行信用卡",
+"t": 1729007940003,
+"arg": "msgId",
+"type": 5,
+"appId": "",
+"msgId": 10106387,
+"title": "还款通知"
+}
+}

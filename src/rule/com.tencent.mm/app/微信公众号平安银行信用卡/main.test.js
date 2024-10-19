@@ -48,3 +48,19 @@ test('平安银行信用卡退款', () =>
       "channel": '微信[平安银行信用卡-退款]',
     },
   ]));
+
+test('平安银行信用卡还款', () =>
+  testAnkio('平安银行信用卡还款', [
+    {
+      "type": "Transfer",
+      "money": 36614.17,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '',
+      "accountNameFrom": '',
+      "accountNameTo": '平安银行信用卡',
+      "currency": 'CNY',
+      "time": formatDate('10月15日23:58', 'M月D日h:i'),
+      "channel": '微信[平安银行信用卡-还款]',
+    },
+  ]));
