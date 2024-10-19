@@ -31,3 +31,19 @@ test('平安银行消费', () =>
       "channel": '微信[平安银行-消费]',
     },
   ]));
+
+test('平安银行收入', () =>
+  testAnkio('平安银行收入', [
+    {
+      "type": "Income",
+      "money": 3.8,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '红包提现转入',
+      "accountNameFrom": '平安银行(8888)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('10月16日 18:30', 'M月D日 h:i'),
+      "channel": '微信[平安银行-收入]',
+    },
+  ]));

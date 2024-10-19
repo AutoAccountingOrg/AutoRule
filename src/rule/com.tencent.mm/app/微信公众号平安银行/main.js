@@ -32,11 +32,17 @@ const rules = [
     },
   ],
   [
+    //账号：尾号8888\n交易时间：10月16日 18:30\n交易类型：红包提现转入\n交易币种：人民币\n交易金额：3.80元
     // 账号：尾号6274\n交易时间：6月14日 16:33\n交易类型：转账转出\n交易币种：人民币\n交易金额：0.01元
     /账号：尾号(\d+)\n交易时间：(.*?)\n交易类型：(.*?)\n交易币种：(.*?)\n交易金额：(.*?)元/,
     match => {
       const [, number, time, type,currency, money] = match;
-      const billType = BillType.Expend;
+      let billType = BillType.Expend;
+      let channel = '消费';
+      if (/转入|收入/.test(type)) {
+        billType = BillType.Income;
+        channel = '收入';
+      }
 
       return new RuleObject(
         billType,
@@ -48,7 +54,7 @@ const rules = [
         0.0,
         transferCurrency(currency),
         formatDate(time, 'M月D日 h:i'),
-        `微信[${SOURCE}-消费]`
+        `微信[${SOURCE}-${channel}]`
       );
     },
   ]
