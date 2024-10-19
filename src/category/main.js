@@ -1,8 +1,5 @@
 import { BillType, isTimeInRange } from 'common/index.js';
 
-
-
-
 export function get(money, type, shopName, shopItem, time) {
   let string = `${shopName}_${shopItem}`;
 

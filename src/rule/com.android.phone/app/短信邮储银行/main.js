@@ -1,5 +1,4 @@
-import { BillType, Currency, formatDate, RuleObject, splitSms, toFloat, transferCurrency } from 'common/index.js';
-
+import { BillType, Currency, formatDate, RuleObject, splitSms, toFloat } from 'common/index.js';
 
 // 正则表达式和处理函数的映射关系
 const rules = [

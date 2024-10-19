@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import { BillType, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '中国银行信用卡';
