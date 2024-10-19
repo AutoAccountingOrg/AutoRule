@@ -92,19 +92,32 @@ def send_bot():
 """
 在社区发帖
 """
-def send_forums(api_key,title,content):
-    url = "https://forum.ez-book.org/posts.json"
+def send_forums(token,title,content):
+    url = "https://forum.ez-book.org/api/discussions"
     headers = {
         "Content-Type": "application/json",
-        "Api-Key": api_key,
-        "Api-Username": "system"
+        "Authorization": "Token "+token,
     }
+
     data = {
-        "title": title,
-        "raw": content,
-        "category": 9,
-        "tags": ["版本发布","正式版"]
+  "data":{
+    "type": "discussions",
+    "attributes": {
+      "title":title,
+      "content": content
+    },
+    "relationships": {
+      "tags": {
+        "data": [
+          {
+            "type": "tags",
+            "id": "5"
+          }
+        ]
+      }
     }
+  }
+}
     response = requests.post(url, headers=headers, json=data)
     print(response.json())
 
@@ -113,7 +126,7 @@ def send_forums(api_key,title,content):
 """
 def send_notify(title,content):
     # 在社区发帖
-    send_forums(os.getenv("FORUMS_API_KEY"),title,content)
+    send_forums(os.getenv("FORUMS_API_TOKEN"),title,content)
     # 在群里通知
     send_bot()
 

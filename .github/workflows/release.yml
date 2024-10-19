@@ -46,7 +46,7 @@ jobs:
           CHANGELOG: ${{steps.github_release.outputs.changelog}}
           GITHUB_WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
           ALIST_TOKEN: ${{ secrets.ALIST_TOKEN }}
-          FORUMS_API_KEY: ${{ secrets.FORUMS_API_KEY }}
+          FORUMS_API_TOKEN: ${{ secrets.FORUMS_API_TOKEN }}
       - name: Create Release
         uses: mikepenz/action-gh-release@v0.2.0-a03 #softprops/action-gh-release
         with:
