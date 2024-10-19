@@ -66,6 +66,26 @@ const rules = [
       );
     },
   ],
+  //账号类型：转出账号4586 / 转入账号7094\n交易时间：2024年10月10日23:29\n交易类型：转账\n交易金额：517.00 人民币元\n账户余额：登录工行手机银行查看详细信息",
+  [
+    /账号类型：转出账号(\d+) \/ 转入账号(\d+)\n交易时间：(.*?)\n交易类型：(.*?)\n交易金额：([\d,]+(.\d{2})?) (.*?)元\n账户余额：登录工行手机银行查看详细信息/,
+    match => {
+      const [, number1,number2, time, shopItem, money,, currency] = match;
+
+      return new RuleObject(
+        BillType.Transfer,
+        toFloat(money),
+        '信用卡还款',
+        shopItem,
+        `中国工商银行借记卡(${number1})`,
+        `中国工商银行信用卡(${number2})`,
+        0.0,
+        Currency[currency],
+        formatDate(time, 'Y年M月D日h:i'),
+        `微信[中国工商银行-还款]`
+      );
+    },
+  ],
 ];
 
 

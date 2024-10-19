@@ -65,3 +65,19 @@ test('工商银行出账', () =>
       "channel": '微信[中国工商银行借记卡-支出]',
     },
   ]));
+
+test('工商银行信用卡还款', () =>
+  testAnkio('工商银行信用卡还款', [
+    {
+      "type": "Transfer",
+      "money": 517,
+      "fee": 0,
+      "shopName": '信用卡还款',
+      "shopItem": '转账',
+      "accountNameFrom": '中国工商银行借记卡(4586)',
+      "accountNameTo": '中国工商银行信用卡(7094)',
+      "currency": 'CNY',
+      "time": formatDate('2024年10月10日23:29', 'Y年M月D日h:i'),
+      "channel": '微信[中国工商银行-还款]',
+    },
+  ]));
