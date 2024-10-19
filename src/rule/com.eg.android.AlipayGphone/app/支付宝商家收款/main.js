@@ -20,7 +20,7 @@ export function get(data) {
   data = JSON.parse(data);
   let pl = JSON.parse(data[0].pl);
   let t = data[0].mct;
-  if (pl.title.indexOf('商家服务') !== -1 ) {
+  if (pl.homePageTitle.indexOf('收款到账通知') !== -1 ) {
     return income(pl, t);
   }
 
