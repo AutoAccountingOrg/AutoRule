@@ -163,6 +163,6 @@ export const Currency = {
 };
 export function transferCurrency (currency) {
   if (currency === "RMB")return "CNY";
-  return Currency[currency] || currency;
+  return Currency[currency] || "CNY";
 
 }
