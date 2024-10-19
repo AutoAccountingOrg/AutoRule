@@ -29,3 +29,19 @@ test('建设银行信用卡支出', () =>
       "channel": '建设银行信用卡[消费]',
     },
   ]));
+
+test('建设银行信用卡退货', () =>
+  testAnkio('建设银行信用卡退货', [
+    {
+      "type": "Income",
+      "money": 207.51,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '消费退货/退税（支付宝-支付宝-…）',
+      "accountNameFrom": '建设银行信用卡(1018)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate("10月08日","M月D日"),
+      "channel": '建设银行信用卡[退款]',
+    },
+  ]));
