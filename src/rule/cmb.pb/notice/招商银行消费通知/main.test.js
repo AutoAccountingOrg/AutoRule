@@ -18,4 +18,16 @@ test('招商银行消费', () =>
       "time": formatDate('09月19日08:46',"M月D日h:i"),
       "channel": '招商银行[消费]',
     },
+    {
+      "type": "Expend",
+      "money": 19.7,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '',
+      "accountNameFrom": '招商银行(4809)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1728781111538,
+      "channel": '招商银行[支出]',
+    },
   ]));
