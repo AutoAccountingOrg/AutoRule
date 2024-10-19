@@ -1,0 +1,114 @@
+{
+"ariverRpcTraceId": "client`ZW2rIRQksDoDAFwLz8rdw6L5PA6cC9q_5739876",
+"buttons": [],
+"code": 0,
+"currentVersion": "v1",
+"degradeCardFromMrchorder": false,
+"extension": {
+"PID": "PARTNER_TAOBAO_ORDER",
+"bizInNo": "2024100122001156481423601203",
+"bizType": "TRADE",
+"gmtBizCreateTime": "1727714668000",
+"is_display_marketing": "Y",
+"mdata": "{\"conbiz_biztype\":\"TRADE\",\"conbiz_bizinno\":\"2024100122001156481423601203\",\"conbiz_bizsubtype\":\"1\",\"conbiz_syscategory3\":\"1202\",\"conbiz_opp_uid\":\"2088002027941922\",\"conbiz_pid\":\"PARTNER_TAOBAO_ORDER\"}",
+"processDate": "2024-10-01 00:44:35",
+"showGuaguaCard": "false",
+"tradeFrom": "4000",
+"tradeNumber": "2024100122001156481423601203"
+},
+"fields": [
+{
+"locationPage": "main",
+"templateId": "BLDetailTitle",
+"type": "birdNest",
+"value": "{\"icon\":\"https://os.alipayobjects.com/static/i/mobileapp/png/201509/5rPXrBOKZh.png\",\"content\":\"喷**\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailPrice",
+"type": "birdNest",
+"value": "{\"amount\":\"-21.80\",\"status\":\"交易成功\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailCommon",
+"type": "birdNest",
+"value": "{\"data\":[{\"content\":\"2024-10-01 00:44:35\",\"inOut\":0,\"needVerify\":false,\"seed\":\"100007\"}],\"title\":\"支付时间\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailCommon",
+"type": "birdNest",
+"value": "{\"data\":[{\"content\":\"余额宝\",\"extInfo\":{},\"goto\":\"alipays://platformapi/startapp?appId=20000032&path=transferList\",\"inOut\":2,\"needVerify\":false,\"seed\":\"billPayToolInfo\"}],\"title\":\"付款方式\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLComplexButtonTitle",
+"type": "birdNest",
+"value": "{\"buttonType\":\"POINT_RECEIVE\",\"contentMap\":{\"0\":\"已领取3积分，去兑生活好物\",\"1\":\"立即领取3积分，去兑生活好物\"},\"gotoUrl\":\"alipays://platformapi/startapp?appId=68687805&url=https%3A%2F%2Frender.alipay.com%2Fp%2Fyuyan%2F180020380000000023%2Fhome-page.html%3Fsource%3Dmobilebill%26chInfo%3Dmobilebill\",\"method\":\"com.alipay.alipaymember.biz.rpc.pointcert.h5.receivePointByUser\",\"params\":{\"logicCertId\":\"N_11759987641\",\"bizSource\":\"mobilebill\"},\"status\":\"0\",\"title\":\"支付奖励\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailSplitLine",
+"type": "birdNest"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailCommon",
+"type": "birdNest",
+"value": "{\"data\":[{\"content\":\"2024100122001156481423601203\",\"inOut\":0,\"needVerify\":false}],\"title\":\"订单号\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailCommon",
+"type": "birdNest",
+"value": "{\"data\":[{\"content\":\"T200P2310231216421100170\",\"inOut\":0,\"needVerify\":false}],\"title\":\"商家订单号\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailBlankArea",
+"type": "birdNest"
+},
+{
+"locationPage": "main",
+"templateId": "BLNewOrderCard",
+"type": "birdNest",
+"value": "{\"data\":[{\"extInfo\":{\"businessOrderNo\":\"2310231216421100170\",\"subBizType\":\"ali.china.taobao\",\"systemName\":\"consumeprod\",\"bizIdentity\":\"1\",\"partnerId\":\"2088002027941922\"},\"inOut\":0,\"needVerify\":false}]}"
+},
+{
+"locationPage": "main",
+"templateId": "BLNewCategory",
+"type": "birdNest",
+"value": "{\"content\":\"服饰装扮\",\"inOut\":0,\"needVerify\":false,\"seed\":\"billLifeCategory\",\"title\":\"账单分类\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLTagAndEssay",
+"type": "birdNest",
+"value": "{\"data\":[{\"content\":\"\",\"goto\":\"alipays://platformapi/startapp?appId=66666698&url=%2Fwww%2Findex.html%3FgmtBizCreate%3D1727714668000%26bizInNo%3D2024100122001156481423601203%26bizType%3DTRADE\",\"inOut\":0,\"needVerify\":false,\"seed\":\"billTagAndEssay\",\"title\":\"标签和备注\"}]}"
+},
+{
+"locationPage": "main",
+"templateId": "BLStatManage",
+"type": "birdNest",
+"value": "{\"content\":\"0\",\"inOut\":0,\"needVerify\":false,\"seed\":\"countswitch\",\"title\":\"计入收支\"}"
+},
+{
+"locationPage": "main",
+"templateId": "BLDetailLink",
+"type": "birdNest",
+"value": "{\"data\":[{\"goto\":\"alipays://platformapi/startapp?appId=2060090000290256&appClearTop=false&startMultApp=YES&allowsBounceVertical=NO&scene=CONTACT_BILL_DETAIL&oppositeCardNo=2088002027941922&title=%E5%96%B7**&url=https%3A%2F%2Frender.alipay.com%2Fp%2Fyuyan%2F180020010001250615%2Fgeneral-record.html%3FcaprMode%3Dsync\",\"inOut\":0,\"infoLevel\":\"80\",\"needVerify\":false,\"seed\":\"contactQuery\",\"title\":\"查看往来记录\",\"titleLogo\":\"https://mdn.alipayobjects.com/huamei_6cknvu/afts/img/A*sFVyQ5mQPpQAAAAAAAAAAAAADoWDAQ/original\"},{\"goto\":\"alipays://platformapi/startapp?appId=60000154&url=%2Fwww%2Findex%2Fcreate.htm%3Fsource%3Dbill_01%26amount%3D21.80%26remark%3D%E9%80%82%E9%85%8D%E5%8D%A1%E8%A5%BF%E6%AC%A7%E5%B0%8F%E6%B3%A5%E7%8E%8B%E8%A1%A8%E5%B8%A6GG-1000%2FGWG-100%2FGSG-100%E5%8E%9F%E8%A3%85%E6%AC%BE%E5%BC%8F%E6%A9%A1%E8%83%B6%E8%A1%A8%E5%B8%A6\",\"inOut\":0,\"infoLevel\":\"50\",\"needVerify\":false,\"seed\":\"showAA\",\"title\":\"AA收款\",\"titleLogo\":\"https://mdn.alipayobjects.com/huamei_6cknvu/afts/img/A*G9fTSpO8T6wAAAAAAAAAAAAADoWDAQ/original\"},{\"goto\":\"alipays://platformapi/startapp?appId=68687823&startMultApp=YES&appClearTop=false&url=%2Fwww%2FmultipleTrade.html%3Ftitle%3D%E5%96%B7**%26oppositeCardNo%3D2088002027941922\",\"inOut\":0,\"infoLevel\":\"10\",\"needVerify\":false,\"seed\":\"ProofOfTransaction\",\"title\":\"往来流水证明\",\"titleLogo\":\"https://mdn.alipayobjects.com/huamei_6cknvu/afts/img/A*zv5nToAdXLgAAAAAAAAAAAAADoWDAQ/original\"},{\"goto\":\"alipays://platformapi/startapp?appId=68687823&url=%2Fwww%2Freceipt.html%3FbizInNo%3D2024100122001156481423601203%26bizType%3DTRADE%26bizSubType%3D1%26userId%3D2088722645256485\",\"inOut\":0,\"infoLevel\":\"10\",\"needVerify\":false,\"seed\":\"voucher\",\"title\":\"申请电子回单\",\"titleLogo\":\"https://mdn.alipayobjects.com/huamei_6cknvu/afts/img/A*cJS2S6LFZlIAAAAAAAAAAAAADoWDAQ/original\"},{\"goto\":\"alipays://platformapi/startapp?appId=2060090000296486&url=https%3A%2F%2Frender.alipay.com%2Fp%2Fyuyan%2F180020010001253760%2Findex.html%3FcaprMode%3Dsync%26scene%3Dmbill_tips%26commonParams%3D%7B%22bizNo%22%3A%222024100122001156481423601203%22%7D\",\"inOut\":0,\"infoLevel\":\"1\",\"needVerify\":false,\"seed\":\"selfHelp\",\"title\":\"对此订单有疑问\",\"titleLogo\":\"https://mdn.alipayobjects.com/huamei_6cknvu/afts/img/A*JprOQZFp2u8AAAAAAAAAAAAADoWDAQ/original\"}]}"
+}
+],
+"logisticsModel": {
+"nodes": []
+},
+"needDisplayCardStyle": true,
+"needDisplayConsumeRate": true,
+"refundModel": {
+"fundBatch": []
+},
+"showAuthPage": false,
+"succ": true,
+"switchNewVersion": true
+}

@@ -61,16 +61,21 @@ export const AliTools = {
           }
           break;
         default:
-          if (/创建时间/.test(elementValue.title) || /支付时间/.test(elementValue.title)){
-            result.time = formatDate(elementValue.data[0].content, 'Y-M-D h:i:s');
+
+          if (elementValue.data === undefined) return
+          let content = elementValue.data[0].content || "";
+          if (/创建时间|支付时间/.test(elementValue.title)){
+            result.time = formatDate(content, 'Y-M-D h:i:s');
           } else if (/付款方式/.test(elementValue.title)){
-            result.accountNameFrom = elementValue.data[0].content;
-            if (/账户余额|余额/.test(result.accountNameFrom)){
+            result.accountNameFrom = content;
+            if (/账户余额/.test(result.accountNameFrom)){
               result.accountNameFrom = '支付宝余额';
             }
           }else if (/商品说明|转账备注/.test(elementValue.title)){
-          result.shopItem = elementValue.data[0].content;
-        }
+          result.shopItem = content;
+        }else if (/收款方全称|对方账户/.test(elementValue.title)){
+            result.shopName = content;
+          }
       }
     });
   }

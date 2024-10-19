@@ -29,16 +29,16 @@ export function get(data) {
 function processBizType(extension, result,innerLoopModelView) {
   switch (extension.bizType) {
     case 'CHARGE':
-      result.accountNameFrom = '支付宝余额';
+      result.accountNameFrom = result.accountNameFrom || '支付宝余额';
       result.channel = '支付宝[收钱码服务费]';
       break;
     case 'TRADE':
-      result.accountNameFrom = '支付宝余额';
+      result.accountNameFrom = result.accountNameFrom || '支付宝余额';
       result.channel = '支付宝[普通交易]';
-      result.shopItem = result.shopItem || innerLoopModelView.params.consumeTitle;
+      result.shopItem = result.shopItem || (innerLoopModelView && innerLoopModelView.params.consumeTitle) || "";
       break;
     case 'D_TRANSFER':
-      result.accountNameFrom = '支付宝余额';
+      result.accountNameFrom = result.accountNameFrom || '支付宝余额';
       result.channel = '支付宝[转账收款]';
       break;
     case 'YEB':
@@ -53,7 +53,7 @@ function processBizType(extension, result,innerLoopModelView) {
       break;
     case 'MINITRANS':
       result.type = BillType.Income;
-      result.accountNameFrom = '余额宝';
+      result.accountNameFrom = result.accountNameFrom || '余额宝';
       result.channel = '支付宝[余额宝收益]';
       break;
     case 'ISASP':
