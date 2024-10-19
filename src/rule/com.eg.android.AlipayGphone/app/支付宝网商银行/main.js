@@ -46,7 +46,11 @@ export function get(data) {
   }
 
   if (pl.templateName.indexOf("交易成功提醒")===-1){
-    return transfer(pl, t);
+    if (pl.homePageTitle.indexOf("转账") !== -1){
+      return transfer(pl, t);
+    }else{
+      return expand(pl,t);
+    }
   }
 
   return expand(pl,t);

@@ -35,5 +35,17 @@ test('支付宝网商银行支出', () =>
       "time": 1726667615000,
       "channel": '支付宝[网商银行-支出]',
     },
+    {
+      "type": "Expend",
+      "money": 54.58,
+      "fee": 0,
+      "shopName": '网商银行',
+      "shopItem": '支付宝支付',
+      "accountNameFrom": '网商银行(9370)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1728004788000,
+      "channel": '支付宝[网商银行-支出]',
+    },
 
   ]));
