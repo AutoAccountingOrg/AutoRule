@@ -2,13 +2,13 @@ const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
 testAnkioInit(get, __dirname, 'com.unionpay');
-test('云闪付转账入账', () =>
-  testAnkio('云闪付转账入账', [
+test('云闪付转账出账', () =>
+  testAnkio('云闪付转账出账', [
     {
-      "type": "Income",
+      "type": "Expend",
       "money": 170,
       "fee": 0,
-      "shopName": '*阳',
+      "shopName": '陈阳',
       "shopItem": '',
       "accountNameFrom": '工商银行卡6212 **** **** 7432',
       "accountNameTo": '',
