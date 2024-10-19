@@ -1,0 +1,13 @@
+{
+"mMap": {
+"tableName": "AppMessage",
+"description": "交易时间：您尾号5005卡 10月16日00:12\n交易类型：转账支出\n交易金额：人民币40.00元",
+"source": "广发银行",
+"t": 1729008776176,
+"arg": "msgId",
+"type": 5,
+"appId": "",
+"msgId": 10106405,
+"title": "交易提醒"
+}
+}
