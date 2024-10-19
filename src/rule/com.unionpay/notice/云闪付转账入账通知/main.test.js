@@ -2,19 +2,19 @@ const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
 testAnkioInit(get, __dirname, 'com.unionpay');
-test('云闪付消费', () =>
-  testAnkio('云闪付消费', [
+test('云闪付转账', () =>
+  testAnkio('云闪付转账', [
     {
-      "type": "Expend",
-      "money": 114.65,
+      "type": "Income",
+      "money": 170,
       "fee": 0,
-      "shopName": '',
+      "shopName": '*阳',
       "shopItem": '',
-      "accountNameFrom": '银行卡(7644)',
+      "accountNameFrom": '工商银行卡6212 **** **** 7432',
       "accountNameTo": '',
       "currency": 'CNY',
-      "time": formatDate("01日11时37分","D日h时i分"),
-      "channel": '云闪付[支出]',
+      "time": formatDate("2024-10-06 23:46","Y-M-D h:i"),
+      "channel": '云闪付[转账]',
     },
   ]));
 
