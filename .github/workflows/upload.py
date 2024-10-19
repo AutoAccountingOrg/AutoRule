@@ -100,25 +100,25 @@ def send_forums(token,title,content):
     }
 
     data = {
-  "data":{
-    "type": "discussions",
-    "attributes": {
-      "title":title,
-      "content": content
-    },
-    "relationships": {
-      "tags": {
-        "data": [
-          {
-            "type": "tags",
-            "id": "5"
-          }
-        ]
-      }
+        "data": {
+            "type": "discussions",
+            "attributes": {
+                "title": title,
+                "content": content
+            },
+            "relationships": {
+                "tags": {
+                    "data": [
+                        {
+                            "type": "tags",
+                            "id": "5"
+                        }
+                    ]
+                }
+            }
+        }
     }
-  }
-}
-    response = requests.post(url, headers=headers, json=data)
+    response = requests.post(url, headers=headers, data=json.dumps(data))
     print(response.json())
 
 """
