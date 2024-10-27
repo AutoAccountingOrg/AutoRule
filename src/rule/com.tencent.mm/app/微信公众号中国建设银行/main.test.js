@@ -73,6 +73,19 @@ test('中国建设银行信用卡支出', () =>
       "time": formatDate('5月17日 17时52分', 'M月D日 h时i分'),
       "channel": '微信[中国建设银行信用卡-支出]',
     },
+    {
+      "type": "Expend",
+      "money": 198 ,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '',
+      "accountNameFrom": '中国建设银行信用卡(0000)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('10月27日 14时15分', 'M月D日 h时i分'),
+      "channel": '微信[中国建设银行信用卡-支出]',
+    },
+
   ]));
 test('中国建设银行信用卡退款', () =>
   testAnkio('中国建设银行信用卡退款', [

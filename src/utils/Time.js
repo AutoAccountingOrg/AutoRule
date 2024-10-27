@@ -24,10 +24,6 @@ export function isTimeInRange(startTime, endTime, currentTime) {
  */
 export function formatDate(time = '', tpl = '') {
 
-
-  // 如果时间为13位，直接返回（可能已是毫秒级时间戳）
-  if (time.length === 13) return parseInt(time);
-
   // 如果时间为空，返回当前时间的毫秒级时间戳
   if (time.length === 0) {
     return Math.floor(Date.now() / 10000) * 10000;
@@ -84,8 +80,7 @@ export function formatDate(time = '', tpl = '') {
     dateObj.m,
     dateObj.s
   );
-
   // 输出为UTC时间的时间戳（毫秒）
-  return formattedDate.getTime();
+  return  formattedDate.getTime();
 }
 
