@@ -6,8 +6,9 @@ const TITLE = ['交易成功通知'];
 
 // 正则表达式和处理函数的映射关系
 const rules = [
+  // 支出规则（原有的网上支付场景）
   [
-    /交易时间：(.*?)\n交易类型：卡号尾号（(\d+)），网上支付\n交易金额：([\d,]+.\d{2})元\n可用余额：.*?元\n交易地址：(.*?)-(.*?)$/,
+    /交易时间：(.*?)\n交易类型：卡号尾号（(\d+)），网上支付\n交易金额：([\d,]+.\d{2})元\n可用余额：.*?元\n交易地址：(.*?)，(.*?)$/,
     match => {
       const [, time, number, money, shopName, shopItem] = match;
 
@@ -21,7 +22,7 @@ const rules = [
         0.0,
         Currency['人民币'],
         formatDate(time, 'Y-M-D h:i:s'),
-        `微信[${SOURCE}-消费]`
+        `${shopName}[${SOURCE}-消费]`
       )
     },
   ],
