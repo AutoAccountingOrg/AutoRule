@@ -26,6 +26,26 @@ const rules = [
       )
     },
   ],
+  // 收入规则（新增的返现场景）
+  [
+    /交易时间：(.*?)\n交易类型：卡号尾号（(\d+)），刷卡金转入\n交易金额：([\d,]+.\d{2})元\n可用余额：.*?元\n交易地址：(.*?),消费时间.*$/,
+    match => {
+      const [, time, number, money, description] = match;
+
+      return new RuleObject(
+        BillType.Income,  // 收入类型
+        toFloat(money),
+        SOURCE,
+        description,     // 描述（如：天天返现）
+        `${SOURCE}(${number})`,
+        '',
+        0.0,
+        Currency['人民币'],
+        formatDate(time, 'Y-M-D h:i:s'),
+        `返现[${SOURCE}-收入]`
+      )
+    },
+  ],
 ];
 
 
