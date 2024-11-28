@@ -3,9 +3,8 @@ import { BillType, RuleObject, toFloat } from 'common/index.js';
 export function get(data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
-  //非花呗不管
-  if (
-    pl.title.indexOf('花呗') === -1) {
+  //非花呗不管，排除花呗金
+  if (!pl.title.match(/花呗(?!金)/)) {
     return null;
   }
 
