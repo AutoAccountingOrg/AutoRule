@@ -10,8 +10,8 @@ test('招商银行信用卡消费', () =>
     {
       "type": "Expend",
       "money": 34.69,
-      "shopName": '美团-牛约堡手(旭辉店)',
-      "shopItem": '',
+      "shopName": '美团',
+      "shopItem": '牛约堡手(旭辉店)',
       "accountNameFrom": '招商银行信用卡(1356)',
       "accountNameTo": '',
       "fee": 0,
@@ -22,8 +22,8 @@ test('招商银行信用卡消费', () =>
     {
       "type": "Expend",
       "money": 19.68,
-      "shopName": '美团-奉天熏六记熏拌鸡架（马坡店）',
-      "shopItem": '',
+      "shopName": '美团',
+      "shopItem": '奉天熏六记熏拌鸡架（马坡店）',
       "accountNameFrom": '招商银行信用卡(1356)',
       "accountNameTo": '',
       "fee": 0,
