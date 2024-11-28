@@ -9,7 +9,7 @@ const rules = [
     //交易时间：尾号8995信用卡10月07日01:56\n交易类型：消费\n交易金额：200.50人民币\n交易商户：网上国网\n可用额度：￥104750.75
     /交易时间：尾号(\d+)信用卡(\d{2}月\d{2}日\d{2}:\d{2})\n交易类型：(.*?)\n交易金额：(\d+\.\d{2})(.*?)\n交易商户：(.*?)\n可用额度：.*/,
     match => {
-      const [, cardNumber, time, type, money, currency, shopName] =
+      const [, cardNumber, time, type, money, currency, merchant] =
         match;
       let billType = BillType.Expend;
       switch (type) {
@@ -20,11 +20,19 @@ const rules = [
           billType = BillType.Income;
           break;
       }
+      // 解析商户名称
+      let shopName = merchant;
+      let shopItem = '';
+      const merchantMatch = merchant.match(/(.*?)-(.*)$/);
+      if (merchantMatch) {
+        shopName = merchantMatch[1];
+        shopItem = merchantMatch[2];
+      }
       return new RuleObject(
         billType,
         parseFloat(money),
         shopName,
-        '',
+        shopItem,
         `${SOURCE_NAME}(${cardNumber})`,
         '',
         0.0,

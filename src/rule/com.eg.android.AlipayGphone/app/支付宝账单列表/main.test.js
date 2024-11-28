@@ -78,7 +78,7 @@ test('支付宝转账收款', () =>
       "type": "Income", // 0为支出，1为收入，2为转账
       "money": 0.01,
       "fee": 0,
-      "shopName": '从前慢',
+      "shopName": '从前慢 185******30',
       "shopItem": '转账',
       "accountNameFrom": '支付宝余额',
       "accountNameTo": '',
