@@ -74,3 +74,20 @@ test('支付宝消费', () =>
         "channel": '支付宝[消费-支出]',
       },
     ]));
+
+
+test('支付宝基金购买', () =>
+  testAnkio('支付宝基金购买', [
+    {
+      "type": "Transfer",
+      "money": 40,
+      "fee": 0,
+      "shopName": '蚂蚁财富-蚂蚁（杭州）基金销售有限公司',
+      "shopItem": '付款成功￥40.00 ',
+      "accountNameFrom": '余额宝',
+      "accountNameTo": '支付宝基金',
+      "currency": 'CNY',
+      "time": 1731048346000,
+      "channel": '支付宝[消费-支出]',
+    },
+  ]));

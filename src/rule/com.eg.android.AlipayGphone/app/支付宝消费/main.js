@@ -15,6 +15,11 @@ function expend(pl,t){
   let extras = JSON.parse(pl.extraInfo);
   obj.shopName = obj.shopName || extras.sceneExt2.sceneName;
 
+  if (obj.shopName.indexOf("蚂蚁财富")!==-1){
+    obj.type = BillType.Transfer;
+    obj.accountNameTo = "支付宝基金"
+  }
+
   return obj;
 }
 
