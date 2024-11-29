@@ -2,7 +2,8 @@ import { BillType, RuleObject, toFloat, transferCurrency } from 'common/index.js
 
 export function get(data) {
   let json = JSON.parse(data)
-  if (json.title !== "微信支付" && json.text.indexOf("已支付") === -1)return null;
+  //[2条]微信支付: 上月记账月报，点击查看详情
+  if (json.title !== "微信支付" || json.text.indexOf("已支付") === -1)return null;
 
   let obj = new RuleObject(BillType.Expend);
 
