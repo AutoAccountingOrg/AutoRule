@@ -8,7 +8,7 @@ const TITLE = ['交易成功通知'];
 const rules = [
   // 支出规则
   [
-    /交易时间：(.*?)\n交易类型：卡号尾号（(\d+)），网上支付\n交易金额：([\d,]+.\d{2})元\n可用余额：.*?元\n交易地址：(.*?)，(.*?)$/,
+    /交易时间：(.*?)\n交易类型：卡号尾号（(\d+)），网上支付\n交易金额：([\d,]+.\d{2})元\n可用余额：.*?元\n交易地址：(.*?)(?:，(.*))?$/,
     match => {
       const [, time, number, money, shopName, shopItem] = match;
 
@@ -16,7 +16,7 @@ const rules = [
         BillType.Expend,
         toFloat(money),
         shopName,
-        shopItem,
+        shopItem || shopName,  // 如果没有详细描述，则使用商户名称作为描述
         `${SOURCE}(${number})`,
         '',
         0.0,
@@ -35,7 +35,7 @@ const rules = [
       return new RuleObject(
         BillType.Income,  // 收入类型
         toFloat(money),
-        SOURCE,
+        SOURCE, // 商户名称（如：农业银行信用卡）
         description,     // 描述（如：天天返现）
         `${SOURCE}(${number})`,
         '',
@@ -43,6 +43,25 @@ const rules = [
         Currency['人民币'],
         formatDate(time, 'Y-M-D h:i:s'),
         `刷卡金返现[${SOURCE}-收入]`
+      )
+    },
+  ],
+  // 收入规则（退款收入）
+  [
+    /交易时间：(.*?)\n交易类型：卡号尾号（(\d+)），退货\n交易金额：([\d,]+.\d{2})元\n可用余额：.*?元\n交易地址：(.*)$/,
+    match => {
+      const [, time, number, money, description] = match;
+      return new RuleObject(
+        BillType.Income,  // 收入类型
+        toFloat(money),
+        description,      // 商户名称（如：多多支付退款）
+        description,      // 描述
+        `${SOURCE}(${number})`,
+        '',
+        0.0,
+        Currency['人民币'],
+        formatDate(time, 'Y-M-D h:i:s'),
+        `退款[${SOURCE}-收入]`
       )
     },
   ],
