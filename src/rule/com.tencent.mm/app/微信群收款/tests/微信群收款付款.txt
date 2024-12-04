@@ -1,0 +1,23 @@
+{
+"content": {
+"mMap": {
+"tableName": "message",
+"isSend": 0,
+"status": 3,
+"talker": "47379594949@chatroom",
+"talkerId": 4505,
+"t": 1733056373047,
+"arg": "msgId",
+"type": 10000,
+"msgId": 144812,
+"bizChatId": -1,
+"content": "你支付了小王发起的<_wc_custom_link_ color=\"#7D90A9\" href=\"weixin://weixinnewaa/opendetail?billno=d0550633393c5cf0e79d6f8b04b03f5778904df502185392c6166e1c113df3cb44ec39b5b12f41331c6a1c9967e60de6\">群收款</_wc_custom_link_>",
+"createTime": 1733056373000
+}
+},
+"hookerUser": "小王",
+"cachedPayTools": "零钱",
+"cachedPayMoney": "￥82.20",
+"cachedPayShop": "向xxx转账",
+"t": 1733056373047
+}
