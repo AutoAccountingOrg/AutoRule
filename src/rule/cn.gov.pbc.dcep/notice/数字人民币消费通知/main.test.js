@@ -3,7 +3,7 @@ const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
 
 
-testAnkioInit(get, __dirname, 'cmb.pb');
+testAnkioInit(get, __dirname, 'cn.gov.pbc.dcep');
   test('数字人民币消费', () =>
     testAnkio('数字人民币消费', [
       {
