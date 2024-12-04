@@ -1,0 +1,9 @@
+{
+"type": "transfer",
+"content": "{\"msg\":{\"appmsg\":{\"extinfo\":\"\",\"des\":\"收到转账￥67.00元。如需收钱，请点此升级至最新版本\",\"lowurl\":\"\",\"wcpayinfo\":{\"feedesc\":\"￥67.00\",\"paymsgid\":\"1000050001202412040027735371857\",\"transcationid\":\"53010001099145202412041934944487\",\"pay_memo\":\"会费\",\"invalidtime\":\"1733381692\",\"begintransfertime\":\"1733295292\",\"transferid\":\"1000050001202412040027735371857\",\"effectivedate\":\"1\",\"paysubtype\":\"1\",\"has_transfer_address\":\"0\",\"receiver_username\":\"wxid_pi8v9maxal8r22\"},\"appid\":\"\",\"sdkver\":\"\",\"action\":\"\",\"title\":\"微信转账\",\"type\":\"2000\",\"thumburl\":\"\",\"content\":\"\",\"url\":\"https:\\/\\/support.weixin.qq.com\\/cgi-bin\\/mmsupport-bin\\/readtemplate?t=page\\/common_page__upgrade&text=text001&btn_text=btn_text_0\"}}}",
+"hookerUser": "赵巩利",
+"cachedPayTools": "零钱通",
+"cachedPayMoney": "￥67.00",
+"cachedPayShop": "向赵巩利(**利)转账",
+"t": 1733295296334
+}

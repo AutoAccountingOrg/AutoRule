@@ -1,12 +1,37 @@
-import { BillType, Currency, formatDate, RuleObject, toDoubleFloat } from 'common/index.js';
+import { BillType, Currency, formatDate, RuleObject, toDoubleFloat, toFloat } from 'common/index.js';
 
-/**
- * @param {string} data - 包含数据的JSON字符串。
- * @returns {RuleObject|null} - 解析后的RuleObject对象，如果解析失败则返回null。
- */
-export function get(data) {
-  // 解析数据
-  data = JSON.parse(data);
+
+
+function analyzeFromCard(json){
+
+  let content = JSON.parse(json.content);
+  let info = content.msg.appmsg.wcpayinfo;
+  let money = toFloat(info.feedesc);
+  let shopItem = info.pay_memo;
+  let billType = BillType.Expend;
+  let channel = "付款";
+  if (info.paysubtype === 0){
+     billType = BillType.Income;
+    channel = "收款";
+  }
+  let shopName = json.hookerUser
+
+  return  new RuleObject(
+    billType,
+    money,
+    shopName,
+    shopItem,
+    json.cachedPayTools,
+    '',
+    0.0,
+    'CNY',
+    json.t,
+    `微信[转账${channel}]`
+  )
+}
+
+
+function analyzeFromDetail (data) {
 
   let billType = BillType.Income
   let payTools, channel,t
@@ -33,4 +58,17 @@ export function get(data) {
     Currency['人民币'],
     t,
     `${channel}`  );
+}
+
+/**
+ * @param {string} data - 包含数据的JSON字符串。
+ * @returns {RuleObject|null} - 解析后的RuleObject对象，如果解析失败则返回null。
+ */
+export function get(data) {
+  // 解析数据
+  data = JSON.parse(data);
+
+  if (data.type === "transfer") return analyzeFromCard(data);
+  if (data.is_payer === undefined)return null;
+  return analyzeFromDetail(data);
 }

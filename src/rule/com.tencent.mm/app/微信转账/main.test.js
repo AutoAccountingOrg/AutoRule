@@ -45,4 +45,16 @@ test('微信转账付款', () =>
       "time": formatDate('2024年09月21日 21:20:06', 'Y年M月D日 h:i:s'),
       "channel": '微信[转账付款]',
     },
+    {
+      "type": "Expend",
+      "money": 67,
+      "fee": 0,
+      "shopName": '赵巩利',
+      "shopItem": '会费',
+      "accountNameFrom": '零钱通',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1733295296334,
+      "channel": '微信[转账付款]',
+    },
   ]));
