@@ -29,7 +29,7 @@ const rules =[
   ],
   [
     //
-    /使用(.*?)支付¥(\d+\.\d{2})\n收单机构.*/,
+    /使用(.*?)支付[¥￥](\d+\.\d{2})\n收单机构.*/,
     (match,t,item) => {
       let [, accountNameFrom,money] = match;
       return new RuleObject(

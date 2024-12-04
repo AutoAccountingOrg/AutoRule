@@ -1,0 +1,16 @@
+{
+"mMap": {
+"description": "使用零钱支付￥13.00\n收单机构中国工商银行股份有限公司牡丹卡中心",
+"source": "微信支付",
+"type": 5,
+"appId": "",
+"msgId": 99064,
+"title": "已支付¥13.00",
+"display_name": "长沙市芙蓉区妍茂食品商行",
+"hookerUser": "杨许君",
+"cachedPayTools": "向银行卡或手机号转账",
+"cachedPayMoney": "￥",
+"cachedPayShop": "面对面红包",
+"t": 1733126691282
+}
+}
