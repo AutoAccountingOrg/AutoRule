@@ -1,0 +1,16 @@
+{
+"mMap": {
+"description": "11月收益￥4.10\n当前累计收益￥127.24",
+"source": "微信支付",
+"type": 5,
+"appId": "",
+"msgId": 99064,
+"title": "零钱通收益月报",
+"display_name": "零钱通",
+"hookerUser": "安服二组 梁怀亮",
+"cachedPayTools": "零钱",
+"cachedPayMoney": "￥399.00",
+"cachedPayShop": "向刘川(*川)转账",
+"t": 1733110247109
+}
+}
