@@ -13,13 +13,16 @@ export function get(data) {
   if (data.content === undefined)return null;
   if (data.content.mMap === undefined)return null;
   if (data.content.mMap.content === undefined)return null; //你支付了
-  if (data.content.mMap.content.indexOf("你支付了") === -1)return null;
-
+  const match = data.content.mMap.content.match(/你支付了(.*?)发起的/);
+  if (!match) {
+    return null;
+  }
+  let user = match[1];
   // 创建并返回RuleObject对象
   return new RuleObject(
     BillType.Expend,
     toFloat(data.cachedPayMoney),
-    data.hookerUser,
+    user,
     "微信群收款",
     data.cachedPayTools,
     '',
