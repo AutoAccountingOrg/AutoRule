@@ -90,7 +90,7 @@ async function handleIssue(issueNumber, resultContent) {
     owner,
     repo,
     issue_number: issueNumber,
-    body: `该数据已适配，以下为自动识别的结果:\n如果在自动记账中没有识别请尝试长按更新按钮更新规则。\n\`\`\`\n${resultContent}\n\`\`\``
+    body: `该数据已适配，以下为自动识别的结果:\n如果在自动记账中没有识别请尝试长按更新按钮更新规则或者等待规则更新。\n\`\`\`\n${resultContent}\n\`\`\``
   });
 
   // 关闭issue
