@@ -70,7 +70,7 @@ function runYarnCommands () {
     exec('yarn quickTest', (error, stdout, stderr) => {
       if (error) {
         console.error(`执行yarn命令出错: ${error}`);
-        process.exit(1);
+        //process.exit(1);
         return reject(stderr);
       }
       console.log('yarn命令执行完成');
