@@ -1,8 +1,6 @@
-const { execSync } = require('child_process');
 const { join } = require('path');
 const {  readFileSync } = require('fs');
 
-execSync('yarn dev', { "stdio": 'inherit' });
 const distDirPath = join(__dirname, '..', '..', 'dist');
 
 let js = readFileSync(join(distDirPath, 'common.js'), 'utf8');

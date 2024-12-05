@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "quickTest": "node ./src/rule/testRule.cjs",
+    "quickTestBuild": "rollup -c && node ./src/rule/testRule.cjs",
     "test": "jest",
     "dev": "rollup -c",
     "format": "eslint --fix .",
