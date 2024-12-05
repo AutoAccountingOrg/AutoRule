@@ -33,20 +33,5 @@ jobs:
                 title: "适配请求："+regexResult[3]
               });
             } else {
-              // Add a comment to the issue
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: "错误的 issue 名称格式，请按指定格式输入。"
-              });
-
-              // Close the issue and label it as 'invalid'
-              github.rest.issues.update({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                state: 'closed',
-                labels: ['invalid']
-              });
+            
             }
