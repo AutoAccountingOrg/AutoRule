@@ -1,0 +1,33 @@
+name: Test If Issue is adapted
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  extract_label:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
+
+      - name: Install dependencies with Yarn
+        run: |
+          # ISSUE_NUMBER
+          yarn add @octokit/rest
+          node ./.github/workflows/testRule.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          TYPE: ALL

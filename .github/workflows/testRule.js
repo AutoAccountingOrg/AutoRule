@@ -2,14 +2,15 @@ import fs from 'fs';
 import { exec } from 'child_process';
 import { Octokit } from '@octokit/rest';
 import https from 'https';
+
 // 假设你通过GitHub API获取了issue的内容
-async function getIssueContent() {
+async function getIssueContent () {
   // 示例：你可以通过GitHub Actions输入来获取issue内容
   return process.env.ISSUE_BODY;
 }
 
 // 提取``` ```之间的内容
-function extractCodeBlock(issueContent,callback) {
+function extractCodeBlock (issueContent, callback) {
   // 正则表达式
   const pattern = /\[数据过期时间：(.+?)]\((https?:\/\/[^\s)]+)\)/;
 
@@ -30,7 +31,7 @@ function extractCodeBlock(issueContent,callback) {
       // 请求结束时处理数据
       res.on('end', () => {
         console.log('获取的内容:', data);
-        callback(data)
+        callback(data);
       });
 
     }).on('error', (err) => {
@@ -38,22 +39,35 @@ function extractCodeBlock(issueContent,callback) {
       process.exit(0);
     });
   } else {
-    console.log("没有匹配到");
+    console.log('没有匹配到');
     process.exit(0);
   }
 }
 
 // 写入到src/rule/tests.txt
-function writeToFile(content) {
+function writeToFile (content) {
   const filePath = 'src/rule/tests.txt';
   fs.writeFileSync(filePath, content);
   console.log(`写入内容到: ${filePath}`);
 }
 
-// 执行yarn build && yarn quickTest
-function runYarnCommands() {
+async function buildRules () {
   return new Promise((resolve, reject) => {
-    exec('yarn rollup -c && yarn quickTest', (error, stdout, stderr) => {
+    exec('yarn rollup -c', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`执行yarn命令出错: ${error}`);
+        process.exit(1);
+        return reject(stderr);
+      }
+      console.log('yarn命令执行完成');
+    });
+  });
+}
+
+// 执行yarn build && yarn quickTest
+function runYarnCommands () {
+  return new Promise((resolve, reject) => {
+    exec('yarn quickTest', (error, stdout, stderr) => {
       if (error) {
         console.error(`执行yarn命令出错: ${error}`);
         process.exit(1);
@@ -66,13 +80,13 @@ function runYarnCommands() {
 }
 
 // 检测执行结果，提取===========START===========和===========END===========之间的内容
-function extractTestResult(output) {
+function extractTestResult (output) {
   const match = output.match(/===========START===========([\s\S]*?)===========END===========/);
   return match ? match[1].trim() : null;
 }
 
 // 给issue打标签并关闭issue
-async function handleIssue(issueNumber, resultContent) {
+async function handleIssue (issueNumber, resultContent) {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
   const owner = process.env.GITHUB_REPOSITORY_OWNER;
   const repo = process.env.GITHUB_REPOSITORY.replace(`${owner}/`, '');
@@ -103,10 +117,10 @@ async function handleIssue(issueNumber, resultContent) {
 }
 
 // 主流程
-async function processIssue() {
+async function processIssue () {
   try {
     const issueContent = await getIssueContent();
-    extractCodeBlock(issueContent,async function(codeBlock) {
+    extractCodeBlock(issueContent, async function(codeBlock) {
       // 将提取到的代码块写入文件
       writeToFile(codeBlock);
 
@@ -131,5 +145,55 @@ async function processIssue() {
   }
 }
 
+async function processAll () {
+  try {
+    const token = process.env.GITHUB_TOKEN;
+    const octokit = new Octokit({ auth: token });
+
+    const { data: issues } = await octokit.rest.issues.listForRepo({
+      owner: process.env.GITHUB_REPOSITORY_OWNER,
+      repo: process.env.GITHUB_REPOSITORY.split('/')[1],
+      state: 'open'
+    });
+
+    issues.forEach(issue => {
+      console.log(`Issue #${issue.number}: ${issue.title}`);
+      console.log(`Content: ${issue.body}`);
+      try {
+        extractCodeBlock(issue.body, async function(codeBlock) {
+          // 将提取到的代码块写入文件
+          writeToFile(codeBlock);
+
+          // 执行yarn命令
+          const output = await runYarnCommands();
+
+          // 检查yarn命令的输出
+          const result = extractTestResult(output);
+          const issueNumber = issue.number;
+
+          if (result) {
+            // 如果提取到测试结果，则打标签并关闭issue
+            await handleIssue(issueNumber, result);
+          } else {
+            console.log('未找到===========START===========和===========END===========之间的内容');
+          }
+
+        });
+      } catch (e) {
+        console.log(`处理issue出错：${issue.number}`);
+      }
+    });
+  } catch (error) {
+    console.error(`Error fetching issues: ${error.message}`);
+    process.exit(1);
+  }
+}
+
+await buildRules();
 // 执行主流程
-processIssue();
+if (process.env.TYPE === "ALL"){
+  await processAll()
+}else{
+  await processIssue();
+}
+
