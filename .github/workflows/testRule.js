@@ -10,34 +10,33 @@ async function getIssueContent () {
 }
 
 // 提取``` ```之间的内容
-function extractCodeBlock (issueContent, callback) {
-  // 正则表达式
+async function extractCodeBlockSync (issueContent) {
   const pattern = /\[数据过期时间：(.+?)]\((https?:\/\/[^\s)]+)\)/;
-
-// 匹配
   const match = issueContent.match(pattern);
+
   if (match) {
-    const expiryDate = match[1];  // 提取过期时间
-    const uri = match[2];          // 提取 URI
+    const expiryDate = match[1];
+    const uri = match[2];
     console.log(`数据过期时间: ${expiryDate}`);
     console.log(`URI: ${uri}`);
-    https.get(uri, (res) => {
-      let data = '';
-      // 监听数据块
-      res.on('data', (chunk) => {
-        data += chunk;
+
+    try {
+      const response = await new Promise((resolve, reject) => {
+        https.get(uri, (res) => {
+          let data = '';
+          res.on('data', (chunk) => {
+            data += chunk;
+          });
+          res.on('end', () => resolve(data));
+        }).on('error', reject);
       });
 
-      // 请求结束时处理数据
-      res.on('end', () => {
-        console.log('获取的内容:', data);
-        callback(data);
-      });
-
-    }).on('error', (err) => {
+      console.log('获取的内容:', response);
+      return response;
+    } catch (err) {
       console.error('请求错误:', err.message);
       process.exit(0);
-    });
+    }
   } else {
     console.log('没有匹配到');
     process.exit(0);
@@ -121,25 +120,24 @@ async function handleIssue (issueNumber, resultContent) {
 async function processIssue () {
   try {
     const issueContent = await getIssueContent();
-    extractCodeBlock(issueContent, async function(codeBlock) {
-      // 将提取到的代码块写入文件
-      writeToFile(codeBlock);
+    const codeBlock = await extractCodeBlockSync(issueContent);
 
-      // 执行yarn命令
-      const output = await runYarnCommands();
+    // 将提取到的代码块写入文件
+    writeToFile(codeBlock);
 
-      // 检查yarn命令的输出
-      const result = extractTestResult(output);
-      const issueNumber = process.env.ISSUE_NUMBER;
+    // 执行yarn命令
+    const output = await runYarnCommands();
 
-      if (result) {
-        // 如果提取到测试结果，则打标签并关闭issue
-        await handleIssue(issueNumber, result);
-      } else {
-        console.log('未找到===========START===========和===========END===========之间的内容');
-      }
+    // 检查yarn命令的输出
+    const result = extractTestResult(output);
+    const issueNumber = process.env.ISSUE_NUMBER;
 
-    });
+    if (result) {
+      // 如果提取到测试结果，则打标签并关闭issue
+      await handleIssue(issueNumber, result);
+    } else {
+      console.log('未找到===========START===========和===========END===========之间的内容');
+    }
   } catch (error) {
     console.error(`处理issue出错: ${error.message}`);
     process.exit(1);
@@ -156,33 +154,25 @@ async function processAll () {
       state: 'open'
     });
 
-    issues.forEach(issue => {
+    for (const issue of issues) {
       console.log(`Issue #${issue.number}: ${issue.title}`);
       console.log(`Content: ${issue.body}`);
       try {
-        extractCodeBlock(issue.body, async function(codeBlock) {
-          // 将提取到的代码块写入文件
-          writeToFile(codeBlock);
+        const codeBlock = await extractCodeBlockSync(issue.body);
+        writeToFile(codeBlock);
 
-          // 执行yarn命令
-          const output = await runYarnCommands();
+        const output = await runYarnCommands();
+        const result = extractTestResult(output);
 
-          // 检查yarn命令的输出
-          const result = extractTestResult(output);
-          const issueNumber = issue.number;
-
-          if (result) {
-            // 如果提取到测试结果，则打标签并关闭issue
-            await handleIssue(issueNumber, result);
-          } else {
-            console.log('未找到===========START===========和===========END===========之间的内容');
-          }
-
-        });
+        if (result) {
+          await handleIssue(issue.number, result);
+        } else {
+          console.log('未找到===========START===========和===========END===========之间的内容');
+        }
       } catch (e) {
         console.log(`处理issue出错：${issue.number}`);
       }
-    });
+    }
   } catch (error) {
     console.error(`Error fetching issues: ${error.message}`);
     process.exit(1);
