@@ -57,7 +57,7 @@ for (const rule of rules) {
       continue;
     }
     if (
-      result !== null &&
+      result !== undefined && result!==null &&
       result.money !== null &&
       parseFloat(result.money) > 0
     ) {

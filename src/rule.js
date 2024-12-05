@@ -16,7 +16,7 @@ for (const rule of rules) {
   try {
     result = rule.obj.get(data);
     if (
-      result !== null &&
+      result !== undefined && result!==null &&
       result.money !== null &&
       parseFloat(result.money) > 0
     ) {
