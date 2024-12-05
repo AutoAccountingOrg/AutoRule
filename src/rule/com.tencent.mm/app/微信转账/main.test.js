@@ -30,6 +30,18 @@ test('微信转账收款', () =>
       "time": formatDate('2024年05月13日 08:16:33', 'Y年M月D日 h:i:s'),
       "channel": '微信[转账收款]',
     },
+    {
+      "type": "Income",
+      "money": 0.8,
+      "fee": 0,
+      "shopName": '创印技术',
+      "shopItem": '',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1733049223236,
+      "channel": '微信[转账收款]',
+    },
   ]));
 test('微信转账付款', () =>
   testAnkio('微信转账付款', [

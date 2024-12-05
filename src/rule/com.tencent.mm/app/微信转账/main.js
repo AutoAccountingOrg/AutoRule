@@ -10,9 +10,18 @@ function analyzeFromCard(json){
   let shopItem = info.pay_memo;
   let billType = BillType.Expend;
   let channel = "付款";
-  if (info.paysubtype === 0){
+  let subType = parseInt(info.paysubtype);
+  if (subType === 4){
      billType = BillType.Income;
+    channel = "退款";
+  } else if (subType === 1){
+    billType = BillType.Expend;
+    channel = "付款";
+  } else if (subType === 3){
+    billType = BillType.Income;
     channel = "收款";
+  } else {
+    return null;
   }
   let shopName = json.hookerUser
 
