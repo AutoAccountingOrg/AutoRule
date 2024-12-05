@@ -1,4 +1,4 @@
-name: Test If Issue is adapted
+name: Test If Issue is adapted By Commit
 on:
   push:
     branches:

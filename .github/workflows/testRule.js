@@ -60,6 +60,7 @@ async function buildRules () {
         return reject(stderr);
       }
       console.log('yarn命令执行完成');
+      resolve(stdout);
     });
   });
 }
@@ -149,7 +150,6 @@ async function processAll () {
   try {
     const token = process.env.GITHUB_TOKEN;
     const octokit = new Octokit({ auth: token });
-
     const { data: issues } = await octokit.rest.issues.listForRepo({
       owner: process.env.GITHUB_REPOSITORY_OWNER,
       repo: process.env.GITHUB_REPOSITORY.split('/')[1],
