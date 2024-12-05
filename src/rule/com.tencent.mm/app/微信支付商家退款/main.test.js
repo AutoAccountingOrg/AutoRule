@@ -29,4 +29,16 @@ test('微信支付退款', () =>
       "time": formatDate('2024-06-01 20:35:34', 'Y-M-D h:i:s'),
       "channel": '微信[微信支付-商家退款]',
     },
+    {
+      "type": "Income",
+      "money": 114.61,
+      "fee": 0,
+      "shopName": '京东商城平台商户',
+      "shopItem": '京东-订单编号292134074220',
+      "accountNameFrom": '支付卡(中国银行4594)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024-11-29 17:11:28', 'Y-M-D h:i:s'),
+      "channel": '微信[微信支付-商家退款]',
+    },
   ]));
