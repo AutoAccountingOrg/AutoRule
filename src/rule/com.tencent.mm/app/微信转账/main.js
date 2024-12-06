@@ -11,7 +11,7 @@ function analyzeFromCard(json){
   let billType = BillType.Expend;
   let channel = "付款";
   let subType = parseInt(info.paysubtype);
-  let isSend = json.isSend;
+  let isSend = parseInt(json.isSend);
   if (subType === 4){
     if (isSend ===1)return null;
      billType = BillType.Income;
