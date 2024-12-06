@@ -11,13 +11,17 @@ function analyzeFromCard(json){
   let billType = BillType.Expend;
   let channel = "付款";
   let subType = parseInt(info.paysubtype);
+  let isSend = json.isSend;
   if (subType === 4){
+    if (isSend ===1)return null;
      billType = BillType.Income;
     channel = "退款";
   } else if (subType === 1){
+    if (isSend ===0)return null;
     billType = BillType.Expend;
     channel = "付款";
   } else if (subType === 3){
+    if (isSend ===0)return null;
     billType = BillType.Income;
     channel = "收款";
   } else {

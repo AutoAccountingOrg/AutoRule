@@ -1,5 +1,6 @@
 {
 "type": "transfer",
+"isSend":1,
 "content": "{\"msg\":{\"appmsg\":{\"extinfo\":\"\",\"des\":\"收到转账0.80元。如需收钱，请点此升级至最新版本\",\"lowurl\":\"\",\"wcpayinfo\":{\"payer_username\":\"\",\"feedesc\":\"￥0.80\",\"transcationid\":\"53010001095015202412013722758756\",\"pay_memo\":\"\",\"invalidtime\":\"1733135617\",\"begintransfertime\":\"1733049217\",\"transferid\":\"1000050001202412011023878238016\",\"effectivedate\":\"1\",\"paysubtype\":\"3\",\"receiver_username\":\"wxid_5437644378712\"},\"appid\":\"\",\"sdkver\":\"\",\"action\":\"\",\"title\":\"微信转账\",\"type\":\"2000\",\"thumburl\":\"https:\\/\\/support.weixin.qq.com\\/cgi-bin\\/mmsupport-bin\\/readtemplate?t=page\\/common_page__upgrade&text=text001&btn_text=btn_text_0\",\"content\":\"\",\"url\":\"https:\\/\\/support.weixin.qq.com\\/cgi-bin\\/mmsupport-bin\\/readtemplate?t=page\\/common_page__upgrade&text=text001&btn_text=btn_text_0\"}}}",
 "hookerUser": "创印技术",
 "cachedPayTools": "零钱",
