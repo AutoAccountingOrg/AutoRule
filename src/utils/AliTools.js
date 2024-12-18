@@ -22,6 +22,7 @@ export const AliTools = {
         case '付款方式：':
         case '退款方式：':
         case 'Payment method：':
+
           if (item.content === '账户余额' || item.content === 'Balance') {
             result.accountNameFrom = '支付宝余额';
             break;
@@ -34,6 +35,7 @@ export const AliTools = {
           result.shopItem = item.content;
           break;
         case '还款到：':
+        case '转入账户：':
           result.accountNameTo = item.content;
           break;
       }
