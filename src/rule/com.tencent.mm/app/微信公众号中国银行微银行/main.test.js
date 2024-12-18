@@ -21,6 +21,18 @@ test('中国银行入账', () =>
       "time": formatDate('04月12日18:12', 'M月D日h:i'),
       "channel": '微信[中国银行-入账]',
     },
+    {
+      "type": "Income",
+      "money": 1234.0,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '工资',
+      "accountNameFrom": '中国银行(1234)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('10月25日14:54', 'M月D日h:i'),
+      "channel": '微信[中国银行-入账]',
+    },
   ]));
 
 test('中国银行跨行转入', () =>
