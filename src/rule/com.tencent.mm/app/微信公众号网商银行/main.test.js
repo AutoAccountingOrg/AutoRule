@@ -23,3 +23,20 @@ test('网商银行消费', () =>
     },
 
   ]));
+
+test('网商银行余利宝收益', () =>
+  testAnkio('网商银行余利宝收益', [
+    {
+      "type": "Income",
+      "money": 1022,
+      "fee": 0,
+      "shopName": '余利宝昨日收益到账',
+      "shopItem": '理财收益提醒',
+      "accountNameFrom": '网商银行',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1731378714282,
+      "channel": '微信[网商银行-收益]',
+    },
+
+  ]));

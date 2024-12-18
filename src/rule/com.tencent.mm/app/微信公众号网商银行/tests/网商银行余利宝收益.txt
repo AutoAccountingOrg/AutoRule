@@ -1,0 +1,13 @@
+{
+"mMap": {
+"tableName": "AppMessage",
+"description": "交易时间:11-11\n交易用途:理财收益提醒\n交易金额:+1022元\n交易类型:余利宝昨日收益到账",
+"source": "网商银行",
+"t": 1731378714282,
+"arg": "msgId",
+"type": 5,
+"appId": "",
+"msgId": 139299,
+"title": "账户动账通知"
+}
+}
