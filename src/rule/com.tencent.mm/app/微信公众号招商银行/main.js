@@ -1,5 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
-import { splitShop } from 'common/Html.js';
+import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat, splitShop } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '招商银行';
