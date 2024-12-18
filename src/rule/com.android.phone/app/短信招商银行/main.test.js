@@ -35,3 +35,19 @@ test('招商银行信用卡还款', () =>
       "channel": '招商银行[还款]',
     },
   ]));
+
+test('招商银行收入', () =>
+  testAnkio('招商银行收入', [
+    {
+      "type": "Income",
+      "money": 0.09,
+      "fee": 0,
+      "shopName": '微信零钱提现/微信零钱提现',
+      "shopItem": '银联入账',
+      "accountNameFrom": '招商银行(1999)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate("11月12日15:04", "M月D日h:i"),
+      "channel": '招商银行[入账]',
+    },
+  ]));

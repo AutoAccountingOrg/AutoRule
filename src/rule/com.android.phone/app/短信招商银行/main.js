@@ -40,6 +40,26 @@ const rules = [
       obj.accountNameTo = `招商银行信用卡(${toNumber})`;
       return obj;
     }
+  ] , //您账户1999于11月12日15:04银联入账人民币0.09元，余额238.06元（微信零钱提现/微信零钱提现）
+  [
+    //您账户1999于11月12日15:04银联入账人民币0.09元，余额238.06元（微信零钱提现/微信零钱提现）
+    /您账户(\d{4})于(\d+月\d+日\d+:\d+)(.*?)人民币([\d,]+.\d{2})元，余额(.*?)元（(.*?)）/,
+    match => {
+      let [, fromNumber, date, shopItem, money, total,shopName] = match;
+
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `招商银行[入账]`;
+      obj.currency = 'CNY';
+      obj.shopName = shopName;
+      obj.shopItem = shopItem;
+      obj.time = formatDate(date, "M月D日h:i");
+
+      obj.type = BillType.Income;
+      obj.accountNameFrom = `招商银行(${fromNumber})`;
+      return obj;
+    }
   ]
 ];
 
