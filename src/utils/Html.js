@@ -30,7 +30,7 @@ export function splitShop(shopItem, shopName, split) {
     shopName = parts.slice(0, -1).join(split); // 前部分作为 shopName
     shopItem = parts[parts.length - 1]; // 最后部分作为 shopItem
   } else {
-    shopName = null; // 无分隔符时，默认 shopName 为 null
+    shopName = ''; // 无分隔符时，默认 shopName 为 null
   }
 
   return { shopName, shopItem };
