@@ -19,5 +19,17 @@ test('交通银行信用卡支出', () =>
       "time": formatDate('2024年11月29日 11:03', 'Y年M月D日 h:i'),
       "channel": '微信[交通银行信用卡买单吧-支出]',
     },
+    {
+      "type": "Expend",
+      "money": 47,
+      "fee": 0,
+      "shopName": '',
+      "shopItem": '消费',
+      "accountNameFrom": '交通银行信用卡(7355)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年10月23日 12:05', 'Y年M月D日 h:i'),
+      "channel": '微信[交通银行信用卡买单吧-支出]',
+    },
   ]));
 
