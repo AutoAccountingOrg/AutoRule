@@ -21,6 +21,23 @@ test('支付宝网商银行转出', () =>
     },
 
   ]));
+
+test('支付宝网商银行余额自动转入', () =>
+  testAnkio('支付宝网商银行余额自动转入', [
+    {
+      "type": "Transfer",
+      "money": 1706.42,
+      "fee": 0,
+      "shopName": '网商银行',
+      "shopItem": '余额已自动转入',
+      "accountNameFrom": '支付宝余额',
+      "accountNameTo": '网商银行',
+      "currency": 'CNY',
+      "time": 1730038418000,
+      "channel": '支付宝[网商银行-余额自动转入]',
+    },
+
+  ]));
 test('支付宝网商银行支出', () =>
   testAnkio('支付宝网商银行支出', [
     {

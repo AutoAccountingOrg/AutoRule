@@ -16,6 +16,23 @@ function transfer(pl,t){
   return obj;
 }
 
+function transfer2(pl,t){
+  let obj = new RuleObject(BillType.Transfer);
+
+  obj.channel = `支付宝[网商银行-余额自动转入]`;
+
+  let extras = JSON.parse(pl.extraInfo);
+  obj.money =  toFloat(extras.assistMsg1);
+  obj.time = t;
+
+  obj.shopItem = extras.content;
+  obj.shopName = "网商银行";
+  obj.accountNameFrom = `支付宝余额`;
+  obj.accountNameTo = `网商银行`;
+  return obj;
+}
+
+
 function expand(pl,t){
   let obj = new RuleObject(BillType.Expend);
   obj.money =  toFloat(pl.content);
@@ -44,14 +61,15 @@ export function get(data) {
   if (pl.content.indexOf('做任务') !== -1){
     return null;
   }
-
-  if (pl.templateName.indexOf("交易成功提醒")===-1){
-    if (pl.homePageTitle.indexOf("转账") !== -1){
-      return transfer(pl, t);
-    }else{
-      return expand(pl,t);
-    }
+  if (pl.homePageTitle.indexOf("余额已自动转入余利宝") !== -1){
+    return transfer2(pl, t);
+  }
+  if (pl.homePageTitle.indexOf("转账-") !== -1){
+    return transfer(pl, t);
+  }
+  if (pl.homePageTitle.indexOf("支付宝支付") !==-1){
+    return expand(pl,t);
   }
 
-  return expand(pl,t);
+  return null;
 }
