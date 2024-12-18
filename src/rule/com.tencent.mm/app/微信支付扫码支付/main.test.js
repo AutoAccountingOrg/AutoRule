@@ -66,4 +66,16 @@ test('微信支付扫码付款', () =>
       "time": 1731045490128,
       "channel": '微信[微信支付-付款]',
     },
+    {
+      "type": "Expend",
+      "money": 29,
+      "fee": 0,
+      "shopName": '十六楼工作室',
+      "shopItem": '面对面红包',
+      "accountNameFrom": '零钱',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1734092827912,
+      "channel": '微信[微信支付-付款]',
+    },
   ]));
