@@ -144,38 +144,70 @@ async function processIssue () {
   }
 }
 
-async function processAll () {
+async function processAll() {
   try {
+    // 初始化 Octokit
     const token = process.env.GITHUB_TOKEN;
     const octokit = new Octokit({ auth: token });
-    const { data: issues } = await octokit.rest.issues.listForRepo({
-      owner: "AutoAccountingOrg",
-      repo: "AutoRule",
-      state: 'open'
-    });
+    const owner = process.env.GITHUB_REPOSITORY_OWNER;
+    const repo = process.env.GITHUB_REPOSITORY.split('/')[1];
 
-    for (const issue of issues) {
-      console.log(`Issue #${issue.number}: ${issue.title}`);
+    console.log(`Fetching issues for ${owner}/${repo}...`);
+
+    // 分页获取所有 Issue
+    let allIssues = [];
+    let page = 1;
+    const perPage = 100;
+
+    while (true) {
+      const { data: issues } = await octokit.rest.issues.listForRepo({
+        owner,
+        repo,
+        state: 'open',
+        per_page: perPage,
+        page,
+      });
+
+      allIssues = allIssues.concat(issues);
+
+      if (issues.length < perPage) {
+        break; // 没有更多的 Issue
+      }
+
+      page++;
+    }
+
+    console.log(`Found ${allIssues.length} open issues.`);
+
+    // 逐个处理 Issue
+    for (const issue of allIssues) {
+      console.log(`Processing Issue #${issue.number}: ${issue.title}`);
       console.log(`Content: ${issue.body}`);
+
       try {
+        // 提取代码块
         const codeBlock = await extractCodeBlockSync(issue.body);
         writeToFile(codeBlock);
 
+        // 运行 Yarn 命令并提取结果
         const output = await runYarnCommands();
         const result = extractTestResult(output);
 
         if (result) {
+          // 处理结果
           await handleIssue(issue.number, result);
         } else {
-          console.log('未找到===========START===========和===========END===========之间的内容');
+          console.warn(
+            `No content found between ===========START=========== and ===========END=========== for Issue #${issue.number}`
+          );
         }
-      } catch (e) {
-        console.log(`处理issue出错：${issue.number}`);
+      } catch (issueError) {
+        console.error(`Error processing Issue #${issue.number}: ${issueError.message}`);
       }
     }
   } catch (error) {
-    console.error(`Error fetching issues: ${error.message}`);
-    process.exit(1);
+    console.error(`Error fetching or processing issues: ${error.message}`);
+    process.exit(1); // 强制退出
   }
 }
 
