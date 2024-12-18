@@ -71,7 +71,7 @@ test('微信支付扫码付款', () =>
       "money": 29,
       "fee": 0,
       "shopName": '十六楼工作室',
-      "shopItem": '面对面红包',
+      "shopItem": '财付通支付科技有限公司',
       "accountNameFrom": '零钱',
       "accountNameTo": '',
       "currency": 'CNY',
