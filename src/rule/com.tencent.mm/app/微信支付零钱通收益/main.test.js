@@ -15,4 +15,16 @@ test('微信支付零钱通收益', () =>
       "time": 1733110247109,
       "channel": '微信[微信支付-零钱通收益月报]',
     },
+    {
+      "type": "Income",
+      "money": 2.03,
+      "fee": 0,
+      "shopName": '零钱通',
+      "shopItem": '当前累计收益￥123.43',
+      "accountNameFrom": '零钱通',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": 1730515985651,
+      "channel": '微信[微信支付-零钱通收益月报]',
+    },
   ]));

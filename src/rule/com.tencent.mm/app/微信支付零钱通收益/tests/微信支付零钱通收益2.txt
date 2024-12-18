@@ -1,0 +1,16 @@
+{
+"mMap": {
+"description": "10月收益￥2.03\n当前累计收益￥123.43",
+"source": "微信支付",
+"type": 5,
+"appId": "",
+"msgId": 99064,
+"title": "零钱通收益月报",
+"display_name": "零钱通",
+"hookerUser": "应该是个亲妈",
+"cachedPayTools": "零钱",
+"cachedPayMoney": "￥35.00",
+"cachedPayShop": "向御用产品经理(*炎)转账",
+"t": 1730515985651
+}
+}

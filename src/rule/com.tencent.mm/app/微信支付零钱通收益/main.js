@@ -9,6 +9,7 @@ const TITLE_WECHAT = [
 // 正则表达式和处理函数的映射关系
 const rules =[
   [
+    //10月收益￥2.03\n当前累计收益￥123.43
     /(\d+)月收益￥(\d+\.\d{2})\n当前累计收益￥(\d+\.\d{2})$/,
     (match,t,item) => {
       const [, month, money, totalMoney] = match;
