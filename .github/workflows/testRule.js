@@ -149,8 +149,8 @@ async function processAll () {
     const token = process.env.GITHUB_TOKEN;
     const octokit = new Octokit({ auth: token });
     const { data: issues } = await octokit.rest.issues.listForRepo({
-      owner: process.env.GITHUB_REPOSITORY_OWNER,
-      repo: process.env.GITHUB_REPOSITORY.split('/')[1],
+      owner: "AutoAccountingOrg",
+      repo: "AutoRule",
       state: 'open'
     });
 
