@@ -8,7 +8,8 @@ const TITLE = ['交易提醒'];
 const rules = [
   [
     //账号：尾号6274的账户\n交易时间：2024年05月23日09:14\n交易类型：财付通快捷支付(微信红包-微信红包)\n交易币种：人民币\n交易金额：0.01
-    /账号：尾号(\d+)的账户\n交易时间：(.*?)\n交易类型：(.*?)\((.*?)\)\n交易币种：(.*?)\n交易金额：([\d,]+.\d{2})$/,
+   // 账号：尾号8888的账户\n交易时间：2024年10月23日14:07\n交易类型：支付宝快捷支付(中国电信股份有限公司-商...\n交易币种：人民币\n交易金额：28.73
+    /账号：尾号(\d+)的账户\n交易时间：(.*?)\n交易类型：(.*?)\((.*?)\n交易币种：(.*?)\n交易金额：([\d,]+.\d{2})$/,
     match => {
       const [, number, time, type, shopItem, currency, money] = match;
       let billType = BillType.Income;
@@ -21,7 +22,7 @@ const rules = [
         billType,
         toFloat(money),
         type,
-        shopItem,
+        shopItem.replace(/\)$/, ""),
         `${SOURCE}(${number})`,
         '',
         0.0,

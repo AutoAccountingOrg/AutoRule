@@ -30,6 +30,18 @@ test('平安银行消费', () =>
       "time": formatDate('6月14日 16:33', 'M月D日 h:i'),
       "channel": '微信[平安银行-消费]',
     },
+    {
+      "type": "Expend",
+      "money":28.73,
+      "fee": 0,
+      "shopName": '支付宝快捷支付',
+      "shopItem": '中国电信股份有限公司-商...',
+      "accountNameFrom": '平安银行(8888)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('2024年10月23日14:07', 'Y年M月D日h:i'),
+      "channel": '微信[平安银行-消费]',
+    },
   ]));
 
 test('平安银行收入', () =>
