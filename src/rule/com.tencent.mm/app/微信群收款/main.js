@@ -1,7 +1,5 @@
 import { BillType, Currency, RuleObject, toFloat } from 'common/index.js';
 
-
-
 /**
  * @param {string} data - 包含数据的JSON字符串。
  * @returns {RuleObject|null} - 解析后的RuleObject对象，如果解析失败则返回null。

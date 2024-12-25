@@ -26,7 +26,7 @@ test('工商银行支出', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate("10月14日23:41","M月D日h:i"),
-      "channel": '工商银行[网上银行支出]',
+      'channel': '工商银行[支出]'
     },
     {
       "type": "Expend",
@@ -50,7 +50,7 @@ test('工商银行支出', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('11月22日11:58', 'M月D日h:i'),
-      'channel': '工商银行[工商银行支出]'
+      'channel': '工商银行[支出]'
     }
   ]));
 test('工商银行收入', () =>

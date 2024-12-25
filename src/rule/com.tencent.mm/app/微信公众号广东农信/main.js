@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import { Currency, formatDate, isPaymentType, parseWechat, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '广东农信';
@@ -11,26 +11,19 @@ const rules = [
     /交易账号:借记卡（尾号(\d{4})）\n交易时间:(.*?)\n交易类型:(.*?)\n交易金额:(.*?)([\d,]+.\d{2})元\n可用余额:(.*?)元/,
      match => {
       let [, number, time, type, currency, money, balance] = match;
-      let matchType = BillType.Expend
-      let shopItem = type;
-      let matchTypeName = "支出";
-      if (type.indexOf('收入') !== -1) {
-        shopItem = type;
-        matchType = BillType.Income;
-        matchTypeName = "收入";
-      }
+       let { matchType, typeName } = isPaymentType(type);
 
       return new RuleObject(
         matchType,
         toFloat(money),
         '',
-        shopItem,
+        type,
         `广东农信(${number})`,
         '',
         0.0,
         Currency[currency], // 5月7日10:50
         formatDate(time, 'Y-M-D h:i'),
-        `微信[${SOURCE}-${matchTypeName}]`
+        `微信[${SOURCE}-${typeName}]`
       );
     }
   ]

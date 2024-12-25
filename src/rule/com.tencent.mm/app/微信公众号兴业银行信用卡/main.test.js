@@ -17,6 +17,6 @@ test('兴业银行信用卡支出', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('11月24日19点37分59秒', 'M月D日h点i分s秒'),
-      'channel': '微信[兴业银行信用卡-消费]'
+      'channel': '微信[兴业银行信用卡-支出]'
     }
   ]));

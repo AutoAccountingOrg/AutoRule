@@ -19,6 +19,6 @@ test('华夏银行信用卡支出', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('2024年10月10日 11:01', 'Y年M月D日 h:i'),
-      "channel": '微信[华夏银行信用卡-消费]',
+      'channel': '微信[华夏银行信用卡-支出]'
     },
   ]));

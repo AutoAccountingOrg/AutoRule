@@ -1,4 +1,4 @@
-import { BillType, formatDate, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
+import { formatDate, isPaymentType, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '交通银行微银行';
@@ -13,28 +13,21 @@ const rules = [
    //交易时间:2024年10月18日 10:43\n交易金额:6205.20元\n交易类型:跨行汇款转入\n交易卡号:*4720\n对方户名:电池材料有限公司
     /账号：\*(\d+)\n账户名称：(.*?)\n交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(\d+.\d{2})(元)?/,
     (match,t,item) => {
-      let [,number,card,time,matchType,money] = match;
-      let matchTypeName = '';
-      let rawType = matchType;
-      if (matchType.indexOf('转入') !== -1) {
-        matchTypeName = '收入';
-        matchType = BillType.Income;
-      }else{
-        matchTypeName = '支出';
-        matchType = BillType.Expend;
-      }
+      let [, number, card, time, type, money] = match;
+
+      let { matchType, typeName } = isPaymentType(type);
 
       return new RuleObject(
         matchType,
         toFloat(money),
         '',
-        rawType,
+        type,
         `${card}(${number})`,
         '',
         0.0,
         transferCurrency('人民币'),
         formatDate(time, 'Y-M-D h:i'),
-        `微信[${SOURCE}-${matchTypeName}]`
+        `微信[${SOURCE}-${typeName}]`
       )
     },
   ],
@@ -42,28 +35,21 @@ const rules = [
        //交易时间:2024年10月18日 10:43\n交易金额:6205.20元\n交易类型:跨行汇款转入\n交易卡号:*4720\n对方户名:电池材料有限公司
     /交易时间:(.*?)\n交易金额:(\d+.\d{2})元\n交易类型:(.*?)\n交易卡号:\*(\d+)\n对方户名:(.*)$/,
     (match,t,item) => {
-      let [,time,money,matchType,number,shopName] = match;
-      let matchTypeName = '';
-      let rawType = matchType;
-      if (matchType.indexOf('转入') !== -1) {
-        matchTypeName = '收入';
-        matchType = BillType.Income;
-      }else{
-        matchTypeName = '支出';
-        matchType = BillType.Expend;
-      }
+      let [, time, money, type, number, shopName] = match;
+
+      let { matchType, typeName } = isPaymentType(type);
 
       return new RuleObject(
         matchType,
         toFloat(money),
-        '',
-        rawType,
+        shopName,
+        type,
         `交通银行(${number})`,
         '',
         0.0,
         transferCurrency('人民币'),
         formatDate(time, 'Y年M月D日 h:i'),
-        `微信[${SOURCE}-${matchTypeName}]`
+        `微信[${SOURCE}-${typeName}]`
       )
     },
   ],

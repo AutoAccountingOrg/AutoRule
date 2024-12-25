@@ -1,4 +1,4 @@
-import { BillType, formatDate, RuleObject, splitShop, splitSms, toFloat } from 'common/index.js';
+import { BillType, formatDate, isPaymentType, RuleObject, splitShop, splitSms, toFloat } from 'common/index.js';
 
 let rules = [
   {
@@ -13,17 +13,14 @@ let rules = [
       let obj = new RuleObject();
 
       obj.money = toFloat(money);
-      obj.channel = `工商银行[${type}]`;
+
       let {shopName,shopItem} = splitShop(shopItem_);
       obj.shopName = shopName;
       obj.shopItem = shopItem;
       obj.time = formatDate(date, 'M月D日h:i');
-
-      if (type.indexOf('支出') !==-1) {
-        obj.type = BillType.Expend;
-      }else{
-        obj.type = BillType.Income;
-      }
+      let { matchType, typeName } = isPaymentType(type);
+      obj.type = matchType;
+      obj.channel = `工商银行[${typeName}]`;
 
       obj.accountNameFrom = `工商银行(${number})`;
       return obj;

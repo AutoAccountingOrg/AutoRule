@@ -3,7 +3,6 @@ import { BillType, Currency, parseWechat, RuleObject, toFloat } from 'common/ind
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
 const TITLE_WECHAT = [
-  '已支付¥',
   '微信支付凭证'
 ];
 
@@ -87,25 +86,7 @@ const rules =[
       );
     },
     ],
-    [
-      //使用零钱支付¥17.30\n车牌宁A·T4386\n交易状态支付成功，对方已收款
-      /使用(.*?)支付¥(\d+\.\d{2})\n车牌(.*?)\n交易(状态|狀態)支付成功，([对對])方已收款/,
-      (match,t,item) => {
-        let [, accountNameFrom, money,shopItem] = match;
-        return new RuleObject(
-          BillType.Expend,
-          toFloat(money),
-          item.display_name,
-          shopItem,
-          accountNameFrom,
-          '',
-          0.0,
-          Currency['人民币'],
-          t,
-          '微信[微信支付-付款]'
-        );
-      },
-  ],
+
 ];
 
 

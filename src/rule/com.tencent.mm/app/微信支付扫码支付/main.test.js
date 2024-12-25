@@ -1,7 +1,5 @@
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
-const { formatDate } = require('common/index.js');
-
 testAnkioInit(get, __dirname, 'com.tencent.mm');
 
 test('微信支付扫码付款', () =>
@@ -54,18 +52,7 @@ test('微信支付扫码付款', () =>
       "time": 1727788529055,
       "channel": '微信[微信支付-付款]',
     },
-    {
-      "type": "Expend",
-      "money": 17.3,
-      "fee": 0,
-      "shopName": '冰达4386马金峰',
-      "shopItem": '宁A·T4386',
-      "accountNameFrom": '零钱',
-      "accountNameTo": '',
-      "currency": 'CNY',
-      "time": 1731045490128,
-      "channel": '微信[微信支付-付款]',
-    },
+
     {
       "type": "Expend",
       "money": 29,

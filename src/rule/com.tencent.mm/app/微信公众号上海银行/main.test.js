@@ -19,7 +19,7 @@ test('上海银行收入', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('11月14日 14:45', 'M月D日 h:i'),
-      "channel": '微信[上海银行-转入]',
+      'channel': '微信[上海银行-收入]'
     },
 
   ]));

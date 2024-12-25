@@ -21,8 +21,7 @@ const rules = [
     match => {
       let [, time, type, number, money, shopItem_] = match;
 
-      let { matchType, matchTypeName } = isPaymentType(type);
-
+      let { matchType, typeName } = isPaymentType(type);
       let { shopName, shopItem } = splitShop(shopItem_, null, '--');
 
       return new RuleObject(
@@ -35,7 +34,7 @@ const rules = [
         0.0,
         transferCurrency('人民币'), // 2024年09月22日  20:40
         formatDate(time, 'M月D日h点i分s秒'),
-        `微信[${SOURCE}-${matchTypeName}]`
+        `微信[${SOURCE}-${typeName}]`
       );
     }
   ]

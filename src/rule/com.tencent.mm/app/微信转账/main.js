@@ -1,7 +1,5 @@
 import { BillType, Currency, formatDate, RuleObject, toDoubleFloat, toFloat } from 'common/index.js';
 
-
-
 function analyzeFromCard(json){
 
   let content = JSON.parse(json.content);

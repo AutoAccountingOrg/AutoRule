@@ -25,7 +25,7 @@ test('交通银行收入', () =>
       "type": "Income",
       "money": 6205.2,
       "fee": 0,
-      "shopName": '',
+      'shopName': '电池材料有限公司',
       "shopItem": '跨行汇款转入',
       "accountNameFrom": '交通银行(4720)',
       "accountNameTo": '',
