@@ -43,7 +43,6 @@ export function isPaymentType (type, words) {
     '支付',
     '消费',
     '支出',
-    '抵扣'
   ];
   if (words) {
     _words.push(...words);
