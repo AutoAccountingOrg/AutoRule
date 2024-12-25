@@ -21,6 +21,18 @@ test('宁波银行收入', () =>
       "time": formatDate('09月15日 17:00', 'M月D日 h:i'),
       "channel": '微信[宁波银行-收入]',
     },
+    {
+      "type": "Income",
+      "money": 12.79,
+      "fee": 0,
+      "shopName": '上海付费通信息服务有限公司',
+      "shopItem": '网络支付退款',
+      "accountNameFrom": '宁波银行(8888)',
+      "accountNameTo": '',
+      "currency": 'CNY',
+      "time": formatDate('11月12日 11:08', 'M月D日 h:i'),
+      "channel": '微信[宁波银行-收入]',
+    },
   ]));
 test('宁波银行消费', () =>
   testAnkio('宁波银行消费', [
@@ -36,4 +48,5 @@ test('宁波银行消费', () =>
       "time": formatDate('09月16日 10:29', 'M月D日 h:i'),
       "channel": '微信[宁波银行-支出]',
     },
+
   ]));
