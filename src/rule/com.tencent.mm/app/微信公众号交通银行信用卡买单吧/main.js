@@ -9,12 +9,13 @@ const rules = [
   [
     // 交易卡号:7355\n交易时间:2024年10月23日 12:05\n交易类型:消费\n交易金额:￥47.00\n交易附言:点击查看详情
     //交易卡号:9354\n交易时间:2024年11月29日 11:03\n交易类型:消费\n交易金额:￥10.00\n交易附言:点击查看详情>>>
-    /交易卡号:(\d+)\n交易时间:(.*?)\n交易类型:(.*?)\n交易金额:￥(\d+.\d{2})\n交易附言:点击查看详情/,
+    //交易卡号:7355\n交易时间:2024年11月16日 17:30\n交易类型:刷卡金抵扣\n交易金额:100.00\n交易附言:点击查看详情
+    /交易卡号:(\d+)\n交易时间:(.*?)\n交易类型:(.*?)\n交易金额:(￥)?(\d+.\d{2})\n交易附言:点击查看详情/,
     (match,t,item) => {
-      let [,number,time,matchType,money] = match;
+      let [,number,time,matchType,,money] = match;
       let matchTypeName = '';
       let rawType = matchType;
-      if (matchType.indexOf('消费') !== -1) {
+      if (matchType.indexOf('消费') !== -1 || matchType.indexOf('抵扣') !==-1) {
         matchTypeName = '支出';
         matchType = BillType.Expend;
       }else{
