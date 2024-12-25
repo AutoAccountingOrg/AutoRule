@@ -8,8 +8,8 @@ const TITLE_WECHAT = [
 
 // 正则表达式和处理函数的映射关系
 const rules =[
-  [
-    /转入金额¥(\d+\.\d{2})\n累计转入¥(\d+\.\d{2})\n扣款账户(.*?)$/,
+  [ // 转入金额￥5000.00\n累计转入￥307500.00\n扣款账户招商银行(3598)
+    /转入金额[¥￥](\d+\.\d{2})\n累计转入[￥¥](\d+\.\d{2})\n扣款账户(.*?)$/,
     (match,t,item) => {
       const [, money, total, accountNameFrom] = match;
       return new RuleObject(

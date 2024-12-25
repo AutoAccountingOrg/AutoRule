@@ -1,0 +1,16 @@
+{
+"mMap": {
+"description": "转入金额￥5000.00\n累计转入￥307500.00\n扣款账户招商银行(3598)",
+"source": "微信支付",
+"type": 5,
+"appId": "",
+"msgId": 99064,
+"title": "定时转入成功通知",
+"display_name": "零钱通",
+"hookerUser": "微信支付",
+"cachedPayTools": "亲属卡",
+"cachedPayMoney": "￥898.22",
+"cachedPayShop": "面对面红包",
+"t": 1731726366110
+}
+}
