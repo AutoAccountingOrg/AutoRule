@@ -1,0 +1,16 @@
+{
+    "mMap": {
+        "description": "付款金额￥9.00\n手表名称智能穿戴设备\n商品名称南京林业大学-消费\n付款方式零钱通\n收单机构中国建设银行股份有限公司深圳市分行",
+        "source": "微信支付",
+        "type": 5,
+        "appId": "",
+        "msgId": 99064,
+        "title": "微信支付凭证",
+        "display_name": "南京林业大学",
+        "hookerUser": "京东 Pro-bot",
+        "cachedPayTools": "零钱通",
+        "cachedPayMoney": "￥3000.00",
+        "cachedPayShop": "向豆豆(**琴)转账",
+        "t": 1731846111012
+    }
+}

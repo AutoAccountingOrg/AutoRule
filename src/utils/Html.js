@@ -11,27 +11,25 @@ export function findNonEmptyString() {
   return '';
 }
 
-export function splitShop(shopItem, shopName, split) {
+export function splitShop(shopItem, _shopName, split) {
   split = split || "-"; // 默认分隔符为 "-"
-
-  // 如果 shopName 已有值，直接返回
-  if (shopName) {
-    return { shopName, shopItem };
-  }
-
   if (!shopItem) {
-    return { shopName, shopItem }; // 如果 shopItem 为空，直接返回
+    return { _shopName, shopItem }; // 如果 shopItem 为空，直接返回
   }
-
+  let shopName;
   const parts = shopItem.split(split);
-
-  // 分隔逻辑
+// 分隔逻辑
   if (parts.length > 1) {
     shopName = parts.slice(0, -1).join(split); // 前部分作为 shopName
     shopItem = parts[parts.length - 1]; // 最后部分作为 shopItem
   } else {
-    shopName = ''; // 无分隔符时，默认 shopName 为 null
+    shopName = _shopName || ''; // 无分隔符时，默认 shopName 为 null
   }
+
+  if (_shopName.indexOf(shopName) === -1) {
+    return { _shopName, shopItem };
+  }
+
 
   return { shopName, shopItem };
 }

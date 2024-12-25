@@ -1,4 +1,4 @@
-import { BillType, Currency, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import { BillType, Currency, parseWechat, RuleObject, splitShop, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
@@ -10,13 +10,15 @@ const TITLE_WECHAT = [
 const rules =[
   [
     //付款金额￥13.00\n手环名称小米手环8 Pro\n商品名称SIOS|124|31\n付款方式零钱\n收单机构财付通支付科技有限公司
-    /付款金额￥(\d+\.\d{2})\n手环名称(.*?)\n商品名称(.*?)\n付款方式(.*?)\n收单机构财付通支付科技有限公司/,
+    // 付款金额￥9.00\n手表名称智能穿戴设备\n商品名称南京林业大学-消费\n付款方式零钱通\n收单机构中国建设银行股份有限公司深圳市分行
+    /付款金额￥(\d+\.\d{2})\n手[环表]名称(.*?)\n商品名称(.*?)\n付款方式(.*?)\n收单机构(.*?)$/,
     (match,t,item) => {
-        let [, money,payTool,shopItem, accountNameFrom] = match;
+        let [, money,payTool,shopItem_, accountNameFrom] = match;
+        let { shopName, shopItem } = splitShop(shopItem_,item.display_name);
         return new RuleObject(
           BillType.Expend,
           toFloat(money),
-          item.display_name,
+          shopName,
           shopItem,
           accountNameFrom,
           '',
