@@ -16,4 +16,21 @@ test('邮储银行支出', () =>
       "time": formatDate("2024年10月09日15:54","Y年M月D日h:i"),
       "channel": '邮储银行[消费]',
     },
+
+  ]));
+test('邮储银行圈存', () =>
+  testAnkio('邮储银行圈存', [
+    {
+      'type': 'Transfer',
+      'money': 100,
+      'fee': 0,
+      'shopName': '巢湖学院',
+      'shopItem': '校园卡圈存',
+      'accountNameFrom': '邮储银行(1707)',
+      'accountNameTo': '巢湖学院(校园卡)',
+      'currency': 'CNY',
+      'time': formatDate('11月18日11:48', 'M月D日h:i'),
+      'channel': '邮储银行[圈存]'
+    }
+
   ]));
