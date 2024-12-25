@@ -26,7 +26,7 @@ export function splitShop(shopItem, _shopName, split) {
     shopName = _shopName || ''; // 无分隔符时，默认 shopName 为 null
   }
 
-  if (_shopName.indexOf(shopName) === -1) {
+  if (_shopName && _shopName.indexOf(shopName) === -1) {
     return { _shopName, shopItem };
   }
 
