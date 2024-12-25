@@ -1,3 +1,5 @@
+import { BillType } from 'common/BillType.js';
+
 export function stripHtml(html) {
   return html.replace(/<[^>]*>/g, '');
 }
@@ -32,5 +34,26 @@ export function splitShop(shopItem, _shopName, split) {
 
 
   return { shopName, shopItem };
+}
+
+export function isPaymentType (type, words) {
+  let matchType = BillType.Income;
+  let matchTypeName = type;
+  let _words = [
+    '支付',
+    '消费',
+    '支出',
+    '抵扣'
+  ];
+  if (words) {
+    _words.push(...words);
+  }
+  for (let i = 0; i < _words.length; i++) {
+    if (type.indexOf(_words[i]) !== -1) {
+      matchType = BillType.Expend;
+      break;
+    }
+  }
+  return { matchType, matchTypeName };
 }
 

@@ -1,6 +1,6 @@
 import { BillType } from './BillType.js';
 import { Currency, transferCurrency } from './Currency.js';
-import { findNonEmptyString, stripHtml,splitShop } from './Html.js';
+import { findNonEmptyString, isPaymentType, splitShop, stripHtml } from './Html.js';
 import { formatDate, isTimeInRange } from './Time.js';
 import { toDoubleFloat, toFloat } from './Number.js';
 import { RuleObject } from './RuleObject.js';
@@ -23,4 +23,5 @@ export {
   AliTools,
   splitSms,
   parseWechat,
+  isPaymentType
 };
