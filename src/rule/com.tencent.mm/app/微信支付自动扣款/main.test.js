@@ -103,4 +103,16 @@ test('微信支付自动扣费', () =>
       "time": 1727808197266,
       "channel": '微信[微信支付-扣款]',
     },
+    {
+      'type': 'Expend',
+      'money': 98.5,
+      'fee': 0,
+      'shopName': '腾讯王卡微信话费代扣',
+      'shopItem': '你的江苏联通账号（1273747744）续费成功',
+      'accountNameFrom': '零钱',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1732594766650,
+      'channel': '微信[微信支付-扣款]'
+    }
   ]));
