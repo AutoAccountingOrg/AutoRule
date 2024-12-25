@@ -40,6 +40,18 @@ test('工商银行支出', () =>
       "time": formatDate("11月11日12:39","M月D日h:i"),
       "channel": '工商银行[支出]',
     },
+    {
+      'type': 'Expend',
+      'money': 0.08,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '银联消费',
+      'accountNameFrom': '工商银行(1234)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('11月22日11:58', 'M月D日h:i'),
+      'channel': '工商银行[工商银行支出]'
+    }
   ]));
 test('工商银行收入', () =>
   testAnkio('工商银行收入', [
