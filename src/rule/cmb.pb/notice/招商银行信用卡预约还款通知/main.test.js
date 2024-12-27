@@ -1,7 +1,5 @@
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
-const { formatDate } = require('common/Time.js');
-
 testAnkioInit(get, __dirname, 'com.cmbchina.ccd');
 test('招商银行信用卡预约还款', () =>
   testAnkio('招商银行信用卡预约还款', [
