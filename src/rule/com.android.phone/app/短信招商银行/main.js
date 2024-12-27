@@ -40,12 +40,12 @@ const rules = [
       obj.accountNameTo = `招商银行信用卡(${toNumber})`;
       return obj;
     }
-  ] , //您账户1999于11月12日15:04银联入账人民币0.09元，余额238.06元（微信零钱提现/微信零钱提现）
+  ],
   [
     //您账户1999于11月12日15:04银联入账人民币0.09元，余额238.06元（微信零钱提现/微信零钱提现）
     /您账户(\d{4})于(\d+月\d+日\d+:\d+)(.*?)人民币([\d,]+.\d{2})元，余额(.*?)元（(.*?)）/,
     match => {
-      let [, fromNumber, date, shopItem, money, total,shopName] = match;
+      let [, fromNumber, date, shopItem, money, total, shopName] = match;
 
       let obj = new RuleObject();
 
@@ -58,6 +58,25 @@ const rules = [
 
       obj.type = BillType.Income;
       obj.accountNameFrom = `招商银行(${fromNumber})`;
+      return obj;
+    }
+  ],
+  [
+    //【招商银行】您账户“银行卡尾号4位数字”于12月27日发生的银联卡转入已到账，人民币“金额”，转出方尾号“转出方尾号4位数字”
+    /您账户(\d{4})于(\d+月\d+日)发生的银联卡转入已到账，人民币([\d,]+.\d{2})，转出方尾号(\d{4})$/,
+    match => {
+      let [, number, date, money, fromNumber] = match;
+
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `招商银行[转入]`;
+      obj.currency = 'CNY';
+      obj.shopItem = '银联卡转入';
+      obj.time = formatDate(date, 'M月D日');
+
+      obj.type = BillType.Income;
+      obj.accountNameFrom = `招商银行(${number})`;
       return obj;
     }
   ]

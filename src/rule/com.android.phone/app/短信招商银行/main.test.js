@@ -50,4 +50,17 @@ test('招商银行收入', () =>
       "time": formatDate("11月12日15:04", "M月D日h:i"),
       "channel": '招商银行[入账]',
     },
+    {
+      'type': 'Income',
+      'money': 0.01,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '银联卡转入',
+      'accountNameFrom': '招商银行(1234)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月27日', 'M月D日'),
+      'channel': '招商银行[转入]'
+    }
   ]));
+
