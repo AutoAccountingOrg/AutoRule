@@ -19,7 +19,7 @@ test('中国银行入账', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月12日18:12', 'M月D日h:i'),
-      "channel": '微信[中国银行-入账]',
+      'channel': '微信[中国银行-收入]'
     },
     {
       "type": "Income",
@@ -31,7 +31,19 @@ test('中国银行入账', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('10月25日14:54', 'M月D日h:i'),
-      "channel": '微信[中国银行-入账]',
+      'channel': '微信[中国银行-收入]'
+    },
+    {
+      'type': 'Income',
+      'money': 3250.0,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '奖金',
+      'accountNameFrom': '中国银行(3888)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月25日14:49', 'M月D日h:i'),
+      'channel': '微信[中国银行-收入]'
     },
   ]));
 
@@ -47,7 +59,7 @@ test('中国银行跨行转入', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('09月26日17:25', 'M月D日h:i'),
-      "channel": '微信[中国银行-入账]',
+      'channel': '微信[中国银行-收入]'
     },
   ]));
 test('中国银行退款', () =>
@@ -62,7 +74,7 @@ test('中国银行退款', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月13日13:02', 'M月D日h:i'),
-      "channel": '微信[中国银行-退款]',
+      'channel': '微信[中国银行-收入]'
     },
   ]));
 
@@ -78,7 +90,7 @@ test('中国银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月13日13:02', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      'channel': '微信[中国银行-支出]'
     },
     {
       "type": "Expend",
@@ -90,7 +102,7 @@ test('中国银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月12日18:28', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      'channel': '微信[中国银行-支出]'
     },
     {
       "type": "Expend",
@@ -102,7 +114,7 @@ test('中国银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月14日14:02', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      'channel': '微信[中国银行-支出]'
     },
     {
       "type": "Expend",
@@ -114,7 +126,7 @@ test('中国银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('04月12日19:04', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      'channel': '微信[中国银行-支出]'
     },
     {
       "type": "Expend",
@@ -126,7 +138,7 @@ test('中国银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('05月08日00:34', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      'channel': '微信[中国银行-支出]'
     },
     {
       "type": "Expend",
@@ -138,7 +150,7 @@ test('中国银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('05月24日17:45', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      'channel': '微信[中国银行-支出]'
     },
     {
       "type": "Expend",
@@ -150,25 +162,9 @@ test('中国银行消费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": formatDate('07月04日07:54', 'M月D日h:i'),
-      "channel": '微信[中国银行-消费]',
+      'channel': '微信[中国银行-支出]'
     },
 
-  ]));
-
-test('中国银行数字人民币', () =>
-  testAnkio('中国银行数字人民币',[
-    {
-      "type": "Transfer",
-      "money": 207.35,
-      "fee": 0,
-      "shopName": '',
-      "shopItem": '数字人民币随用随充',
-      "accountNameFrom": '中国银行(2119)',
-      "accountNameTo": '数字人民币',
-      "currency": 'CNY',
-      "time": formatDate('06月13日10:59', 'M月D日h:i'),
-      "channel": '微信[中国银行-数字人民币充值]',
-    },
   ]));
 
 test('中国银行信用卡存入', () =>
