@@ -112,3 +112,19 @@ test('招商银行信用卡退货', () =>
       "channel": '微信[招商银行信用卡-退货]',
     },
   ]));
+
+test('招商银行信用卡自动还款失败', () =>
+  testAnkio('招商银行信用卡自动还款失败', [
+    {
+      'type': 'Transfer',
+      'money': 13905.14,
+      'shopName': '',
+      'shopItem': '关联活期账户余额不足，未足额扣款',
+      'accountNameTo': '招商银行信用卡',
+      'accountNameFrom': '',
+      'fee': 0,
+      'currency': 'CNY',
+      'time': 1734931086159,
+      'channel': '微信[招商银行信用卡-自动还款失败]'
+    }
+  ]));
