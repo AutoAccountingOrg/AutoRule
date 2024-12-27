@@ -44,7 +44,10 @@ export const AliTools = {
   handleBillItems(fields, result){
     fields.forEach(element => {
       if (element.value === undefined) return
-      const elementValue = JSON.parse(element.value);
+      let elementValue = element.value;
+      if (typeof element.value === 'string') {
+        elementValue = JSON.parse(element.value);
+      }
       switch (element.templateId) {
         case 'BLDetailTitle':
           result.shopName = elementValue.content;

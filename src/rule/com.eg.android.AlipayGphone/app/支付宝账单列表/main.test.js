@@ -49,9 +49,21 @@ test('支付宝普通交易', () =>
       "shopName": '喷**',
       "shopItem": '',
       "accountNameFrom": '余额宝',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1727714675000,
+      'channel': '支付宝[普通交易]'
+    },
+    {
+      'type': 'Expend',
+      'money': 500,
+      'fee': 0,
+      'shopName': '购物金',
+      'shopItem': '',
+      'accountNameFrom': '交通银行储蓄卡(6021)',
       "accountNameTo": '',
       "currency": 'CNY',
-      "time": 1727714675000,
+      'time': 1735130344000,
       "channel": '支付宝[普通交易]',
     },
   ]));
