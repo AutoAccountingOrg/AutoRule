@@ -1,4 +1,4 @@
-import { BillType, formatDate, RuleObject, splitSms, toFloat, transferCurrency } from 'common/index.js';
+import { BillType, formatDate, isPaymentType, RuleObject, splitSms, toFloat, transferCurrency } from 'common/index.js';
 
 // 正则表达式和处理函数的映射关系
 const rules = [
@@ -23,6 +23,26 @@ const rules = [
     }
   ],
 
+  [
+    // 尊敬的黄胜辉，您在2024-12-24 13:05:14使用银行卡1502进行了RMB 45.00元的网上支付交易。详询95566
+    /尊敬的(.*?)，您在(.*?)使用银行卡(\d{4})进行了(.*?) ([\d,]+.\d{2})元的(.*?)交易。/,
+    match => {
+      let [, name, date, number, currency, money, type] = match;
+
+      let obj = new RuleObject();
+      let { matchType, typeName } = isPaymentType(type);
+      obj.money = toFloat(money);
+      obj.channel = `中国银行[${typeName}]`;
+      obj.currency = transferCurrency(currency);
+      obj.time = formatDate(date, 'Y-M-D h:i:s');
+      obj.type = matchType;
+      obj.accountNameFrom = `中国银行(${number})`;
+      obj.shopName = name;
+      obj.shopItem = type;
+
+      return obj;
+    }
+  ]
 
 
 ];

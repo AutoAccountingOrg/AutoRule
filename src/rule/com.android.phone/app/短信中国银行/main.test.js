@@ -17,3 +17,19 @@ test('中国银行信用卡支出', () =>
       "channel": '中国银行信用卡[消费]',
     },
   ]));
+
+test('中国银行支出', () =>
+  testAnkio('中国银行支出', [
+    {
+      'type': 'Expend',
+      'money': 45,
+      'fee': 0,
+      'shopName': '黄胜辉',
+      'shopItem': '网上支付',
+      'accountNameFrom': '中国银行(1502)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('2024-12-24 13:05:14', 'Y-M-D h:i:s'),
+      'channel': '中国银行[支出]'
+    }
+  ]));
