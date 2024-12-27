@@ -16,6 +16,18 @@ test('中国农业银行收入', () =>
       "time": formatDate("09月27日09时15分",'M月D日h时i分'),
       "channel": '中国农业银行[收入]',
     },
+    {
+      'type': 'Income',
+      'money': 60000,
+      'fee': 0,
+      'shopName': '苟先生',
+      'shopItem': '转存',
+      'accountNameFrom': '中国农业银行(2473)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月23日10:28', 'M月D日h:i'),
+      'channel': '中国农业银行[收入]'
+    }
   ]));
 test('中国农业银行支出', () =>
   testAnkio('中国农业银行支出', [
