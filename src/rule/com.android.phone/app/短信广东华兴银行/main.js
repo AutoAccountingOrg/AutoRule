@@ -22,8 +22,27 @@ const rules = [
       obj.accountNameFrom = `${senderName}(${number})`;
       return obj;
     }
-  ]
+  ], // 【广东华兴银行】您尾号8665账户12月21日00:28转账存入人民币16.99元，余额36168.11元，摘要：利息结息入账。 本机构吸收的本外币存款依照《存款保险条例》受到保护。登录手机银行了解详情 u.ghbank.com.cn/1KRM
+  [
+    //您尾号8665账户12月21日00:28转账存入人民币16.99元，余额36168.11元，摘要：利息结息入账。
+    /您尾号(\d{4})账户(\d+月\d+日\d+:\d+)(.*?)人民币(.*?)元，余额(.*?)元，摘要：(.*?)。/,
+    match => {
+      let [, number, date, type, money, , item] = match;
 
+      let obj = new RuleObject();
+
+      let { matchType, typeName } = isPaymentType(type);
+
+      obj.money = toFloat(money);
+      obj.channel = `${senderName}[${typeName}]`;
+      obj.shopItem = type;
+      obj.shopName = item;
+      obj.time = formatDate(date, 'M月D日h:i');
+      obj.type = matchType;
+      obj.accountNameFrom = `${senderName}(${number})`;
+      return obj;
+    }
+  ]
 ];
 
 /**
