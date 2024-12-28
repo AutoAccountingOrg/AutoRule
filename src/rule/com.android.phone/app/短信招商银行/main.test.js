@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -64,3 +65,18 @@ test('招商银行收入', () =>
     }
   ]));
 
+test('招商银行退款', () =>
+  testAnkio('招商银行退款', [
+    {
+      'type': 'Income',
+      'money': 4529.48,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '支付宝-盈思网络科技（深圳）有限公司',
+      'accountNameFrom': '招商银行(0877)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月16日23:38', 'M月D日h:i'),
+      'channel': '招商银行[退款]'
+    }
+  ]));

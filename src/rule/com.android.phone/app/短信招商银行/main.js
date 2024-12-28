@@ -79,6 +79,25 @@ const rules = [
       obj.accountNameFrom = `招商银行(${number})`;
       return obj;
     }
+  ],
+  [
+    //【招商银行】您账户0877于12月16日23:38在支付宝-盈思网络科技（深圳）有限公司退款4529.48元
+    /您账户(\d{4})于(\d+月\d+日\d+:\d+)在(.*?)退款([\d,]+.\d{2})元/,
+    match => {
+      let [, number, date, merchant, money] = match;
+
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `招商银行[退款]`;
+      obj.currency = 'CNY';
+      obj.shopItem = `${merchant}`;
+      obj.time = formatDate(date, 'M月D日h:i');
+
+      obj.type = BillType.Income;
+      obj.accountNameFrom = `招商银行(${number})`;
+      return obj;
+    }
   ]
 ];
 
