@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/index.js');
@@ -17,5 +18,18 @@ test('光大银行信用卡消费', () =>
       "currency": 'CNY',
       "time": formatDate('2024年11月25日 18:55', 'Y年M月D日 h:i'),
       "channel": '微信[光大银行信用卡-支出]',
+    },
+    {
+      'type': 'Expend',
+      'money': 100,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '中国石化销售股份有限公司安徽石油',
+      'accountNameFrom': '光大银行信用卡(7558)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('2024年12月18日 10:10', 'Y年M月D日 h:i'),
+      'channel': '微信[光大银行信用卡-支出]'
     }
   ]));
+

@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import { Currency, formatDate, isPaymentType, parseWechat, RuleObject, splitShop, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '光大银行信用卡';
@@ -7,33 +7,20 @@ const TITLE = ['信用卡交易提醒'];
 // 正则表达式和处理函数的映射关系
 const rules = [
   [
-    /交易时间:(.*?)[\s\n]交易类型:尾号(\d+)信用卡,(.*?)[\s\n]交易金额:(\d+(?:\.\d+)?)元[\s\n]交易商户:(.*?)[\s\n]可用额度:/,
+    //交易时间:2024年11月25日 18:55\n交易类型:尾号5338信用卡,消费\n交易金额:10000元\n交易商户:财付通 华强电子世界\n可用额度:23358.81元","source":"光大银行信用卡
+    // 交易时间:2024年12月18日 10:10交易类型:尾号7558信用卡,消费\n交易金额:100元\n交易商户:中国石化销售股份有限公司安徽石油\n可用额度:36120.67元
+    /交易时间:(.*?)(\n)?交易类型:尾号(\d+)信用卡,(.*?)[\s\n]交易金额:(\d+(?:\.\d+)?)元[\s\n]交易商户:(.*?)[\s\n]可用额度:/,
     match => {
-      let [, time, cardNumber, type, money, merchant] = match;
-      console.log(cardNumber,)
-      // 解析商户名称
-      let shopName = '';
-      let shopItem = merchant;
+      let [, time, , cardNumber, type, money, merchant] = match;
+
       // 检查商户名称是否包含空格，如果包含则分割
-      const merchantParts = merchant.trim().split(' ');
-      if (merchantParts.length > 1) {
-        shopName = merchantParts[0];
-        shopItem = merchantParts[1];
-      }
-      
-      // 判断交易类型
-      let billType = BillType.Expend;
-      let typeName = "支出";
-      
-      // 如果交易类型包含特定关键词，则认为是收入
-      const incomeKeywords = ['退货', '转入', '退款', '还款'];
-      if (incomeKeywords.some(keyword => type.includes(keyword))) {
-        billType = BillType.Income;
-        typeName = "收入";
-      }
+      let { shopName, shopItem } = splitShop(merchant, null, ' ');
+
+      let { matchType, typeName } = isPaymentType(type);
+
 
       return new RuleObject(
-        billType,
+        matchType,
         toFloat(money),
         shopName,
         shopItem,
