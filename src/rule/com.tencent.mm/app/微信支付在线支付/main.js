@@ -46,44 +46,7 @@ const rules =[
       );
     }
   ],
-  [
-    // 收款方产地鲜友公司李锆\n使用农业银行储蓄卡支付¥65.17\n付款留言梁峻翊\n交易状态支付成功，对方已收款
-    /使用(.*?)支付[¥￥](\d+\.\d{2})\n收单机构.*/,
-    (match,t,item) => {
-      let [, accountNameFrom,money] = match;
-      return new RuleObject(
-        BillType.Expend,
-        toFloat(money),
-        item.display_name,
-        '',
-        accountNameFrom,
-        '',
-        0.0,
-        Currency['人民币'],
-        t,
-        '微信[微信支付-在线支付]'
-      );
-    },
-  ],
-  [
-    //Paid by Balance¥3900.00\nAcquirer财付通支付科技有限公司
-    /Paid by (.*?)¥(\d+\.\d{2})\nAcquirer(.*?)$/,
-    (match,t,item) => {
-      let [, accountNameFrom, money,shopName] = match;
-      return new RuleObject(
-        BillType.Expend,
-        toFloat(money),
-        item.display_name,
-        shopName,
-        accountNameFrom === "Balance"? '微信零钱': accountNameFrom,
-        '',
-        0.0,
-        Currency['人民币'],
-        t,
-        '微信[微信支付-在线支付]'
-      );
-    },
-  ],
+
   [
     //使用零钱支付¥17.30\n车牌宁A·T4386\n交易状态支付成功，对方已收款
     /使用(.*?)支付¥(\d+\.\d{2})\n车牌(.*?)\n交易(状态|狀態)支付成功，([对對])方已收款/,
@@ -95,6 +58,44 @@ const rules =[
         item.display_name,
         shopItem,
         accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-在线支付]'
+      );
+    }
+  ],
+  [
+    // 使用招商银行信用卡(1356)支付¥975.80
+    /使用(.*?)支付[¥￥](\d+\.\d{2})(\n收单机构.*)?/,
+    (match, t, item) => {
+      let [, accountNameFrom, money] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        item.display_name,
+        '',
+        accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-在线支付]'
+      );
+    }
+  ],
+  [
+    //Paid by Balance¥3900.00\nAcquirer财付通支付科技有限公司
+    /Paid by (.*?)¥(\d+\.\d{2})\nAcquirer(.*?)$/,
+    (match, t, item) => {
+      let [, accountNameFrom, money, shopName] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        item.display_name,
+        shopName,
+        accountNameFrom === 'Balance' ? '微信零钱' : accountNameFrom,
         '',
         0.0,
         Currency['人民币'],

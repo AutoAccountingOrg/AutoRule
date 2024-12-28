@@ -1,0 +1,16 @@
+{
+"mMap": {
+"description": "使用招商银行信用卡(1356)支付¥975.80",
+"source": "微信支付",
+"type": 5,
+"appId": "",
+"msgId": 99064,
+"title": "已支付¥975.80",
+"display_name": "国家税务总局江苏省税务局",
+"hookerUser": "招商银行信用卡",
+"cachedPayTools": "招商银行信用卡",
+"cachedPayMoney": "￥975.80",
+"cachedPayShop": "向牛犇(*犇)转账",
+"t": 1735185126829
+}
+}

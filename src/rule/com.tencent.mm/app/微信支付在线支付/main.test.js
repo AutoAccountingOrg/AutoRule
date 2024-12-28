@@ -86,5 +86,16 @@ test('微信支付在线支付', () =>
       'currency': 'CNY',
       'time': 1732849959464,
       'channel': '微信[微信支付-在线支付]'
+    }, {
+      'type': 'Expend',
+      'money': 975.8,
+      'fee': 0,
+      'shopName': '国家税务总局江苏省税务局',
+      'shopItem': '',
+      'accountNameFrom': '招商银行信用卡(1356)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1735185126829,
+      'channel': '微信[微信支付-在线支付]'
     }
   ]));
