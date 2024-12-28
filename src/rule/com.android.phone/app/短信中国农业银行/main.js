@@ -39,7 +39,6 @@ const rules = [
     }
   ],
   [
-    //苟先生于12月23日10:28向您尾号2473账户完成转存交易人民币60000.00，余额60234.76。
     /(.*?)于(.*?)向您尾号(\d{4})账户完成(.*?)交易人民币([-\d,]+(.\d{2}))，余额([\d,]+(.\d{2}))。/,
     match => {
       let [, name, date, number, type, money] = match;
@@ -54,6 +53,22 @@ const rules = [
       obj.type = matchType;
       obj.accountNameFrom = `${senderName}(${number})`;
       obj.shopName = name;
+      return obj;
+    }
+  ],
+  [
+    //您6559的信用卡(附属卡)12月20日20:01消费27.40元，可用余额57821.53元，如有外币欠款以入账为准。
+    /您(\d{4})的信用卡\(附属卡\)(.*?)消费([\d,]+(.\d{2}))元，可用余额([\d,]+(.\d{2}))元，如有外币欠款以入账为准。/,
+    match => {
+      let [, number, date, money] = match;
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `${senderName}[支出]`;
+      obj.shopItem = '消费';
+      obj.time = formatDate(date, 'M月D日h:i');
+      obj.type = 'Expend';
+      obj.accountNameFrom = `${senderName}(${number})`;
       return obj;
     }
   ]

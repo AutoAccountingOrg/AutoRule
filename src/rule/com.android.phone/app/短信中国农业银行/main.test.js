@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -54,6 +55,22 @@ test('中国农业银行支出', () =>
       "currency": 'CNY',
       "time": formatDate("11月18日13时03分",'M月D日h时i分'),
       "channel": '中国农业银行[支出]',
-    },
+    }
   ]));
 
+test('中国农业银行信用卡消费', () =>
+  testAnkio('中国农业银行信用卡消费', [
+      {
+        'type': 'Expend',
+        'money': 27.4,
+        'fee': 0,
+        'shopName': '',
+        'shopItem': '消费',
+        'accountNameFrom': '中国农业银行(6559)',
+        'accountNameTo': '',
+        'currency': 'CNY',
+        'time': formatDate('12月20日20:01', 'M月D日h:i'),
+        'channel': '中国农业银行[支出]'
+      }
+    ]
+  ));
