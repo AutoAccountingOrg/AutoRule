@@ -2,7 +2,7 @@ import { BillType } from './BillType.js';
 import { Currency, transferCurrency } from './Currency.js';
 import { findNonEmptyString, isPaymentType, splitShop, stripHtml } from './Html.js';
 import { formatDate, isTimeInRange } from './Time.js';
-import { toDoubleFloat, toFloat } from './Number.js';
+import { convertToNumber, toDoubleFloat, toFloat } from './Number.js';
 import { RuleObject } from './RuleObject.js';
 import { AliTools } from './AliTools.js';
 import { splitSms } from './SmsTools.js';
@@ -23,5 +23,6 @@ export {
   AliTools,
   splitSms,
   parseWechat,
-  isPaymentType
+  isPaymentType,
+  convertToNumber
 };

@@ -1,4 +1,4 @@
-function convertToNumber(value, allowZero = true) {
+export function convertToNumber (value, allowZero = true) {
   if (typeof value === 'number') {
     return value; // 如果已经是数字，则直接返回
   } else if (typeof value === 'string') {
