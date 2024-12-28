@@ -97,5 +97,60 @@ test('微信支付在线支付', () =>
       'currency': 'CNY',
       'time': 1735185126829,
       'channel': '微信[微信支付-在线支付]'
+    }, {
+      'type': 'Expend',
+      'money': 10,
+      'fee': 0,
+      'shopName': '开心快乐每一天',
+      'shopItem': '',
+      'accountNameFrom': '徽商银行储蓄卡',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 0,
+      'channel': '微信[微信支付-在线支付]'
+    }, {
+      'type': 'Expend',
+      'money': 70,
+      'fee': 0,
+      'shopName': '酱骨头焖面',
+      'shopItem': '',
+      'accountNameFrom': '零钱',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 0,
+      'channel': '微信[微信支付-在线支付]'
+    }, {
+      'type': 'Expend',
+      'money': 9,
+      'fee': 0,
+      'shopName': '川香源',
+      'shopItem': '',
+      'accountNameFrom': '零钱通',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 0,
+      'channel': '微信[微信支付-在线支付]'
+    }, {
+      'type': 'Expend',
+      'money': 5,
+      'fee': 0,
+      'shopName': '发财',
+      'shopItem': '支付成功，对方已收款',
+      'accountNameFrom': '零钱',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1727788529055,
+      'channel': '微信[微信支付-在线支付]'
+    }, {
+      'type': 'Expend',
+      'money': 29,
+      'fee': 0,
+      'shopName': '十六楼工作室',
+      'shopItem': '',
+      'accountNameFrom': '零钱',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1734092827912,
+      'channel': '微信[微信支付-在线支付]'
     }
   ]));

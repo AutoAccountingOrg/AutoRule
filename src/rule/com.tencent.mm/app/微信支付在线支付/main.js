@@ -4,15 +4,16 @@ import { BillType, Currency, parseWechat, RuleObject, toFloat } from 'common/ind
 const SOURCE_NAME_WECHAT = '微信支付';
 const TITLE_WECHAT = [
   '已支付¥',
-  '¥ paid'
+  '¥ paid',
+  '微信支付凭证'
 ];
 
 // 正则表达式和处理函数的映射关系
 const rules =[
   [
-    /付款金额[￥¥](\d+\.\d{2})\n付款方式(.*?)\n收单机构.*/,
+    /(付款|支付)金额[￥¥](\d+\.\d{2})\n(付款|支付)方式(.*?)\n收单机构.*/,
     (match,t,item) => {
-      let [, money, accountNameFrom] = match;
+      let [, , money, , accountNameFrom] = match;
       return new RuleObject(
         BillType.Expend,
         toFloat(money),
@@ -26,6 +27,24 @@ const rules =[
         '微信[微信支付-在线支付]'
       );
     },
+  ],
+  [ // 付款金额¥10.00\n支付方式徽商银行储蓄卡\n交易状态支付成功，对方已收款
+    /付款金额[￥¥](\d+\.\d{2})\n支付方式(.*?)\n交易状态支付成功，对方已收款/,
+    (match, t, item) => {
+      let [, money, accountNameFrom] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        item.display_name,
+        '',
+        accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-在线支付]'
+      );
+    }
   ],
   [
     // 收款方产地鲜友公司李锆\n使用农业银行储蓄卡支付¥65.17\n付款留言梁峻翊\n交易状态支付成功，对方已收款
@@ -46,7 +65,26 @@ const rules =[
       );
     }
   ],
+  [
+    // 付款金额￥5.00\n收款方发财\n交易状态支付成功，对方已收款
+    /付款金额￥(\d+\.\d{2})\n收款方(.*?)\n交易状态(.*?)$/,
+    (match, t, item) => {
+      const [, money, shopName, shopItem] = match;
 
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        shopName,
+        shopItem,
+        item.cachedPayTools,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-在线支付]'
+      );
+    },
+  ],
   [
     //使用零钱支付¥17.30\n车牌宁A·T4386\n交易状态支付成功，对方已收款
     /使用(.*?)支付¥(\d+\.\d{2})\n车牌(.*?)\n交易(状态|狀態)支付成功，([对對])方已收款/,
