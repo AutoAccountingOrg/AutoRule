@@ -1,4 +1,12 @@
-import { formatDate, isPaymentType, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
+import {
+  BillType,
+  formatDate,
+  isPaymentType,
+  parseWechat,
+  RuleObject,
+  toFloat,
+  transferCurrency
+} from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '交通银行微银行';
@@ -53,6 +61,26 @@ const rules = [
       )
     },
   ],
+  [
+    //交易卡号:*6662\n交易时间:2024-12-12 06:21\n交易类型:信用卡还款\n交易金额:31604.21元
+    /交易卡号:\*(\d+)\n交易时间:(.*?)\n交易类型:信用卡还款\n交易金额:(\d+.\d{2})元/,
+    (match, t, item) => {
+      let [, number, time, money] = match;
+
+      return new RuleObject(
+        BillType.Transfer,
+        toFloat(money),
+        '信用卡还款',
+        '',
+        `交通银行(${number})`,
+        `交通银行信用卡`,
+        0.0,
+        transferCurrency('人民币'),
+        formatDate(time, 'Y-M-D h:i'),
+        `微信[${SOURCE}-还款]`
+      );
+    }
+  ]
 ];
 
 

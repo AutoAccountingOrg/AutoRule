@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易卡号:*6662\n交易时间:2024-12-12 06:21\n交易类型:信用卡还款\n交易金额:31604.21元","source":"交通银行微银行","t":1733955679952,"arg":"msgId","type":5,"appId":"","msgId":215264,"title":"交易提醒"}}

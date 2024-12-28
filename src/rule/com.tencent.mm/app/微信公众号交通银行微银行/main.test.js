@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const fs = require('fs');
 const path = require('path');
@@ -61,4 +62,20 @@ test('交通银行支出', () =>
       "time": formatDate('2024-10-09 08:31', 'Y-M-D h:i'),
       "channel": '微信[交通银行微银行-支出]',
     },
+  ]));
+
+test('交通银行信用卡还款', () =>
+  testAnkio('交通银行信用卡还款', [
+    {
+      'type': 'Transfer',
+      'money': 31604.21,
+      'fee': 0,
+      'shopName': '信用卡还款',
+      'shopItem': '',
+      'accountNameFrom': '交通银行(6662)',
+      'accountNameTo': '交通银行信用卡',
+      'currency': 'CNY',
+      'time': formatDate('2024-12-12 06:21', 'Y-M-D h:i'),
+      'channel': '微信[交通银行微银行-还款]'
+    }
   ]));
