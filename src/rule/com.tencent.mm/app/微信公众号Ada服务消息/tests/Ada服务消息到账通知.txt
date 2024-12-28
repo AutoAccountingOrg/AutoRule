@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易日期：2024-12-11\n到账时间：2024-12-11 18:18:29\n到账金额：49.85元\n到账状态：交易已经到账","source":"Ada服务消息","t":1733912311922,"arg":"msgId","type":5,"appId":"","msgId":10382735,"title":"交易到账通知"}}
