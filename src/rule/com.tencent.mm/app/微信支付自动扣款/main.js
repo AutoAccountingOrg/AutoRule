@@ -3,7 +3,7 @@ import { BillType, Currency, findNonEmptyString, parseWechat, RuleObject, toFloa
 // 定义源名称和需要匹配的标题数组
 const SOURCE_NAME_WECHAT = '微信支付';
 const TITLE_WECHAT = [
-  '已扣费¥'
+  '已扣费¥', '扣费通知'
 ];
 
 // 正则表达式和处理函数的映射关系
@@ -28,7 +28,27 @@ const rules =[
       );
     },
   ],
-    [
+  [
+    // 扣费金额￥22.00\n扣费项目上海交通大学免密支付\n扣费方式零钱通\n收单机构财付通支付科技有限公司\n消费场所闵行四餐食尚卤\n消费时间2024-12-10 17:18:24\n备注你在上海交通大学的账号124039910024扣费成功，你可以点击消息管理你的扣费项目
+
+    /扣费金额￥(.*?)\n扣费项目(.*?)\n扣费方式(.*?)\n收单机构(.*?)\n消费场所(.*?)\n消费时间(.*?)\n备注(.*?)，你可以点击消息管理你的扣费项目/,
+    (match, t, item) => {
+      const [, money, shopName, accountNameFrom, , shopItem, time] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        shopName,
+        shopItem,
+        accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-自动扣费]'
+      );
+    }
+  ],
+  [
       // 扣费金额￥53.72\n扣费服务滴滴出行\n扣费内容先乘后付\n支付方式零钱通\n收单机构财付通支付科技有限公司
       /扣费金额￥(\d+\.\d{2})\n扣费服务(.*?)\n扣费内容(.*?)\n支付方式(.*?)\n收单机构(.*?)$/,
       (match,t,item) => {

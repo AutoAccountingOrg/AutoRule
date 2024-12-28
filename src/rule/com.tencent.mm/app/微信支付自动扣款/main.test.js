@@ -126,5 +126,17 @@ test('微信支付自动扣费', () =>
       'currency': 'CNY',
       'time': 1734775611530,
       'channel': '微信[微信支付-自动扣费]'
+    },
+    {
+      'type': 'Expend',
+      'money': 22,
+      'fee': 0,
+      'shopName': '上海交通大学免密支付',
+      'shopItem': '闵行四餐食尚卤',
+      'accountNameFrom': '零钱通',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1733822307961,
+      'channel': '微信[微信支付-自动扣费]'
     }
   ]));
