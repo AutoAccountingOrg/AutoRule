@@ -16,7 +16,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 0,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       "type": "Expend",
@@ -28,7 +28,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 0,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       "type": "Expend",
@@ -41,7 +41,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 0,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       "type": "Expend",
@@ -53,7 +53,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 0,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       "type": "Expend",
@@ -65,7 +65,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 0,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       "type": "Expend",
@@ -77,7 +77,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 0,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       "type": "Expend",
@@ -89,7 +89,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 0,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       "type": "Expend",
@@ -101,7 +101,7 @@ test('微信支付自动扣费', () =>
       "accountNameTo": '',
       "currency": 'CNY',
       "time": 1727808197266,
-      "channel": '微信[微信支付-扣款]',
+      'channel': '微信[微信支付-自动扣费]'
     },
     {
       'type': 'Expend',
@@ -113,6 +113,18 @@ test('微信支付自动扣费', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': 1732594766650,
-      'channel': '微信[微信支付-扣款]'
+      'channel': '微信[微信支付-自动扣费]'
+    },
+    {
+      'type': 'Expend',
+      'money': 26.7,
+      'fee': 0,
+      'shopName': '拼多多订单免密支付',
+      'shopItem': '你的拼多多平台商户账号（～水）扣费成功',
+      'accountNameFrom': '零钱通',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1734775611530,
+      'channel': '微信[微信支付-自动扣费]'
     }
   ]));
