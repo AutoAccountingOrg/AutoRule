@@ -20,10 +20,10 @@ export function splitShop(shopItem, _shopName, split) {
   const parts = shopItem.split(split);
 // 分隔逻辑
   if (parts.length > 1) {
-    shopName = parts.slice(0, -1).join(split); // 前部分作为 shopName
-    shopItem = parts[parts.length - 1]; // 最后部分作为 shopItem
+    shopName = parts.slice(0, -1).join(split).trim(); // 前部分作为 shopName
+    shopItem = parts[parts.length - 1].trim(); // 最后部分作为 shopItem
   } else {
-    shopName = _shopName || ''; // 无分隔符时，默认 shopName 为 null
+    shopName = _shopName.trim() || ''; // 无分隔符时，默认 shopName 为 null
   }
 
   if (_shopName && _shopName.indexOf(shopName) === -1) {
