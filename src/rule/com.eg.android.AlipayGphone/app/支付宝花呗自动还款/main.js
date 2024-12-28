@@ -4,7 +4,7 @@ export function get(data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
   //非花呗不管，排除花呗金
-  if (!pl.title.match(/花呗(?!金)/) || pl.homePageTitle.match(/本月花呗账单已出/)) {
+  if (!pl.templateName.match(/花呗还款日当天/)) {
     return null;
   }
 
