@@ -1,4 +1,4 @@
-import { BillType, Currency, RuleObject, toDoubleFloat } from 'common/index.js';
+import { BillType, Currency, RuleObject, toFloat } from 'common/index.js';
 
 /**
  * 获取规则对象
@@ -7,23 +7,23 @@ import { BillType, Currency, RuleObject, toDoubleFloat } from 'common/index.js';
  */
 export function get(data) {
   let json = JSON.parse(data);
-  if (json.retcode !== 0) {
+  if (json.type !== 'redPackage' || json.isSend !== 1) {
     return null;
   }
-  let amount = toDoubleFloat(json.amount);
-  let shopItem = json.wishing;
+  let amount = toFloat(json.cachedPayMoney);
+  let content = JSON.parse(json.content);
+  let shopItem = content.msg.appmsg.wcpayinfo.sendertitle;
   let shopName = json.hookerUser;
-  let t = parseInt(json.record[0].receiveTime) * 1000;
   return new RuleObject(
-    BillType.Income,
+    BillType.Expend,
     amount,
     shopName,
     shopItem,
-    '零钱',
+    json.cachedPayTools,
     '',
     0.0,
     Currency['人民币'],
-    t,
-    '微信[微信支付-红包收款]'
+    json.t,
+    '微信[微信支付-发红包]'
   )
 }

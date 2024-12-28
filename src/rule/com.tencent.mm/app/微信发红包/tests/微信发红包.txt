@@ -1,0 +1,10 @@
+{
+"type": "redPackage",
+"content": "{\"msg\":{\"appmsg\":{\"des\":\"我给你发了一个红包，赶紧去拆!\",\"lowurl\":\"\",\"wcpayinfo\":{\"receivertitle\":\"恭喜发财，大吉大利\",\"paymsgid\":\"1000039801202412237225703898174\",\"sendertitle\":\"恭喜发财，大吉大利\",\"innertype\":\"0\",\"templateid\":\"7a2a165d31da7fce6dd77e05c300028a\",\"url\":\"https:\\/\\/wxapp.tenpay.com\\/mmpayhb\\/wxhb_personalreceive?showwxpaytitle=1&msgtype=1&channelid=1&sendid=1000039801202412237225703898174\",\"receiverdes\":\"领取红包\",\"senderdes\":\"查看红包\",\"iconurl\":\"https:\\/\\/wx.gtimg.com\\/hongbao\\/1800\\/hb.png\",\"sceneid\":\"1002\",\"invalidtime\":\"1735011599\",\"scenetext\":[{\"content\":\"微信红包\"},{\"content\":\"微信红包\"}],\"locallogoicon\":\"c2c_hongbao_icon_cn\",\"nativeurl\":\"wxpay:\\/\\/c2cbizmessagehandler\\/hongbao\\/receivehongbao?msgtype=1&channelid=1&sendid=1000039801202412237225703898174&sendusername=wxid_gn79r6oaxhry11&total_num=1\",\"broaden\":\"\"},\"appid\":\"\",\"sdkver\":\"\",\"type\":\"2001\",\"title\":\"微信红包\",\"thumburl\":\"https:\\/\\/wx.gtimg.com\\/hongbao\\/1800\\/hb.png\",\"url\":\"https:\\/\\/wxapp.tenpay.com\\/mmpayhb\\/wxhb_personalreceive?showwxpaytitle=1&msgtype=1&channelid=1&sendid=1000039801202412237225703898174\"},\"fromusername\":\"wxid_gn79r6oaxhry11\"}}",
+"isSend": 1,
+"hookerUser": "大清宝泉",
+"cachedPayTools": "零钱",
+"cachedPayMoney": "￥15.00",
+"cachedPayShop": "微信红包",
+"t": 1734925199286
+}
