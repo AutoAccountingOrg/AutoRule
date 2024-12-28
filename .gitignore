@@ -2,3 +2,4 @@
 /node_modules/
 /tests/*
 /src/rule/tests.txt
+/env.js
