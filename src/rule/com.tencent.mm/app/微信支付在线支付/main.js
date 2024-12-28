@@ -28,7 +28,26 @@ const rules =[
     },
   ],
   [
-    //
+    // 收款方产地鲜友公司李锆\n使用农业银行储蓄卡支付¥65.17\n付款留言梁峻翊\n交易状态支付成功，对方已收款
+    /收款方(.*?)\n使用(.*?)支付[¥￥](\d+\.\d{2})\n付款留言(.*?)\n交易状态支付成功，对方已收款/,
+    (match, t, item) => {
+      let [, shopName, accountNameFrom, money] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        shopName,
+        '',
+        accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-在线支付]'
+      );
+    }
+  ],
+  [
+    // 收款方产地鲜友公司李锆\n使用农业银行储蓄卡支付¥65.17\n付款留言梁峻翊\n交易状态支付成功，对方已收款
     /使用(.*?)支付[¥￥](\d+\.\d{2})\n收单机构.*/,
     (match,t,item) => {
       let [, accountNameFrom,money] = match;

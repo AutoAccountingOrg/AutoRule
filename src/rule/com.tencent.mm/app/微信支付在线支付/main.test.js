@@ -62,5 +62,17 @@ test('微信支付在线支付', () =>
       'currency': 'CNY',
       'time': 1731045490128,
       'channel': '微信[微信支付-在线支付]'
+    },
+    {
+      'type': 'Expend',
+      'money': 65.17,
+      'fee': 0,
+      'shopName': '产地鲜友公司李锆',
+      'shopItem': '',
+      'accountNameFrom': '农业银行储蓄卡',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1734072461624,
+      'channel': '微信[微信支付-在线支付]'
     }
   ]));
