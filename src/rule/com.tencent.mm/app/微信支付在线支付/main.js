@@ -10,7 +10,7 @@ const TITLE_WECHAT = [
 // 正则表达式和处理函数的映射关系
 const rules =[
   [
-    /付款金额￥(\d+\.\d{2})\n付款方式(.*?)\n收单机构.*/,
+    /付款金额[￥¥](\d+\.\d{2})\n付款方式(.*?)\n收单机构.*/,
     (match,t,item) => {
       let [, money, accountNameFrom] = match;
       return new RuleObject(

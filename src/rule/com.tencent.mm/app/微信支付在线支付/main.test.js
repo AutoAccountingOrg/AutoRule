@@ -74,5 +74,17 @@ test('微信支付在线支付', () =>
       'currency': 'CNY',
       'time': 1734072461624,
       'channel': '微信[微信支付-在线支付]'
+    },
+    {
+      'type': 'Expend',
+      'money': 12,
+      'fee': 0,
+      'shopName': '汇银通支付',
+      'shopItem': '',
+      'accountNameFrom': '零钱',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1732849959464,
+      'channel': '微信[微信支付-在线支付]'
     }
   ]));

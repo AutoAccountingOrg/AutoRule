@@ -1,0 +1,16 @@
+{
+"mMap": {
+"description": "付款金额¥12.00\n付款方式零钱\n收单机构广州银行股份有限公司",
+"source": "微信支付",
+"type": 5,
+"appId": "",
+"msgId": 99064,
+"title": "已支付¥12.00",
+"display_name": "汇银通支付",
+"hookerUser": "小鲁",
+"cachedPayTools": "向银行卡或手机号转账",
+"cachedPayMoney": "￥8.95",
+"cachedPayShop": "面对面红包",
+"t": 1732849959464
+}
+}
