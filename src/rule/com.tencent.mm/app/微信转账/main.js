@@ -8,8 +8,8 @@ function analyzeFromCard(json){
   let shopItem = info.pay_memo;
   let billType = BillType.Expend;
   let channel = "付款";
-  let subType = parseInt(info.paysubtype);
-  let isSend = parseInt(json.isSend);
+  let subType = parseInt(info.paysubtype) || 0;
+  let isSend = parseInt(json.isSend) || 0;
   if (subType === 4){
     if (isSend ===1)return null;
      billType = BillType.Income;
