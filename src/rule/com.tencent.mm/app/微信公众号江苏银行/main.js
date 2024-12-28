@@ -1,4 +1,13 @@
-import { Currency, formatDate, isPaymentType, parseWechat, RuleObject, splitShop, toFloat } from 'common/index.js';
+import {
+  BillType,
+  Currency,
+  formatDate,
+  isPaymentType,
+  parseWechat,
+  RuleObject,
+  splitShop,
+  toFloat
+} from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '江苏银行';
@@ -17,13 +26,17 @@ const rules = [
       const [, time, number, type, money, shopItem_] = match;
       let { shopName, shopItem } = splitShop(shopItem_);
       let { matchType, typeName } = isPaymentType(type);
+      if (type === '转账转入') {
+        matchType = BillType.Transfer;
+        typeName = '还款';
+      }
       return new RuleObject(
         matchType,
         toFloat(money),
         shopName,
         shopItem,
-        `江苏银行(${number})`,
-        '',
+        matchType === BillType.Transfer ? '' : `江苏银行(${number})`,
+        matchType === BillType.Transfer ? `江苏银行(${number})` : '',
         0.0,
         Currency['人民币'],
         formatDate(time, 'M月D日 h:i'),
