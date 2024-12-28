@@ -49,6 +49,22 @@ function expand(pl,t){
   return obj;
 }
 
+function income (pl, t) {
+  let obj = new RuleObject(BillType.Income);
+  obj.money = toFloat(pl.content);
+  obj.channel = `支付宝[网商银行-收入]`;
+
+  let extras = JSON.parse(pl.extraInfo);
+
+  obj.time = t;
+
+  obj.shopItem = extras.assistMsg1;
+  obj.shopName = '网商银行';
+  obj.accountNameFrom = `${extras.assistMsg2}`;
+  obj.accountNameTo = `${extras.title}`;
+  return obj;
+}
+
 
 export function get(data) {
   data = JSON.parse(data);
@@ -69,6 +85,10 @@ export function get(data) {
   }
   if (pl.homePageTitle.indexOf("支付宝支付") !==-1){
     return expand(pl,t);
+  }
+
+  if (pl.homePageTitle.indexOf('他行汇入-') !== -1) {
+    return income(pl, t);
   }
 
   return null;

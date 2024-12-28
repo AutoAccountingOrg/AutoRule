@@ -66,3 +66,18 @@ test('支付宝网商银行支出', () =>
     },
 
   ]));
+test('支付宝网商银行他行汇入', () =>
+  testAnkio('支付宝网商银行他行汇入', [
+    {
+      'type': 'Income',
+      'money': 3300.00,
+      'fee': 0,
+      'shopName': '网商银行',
+      'shopItem': '他行汇入-来自陈治国',
+      'accountNameFrom': '1602',
+      'accountNameTo': '网商银行',
+      'currency': 'CNY',
+      'time': 1734767152000,
+      'channel': '支付宝[网商银行-收入]'
+    }
+  ]));
