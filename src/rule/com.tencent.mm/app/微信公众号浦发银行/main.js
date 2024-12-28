@@ -1,4 +1,12 @@
-import { BillType, formatDate, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
+import {
+  formatDate,
+  isPaymentType,
+  parseWechat,
+  RuleObject,
+  splitShop,
+  toFloat,
+  transferCurrency
+} from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '浦发银行';
@@ -8,20 +16,23 @@ const TITLE = ['交易提醒'];
 const rules = [
   [
     //交易时间：10月09日 10:56:54 网上银行\n交易类型：网上支付-美团支付\n交易金额：人民币活期-19.80\n可用额度：点击查看账户详情（尾号4113）\n交易说明：浦发银行竭诚为您服务！
+    //交易时间：12月16日  08:21:39 网上银行\n交易类型：网上支付-翼支付\n交易金额：人民币活期-5.00\n可用额度：点击查看账户详情（尾号1234）\n交易说明：点击了解浦发银行App，解锁更多服务功能！
     /交易时间：(.*?) 网上银行\n交易类型：(.*?)\n交易金额：(.*?)活期(.*?)\n可用额度：点击查看账户详情（尾号(\d{4})）\n交易说明：(.*?)$/,
       match => {
 
-    let [, time, shopName,currency, money,number, shopItem] = match;
+        let [, time, type, currency, money, number] = match;
+        let { matchType, typeName } = isPaymentType(type);
+        let { shopName, shopItem } = splitShop(type);
      return new RuleObject(
-      money.indexOf('-') === -1 ? BillType.Income : BillType.Expend,
+       matchType,
       toFloat(money),
-      '',
+       shopName,
       shopItem,
       `浦发银行(${number})`,
       '',
       0.0,
       transferCurrency(currency),
-      formatDate(time, 'M月D日 h:i:s'),
+       formatDate(time.replace('  ', ' '), 'M月D日 h:i:s'),
       `微信[${SOURCE}-交易]`)
     },
   ],
