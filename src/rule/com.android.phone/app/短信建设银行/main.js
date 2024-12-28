@@ -63,6 +63,24 @@ const rules = [
       obj.accountNameTo = `建设银行信用卡(${number})`;
       return obj;
     }
+  ],
+  [
+    // 【建设银行】您尾号1546账户12月21日7时14分支出人民币30元,可用余额230.53元。附言：账户1546包年短信服务费。
+    /您尾号(\d{4})账户(\d{2}月\d{2}日\d{1,2}时\d{1,2}分)支出人民币(.*?)元,可用余额(.*?)元。附言：(.*?)。/,
+    (match, t) => {
+      let [, number, date, money, , shopItm] = match;
+
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `建设银行[支出]`;
+      obj.shopItem = shopItm;
+      obj.time = t;
+
+      obj.type = BillType.Expend;
+      obj.accountNameFrom = `建设银行(${number})`;
+      return obj;
+    }
   ]
 ];
 

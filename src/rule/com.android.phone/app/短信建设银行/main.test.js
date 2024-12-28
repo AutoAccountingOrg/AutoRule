@@ -63,3 +63,19 @@ test('建设银行信用卡还款', () =>
       "channel": '建设银行信用卡[还款]',
     },
   ]));
+
+test('建设银行支出', () =>
+  testAnkio('建设银行支出', [
+    {
+      'type': 'Expend',
+      'money': 30,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '账户1546包年短信服务费',
+      'accountNameFrom': '建设银行(1546)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1734739538228,
+      'channel': '建设银行[支出]'
+    }
+  ]));
