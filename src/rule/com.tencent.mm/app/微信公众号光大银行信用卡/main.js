@@ -1,8 +1,17 @@
-import { Currency, formatDate, isPaymentType, parseWechat, RuleObject, splitShop, toFloat } from 'common/index.js';
+import {
+  BillType,
+  Currency,
+  formatDate,
+  isPaymentType,
+  parseWechat,
+  RuleObject,
+  splitShop,
+  toFloat
+} from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '光大银行信用卡';
-const TITLE = ['信用卡交易提醒'];
+const TITLE = ['信用卡交易提醒', '信用卡还款成功提醒'];
 
 // 正则表达式和处理函数的映射关系
 const rules = [
@@ -18,7 +27,6 @@ const rules = [
 
       let { matchType, typeName } = isPaymentType(type);
 
-
       return new RuleObject(
         matchType,
         toFloat(money),
@@ -30,6 +38,26 @@ const rules = [
         Currency['人民币'],
         formatDate(time, 'Y年M月D日 h:i'),
         `微信[${SOURCE}-${typeName}]`
+      );
+    },
+  ],
+  [
+    // 还款时间:2024年12月18日 09:10\n还款卡片尾号:7558\n还款金额:99.68元\n可用额度:28618.57元
+    /还款时间:(.*?)(\n)?还款卡片尾号:(\d+)[\s\n]还款金额:(\d+(?:\.\d+)?)元[\s\n]可用额度:/,
+    match => {
+      let [, time, , cardNumber, money] = match;
+
+      return new RuleObject(
+        BillType.Transfer,
+        toFloat(money),
+        '',
+        '',
+        '',
+        `${SOURCE}(${cardNumber})`,
+        0.0,
+        Currency['人民币'],
+        formatDate(time, 'Y年M月D日 h:i'),
+        `微信[${SOURCE}-还款]`
       );
     },
   ],
