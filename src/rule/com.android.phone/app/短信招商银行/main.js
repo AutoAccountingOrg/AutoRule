@@ -98,6 +98,25 @@ const rules = [
       obj.accountNameFrom = `招商银行(${number})`;
       return obj;
     }
+  ],
+  [
+    //【招商银行】您账户7632于12月10日15:30入账工资，人民币1000.00。年终好礼 cmbt.cn/a/DX25 。
+    /您账户(\d{4})于(\d+月\d+日\d+:\d+)入账(.*?)，人民币([\d,]+.\d{2})/,
+    match => {
+      let [, number, date, type, money] = match;
+
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `招商银行[工资]`;
+      obj.currency = 'CNY';
+      obj.shopItem = type;
+      obj.time = formatDate(date, 'M月D日h:i');
+
+      obj.type = BillType.Income;
+      obj.accountNameFrom = `招商银行(${number})`;
+      return obj;
+    }
   ]
 ];
 
