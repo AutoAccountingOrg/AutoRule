@@ -42,11 +42,28 @@ const rules = [
 
       return obj;
     }
+  ],
+
+  [
+    // 您的借记卡账户6450，于12月28日网上支付支取人民币1.00元,交易后余额1653.35【中国银行】
+    /您的借记卡账户(\d{4})，于(.*?)网上支付支取(.*?)([\d,]+.\d{2})元,交易后余额[\d,]+.\d{2}$/,
+    match => {
+      let [, number, date, currency, money] = match;
+
+      let obj = new RuleObject();
+      obj.money = toFloat(money);
+      obj.channel = `中国银行[支出]`;
+      obj.currency = transferCurrency(currency);
+      obj.time = formatDate(date, 'M月D日');
+      obj.type = BillType.Expend;
+      obj.accountNameFrom = `中国银行(${number})`;
+      obj.shopName = '网上支付';
+      obj.shopItem = '支取';
+
+      return obj;
+    }
   ]
-
-
 ];
-
 
 /**
  * @param {string} data - JSON格式的数据
@@ -62,5 +79,3 @@ export function get(data) {
     }
   }
 }
-
-

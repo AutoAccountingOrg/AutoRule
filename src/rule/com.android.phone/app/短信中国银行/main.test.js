@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -31,5 +32,18 @@ test('中国银行支出', () =>
       'currency': 'CNY',
       'time': formatDate('2024-12-24 13:05:14', 'Y-M-D h:i:s'),
       'channel': '中国银行[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 1,
+      'fee': 0,
+      'shopName': '网上支付',
+      'shopItem': '支取',
+      'accountNameFrom': '中国银行(6450)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月28日', 'M月D日'),
+      'channel': '中国银行[支出]'
     }
   ]));
+
