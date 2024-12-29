@@ -10,7 +10,7 @@ testAnkioInit(get, __dirname, 'com.tencent.mm');
 test('广发借记卡转账', () =>
   testAnkio('广发借记卡转账', [
     {
-      'type': 'Transfer',
+      'type': 'Expend',
       'money': 40,
       'fee': 0,
       'shopName': '',
@@ -19,6 +19,6 @@ test('广发借记卡转账', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('10月16日00:12', 'M月D日h:i'),
-      'channel': '微信[广发银行-转账]'
+      'channel': '微信[广发银行-支出]'
     }
   ]));
