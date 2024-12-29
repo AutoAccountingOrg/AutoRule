@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"订单编号：305878575874(商户: 京东平台商户)\n退款金额：48.75元","source":"京东白条","t":1732153473791,"arg":"msgId","type":5,"appId":"","msgId":777705,"title":"退款成功通知"}}

@@ -2,10 +2,29 @@ import { BillType, Currency, formatDate, parseWechat, RuleObject } from 'common/
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '京东白条';
-const TITLE = ['还款成功通知', '交易提醒', '交易成功通知'];
+const TITLE = ['还款成功通知', '交易提醒', '交易成功通知', '退款成功通知'];
 
 // 正则表达式和处理函数的映射关系
 const rules = [
+  [
+    /订单编号：\d+\((.*)\)\n退款金额：(.*?)元/,
+    (match, t) => {
+      const [, shopName, money] = match;
+      return new RuleObject(
+        BillType.Income,
+        parseFloat(money),
+        shopName,
+        '',
+        '京东白条',
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        `微信[${SOURCE}-退款]`
+      );
+    }
+  ],
+
   [
     /还款时间：(.*?)\n还款金额：([\d,]+.\d{2})元/,
     match => {

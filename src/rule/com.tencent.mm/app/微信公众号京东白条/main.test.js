@@ -4,6 +4,22 @@ const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/index.js');
 
 testAnkioInit(get, __dirname, 'com.tencent.mm');
+
+test('京东白条退款', () =>
+  testAnkio('京东白条退款', [
+    {
+      'type': 'Income',
+      'money': 48.75,
+      'fee': 0,
+      'shopName': '商户: 京东平台商户',
+      'shopItem': '',
+      'accountNameFrom': '京东白条',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1732153473791,
+      'channel': '微信[京东白条-退款]'
+    }
+  ]));
 test('京东白条还款', () =>
   testAnkio('京东白条还款', [
     {
