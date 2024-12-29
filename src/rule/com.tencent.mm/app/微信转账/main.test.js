@@ -16,7 +16,7 @@ test('微信转账收款', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('2024年04月23日 11:50:05', 'Y年M月D日 h:i:s'),
-      'channel': '微信[转账收款]'
+      'channel': '微信[转账收款详情]'
     },
     {
       'type': 'Income',
@@ -28,7 +28,7 @@ test('微信转账收款', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('2024年05月13日 08:16:33', 'Y年M月D日 h:i:s'),
-      'channel': '微信[转账收款]'
+      'channel': '微信[转账收款详情]'
     },
     {
       'type': 'Income',

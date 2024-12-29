@@ -54,11 +54,11 @@ function analyzeFromDetail (data) {
   if (data.is_payer) {
     billType = BillType.Expend;
     payTools = data.cachedPayTools;
-    channel = '微信[转账付款]';
+    channel = '微信[转账付款详情]';
     t = formatDate(data.desc_item_list[0].value, 'Y年M月D日 h:i:s');
   } else {
     payTools = data.status_desc.replace('你已收款，资金已存入', '');
-    channel = '微信[转账收款]';
+    channel = '微信[转账收款详情]';
     t = formatDate(data.desc_item_list[1].value, 'Y年M月D日 h:i:s');
   }
 
