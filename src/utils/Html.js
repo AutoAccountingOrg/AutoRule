@@ -1,7 +1,8 @@
-export function stripHtml(html) {
+export function stripHtml (html) {
   return html.replace(/<[^>]*>/g, '');
 }
-export function findNonEmptyString() {
+
+export function findNonEmptyString () {
   let args = Array.from(arguments);
   for (let i = 0; i < args.length; i++) {
     if (args[i] !== '' && typeof args[i] === 'string') {
@@ -11,8 +12,8 @@ export function findNonEmptyString() {
   return '';
 }
 
-export function splitShop(shopItem, _shopName, split) {
-  split = split || "-"; // 默认分隔符为 "-"
+export function splitShop (shopItem, _shopName, split) {
+  split = split || '-'; // 默认分隔符为 "-"
   if (!shopItem) {
     return { _shopName, shopItem }; // 如果 shopItem 为空，直接返回
   }
@@ -29,7 +30,6 @@ export function splitShop(shopItem, _shopName, split) {
   if (_shopName && _shopName.indexOf(shopName) === -1) {
     return { _shopName, shopItem };
   }
-
 
   return { shopName, shopItem };
 }

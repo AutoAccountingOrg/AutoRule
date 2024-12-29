@@ -1,6 +1,6 @@
 import { AliTools, BillType, RuleObject, toFloat } from 'common/index.js';
 
-function handleFundTransfer(pl, t) {
+function handleFundTransfer (pl, t) {
   let obj = new RuleObject(BillType.Income);
   obj.money = toFloat(pl.content);
   obj.channel = `支付宝[小荷包-收入]`;
@@ -16,7 +16,7 @@ function handleFundTransfer(pl, t) {
   return obj;
 }
 
-function autoIncome(pl, t) {
+function autoIncome (pl, t) {
   let obj = new RuleObject(BillType.Transfer);
 
   obj.channel = `支付宝[小荷包-自动攒]`;
@@ -35,7 +35,7 @@ function autoIncome(pl, t) {
   return obj;
 }
 
-function autoIncome2(pl, t) {
+function autoIncome2 (pl, t) {
   let obj = new RuleObject(BillType.Transfer);
 
   obj.channel = `支付宝[小荷包-自动攒]`;
@@ -52,8 +52,7 @@ function autoIncome2(pl, t) {
   return obj;
 }
 
-
-function handleAnt (pl,t) {
+function handleAnt (pl, t) {
   let obj = new RuleObject(BillType.Income);
 
   obj.channel = `支付宝[小荷包-收入]`;
@@ -69,17 +68,19 @@ function handleAnt (pl,t) {
   return obj;
 }
 
-export function get(data) {
+export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
   let t = json.mct;
-if (pl.title.indexOf('支付宝小荷包') ===-1)return null;
+  if (pl.title.indexOf('支付宝小荷包') === -1) {
+    return null;
+  }
 
   if (pl.title.indexOf('自动攒') !== -1) {
     return autoIncome(pl, t);
-  }else if (pl.content.indexOf('自动攒') !== -1) {
+  } else if (pl.content.indexOf('自动攒') !== -1) {
     return autoIncome2(pl, t);
-  } else if (pl.content.indexOf('小荷包转入') !== -1 ) {
+  } else if (pl.content.indexOf('小荷包转入') !== -1) {
     return handleFundTransfer(pl, t);
   } else if (pl.templateName.indexOf('蚂蚁合花') !== -1) {
     return handleAnt(pl, t);

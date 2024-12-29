@@ -13,7 +13,7 @@ const rules = [
       obj.channel = `招商银行[消费]`;
       obj.currency = 'CNY';
       obj.shopItem = `${merchant}`;
-      obj.time = formatDate(date, "M月D日h:i");
+      obj.time = formatDate(date, 'M月D日h:i');
 
       obj.type = BillType.Expend;
       obj.accountNameFrom = `招商银行(${number})`;
@@ -33,7 +33,7 @@ const rules = [
       obj.currency = 'CNY';
       obj.shopName = shopName;
       obj.shopItem = '信用卡还款';
-      obj.time = formatDate(date, "M月D日h:i");
+      obj.time = formatDate(date, 'M月D日h:i');
 
       obj.type = BillType.Transfer;
       obj.accountNameFrom = `招商银行(${fromNumber})`;
@@ -54,7 +54,7 @@ const rules = [
       obj.currency = 'CNY';
       obj.shopName = shopName;
       obj.shopItem = shopItem;
-      obj.time = formatDate(date, "M月D日h:i");
+      obj.time = formatDate(date, 'M月D日h:i');
 
       obj.type = BillType.Income;
       obj.accountNameFrom = `招商银行(${fromNumber})`;
@@ -124,9 +124,11 @@ const rules = [
  * @param {string} data - JSON格式的数据
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
-export function get(data) {
+export function get (data) {
   let { sender, bankName, text, t } = splitSms(data);
-  if (bankName !== "招商银行") return null;
+  if (bankName !== '招商银行') {
+    return null;
+  }
   for (let rule of rules) {
     const match = text.match(rule[0]);
     if (match) {

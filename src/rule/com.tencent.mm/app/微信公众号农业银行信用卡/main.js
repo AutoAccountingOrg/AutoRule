@@ -25,8 +25,8 @@ const rules = [
         Currency['人民币'],
         formatDate(time, 'Y-M-D h:i:s'),
         `微信[${SOURCE}-${typeName}]`
-      )
-    },
+      );
+    }
   ],
 
   // 收入规则（退款收入）
@@ -45,9 +45,9 @@ const rules = [
         Currency['人民币'],
         formatDate(time, 'Y-M-D h:i:s'),
         `微信[${SOURCE}-收入]`
-      )
-    },
-  ],
+      );
+    }
+  ]
 ];
 
 /**
@@ -55,6 +55,6 @@ const rules = [
  * @param {string} data - JSON格式的数据
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
-export function get(data) {
+export function get (data) {
   return parseWechat(data, rules, SOURCE, TITLE);
 }

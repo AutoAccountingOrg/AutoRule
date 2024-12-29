@@ -4,8 +4,8 @@ let rules = [
   {
     // *辉您公积金账号[尾号6864]于10月30日缴存2186元，余额12611.76元。【泉州公积金中心】
     'regex': /(.*?)您公积金账号\[尾号(\d+)\]于(.*?)缴存(.*?)元，余额(.*?)元。【泉州公积金中心】/,
-     'match': (match,t) => {
-      let [, shopName,number,date, money,shopItem, ] = match;
+    'match': (match, t) => {
+      let [, shopName, number, date, money, shopItem] = match;
       let obj = new RuleObject();
 
       obj.money = toFloat(money);
@@ -20,7 +20,7 @@ let rules = [
       return obj;
     }
 
-  },
+  }
 ];
 
 export function get (data) {
@@ -31,7 +31,7 @@ export function get (data) {
   for (let rule of rules) {
     const match = text.match(rule.regex);
     if (match) {
-      return rule.match(match,t);
+      return rule.match(match, t);
     }
   }
 }

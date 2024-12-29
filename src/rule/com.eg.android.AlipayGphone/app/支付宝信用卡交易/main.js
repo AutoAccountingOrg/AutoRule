@@ -1,18 +1,17 @@
 import { BillType, RuleObject, toFloat } from 'common/index.js';
 
-function transaction(extras,t,accountNameFrom){
+function transaction (extras, t, accountNameFrom) {
 
   let typeName = extras.assistMsg1;
 
-  let shopName  = extras.assistMsg3;
+  let shopName = extras.assistMsg3;
 
   let money = toFloat(extras.assistMsg4);
 
   let shopItem = extras.assistMsg5;
 
-
   let type = BillType.Expend;
-  if ([ '退货'].includes(typeName)) {
+  if (['退货'].includes(typeName)) {
     type = BillType.Income;
   }
   return new RuleObject(
@@ -22,12 +21,12 @@ function transaction(extras,t,accountNameFrom){
     shopItem,
     accountNameFrom,
     '',
-    0.0,'CNY',
-    t,'支付宝[信用卡交易提醒]'
+    0.0, 'CNY',
+    t, '支付宝[信用卡交易提醒]'
   );
 }
 
-export function get(data) {
+export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
   let t = json.mct;
@@ -35,5 +34,5 @@ export function get(data) {
     return null;
   }
   let extras = JSON.parse(pl.extraInfo);
-  return transaction(extras,t,pl.bizName);
+  return transaction(extras, t, pl.bizName);
 }

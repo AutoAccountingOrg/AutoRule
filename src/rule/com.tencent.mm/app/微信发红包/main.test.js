@@ -9,13 +9,13 @@ test('微信发红包', () =>
     {
       'type': 'Expend',
       'money': 15,
-      "fee": 0,
+      'fee': 0,
       'shopName': '大清宝泉',
-      "shopItem": '恭喜发财，大吉大利',
-      "accountNameFrom": '零钱',
-      "accountNameTo": '',
-      "currency": 'CNY',
+      'shopItem': '恭喜发财，大吉大利',
+      'accountNameFrom': '零钱',
+      'accountNameTo': '',
+      'currency': 'CNY',
       'time': 1734925199286,
       'channel': '微信[微信支付-发红包]'
-    },
+    }
   ]));

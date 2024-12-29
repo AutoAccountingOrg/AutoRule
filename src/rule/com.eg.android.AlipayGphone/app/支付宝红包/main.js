@@ -1,6 +1,6 @@
 import { BillType, RuleObject, stripHtml, toFloat } from 'common/index.js';
 
-function income(templateJson,t){
+function income (templateJson, t) {
   var dataItems = JSON.parse(templateJson);
 
   let obj = new RuleObject(BillType.Income);
@@ -9,15 +9,13 @@ function income(templateJson,t){
 
   obj.time = t;
   obj.shopName = stripHtml(dataItems.subtitle);
-  obj.money =  toFloat(dataItems.statusLine1Text);
+  obj.money = toFloat(dataItems.statusLine1Text);
   obj.shopItem = dataItems.title;
   obj.accountNameFrom = '支付宝余额';
   return obj;
 }
 
-
-
-export function get(data) {
+export function get (data) {
   data = JSON.parse(data);
   let pl = JSON.parse(data[0].pl);
   let t = data[0].mct;

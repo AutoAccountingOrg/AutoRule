@@ -8,7 +8,7 @@ export const AliTools = {
    * @param {Array} contentItems - contentItems数组
    * @param {RuleObject} result - 解析后的交易结果对象
    */
-  handleContentItems(contentItems, result) {
+  handleContentItems (contentItems, result) {
     contentItems.forEach(item => {
       switch (item.title) {
         case '交易对象：':
@@ -41,9 +41,11 @@ export const AliTools = {
       }
     });
   },
-  handleBillItems(fields, result){
+  handleBillItems (fields, result) {
     fields.forEach(element => {
-      if (element.value === undefined) return
+      if (element.value === undefined) {
+        return;
+      }
       let elementValue = element.value;
       if (typeof element.value === 'string') {
         elementValue = JSON.parse(element.value);
@@ -54,12 +56,12 @@ export const AliTools = {
           break;
         case 'BLDetailPrice':
           result.money = toFloat(elementValue.amount);
-          if (result.money < 0){
-            result.money = -result.money
+          if (result.money < 0) {
+            result.money = -result.money;
           }
-          if (elementValue.amount.includes('-')){
+          if (elementValue.amount.includes('-')) {
             result.type = BillType.Expend;
-          } else if (elementValue.amount.includes('+')){
+          } else if (elementValue.amount.includes('+')) {
             result.type = BillType.Income;
           } else {
             result.type = BillType.Transfer;
@@ -67,20 +69,22 @@ export const AliTools = {
           break;
         default:
 
-          if (elementValue.data === undefined) return
-          let content = elementValue.data[0].content || "";
-          if (/创建时间|支付时间/.test(elementValue.title)){
+          if (elementValue.data === undefined) {
+            return;
+          }
+          let content = elementValue.data[0].content || '';
+          if (/创建时间|支付时间/.test(elementValue.title)) {
             result.time = formatDate(content, 'Y-M-D h:i:s');
-          } else if (/付款方式/.test(elementValue.title)){
+          } else if (/付款方式/.test(elementValue.title)) {
             result.accountNameFrom = content;
-            if (/账户余额/.test(result.accountNameFrom)){
+            if (/账户余额/.test(result.accountNameFrom)) {
               result.accountNameFrom = '支付宝余额';
             }
-          }else if (/商品说明|转账备注/.test(elementValue.title)){
-          result.shopItem = content;
-        }else if (/收款方全称|对方账户/.test(elementValue.title)){
+          } else if (/商品说明|转账备注/.test(elementValue.title)) {
+            result.shopItem = content;
+          } else if (/收款方全称|对方账户/.test(elementValue.title)) {
             result.shopName = content;
-          } else if(/还款到/.test(elementValue.title)){
+          } else if (/还款到/.test(elementValue.title)) {
             result.accountNameTo = content;
           }
       }

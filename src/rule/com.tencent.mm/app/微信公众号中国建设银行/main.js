@@ -42,7 +42,7 @@ const rules = [
         `微信[${SOURCE}信用卡-支出]`
       );
 
-    },
+    }
   ],
 
   [
@@ -62,7 +62,7 @@ const rules = [
         formatDate(time, 'Y年M月D日h时i分'),
         `微信[${SOURCE}信用卡-收入]`
       );
-    },
+    }
   ],
 
   [
@@ -82,15 +82,14 @@ const rules = [
         formatDate(time, 'M月D日 h时i分'),
         `微信[${SOURCE}信用卡-还款]`
       );
-    },
-  ],
+    }
+  ]
 ];
-
 
 /**
  * @param {string} data - JSON格式的数据
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
-export function get(data) {
+export function get (data) {
   return parseWechat(data, rules, SOURCE, TITLE);
 }

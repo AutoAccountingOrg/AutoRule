@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const crypto = require('crypto');
-function calculateMD5(input) {
+
+function calculateMD5 (input) {
   const hash = crypto.createHash('md5');
   hash.update(input);
   return hash.digest('hex');
@@ -13,7 +14,7 @@ function calculateMD5(input) {
  * @param name
  * @returns {string}
  */
-function getTestFile(name) {
+function getTestFile (name) {
   const dataFilePath = path.join(dirname, 'tests', `${name}.txt`);
   return fs.readFileSync(dataFilePath, 'utf8');
 }
@@ -22,13 +23,13 @@ let get = null;
 let dirname = null;
 let app = null;
 
-export function testAnkioInit(getFn, pathUrl, packageName) {
+export function testAnkioInit (getFn, pathUrl, packageName) {
   get = getFn;
   dirname = pathUrl;
   app = packageName;
 }
 
-export function testAnkio(name, results) {
+export function testAnkio (name, results) {
   var datas = [];
   for (let i = 0; i < results.length; i++) {
     let filename = `${name}`;
@@ -42,10 +43,10 @@ export function testAnkio(name, results) {
     expect(result).toEqual(resultData);
   }
   var testObject = {
-    "name": name,
-    "results": results,
-    "datas": datas,
-    "app": app
+    'name': name,
+    'results': results,
+    'datas': datas,
+    'app': app
   };
   //判断dist文件夹是否不存在，不存在就创建
   const dist = path.join(__dirname, '..', '..', 'tests');

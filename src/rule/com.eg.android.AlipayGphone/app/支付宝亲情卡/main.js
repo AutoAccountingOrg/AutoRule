@@ -1,6 +1,6 @@
 import { RuleObject, toFloat } from 'common/index.js';
 
-export function get(data) {
+export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
   //非亲情卡不管

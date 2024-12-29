@@ -9,9 +9,9 @@ const rules = [
   [
     //5月7日10:50
     /交易时间：尾号(.*?)储蓄卡(.*?)\n交易类型：(.*?)\n交易金额：(.*?) ([\d,]+.\d{2}) 元\n卡内余额：人民币 ([\d,]+.\d{2}) 元/,
-     match => {
+    match => {
       let [, number, time, type, currency, money, balance] = match;
-       let { matchType, typeName } = isPaymentType(type);
+      let { matchType, typeName } = isPaymentType(type);
 
       return new RuleObject(
         matchType,
@@ -29,6 +29,6 @@ const rules = [
   ]
 ];
 
-export function get(data) {
+export function get (data) {
   return parseWechat(data, rules, SOURCE, TITLE);
 }

@@ -1,14 +1,14 @@
-export function splitSms(content) {
+export function splitSms (content) {
   let json = JSON.parse(content);
 
   const match1 = json.body.match(/^【(.*?)】(.*)$/);
   if (match1) {
     const [, bankName, text] = match1;
     return {
-      "sender": json.sender,
+      'sender': json.sender,
       bankName,
       text,
-      "t": json.t,
+      't': json.t
     };
   }
 
@@ -16,10 +16,10 @@ export function splitSms(content) {
   if (match2) {
     const [, text, bankName] = match2;
     return {
-      "sender": json.sender,
+      'sender': json.sender,
       bankName,
       text,
-      "t": json.t,
+      't': json.t
     };
   }
 

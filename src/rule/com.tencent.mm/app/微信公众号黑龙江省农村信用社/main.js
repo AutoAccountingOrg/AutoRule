@@ -26,15 +26,13 @@ const rules = [
       );
     }
   ]
-]
-
-
+];
 
 /**
  * 处理数据并返回结果
  * @param {string} data - 要处理的数据
  * @returns {RuleObject|null} - 处理结果对象，如果处理失败则返回null
  */
-export function get(data) {
-  return parseWechat(data,rules,SOURCE_NAME,TITLE)
+export function get (data) {
+  return parseWechat(data, rules, SOURCE_NAME, TITLE);
 }

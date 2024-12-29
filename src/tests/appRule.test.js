@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 
 const { execSync } = require('child_process');
- execSync('yarn dev', { "stdio": 'inherit' });
+execSync('yarn dev', { 'stdio': 'inherit' });
 
 const distDirPath = path.join(__dirname, '..', '..', 'dist');
 
@@ -59,25 +59,26 @@ const jsonFilesContent = jsonFileNames.map(jsonFileName => {
 
 test('App规则调用校验', () => {
   //读取dist目录下所有的json
-  let total = []
+  let total = [];
   jsonFilesContent.forEach(jsonFileContent => {
     const { name, results, datas, type, app } = jsonFileContent;
     for (let i = 0; i < results.length; i++) {
       const result = results[i];
       const data = datas[i];
       total.push(name);
-      function print(callbackResult) {
+
+      function print (callbackResult) {
 
         total = total.filter(item => item !== name);
 
-        console.log("callbackResult: "+name,callbackResult)
+        console.log('callbackResult: ' + name, callbackResult);
         let json = JSON.parse(callbackResult);
         json.time = 0;
         result.time = 0;
         expect(json).toEqual(result);
       }
 
-        let code =js + `
+      let code = js + `
         window.data = ${JSON.stringify(data)};
         const data = window.data || '';
 
@@ -103,8 +104,8 @@ for (const rule of rules) {
   
 }
 
-        `
-        eval(code);
+        `;
+      eval(code);
 
     }
   });

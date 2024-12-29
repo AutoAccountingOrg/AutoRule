@@ -7,7 +7,7 @@ const TITLE = ['交易完成通知'];
 const rules = [
   [
     /订单金额：(\d+(\.\d{2})?)元\n商品详情：(.*?) (.*?)?\n订单编号：\d+/,
-    match =>{
+    match => {
       const [, money, , shopName, shopItem] = match;
       return new RuleObject(
         BillType.Expend,
@@ -20,15 +20,16 @@ const rules = [
         Currency['人民币'],
         formatDate(),
         `微信[${SOURCE_NAME}-消费通知]`
-      )
+      );
     }
   ]
 ];
+
 /**
  * 处理数据并返回结果
  * @param {string} data - 要处理的数据
  * @returns {RuleObject|null} - 处理结果对象，如果处理失败则返回null
  */
-export function get(data) {
+export function get (data) {
   return parseWechat(data, rules, SOURCE_NAME, TITLE);
 }

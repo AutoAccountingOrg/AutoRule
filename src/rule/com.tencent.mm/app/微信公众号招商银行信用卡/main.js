@@ -39,8 +39,8 @@ const rules = [
         transferCurrency(currency),
         formatDate(time, 'M月D日h:i'),
         `微信[${SOURCE_NAME}-${type}]`
-      )
-    },
+      );
+    }
   ],
   [
     // 账户类型:个人消费卡账户\n还款时间:09月26日 12:20:40\n还款金额:人民币3661.60元\n还款结果:账单已还清
@@ -58,14 +58,14 @@ const rules = [
         transferCurrency(currency),
         formatDate(time, 'Y年M月D日h:i:s'),
         `微信[${SOURCE_NAME}-还款]`
-      )
-    },
+      );
+    }
   ],
   [
     // 账户类型:个人消费卡账户\n还款时间:09月26日 12:20:40\n还款金额:人民币3661.60元\n还款结果:账单已还清
     /账户类型:个人消费卡账户\n还款时间:(.*?)\n还款金额:(.*?)(\d+\.\d{2})元\n还款结果:(.*?)$/,
     match => {
-      const [, time, currency, money,shopItem] = match;
+      const [, time, currency, money, shopItem] = match;
       return new RuleObject(
         BillType.Transfer,
         parseFloat(money),
@@ -77,8 +77,8 @@ const rules = [
         transferCurrency(currency),
         formatDate(time, 'M月D日 h:i:s'),
         `微信[${SOURCE_NAME}-还款]`
-      )
-    },
+      );
+    }
   ],
   [
     // 还款账户:个人消费卡账户\n应扣金额:人民币61597.12元\n还款金额:人民币13905.14元\n失败原因:关联活期账户余额不足，未足额扣款\n还款方式:预约还款失败，剩余欠款请自行还款至信用卡
@@ -96,17 +96,16 @@ const rules = [
         transferCurrency(currency2),
         t,
         `微信[${SOURCE_NAME}-自动还款失败]`
-      )
-    },
-  ],
+      );
+    }
+  ]
 ];
-
 
 /**
  * 获取招商银行信用卡消费规则对象
  * @param {string} data - JSON格式的数据
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
-export function get(data) {
-  return parseWechat(data,rules,SOURCE_NAME,TITLE)
+export function get (data) {
+  return parseWechat(data, rules, SOURCE_NAME, TITLE);
 }

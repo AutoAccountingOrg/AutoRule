@@ -20,10 +20,9 @@ const rules = [
     // 交易时间：10月25日14:54\n交易类型：工资（尾号1234）\n交易金额：人民币 123,4\n账户余额：123,45.69元\n交易说明：点击查看更多详
     /交易时间：(.*?)\n交易类型：(.*?)（尾号(\d+)）\n交易金额：(.*?) (.*?)\n账户余额：.*元\n交易说明：点击查看更多详情/,
     match => {
-  const [, time, type, number, currency, money] = match;
+      const [, time, type, number, currency, money] = match;
 
       let { matchType, typeName } = isPaymentType(type);
-
 
       return new RuleObject(
         matchType,
@@ -36,9 +35,9 @@ const rules = [
         transferCurrency(currency),
         formatDate(time, 'M月D日h:i'),
         `微信[中国银行-${typeName}]`
-      )
+      );
 
-    },
+    }
   ],
   //账户类型：信用卡\n账号尾号：5248\n交易时间：05月16日11:05\n交易类型：存入\n交易金额：RMB357.00
   [
@@ -65,17 +64,15 @@ const rules = [
         formatDate(time, 'M月D日h:i'),
         `微信[中国银行信用卡-存入]`
       );
-    },
-  ],
+    }
+  ]
 ];
-
-
 
 /**
  * 获取中国银行规则对象
  * @param {string} data - JSON格式的数据
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
-export function get(data) {
+export function get (data) {
   return parseWechat(data, rules, SOURCE, TITLE);
 }

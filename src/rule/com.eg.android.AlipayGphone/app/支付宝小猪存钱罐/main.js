@@ -1,6 +1,6 @@
 import { AliTools, BillType, RuleObject, toFloat } from 'common/index.js';
 
-export function get(data) {
+export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
   //余额宝-小猪攒钱罐-自动攒入
@@ -12,7 +12,7 @@ export function get(data) {
   let t = json.mct;
   let obj = new RuleObject();
 
-  let content = JSON.parse( pl.content);
+  let content = JSON.parse(pl.content);
   AliTools.handleContentItems(content.content, obj);
   obj.money = toFloat(content.money);
   obj.channel = `支付宝[余额宝-小猪攒钱罐]`;

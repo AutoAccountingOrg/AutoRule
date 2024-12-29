@@ -37,6 +37,6 @@ export function parseWechat (data, rules, SOURCE, TITLE) {
     }
   }
 
-  let d = parseText(mapItem.description, rules, mapItem.t, mapItem)
-  return d
+  let d = parseText(mapItem.description, rules, mapItem.t, mapItem);
+  return d;
 }

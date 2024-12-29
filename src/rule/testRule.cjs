@@ -1,5 +1,5 @@
 const { join } = require('path');
-const {  readFileSync } = require('fs');
+const { readFileSync } = require('fs');
 
 const distDirPath = join(__dirname, '..', '..', 'dist');
 
@@ -32,17 +32,17 @@ for (const rule of rules) {
 js += `
 ];
 `;
-function print(callbackResult) {
+
+function print (callbackResult) {
   let json = JSON.parse(callbackResult);
-  console.log("===========START===========")
+  console.log('===========START===========');
   console.log(json);
-  console.log("===========END===========")
+  console.log('===========END===========');
 }
 
 let data = readFileSync(join(__dirname, 'tests.txt'), 'utf8');
 
-
-let code =js + `
+let code = js + `
         window.data = ${JSON.stringify(data)};
         const data = window.data || '';
 
@@ -68,5 +68,5 @@ for (const rule of rules) {
   
 }
 
-        `
+        `;
 eval(code);

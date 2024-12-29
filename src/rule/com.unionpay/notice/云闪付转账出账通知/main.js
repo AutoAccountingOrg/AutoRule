@@ -6,7 +6,7 @@ let rules = [
     //您向陈阳的工商银行卡6212 **** **** 7432转账170.00元，已于2024-10-06 23:46成功到账！
     'regex': /您向(.*?)的(.*?)转账([\d,]+.\d{2})元，已于(.*?)成功到账！/,
     'match': (match) => {
-      let [,shopName,card, money,date,   ] = match;
+      let [, shopName, card, money, date] = match;
       let obj = new RuleObject();
 
       obj.money = toFloat(money);

@@ -1,8 +1,8 @@
 import { BillType, RuleObject, toFloat } from 'common/index.js';
 
-function income(pl,t){
+function income (pl, t) {
   let obj = new RuleObject(BillType.Income);
-  obj.money =  toFloat(pl.content);
+  obj.money = toFloat(pl.content);
   obj.channel = `支付宝[商家服务-收入]`;
 
   let extras = JSON.parse(pl.extraInfo);
@@ -15,12 +15,11 @@ function income(pl,t){
   return obj;
 }
 
-
-export function get(data) {
+export function get (data) {
   data = JSON.parse(data);
   let pl = JSON.parse(data[0].pl);
   let t = data[0].mct;
-  if (pl.homePageTitle.indexOf('收款到账通知') !== -1 ) {
+  if (pl.homePageTitle.indexOf('收款到账通知') !== -1) {
     return income(pl, t);
   }
 

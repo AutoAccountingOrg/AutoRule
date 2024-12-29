@@ -1,6 +1,6 @@
 import { AliTools, BillType, RuleObject, toFloat } from 'common/index.js';
 
-function transaction(content,t){
+function transaction (content, t) {
 
   let obj = new RuleObject(BillType.Transfer);
 
@@ -19,13 +19,13 @@ function transaction(content,t){
   return obj;
 }
 
-export function get(data) {
+export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
   let t = json.mct;
-  if (["还款成功","还款到账成功"].includes(pl.title) === false) {
- return null;
+  if (['还款成功', '还款到账成功'].includes(pl.title) === false) {
+    return null;
   }
   let content = JSON.parse(pl.content);
-  return transaction(content,t);
+  return transaction(content, t);
 }

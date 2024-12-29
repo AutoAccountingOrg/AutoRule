@@ -13,10 +13,10 @@ const rules = [
     //交易类型:尾号8888-网络支付退款-人民币\n交易时间:11月12日 11:08\n交易对象:上海付费通信息服务有限公司\n交易金额:-12.79\n可用余额:46.41
     /交易类型:尾号(\d{4})-(.*?)-人民币\n交易时间:(.*?)\n交易对象:(.*?)\n交易金额:(.*?)\n可用余额:(.*?)$/,
     match => {
-      let [,number,shopItem,time,shopName,money,] = match
+      let [, number, shopItem, time, shopName, money] = match;
       let billType = BillType.Income;
       let billTypeStr = '收入';
-      if (shopItem.indexOf("消费") !==-1 ){
+      if (shopItem.indexOf('消费') !== -1) {
         billType = BillType.Expend;
         billTypeStr = '支出';
       }
@@ -32,16 +32,15 @@ const rules = [
         Currency['人民币'],
         formatDate(time, 'M月D日 h:i'),
         `微信[${SOURCE}-${billTypeStr}]`
-      )
-    },
-  ],
+      );
+    }
+  ]
 ];
-
 
 /**
  * @param {string} data - JSON格式的数据
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
-export function get(data) {
+export function get (data) {
   return parseWechat(data, rules, SOURCE, TITLE);
 }

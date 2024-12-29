@@ -10,7 +10,7 @@ const rules = [
     //交易时间：2024年11月09日13时00分\n交易类型：代发入账(尾号1183)\n交易金额：2,564.20/,
     /交易时间：(.*?)\n交易类型：(.*?)\(尾号(\d+)\)\n交易金额：(.*?)$/,
     match => {
-      const [, time, type,number, money] = match;
+      const [, time, type, number, money] = match;
       const accountNameFrom = `${SOURCE_NAME}(${number})`;
 
       return new RuleObject(
@@ -27,15 +27,13 @@ const rules = [
       );
     }
   ]
-]
-
-
+];
 
 /**
  * 处理数据并返回结果
  * @param {string} data - 要处理的数据
  * @returns {RuleObject|null} - 处理结果对象，如果处理失败则返回null
  */
-export function get(data) {
-  return parseWechat(data,rules,SOURCE_NAME,TITLE)
+export function get (data) {
+  return parseWechat(data, rules, SOURCE_NAME, TITLE);
 }

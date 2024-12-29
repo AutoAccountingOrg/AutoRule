@@ -11,13 +11,14 @@ export function convertToNumber (value, allowZero = true) {
     return 0; // 其他类型返回 undefined
   }
 }
+
 /**
  * 金额格式化
  * @param number
  * @param allowZero
  * @returns {number}
  */
-export function toFloat(number, allowZero = true) {
+export function toFloat (number, allowZero = true) {
   return +parseFloat(convertToNumber(number, allowZero).toFixed(2));
 }
 
@@ -26,6 +27,6 @@ export function toFloat(number, allowZero = true) {
  * @param number
  * @returns {number}
  */
-export function toDoubleFloat(number) {
+export function toDoubleFloat (number) {
   return toFloat(convertToNumber(number) / 100);
 }

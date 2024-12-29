@@ -5,32 +5,32 @@ testAnkioInit(get, __dirname, 'com.android.phone');
 test('江西农商银行收入', () =>
   testAnkio('江西农商银行收入', [
     {
-      "type": "Income",
-      "money": 500,
-      "fee": 0,
-      "shopName": '张三',
-      "shopItem": '',
-      "accountNameFrom": '江西农商银行(6666)',
-      "accountNameTo": '',
-      "currency": 'CNY',
-      "time": formatDate("13日09时58分",'D日h时i分'),
-      "channel": '江西农商银行[收入]',
-    },
+      'type': 'Income',
+      'money': 500,
+      'fee': 0,
+      'shopName': '张三',
+      'shopItem': '',
+      'accountNameFrom': '江西农商银行(6666)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('13日09时58分', 'D日h时i分'),
+      'channel': '江西农商银行[收入]'
+    }
   ]));
 
 test('江西农商银行支出', () =>
   testAnkio('江西农商银行支出', [
     {
-      "type": "Expend",
-      "money": 100,
-      "fee": 0,
-      "shopName": '张三',
-      "shopItem": '',
-      "accountNameFrom": '江西农商银行(0000)',
-      "accountNameTo": '',
-      "currency": 'CNY',
-      "time": formatDate("13日08时43分",'D日h时i分'),
-      "channel": '江西农商银行[支出]',
-    },
+      'type': 'Expend',
+      'money': 100,
+      'fee': 0,
+      'shopName': '张三',
+      'shopItem': '',
+      'accountNameFrom': '江西农商银行(0000)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('13日08时43分', 'D日h时i分'),
+      'channel': '江西农商银行[支出]'
+    }
   ]));
 

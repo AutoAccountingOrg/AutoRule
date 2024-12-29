@@ -5,32 +5,32 @@ testAnkioInit(get, __dirname, 'com.android.phone');
 test('江苏银行信用卡还款', () =>
   testAnkio('江苏银行信用卡还款', [
     {
-      "type": "Transfer",
-      "money": 1795.68,
-      "fee": 0,
-      "shopName": '江苏银行信用卡',
-      "shopItem": '上期账单已还清',
-      "accountNameFrom": '',
-      "accountNameTo": '江苏银行信用卡(6706)',
-      "currency": 'CNY',
-      "time": formatDate("09月26日","M月D日"),
-      "channel": '江苏银行信用卡[还款]',
-    },
+      'type': 'Transfer',
+      'money': 1795.68,
+      'fee': 0,
+      'shopName': '江苏银行信用卡',
+      'shopItem': '上期账单已还清',
+      'accountNameFrom': '',
+      'accountNameTo': '江苏银行信用卡(6706)',
+      'currency': 'CNY',
+      'time': formatDate('09月26日', 'M月D日'),
+      'channel': '江苏银行信用卡[还款]'
+    }
   ]));
 
 test('江苏银行信用卡消费', () =>
   testAnkio('江苏银行信用卡消费', [
     {
-      "type": "Expend",
-      "money": 1169,
-      "fee": 0,
-      "shopName": '',
-      "shopItem": '',
-      "accountNameFrom": '',
-      "accountNameTo": '江苏银行信用卡(6706)',
-      "currency": 'CNY',
-      "time": formatDate("9月29日","M月D日"),
-      "channel": '江苏银行信用卡[消费]',
-    },
+      'type': 'Expend',
+      'money': 1169,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '',
+      'accountNameFrom': '',
+      'accountNameTo': '江苏银行信用卡(6706)',
+      'currency': 'CNY',
+      'time': formatDate('9月29日', 'M月D日'),
+      'channel': '江苏银行信用卡[消费]'
+    }
   ]));
 

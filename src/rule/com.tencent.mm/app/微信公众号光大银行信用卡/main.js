@@ -39,7 +39,7 @@ const rules = [
         formatDate(time, 'Y年M月D日 h:i'),
         `微信[${SOURCE}-${typeName}]`
       );
-    },
+    }
   ],
   [
     // 还款时间:2024年12月18日 09:10\n还款卡片尾号:7558\n还款金额:99.68元\n可用额度:28618.57元
@@ -59,14 +59,14 @@ const rules = [
         formatDate(time, 'Y年M月D日 h:i'),
         `微信[${SOURCE}-还款]`
       );
-    },
-  ],
+    }
+  ]
 ];
 
 /**
  * @param {string} data - JSON格式的数据
  * @returns {RuleObject|null} - 规则对象，如果获取失败则返回null
  */
-export function get(data) {
+export function get (data) {
   return parseWechat(data, rules, SOURCE, TITLE);
 }

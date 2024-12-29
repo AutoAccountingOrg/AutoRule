@@ -15,7 +15,7 @@ export class RuleObject {
    * @param time 时间
    * @param channel 具体渠道
    */
-  constructor(
+  constructor (
     type = BillType.Expend,
     money = 0.01,
     shopName = '',

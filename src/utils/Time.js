@@ -1,6 +1,6 @@
-export function isTimeInRange(startTime, endTime, currentTime) {
+export function isTimeInRange (startTime, endTime, currentTime) {
   // 将时间字符串转换为分钟表示
-  function convertToMinutes(timeStr) {
+  function convertToMinutes (timeStr) {
     const [hours, minutes] = timeStr.split(':').map(Number);
     return hours * 60 + minutes;
   }
@@ -22,7 +22,7 @@ export function isTimeInRange(startTime, endTime, currentTime) {
  * @param tpl string 包含格式标记的字符串，例如 "Y-M-D h:i:s"
  * @returns {number}
  */
-export function formatDate(time = '', tpl = '') {
+export function formatDate (time = '', tpl = '') {
 
   // 如果时间为空，返回当前时间的毫秒级时间戳
   if (time.length === 0) {
@@ -57,19 +57,18 @@ export function formatDate(time = '', tpl = '') {
     matchObj[match2[i]] = match[i + 1];
   }
 
-
   // 提取并填充默认值
   const now = new Date();
   const dateObj = {
-    "Y": matchObj["Y"] || now.getFullYear(),
-    "M": matchObj["M"] || now.getMonth() + 1,
-    "D": matchObj["D"] || now.getDate(),
-    "h": matchObj["h"] || now.getHours() + 8,
-    "m": matchObj["i"] || 0,
-    "s": matchObj["s"] || 0,
+    'Y': matchObj['Y'] || now.getFullYear(),
+    'M': matchObj['M'] || now.getMonth() + 1,
+    'D': matchObj['D'] || now.getDate(),
+    'h': matchObj['h'] || now.getHours() + 8,
+    'm': matchObj['i'] || 0,
+    's': matchObj['s'] || 0
   };
   if (dateObj.Y.length === 2) {
-    dateObj.Y = "20"+dateObj.Y;
+    dateObj.Y = '20' + dateObj.Y;
   }
   // 构造日期对象
   const formattedDate = new Date(
@@ -81,6 +80,6 @@ export function formatDate(time = '', tpl = '') {
     dateObj.s
   );
   // 输出为UTC时间的时间戳（毫秒）
-  return  formattedDate.getTime();
+  return formattedDate.getTime();
 }
 

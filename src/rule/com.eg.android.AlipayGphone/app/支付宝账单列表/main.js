@@ -5,7 +5,7 @@ import { AliTools, BillType, RuleObject } from 'common/index.js';
  * @param {string} data - 包含支付宝账单数据的JSON字符串
  * @returns {RuleObject|null} - 解析后的规则对象，如果解析失败则返回null
  */
-export function get(data) {
+export function get (data) {
   // 解析数据
   let json = JSON.parse(data);
   if (!json.extension || !json.fields) {
@@ -15,7 +15,7 @@ export function get(data) {
   let obj = new RuleObject();
 
   AliTools.handleBillItems(json.fields, obj);
-  processBizType(json.extension, obj,json)
+  processBizType(json.extension, obj, json);
 
   return obj;
 }
@@ -26,7 +26,7 @@ export function get(data) {
  * @param {Object} result - 结果对象
  * @returns {boolean} - 处理结果
  */
-function processBizType(extension, result,json) {
+function processBizType (extension, result, json) {
   switch (extension.bizType) {
     case 'CHARGE':
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
@@ -35,7 +35,7 @@ function processBizType(extension, result,json) {
     case 'TRADE':
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
       result.channel = '支付宝[普通交易]';
-      result.shopItem = result.shopItem || (json.innerLoopModelView && json.innerLoopModelView.params.consumeTitle) || "";
+      result.shopItem = result.shopItem || (json.innerLoopModelView && json.innerLoopModelView.params.consumeTitle) || '';
       break;
     case 'D_TRANSFER':
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
@@ -45,7 +45,7 @@ function processBizType(extension, result,json) {
       if (result.shopItem.indexOf('奖励') !== -1) {
         result.type = BillType.Income;
         result.accountNameFrom = '余额宝';
-      }else{
+      } else {
         result.accountNameTo = '余额宝';
       }
 

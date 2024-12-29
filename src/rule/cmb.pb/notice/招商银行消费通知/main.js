@@ -4,25 +4,24 @@ import { BillType, Currency, formatDate, RuleObject, toFloat, transferCurrency }
 
 //
 
-
 let rules = [
   [
     /您账户(\d{4})于(.*?)在【(.*)-(.*?)】发生快捷支付扣款，(.*?)([\d,]+.\d{2})/,
     match => {
-      let [,number,time,shopName,shopItem,currency,money] = match;
+      let [, number, time, shopName, shopItem, currency, money] = match;
       let obj = new RuleObject();
 
       obj.money = toFloat(money);
       obj.channel = `招商银行[消费]`;
-      obj.currency = Currency[currency]
-      obj.shopName =shopName;
+      obj.currency = Currency[currency];
+      obj.shopName = shopName;
       obj.shopItem = shopItem;
-      obj.time = formatDate(time,"M月D日h:i");
-      if (shopName.indexOf("理财通")!==-1){
-        obj.accountNameTo = "腾讯理财通账户"
-        obj.type = BillType.Transfer
-      }else{
-        obj.type = BillType.Expend
+      obj.time = formatDate(time, 'M月D日h:i');
+      if (shopName.indexOf('理财通') !== -1) {
+        obj.accountNameTo = '腾讯理财通账户';
+        obj.type = BillType.Transfer;
+      } else {
+        obj.type = BillType.Expend;
       }
 
       obj.accountNameFrom = `招商银行(${number})`;
@@ -32,29 +31,29 @@ let rules = [
   [
     //您尾号4809的账户扣款人民币19.70元
     /您尾号(\d{4})的账户扣款(.*?)([\d,]+.\d{2})元/,
-    (match,json) => {
-      let [,number,currency,money] = match;
+    (match, json) => {
+      let [, number, currency, money] = match;
       let obj = new RuleObject();
       obj.money = toFloat(money);
       obj.channel = `招商银行[支出]`;
-      obj.currency = transferCurrency(currency)
+      obj.currency = transferCurrency(currency);
       obj.time = json.t;
 
-      obj.type = BillType.Expend
+      obj.type = BillType.Expend;
 
       obj.accountNameFrom = `招商银行(${number})`;
-      return obj
+      return obj;
     }
   ]
-]
+];
 
-export function get(data) {
-  let json = JSON.parse(data)
+export function get (data) {
+  let json = JSON.parse(data);
 
-  for (let [regex,handler] of rules) {
+  for (let [regex, handler] of rules) {
     const match = json.text.match(regex);
     if (match) {
-      return handler(match,json);
+      return handler(match, json);
     }
   }
   return null;

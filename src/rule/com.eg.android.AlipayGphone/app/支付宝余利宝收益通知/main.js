@@ -1,6 +1,6 @@
 import { BillType, RuleObject, toFloat } from 'common/index.js';
 
-export function get(data) {
+export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
   if (pl.title.indexOf('余利宝') === -1) {
@@ -13,7 +13,7 @@ export function get(data) {
   obj.shopName = pl.title;
   obj.time = t;
   let extras = JSON.parse(pl.extraInfo);
-  obj.shopItem = `${extras.leftSubContent}(${extras.assistMsg1})`
+  obj.shopItem = `${extras.leftSubContent}(${extras.assistMsg1})`;
   obj.accountNameFrom = '余利宝';
   return obj;
 }
