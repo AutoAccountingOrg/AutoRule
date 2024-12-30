@@ -62,6 +62,26 @@ const rules = [
 
       return obj;
     }
+  ],
+
+  [
+    // 您的信用卡4594于2024年12月30日，消费RMB12.59元。您的卡片可用余额已低于20%。【中国银行】
+    /您的信用卡(\d{4})于(.*?)，消费(.*?)([\d,]+.\d{2})元。/,
+    match => {
+      let [, number, date, currency, money] = match;
+
+      let obj = new RuleObject();
+      obj.money = toFloat(money);
+      obj.channel = `中国银行信用卡[消费]`;
+      obj.currency = transferCurrency(currency);
+      obj.time = formatDate(date, 'Y年M月D日');
+      obj.type = BillType.Expend;
+      obj.accountNameFrom = `中国银行信用卡(${number})`;
+      obj.shopName = '消费';
+      obj.shopItem = '';
+
+      return obj;
+    }
   ]
 ];
 
