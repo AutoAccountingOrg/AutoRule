@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 
@@ -51,6 +52,17 @@ test('支付宝小荷包', () =>
       'currency': 'CNY',
       'time': 1727744614000,
       'channel': '支付宝[小荷包-自动攒]'
+    },
+    {
+      'type': 'Expend',
+      'money': 49,
+      'fee': 0,
+      'shopName': '🏠🏠🏠',
+      'shopItem': '**芳使用小荷包支付了￥49.00',
+      'accountNameFrom': '支付宝小荷包(🏠🏠🏠)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1735486010000,
+      'channel': '支付宝[小荷包-支付]'
     }
   ]));
-

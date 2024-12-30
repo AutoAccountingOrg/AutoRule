@@ -68,6 +68,22 @@ function handleAnt (pl, t) {
   return obj;
 }
 
+function handlePayment (pl, t) {
+  let obj = new RuleObject(BillType.Expend);
+
+  obj.channel = `支付宝[小荷包-支付]`;
+
+  let extras = JSON.parse(pl.extraInfo);
+  obj.money = toFloat(extras.content);
+  obj.shopName = extras.assistMsg1;
+  obj.accountNameFrom = `支付宝小荷包(${extras.assistMsg1})`;
+  obj.shopItem = extras.homePageTitle;
+
+  obj.time = t;
+
+  return obj;
+}
+
 export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
@@ -84,6 +100,8 @@ export function get (data) {
     return handleFundTransfer(pl, t);
   } else if (pl.templateName.indexOf('蚂蚁合花') !== -1) {
     return handleAnt(pl, t);
+  } else if (pl.templateName.indexOf('动账消费通知') !== -1) {
+    return handlePayment(pl, t);
   }
 
   return null;
