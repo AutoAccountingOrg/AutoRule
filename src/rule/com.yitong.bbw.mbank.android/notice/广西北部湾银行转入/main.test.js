@@ -11,7 +11,7 @@ test('广西北部湾银行转入', () =>
       'fee': 0,
       'shopName': '广西北部湾银行',
       'shopItem': '您尾号9820的账户发生转入交易，人民币2065.00元',
-      'accountNameFrom': '广西北部湾银行',
+      'accountNameFrom': '广西北部湾银行(9820)',
       'accountNameTo': '',
       'currency': 'CNY',
       'time': 1735537788207,

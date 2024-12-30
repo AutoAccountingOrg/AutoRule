@@ -19,6 +19,6 @@ export function get (data) {
 
   obj.type = BillType.Income;
 
-  obj.accountNameFrom = `广西北部湾银行`;
+  obj.accountNameFrom = `广西北部湾银行(${account})`;
   return obj;
 }
