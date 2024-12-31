@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -73,6 +74,18 @@ test('招商银行收入', () =>
       'currency': 'CNY',
       'time': formatDate('12月10日15:30', 'M月D日h:i'),
       'channel': '招商银行[工资]'
+    },
+    {
+      'type': 'Income',
+      'money': 1800.00,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '工资',
+      'accountNameFrom': '招商银行数币钱包(0022)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月30日10:02', 'M月D日h:i'),
+      'channel': '招商银行[收入]'
     }
   ]));
 
