@@ -57,6 +57,7 @@ export function get (data) {
       let value = item.value[0].name;
       switch (label) {
         case '商品':
+        case '收款方备注':
           obj.shopItem = value;
           break;
         case '商户全称':
@@ -66,6 +67,7 @@ export function get (data) {
           obj.accountNameFrom = value;
           break;
         case '支付时间':
+        case '转账时间':
           obj.time = convertToNumber(value) * 1000;
           break;
       }
