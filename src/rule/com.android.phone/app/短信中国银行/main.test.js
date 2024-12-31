@@ -71,3 +71,18 @@ test('中国银行支出', () =>
     }
   ]));
 
+test('中国银行收入', () =>
+  testAnkio('中国银行收入', [
+    {
+      'type': 'Income',
+      'money': 85.87,
+      'fee': 0,
+      'shopName': '支付宝(中国)网络技术有限公司',
+      'shopItem': '银联入账',
+      'accountNameFrom': '中国银行(0263)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月31日', 'M月D日'),
+      'channel': '中国银行[收入]'
+    }
+  ]));
