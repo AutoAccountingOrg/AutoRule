@@ -22,7 +22,7 @@ const rules = [
     match => {
       const [, time, type, number, currency, money] = match;
 
-      let { matchType, typeName } = isPaymentType(type);
+      let { matchType, typeName } = isPaymentType(type, ['随用随充']);
 
       return new RuleObject(
         matchType,

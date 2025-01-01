@@ -163,6 +163,18 @@ test('中国银行消费', () =>
       'currency': 'CNY',
       'time': formatDate('07月04日07:54', 'M月D日h:i'),
       'channel': '微信[中国银行-支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 22.49,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '数字人民币随用随充',
+      'accountNameFrom': '中国银行(3697)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('01月01日18:35', 'M月D日h:i'),
+      'channel': '微信[中国银行-支出]'
     }
 
   ]));
