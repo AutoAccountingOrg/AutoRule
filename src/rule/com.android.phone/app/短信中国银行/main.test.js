@@ -68,6 +68,18 @@ test('中国银行支出', () =>
       'currency': 'CNY',
       'time': formatDate('12月03日', 'M月D日'),
       'channel': '中国银行[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 798.82,
+      'fee': 0,
+      'shopName': '支取',
+      'shopItem': '',
+      'accountNameFrom': '中国银行(工资卡)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('12月31日', 'M月D日'),
+      'channel': '中国银行[支出]'
     }
   ]));
 

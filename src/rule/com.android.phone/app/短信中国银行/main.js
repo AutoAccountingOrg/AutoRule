@@ -102,6 +102,26 @@ const rules = [
 
       return obj;
     }
+  ],
+
+  [
+    // 您的借记卡账户工资卡，于12月31日支取人民币798.82元,交易后余额82.37【中国银行】
+    /您的借记卡账户(.*?)，于(.*?)支取(.*?)([\d,]+.\d{2})元,交易后余额/,
+    match => {
+      let [, accountName, date, currency, money] = match;
+
+      let obj = new RuleObject();
+      obj.money = toFloat(money);
+      obj.channel = `中国银行[支出]`;
+      obj.currency = transferCurrency(currency);
+      obj.time = formatDate(date, 'M月D日');
+      obj.type = BillType.Expend;
+      obj.accountNameFrom = `中国银行(${accountName})`;
+      obj.shopName = '支取';
+      obj.shopItem = '';
+
+      return obj;
+    }
   ]
 ];
 
