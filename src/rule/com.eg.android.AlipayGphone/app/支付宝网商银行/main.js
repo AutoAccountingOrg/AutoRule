@@ -11,8 +11,14 @@ function transfer (pl, t) {
 
   obj.shopItem = extras.assistMsg1;
   obj.shopName = '网商银行';
-  obj.accountNameFrom = `${extras.title}(${extras.assistMsg3})`;
-  obj.accountNameTo = `${extras.assistMsg2}`;
+  if (extras.assistMsg3) {
+    obj.accountNameFrom = `${extras.title}(${extras.assistMsg3})`;
+    obj.accountNameTo = `${extras.assistMsg2}`;
+  } else {
+    obj.accountNameFrom = `${extras.title}(${extras.assistMsg2})`;
+    obj.accountNameTo = '';
+  }
+
   return obj;
 }
 
