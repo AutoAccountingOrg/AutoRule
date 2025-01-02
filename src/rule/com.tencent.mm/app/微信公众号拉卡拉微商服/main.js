@@ -1,4 +1,4 @@
-import { Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '拉卡拉微商服';
@@ -12,11 +12,11 @@ const rules = [
     match => {
       const [, shopName, money, time, account, serialNumber, orderType] = match;
       return new RuleObject(
-        'Expend',
+        BillType.Income,
         toFloat(money.replace(/,/g, '')),
         shopName,
         `订单类型：${orderType}`,
-        account,
+        '拉卡拉微商服',
         '',
         0.0,
         Currency['人民币'],
