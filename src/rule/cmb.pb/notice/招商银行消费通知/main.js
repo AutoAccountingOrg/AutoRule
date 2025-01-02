@@ -6,7 +6,8 @@ import { BillType, Currency, formatDate, RuleObject, toFloat, transferCurrency }
 
 let rules = [
   [
-    /您账户(\d{4})于(.*?)在【(.*)-(.*?)】发生快捷支付扣款，(.*?)([\d,]+.\d{2})/,
+    // 您账户1007于01月02日12:07在【财付通-群收款】发生快捷支付扣款，人民币12.00
+    /您账户(\d{4})于(.*?)在【(.*)-(.*?)】发生快捷支付扣款，(.*?)([\d,]+.\d{2})$/,
     match => {
       let [, number, time, shopName, shopItem, currency, money] = match;
       let obj = new RuleObject();

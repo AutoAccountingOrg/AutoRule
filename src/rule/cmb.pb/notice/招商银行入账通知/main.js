@@ -23,7 +23,8 @@ let rules = [
   ],
   [
     // 您账户6598于10月23日13:03收款人民币8650.00
-    /您账户(\d{4})于(.*?)收款(.*?)([\d,]+.\d{2})/,
+    // 您账户1007于01月02日12:07在【财付通-群收款】发生快捷支付扣款，人民币12.00
+    /您账户(\d{4})于(.*?)收款人民币([\d,]+.\d{2})/,
     (match, json) => {
       let [, number, date, currency, money] = match;
 
@@ -32,7 +33,6 @@ let rules = [
       obj.money = toFloat(money);
       obj.channel = `招商银行[收款]`;
       obj.shopItem = '入账';
-      obj.currency = Currency[currency];
       obj.time = json.t;
 
       obj.type = BillType.Income;

@@ -28,5 +28,17 @@ test('招商银行消费', () =>
       'currency': 'CNY',
       'time': 1728781111538,
       'channel': '招商银行[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 12,
+      'fee': 0,
+      'shopName': '财付通',
+      'shopItem': '群收款',
+      'accountNameFrom': '招商银行(1007)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1735790820000,
+      'channel': '招商银行[消费]'
     }
   ]));
