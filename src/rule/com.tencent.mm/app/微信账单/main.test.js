@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const fs = require('fs');
 const path = require('path');
@@ -20,5 +21,21 @@ test('微信支付在线支付', () =>
       'currency': 'CNY',
       'time': 1733816116000,
       'channel': '微信[账单-支出]'
+    }
+  ]));
+
+test('微信零钱提现', () =>
+  testAnkio('微信零钱提现', [
+    {
+      'type': 'Transfer',
+      'money': 278.77,
+      'fee': 0,
+      'shopName': '零钱提现',
+      'shopItem': '到工商银行(9301)',
+      'accountNameFrom': '微信零钱',
+      'accountNameTo': '工商银行',
+      'currency': 'CNY',
+      'time': 1735818828000,
+      'channel': '微信[账单-提现]'
     }
   ]));

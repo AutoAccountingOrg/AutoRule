@@ -1,31 +1,4 @@
-import { BillType, convertToNumber, Currency, formatDate, RuleObject, toFloat } from 'common/index.js';
-
-// 定义源名称和需要匹配的标题数组
-const SOURCE = '微信支付';
-const TITLE = ['交易提醒'];
-
-// 正则表达式和处理函数的映射关系
-const rules = [
-  [
-    // 当前状态：支付成功\n支付时间：1733816116\n商品：普通充值\n商户全称：杭州深度求索人工智能基础技术研究有限公司\n收单机构：财付通支付科技有限公司\n支付方式：零钱\n交易单号：4200002372202412105648962911\n商户单号：wechat43a77b59699749d39eeba92643
-    /当前状态：支付成功\n支付时间：(.*?)\n商品：(.*?)\n商户全称：(.*?)\n收单机构：(.*?)\n支付方式：(.*?)\n交易单号：(.*?)\n商户单号：(.*?)/,
-    match => {
-      const [, time, product, merchant, institution, paymentMethod, transactionId, merchantId] = match;
-      return new RuleObject(
-        'Expend',
-        toFloat(1.00),
-        merchant,
-        product,
-        '微信支付(零钱)',
-        '',
-        0.0,
-        Currency['人民币'],
-        formatDate(time, 'X'), // 1733816116
-        `微信[微信支付-支出]`
-      );
-    }
-  ]
-];
+import { BillType, convertToNumber, RuleObject, splitShop, toFloat } from 'common/index.js';
 
 /**
  * 获取规则对象
@@ -54,6 +27,9 @@ export function get (data) {
   for (let item of json.preview) {
     if (item.label) {
       let label = item.label.name;
+      if (item.value.length === 0) {
+        continue;
+      }
       let value = item.value[0].name;
       switch (label) {
         case '商品':
@@ -68,10 +44,29 @@ export function get (data) {
           break;
         case '支付时间':
         case '转账时间':
+        case '到账时间':
           obj.time = convertToNumber(value) * 1000;
           break;
+        case '服务费':
+          obj.fee = toFloat(value);
+          break;
+        case '提现银行':
+          obj.accountNameTo = value;
       }
     }
+  }
+
+  if (shopName.indexOf('零钱提现') !== -1) {
+    obj.type = BillType.Transfer;
+    obj.accountNameFrom = '微信零钱';
+    obj.channel = `微信[账单-提现]`;
+  }
+
+  if (obj.shopItem.length === 0) {
+    let { shopName, shopItem } = splitShop(obj.shopName);
+    obj.shopName = shopName;
+    obj.shopItem = shopItem;
+
   }
 
   return obj;
