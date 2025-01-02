@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -14,6 +15,18 @@ test('江西农商银行收入', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('13日09时58分', 'D日h时i分'),
+      'channel': '江西农商银行[收入]'
+    },
+    {
+      'type': 'Income',
+      'money': 2896,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '绩效补贴(转入)',
+      'accountNameFrom': '江西农商银行(0058)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('29日17时27分', 'D日h时i分'),
       'channel': '江西农商银行[收入]'
     }
   ]));
@@ -33,4 +46,3 @@ test('江西农商银行支出', () =>
       'channel': '江西农商银行[支出]'
     }
   ]));
-
