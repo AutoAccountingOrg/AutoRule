@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 testAnkioInit(get, __dirname, 'com.tencent.mm');
@@ -25,6 +26,18 @@ test('微信支付零钱通收益', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': 1730515985651,
+      'channel': '微信[微信支付-零钱通收益月报]'
+    },
+    {
+      'type': 'Income',
+      'money': 2.31,
+      'fee': 0,
+      'shopName': '零钱通',
+      'shopItem': '2024年总收益￥56.23\n当前累计收益￥130.01',
+      'accountNameFrom': '零钱通',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1735783368927,
       'channel': '微信[微信支付-零钱通收益月报]'
     }
   ]));

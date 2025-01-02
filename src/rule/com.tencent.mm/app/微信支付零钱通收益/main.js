@@ -26,6 +26,25 @@ const rules = [
         '微信[微信支付-零钱通收益月报]'
       );
     }
+  ],
+  [
+    //12月收益￥2.31\n2024年总收益￥56.23\n当前累计收益￥130.01
+    /(\d+)月收益￥(\d+\.\d{2})\n(\d+)年总收益￥(\d+\.\d{2})\n当前累计收益￥(\d+\.\d{2})$/,
+    (match, t, item) => {
+      const [, month, money, year, yearMoney, totalMoney] = match;
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        '零钱通',
+        `${year}年总收益￥${yearMoney}\n当前累计收益￥${totalMoney}`,
+        '零钱通',
+        '',
+        0.0,
+        transferCurrency('人民币'),
+        t,
+        '微信[微信支付-零钱通收益月报]'
+      );
+    }
   ]
 ];
 
