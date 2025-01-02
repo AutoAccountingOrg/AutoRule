@@ -22,8 +22,27 @@ const rules = [
       obj.accountNameFrom = `${senderName}(${number})`;
       return obj;
     }
-  ]
+  ],
+  [
+    //您账户8162于1月2日10:57行内转账转入人民币304.00元，付款方：上海虹口区江湾镇社区服务管理中心，交易后余额为24411.92元。【上海农商银行】
+    /您账户(\d{4})于(\d+月\d+日\d+:\d+)(.*?)人民币(.*?)元，付款方：(.*?)，交易后余额为(.*?)元。/,
+    match => {
+      let [, number, date, type, money, payer] = match;
 
+      let obj = new RuleObject();
+
+      let { matchType, typeName } = isPaymentType(type);
+
+      obj.money = toFloat(money);
+      obj.channel = `${senderName}[${typeName}]`;
+      obj.shopItem = type;
+      obj.time = formatDate(date, 'M月D日h:i');
+      obj.type = matchType;
+      obj.accountNameFrom = `${senderName}(${number})`;
+      obj.shopName = payer;
+      return obj;
+    }
+  ]
 ];
 
 /**
@@ -42,5 +61,3 @@ export function get (data) {
     }
   }
 }
-
-
