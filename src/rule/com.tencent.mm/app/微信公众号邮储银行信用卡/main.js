@@ -2,7 +2,7 @@ import { Currency, formatDate, isPaymentType, parseWechat, RuleObject, splitShop
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '邮储银行信用卡';
-const TITLE = ['交易提醒'];
+const TITLE = ['交易提醒', '还款提醒'];
 
 // 正则表达式和处理函数的映射关系
 const rules = [
@@ -26,6 +26,25 @@ const rules = [
         Currency['人民币'],
         formatDate(time, 'Y年M月D日 h:i:s'),
         `微信[${SOURCE}-${typeName}]`
+      );
+    }
+  ],
+  [
+    /信用卡号:尾号(\d+)\n还款时间:(.*?)\n还款金额:￥([\d.]+)元\n还款结果:成功\n本期未还金额:￥([\d.]+)元/,
+    match => {
+      let [, cardNumber, time, money, unpaid] = match;
+
+      return new RuleObject(
+        'Income',
+        toFloat(money),
+        '邮储银行信用卡',
+        '还款',
+        `${SOURCE}(${cardNumber})`,
+        '',
+        0.0,
+        Currency['人民币'],
+        formatDate(time, 'Y年M月D日 h:i:s'),
+        `微信[${SOURCE}-还款]`
       );
     }
   ]
