@@ -24,13 +24,13 @@ test('邮储银行信用卡消费', () =>
 test('邮储银行信用卡还款', () =>
   testAnkio('邮储银行信用卡还款', [
     {
-      'type': 'Income',
+      'type': 'Transfer',
       'money': 3500.00,
       'fee': 0,
       'shopName': '邮储银行信用卡',
       'shopItem': '还款',
-      'accountNameFrom': '邮储银行信用卡(4269)',
-      'accountNameTo': '',
+      'accountNameFrom': '',
+      'accountNameTo': '邮储银行信用卡(4269)',
       'currency': 'CNY',
       'time': formatDate('2025年1月3日 7:24:16', 'Y年M月D日 h:i:s'),
       'channel': '微信[邮储银行信用卡-还款]'
