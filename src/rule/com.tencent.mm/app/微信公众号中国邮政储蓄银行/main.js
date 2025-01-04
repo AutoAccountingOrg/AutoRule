@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import { Currency, formatDate, isPaymentType, parseWechat, RuleObject, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '中国邮政储蓄银行';
@@ -9,22 +9,14 @@ const rules = [
   [
     //交易时间：2024年09月18日08:18\n交易类型：(尾号8057)快捷支付\n交易金额：(人民币)24.92元
     //交易时间：2024年06月14日23:19\n交易类型：(尾号7618)薪酬\n交易金额：(人民币)8683.33元
-    /交易时间：(.*?)\n交易类型：\(尾号(\d+)\)(.*?)\n交易金额：\(人民币\)([\d,]+.\d{2})元/,
+    //交易时间：2025年01月03日07:21\n交易类型：(尾号5476)扣款\n交易金额：(人民币) -8000元
+    /交易时间：(.*?)\n交易类型：\(尾号(\d+)\)(.*?)\n交易金额：\(人民币\)(.*?)元/,
     match => {
       let [, time, number, shopItem, money] = match;
-      let type = BillType.Income;
-      let typeName = '收入';
-      let expendList = [
-        '银联快捷',
-        '快捷支付'
-      ];
-      if (expendList.includes(shopItem)) {
-        type = BillType.Expend;
-        typeName = '支出';
-      }
+      let { matchType, typeName } = isPaymentType(shopItem, ['银联快捷']);
 
       return new RuleObject(
-        type,
+        matchType,
         toFloat(money),
         '',
         shopItem,

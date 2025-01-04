@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 
@@ -24,14 +25,14 @@ test('中国邮政储蓄银行支出', () =>
   testAnkio('中国邮政储蓄银行支出', [
     {
       'type': 'Expend',
-      'money': 24.92,
+      'money': 8000,
       'fee': 0,
       'shopName': '',
-      'shopItem': '快捷支付',
-      'accountNameFrom': '中国邮政储蓄银行(8057)',
+      'shopItem': '扣款',
+      'accountNameFrom': '中国邮政储蓄银行(5476)',
       'accountNameTo': '',
       'currency': 'CNY',
-      'time': formatDate('2024年09月18日08:18', 'Y年M月D日h:i'),
+      'time': formatDate('2025年01月03日07:21', 'Y年M月D日h:i'),
       'channel': '微信[中国邮政储蓄银行-支出]'
     },
     {
@@ -45,5 +46,5 @@ test('中国邮政储蓄银行支出', () =>
       'currency': 'CNY',
       'time': formatDate('2024年09月22日19:56', 'Y年M月D日h:i'),
       'channel': '微信[中国邮政储蓄银行-支出]'
-    }
+    },
   ]));
