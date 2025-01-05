@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const fs = require('fs');
 const path = require('path');
@@ -20,5 +21,21 @@ test('郑州银行信用卡消费', () =>
       'currency': 'CNY',
       'time': formatDate('2024年12月24日09时09分', 'Y年M月D日h时i分'),
       'channel': '微信[郑州银行信用卡-支出]'
+    }
+  ]));
+
+test('郑州银行信用卡转账转入', () =>
+  testAnkio('郑州银行信用卡转账转入', [
+    {
+      'type': 'Transfer',
+      'money': 1978.89,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '',
+      'accountNameFrom': '',
+      'accountNameTo': '郑州银行信用卡(2328)',
+      'currency': 'CNY',
+      'time': formatDate('2025年01月05日08时49分', 'Y年M月D日h时i分'),
+      'channel': '微信[郑州银行信用卡-还款]'
     }
   ]));
