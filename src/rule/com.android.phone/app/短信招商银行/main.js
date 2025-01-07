@@ -136,6 +136,26 @@ const rules = [
       obj.accountNameFrom = `招商银行数币钱包(${number})`;
       return obj;
     }
+  ],
+  [
+    //【招商银行】您账户1234于01月05日18:45发生学生卡自动预存扣款，扣款金额人民币10.00元。
+    /您账户(\d{4})于(\d+月\d+日\d+:\d+)发生学生卡自动预存扣款，扣款金额人民币([\d,]+.\d{2})元/,
+    match => {
+      let [, number, date, money] = match;
+
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `招商银行[扣款]`;
+      obj.currency = 'CNY';
+      obj.shopItem = '学生卡自动预存扣款';
+      obj.time = formatDate(date, 'M月D日h:i');
+
+      obj.type = BillType.Transfer;
+      obj.accountNameFrom = `招商银行(${number})`;
+      obj.accountNameTo = `学生卡`;
+      return obj;
+    }
   ]
 ];
 

@@ -16,7 +16,7 @@ test('招商银行支出', () =>
       'accountNameFrom': '招商银行(0877)',
       'accountNameTo': '',
       'currency': 'CNY',
-      'time': formatDate('12月03日22:44', 'M月D日h:i'),
+      'time': formatDate('12���03��22:44', 'M月D日h:i'),
       'channel': '招商银行[消费]'
     }
   ]));
@@ -102,5 +102,21 @@ test('招商银行退款', () =>
       'currency': 'CNY',
       'time': formatDate('12月16日23:38', 'M月D日h:i'),
       'channel': '招商银行[退款]'
+    }
+  ]));
+
+test('招商银行学生卡自动预存扣款', () =>
+  testAnkio('招商银行学生卡自动预存扣款', [
+    {
+      'type': 'Transfer',
+      'money': 10.00,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '学生卡自动预存扣款',
+      'accountNameFrom': '招商银行(1234)',
+      'accountNameTo': '学生卡',
+      'currency': 'CNY',
+      'time': formatDate('01月05日18:45', 'M月D日h:i'),
+      'channel': '招商银行[扣款]'
     }
   ]));
