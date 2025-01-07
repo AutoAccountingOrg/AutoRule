@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易时间：2025年01月06日 14:47\n交易商户：财付通（银联条码支付互联互通）\n交易金额： 20.00 元/微众银行卡(0000) ","source":"微众银行App","t":1736146076348,"arg":"msgId","type":5,"appId":"","msgId":97284,"title":"交易提醒"}}
