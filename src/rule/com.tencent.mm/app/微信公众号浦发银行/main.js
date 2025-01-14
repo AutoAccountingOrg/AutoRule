@@ -35,6 +35,26 @@ const rules = [
         formatDate(time.replace('  ', ' '), 'M月D日 h:i:s'),
         `微信[${SOURCE}-交易]`);
     }
+  ],
+  [
+    //交易时间：01月10日  19:42:21\n交易类型：其他代发工资\n交易金额：人民币活期+6,8\n可用额度：点击查看账户详情（尾号4528）\n交易说明：2024年度账单来了，快来查收您这一年的回忆吧！
+    /交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)活期\+([\d,]+)\n可用额度：点击查看账户详情（尾号(\d{4})）\n交易说明：(.*?)$/,
+    match => {
+      let [, time, type, currency, money, number] = match;
+      let { matchType, typeName } = isPaymentType(type);
+      let { shopName, shopItem } = splitShop(type);
+      return new RuleObject(
+        matchType,
+        toFloat(money.replace(',', '')),
+        shopName,
+        shopItem,
+        `浦发银行(${number})`,
+        '',
+        0.0,
+        transferCurrency(currency),
+        formatDate(time.replace('  ', ' '), 'M月D日 h:i:s'),
+        `微信[${SOURCE}-交易]`);
+    }
   ]
 ];
 

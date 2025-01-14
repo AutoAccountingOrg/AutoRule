@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 
@@ -33,3 +34,18 @@ test('浦发银行消费', () =>
     }
   ]));
 
+test('浦发银行收入', () =>
+  testAnkio('浦发银行收入', [
+    {
+      'type': 'Income',
+      'money': 68.0,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '其他代发工资',
+      'accountNameFrom': '浦发银行(4528)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('01月10日 19:42:21', 'M月D日 h:i:s'),
+      'channel': '微信[浦发银行-交易]'
+    }
+  ]));
