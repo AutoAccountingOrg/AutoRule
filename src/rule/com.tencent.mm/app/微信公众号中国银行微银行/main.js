@@ -1,12 +1,4 @@
-import {
-  BillType,
-  formatDate,
-  isPaymentType,
-  parseWechat,
-  RuleObject,
-  toFloat,
-  transferCurrency
-} from 'common/index.js';
+import { formatDate, isPaymentType, parseWechat, RuleObject, toFloat, transferCurrency } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '中国银行微银行';
@@ -40,20 +32,15 @@ const rules = [
     }
   ],
   //账户类型：信用卡\n账号尾号：5248\n交易时间：05月16日11:05\n交易类型：存入\n交易金额：RMB357.00
+  //账户类型：信用卡\n账号尾号：1369\n交易时间：01月05日19:36\n交易类型：消费\n交易金额：RMB14.00
   [
     /账户类型：信用卡\n账号尾号：(\d+)\n交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)([\d\,]+.\d{2})$/,
     match => {
       const [, number, time, type, currency, money] = match;
-
-      let billType = BillType.Income;
-      switch (type) {
-        case '存入':
-          billType = BillType.Income;
-          break;
-      }
+      let { matchType, typeName } = isPaymentType(type);
 
       return new RuleObject(
-        billType,
+        matchType,
         toFloat(money),
         '',
         type,
@@ -62,7 +49,7 @@ const rules = [
         0.0,
         transferCurrency(currency),
         formatDate(time, 'M月D日h:i'),
-        `微信[中国银行信用卡-存入]`
+        `微信[中国银行信用卡-${typeName}]`
       );
     }
   ]

@@ -191,6 +191,22 @@ test('中国银行信用卡存入', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('05月16日11:05', 'M月D日h:i'),
-      'channel': '微信[中国银行信用卡-存入]'
+      'channel': '微信[中国银行信用卡-收入]'
+    }
+  ]));
+
+test('中国银行信用卡支出', () =>
+  testAnkio('中国银行信用卡支出', [
+    {
+      'type': 'Expend',
+      'money': 14,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '消费',
+      'accountNameFrom': '中国银行信用卡(1369)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('01月05日19:36', 'M月D日h:i'),
+      'channel': '微信[中国银行信用卡-支出]'
     }
   ]));

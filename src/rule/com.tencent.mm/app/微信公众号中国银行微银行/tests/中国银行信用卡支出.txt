@@ -1,0 +1,13 @@
+{
+"mMap": {
+"tableName": "AppMessage",
+"description": "账户类型：信用卡\n账号尾号：1369\n交易时间：01月05日19:36\n交易类型：消费\n交易金额：RMB14.00",
+"source": "中国银行微银行",
+"t": 1736077007346,
+"arg": "msgId",
+"type": 5,
+"appId": "",
+"msgId": 10724095,
+"title": "交易完成通知"
+}
+}
