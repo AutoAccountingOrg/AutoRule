@@ -152,5 +152,16 @@ test('微信支付在线支付', () =>
       'currency': 'CNY',
       'time': 1734092827912,
       'channel': '微信[微信支付-在线支付]'
+    }, {
+      'type': 'Expend',
+      'money': 101.18,
+      'fee': 0,
+      'shopName': '个人所得税（缴税账户）',
+      'shopItem': '',
+      'accountNameFrom': '建设银行信用卡(9697)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1736816774376,
+      'channel': '微信[微信支付-在线支付]'
     }
   ]));

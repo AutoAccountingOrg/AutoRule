@@ -1,0 +1,15 @@
+{
+"mMap": {
+"description": "付款金额￥101.18\n付款方式建设银行信用卡(9697)",
+"source": "微信支付",
+"type": 5,
+"appId": "",
+"msgId": 99064,
+"title": "微信支付凭证",
+"display_name": "个人所得税（缴税账户）",
+"cachedPayTools": "建设银行信用卡(9697)",
+"cachedPayMoney": "￥101.18",
+"cachedPayShop": "微信红包",
+"t": 1736816774376
+}
+}
