@@ -64,9 +64,24 @@ test('支付宝普通交易', () =>
       'currency': 'CNY',
       'time': 1735130344000,
       'channel': '支付宝[普通交易]'
+    },
+
+  ]));
+test('支付宝退款', () =>
+  testAnkio('支付宝退款', [
+    {
+      'type': 'Income',
+      'money': 88,
+      'fee': 0,
+      'shopName': '硬汗健身',
+      'shopItem': '退款-硬汗健身自动续订扣款',
+      'accountNameFrom': '支付宝余额',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1735953692000,
+      'channel': '支付宝[普通交易]'
     }
   ]));
-
 test('支付宝收钱码服务费', () =>
   testAnkio('支付宝收钱码服务费', [
     {

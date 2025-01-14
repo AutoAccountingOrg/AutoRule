@@ -36,6 +36,9 @@ function processBizType (extension, result, json) {
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
       result.channel = '支付宝[普通交易]';
       result.shopItem = result.shopItem || (json.innerLoopModelView && json.innerLoopModelView.params.consumeTitle) || '';
+      if (result.shopItem.match(/退[款|货]/)) {
+        result.type = BillType.Income;
+      }
       break;
     case 'D_TRANSFER':
       result.accountNameFrom = result.accountNameFrom || '支付宝余额';
