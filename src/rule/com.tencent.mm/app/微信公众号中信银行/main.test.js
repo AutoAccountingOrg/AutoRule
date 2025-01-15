@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 
@@ -29,6 +30,22 @@ test('中信银行收入', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('5月7日10:49', 'M月D日h:i'),
+      'channel': '微信[中信银行-收入]'
+    }
+  ]));
+
+test('中信银行代付收款', () =>
+  testAnkio('中信银行代付收款', [
+    {
+      'type': 'Income',
+      'money': 528.00,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '其他代付收款',
+      'accountNameFrom': '中信银行储蓄卡',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('1月15日 11:01', 'M月D日 h:i'),
       'channel': '微信[中信银行-收入]'
     }
   ]));

@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"业务：其他代付收款\n金额：人民币 528.00 元\n状态：成功\n时间：1月15日 11:01","source":"中信银行","t":1736910107245,"arg":"msgId","type":5,"appId":"","msgId":104580,"title":"微信交易提醒"}}

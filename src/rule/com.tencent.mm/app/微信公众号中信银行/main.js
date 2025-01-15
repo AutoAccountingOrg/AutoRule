@@ -26,6 +26,26 @@ const rules = [
         `微信[${SOURCE}-${typeName}]`
       );
     }
+  ],
+  [
+    //1月15日 11:01
+    /业务：其他代付收款\n金额：人民币 ([\d,]+.\d{2}) 元\n状态：成功\n时间：(.*?)$/,
+    match => {
+      let [, money, time] = match;
+
+      return new RuleObject(
+        'Income',
+        toFloat(money),
+        '',
+        '其他代付收款',
+        '中信银行储蓄卡',
+        '',
+        0.0,
+        Currency['CNY'],
+        formatDate(time, 'M月D日 h:i'),
+        `微信[${SOURCE}-收入]`
+      );
+    }
   ]
 ];
 
