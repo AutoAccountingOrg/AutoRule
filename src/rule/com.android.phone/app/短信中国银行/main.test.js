@@ -28,6 +28,18 @@ test('中国银行信用卡支出', () =>
       'currency': 'CNY',
       'time': formatDate('2024年12月30日', 'Y年M月D日'),
       'channel': '中国银行信用卡[消费]'
+    },
+    {
+      'type': 'Expend',
+      'money': 275,
+      'fee': 0,
+      'shopName': '消费',
+      'shopItem': '',
+      'accountNameFrom': '中国银行信用卡(4594)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('2025年01月14日', 'Y年M月D日'),
+      'channel': '中国银行信用卡[消费]'
     }
   ]));
 
@@ -84,7 +96,7 @@ test('中国银行支出', () =>
   ]));
 
 test('中国银行收入', () =>
-  testAnkio('中国银行收入', [
+  testAnkio('中国��行��入', [
     {
       'type': 'Income',
       'money': 85.87,

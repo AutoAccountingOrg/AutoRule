@@ -66,7 +66,7 @@ const rules = [
 
   [
     // 您的信用卡4594于2024年12月30日，消费RMB12.59元。您的卡片可用余额已低于20%。【中国银行】
-    /您的信用卡(\d{4})于(.*?)，消费(.*?)([\d,]+.\d{2})元���/,
+    /您的信用卡(\d{4})于(.*?)，消费(.*?)([\d,]+.\d{2})元。/,
     match => {
       let [, number, date, currency, money] = match;
 
@@ -98,7 +98,7 @@ const rules = [
       obj.type = BillType.Income;
       obj.accountNameFrom = `中国银行(${number})`;
       obj.shopName = shopName;
-      obj.shopItem = '银联入账';
+      obj.shopItem = '��联入账';
 
       return obj;
     }
