@@ -36,7 +36,7 @@ const rules = [
       return new RuleObject(
         BillType.Income,
         toFloat(money),
-        item.title,
+        findNonEmptyString(item.display_name, item.title),
         shopItem,
         accountNameFrom,
         '',

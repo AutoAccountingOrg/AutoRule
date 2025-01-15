@@ -69,7 +69,7 @@ test('微信支付收款（商家付款）', () =>
       'type': 'Income',
       'money': 0.66,
       'fee': 0,
-      'shopName': '你收到一笔活动奖励',
+      'shopName': '可口可乐',
       'shopItem': 'COSTA 开盖100%中奖 ￥6666天天送',
       'accountNameFrom': '零钱',
       'accountNameTo': '',
