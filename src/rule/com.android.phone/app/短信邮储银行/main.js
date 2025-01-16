@@ -4,7 +4,8 @@ import { BillType, Currency, formatDate, RuleObject, splitSms, toFloat } from 'c
 const rules = [
   [
     //24年10月09日15:54您尾号097账户快捷支付，支出金额680.00元，余额155.70元。
-    /(.*?)您尾号(\d{3})账户快捷支付，支出金额([\d,]+.\d{2})元，余额([\d,]+.\d{2})元。/,
+    //25年01月16日16:50您尾号800账户快捷支付，支出金额1.00元，余额123.63元
+    /(.*?)您尾号(\d{3})账户快捷支付，支出金额(.*?)元，余额(.*?)元/,
     match => {
       let [, date, number, money] = match;
 
@@ -41,7 +42,7 @@ const rules = [
       obj.accountNameTo = `${shopName}(校园卡)`;
       return obj;
     }
-  ] //尊敬的
+  ], //尊敬的
 
 ];
 
@@ -61,5 +62,3 @@ export function get (data) {
     }
   }
 }
-
-
