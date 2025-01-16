@@ -19,7 +19,7 @@ test('网商银行消费', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('2024-07-04 08:08:26', 'Y-M-D h:i:s'),
-      'channel': '微信[网商银行-消费]'
+      'channel': '微信[网商银行-支出]'
     }
 
   ]));

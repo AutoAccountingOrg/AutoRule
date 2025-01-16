@@ -1,4 +1,13 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import {
+  BillType,
+  Currency,
+  formatDate,
+  isPaymentType,
+  parseWechat,
+  RuleObject,
+  splitShop,
+  toFloat
+} from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '网商银行';
@@ -10,18 +19,20 @@ const rules = [
     // 交易时间:2024-07-04 08:08:26\n交易类型:支付宝支付\n交易金额:人民币30.00元
     /交易时间:(.*?)\n交易类型:(.*?)\n交易金额:人民币(.*?)元/,
     match => {
-      const [, time, shopItem, money] = match;
+      const [, time, type, money] = match;
+      const { matchType, typeName } = isPaymentType(type);
+      const { shopName, shopItem } = splitShop(type);
       return new RuleObject(
-        BillType.Expend,
+        matchType,
         toFloat(money),
-        '',
+        shopName,
         shopItem,
         SOURCE,
         '',
         0.0,
         Currency['人民币'],
         formatDate(time, 'Y-M-D h:i:s'),
-        `微信[${SOURCE}-消费]`);
+        `微信[${SOURCE}-${typeName}]`);
     }
   ],
   [
