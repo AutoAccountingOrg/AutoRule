@@ -9,7 +9,7 @@ const TITLE_WECHAT = [
 // 正则表达式和处理函数的映射关系
 const rules = [
   [
-    /收款金额¥ (\d+\.\d{2})\n收款账户(.*)/,
+    /收款金额¥ (\d+\.\d{2})\n收款账户(.*)$/,
     (match, t, item) => {
       const [, money, accountNameFrom] = match;
       return new RuleObject(
@@ -17,6 +17,24 @@ const rules = [
         toFloat(money),
         '',
         '',
+        accountNameFrom,
+        '',
+        0.0,
+        transferCurrency('人民币'),
+        t,
+        '微信[微信支付-收款入账]'
+      );
+    }
+  ],
+  [
+    /收款金额¥ (\d+\.\d{2})\n收款账户(.*)\n转账备注(.*)$/,
+    (match, t, item) => {
+      const [, money, accountNameFrom, remark] = match;
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        item.display_name,
+        remark,
         accountNameFrom,
         '',
         0.0,
