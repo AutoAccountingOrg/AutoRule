@@ -31,6 +31,18 @@ test('浦发银行消费', () =>
       'currency': 'CNY',
       'time': formatDate('12月16日 08:21:39', 'M月D日 h:i:s'),
       'channel': '微信[浦发银行-交易]'
+    },
+    {
+      'type': 'Expend',
+      'money': 4.4,
+      'fee': 0,
+      'shopName': '消费',
+      'shopItem': '成都天府通金融支',
+      'accountNameFrom': '浦发银行(7372)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('01月17日 08:49:27', 'M月D日 h:i:s'),
+      'channel': '微信[浦发银行-交易]'
     }
   ]));
 
