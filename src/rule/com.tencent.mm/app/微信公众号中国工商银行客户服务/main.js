@@ -1,4 +1,4 @@
-import { BillType, Currency, formatDate, parseWechat, RuleObject, toFloat } from 'common/index.js';
+import { BillType, Currency, formatDate, parseWechat, RuleObject, splitShop, toFloat } from 'common/index.js';
 
 // 定义源名称和需要匹配的标题数组
 const SOURCE = '中国工商银行客户服务';
@@ -83,6 +83,28 @@ const rules = [
         Currency[currency],
         formatDate(time, 'Y年M月D日h:i'),
         `微信[中国工商银行-还款]`
+      );
+    }
+  ],
+  // 账号类型：尾号2262的信用卡\n交易时间：2025年1月18日09:21\n交易类型：退款抖音支付-环胜电子商务（上海）有限…\n交易金额：入账 33.90 人民币元\n账户余额：登录工行手机银行查看详细信息
+  [
+    /账号类型：尾号(\d+)的信用卡\n交易时间：(.*?)\n交易类型：(.*?)\n交易金额：入账 ([\d,]+.\d{2}) (.*?)元\n账户余额：登录工行手机银行查看详细信息/,
+    match => {
+      const [, number, time, _shopName, money, currency] = match;
+
+      let { shopName, shopItem } = splitShop(_shopName);
+
+      return new RuleObject(
+        BillType.Income,
+        toFloat(money),
+        shopName,
+        shopItem,
+        `中国工商银行信用卡(${number})`,
+        '',
+        0.0,
+        Currency[currency],
+        formatDate(time, 'Y年M月D日h:i'),
+        `微信[中国工商银行信用卡-退款]`
       );
     }
   ]

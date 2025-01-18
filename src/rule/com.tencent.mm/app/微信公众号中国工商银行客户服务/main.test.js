@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkioInit, testAnkio } = require('../../../../tests/TestUtils');
 
@@ -57,7 +58,7 @@ test('工商银行出账', () =>
       'fee': 0,
       'shopName': '',
       'shopItem': '充值财付通-微信零钱充值账户',
-      'accountNameFrom': '中国工商银行借记卡(9821)',
+      'accountNameFrom': '��国工商银行借记卡(9821)',
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('2024年9月19日07:56', 'Y年M月D日h:i'),
@@ -78,5 +79,21 @@ test('工商银行信用卡还款', () =>
       'currency': 'CNY',
       'time': formatDate('2024年10月10日23:29', 'Y年M月D日h:i'),
       'channel': '微信[中国工商银行-还款]'
+    }
+  ]));
+
+test('工商银行信用卡退款', () =>
+  testAnkio('工商银行信用卡退款', [
+    {
+      'type': 'Income',
+      'money': 33.9,
+      'fee': 0,
+      'shopName': '退款抖音支付',
+      'shopItem': '环胜电子商务（上海）有限…',
+      'accountNameFrom': '中国工商银行信用卡(2262)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('2025年1月18日09:21', 'Y年M月D日h:i'),
+      'channel': '微信[中国工商银行信用卡-退款]'
     }
   ]));
