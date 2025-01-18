@@ -45,7 +45,8 @@ export function isPaymentType (type, words) {
     '取出',
     '支取',
     '扣款',
-    '购买'
+    '购买',
+    '付款'
   ];
   if (words) {
     _words.push(...words);
