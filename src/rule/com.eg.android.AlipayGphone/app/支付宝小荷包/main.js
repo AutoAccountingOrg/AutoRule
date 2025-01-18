@@ -84,6 +84,22 @@ function handlePayment (pl, t) {
   return obj;
 }
 
+function handleRefund (pl, t) {
+  let obj = new RuleObject(BillType.Income);
+
+  obj.channel = `支付宝[小荷包-退款]`;
+
+  let extras = JSON.parse(pl.extraInfo);
+  obj.money = toFloat(extras.content);
+  obj.shopName = extras.assistMsg1;
+  obj.accountNameFrom = `支付宝小荷包(${extras.assistMsg1})`;
+  obj.shopItem = extras.homePageTitle;
+
+  obj.time = t;
+
+  return obj;
+}
+
 export function get (data) {
   let json = JSON.parse(data)[0];
   let pl = JSON.parse(json.pl);
@@ -102,6 +118,8 @@ export function get (data) {
     return handleAnt(pl, t);
   } else if (pl.templateName.indexOf('动账消费通知') !== -1) {
     return handlePayment(pl, t);
+  } else if (pl.templateName.indexOf('小荷包退款动帐提醒') !== -1) {
+    return handleRefund(pl, t);
   }
 
   return null;
