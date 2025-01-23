@@ -10,6 +10,9 @@ function income (pl, t) {
   obj.accountNameFrom = '支付宝余额';
 
   if (pl.title.indexOf('提现') !== -1) {
+    if (pl.title.indexOf('提现到账成功') === -1) {
+      return null
+    }
     obj.type = BillType.Transfer;
     obj.channel = `支付宝[转账-提现]`;
   } else if (pl.title.indexOf('转账成功') !== -1 || pl.title.indexOf('Transfer successful') !== -1) {
