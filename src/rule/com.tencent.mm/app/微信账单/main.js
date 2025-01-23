@@ -40,11 +40,13 @@ export function get (data) {
           obj.shopName = value;
           break;
         case  '支付方式':
-          obj.accountNameFrom = value;
+        case '当前状态':
+          obj.accountNameFrom = value.replace('已存入', '');
           break;
         case '支付时间':
         case '转账时间':
         case '到账时间':
+        case '收款时间':
           obj.time = convertToNumber(value) * 1000;
           break;
         case '服务费':

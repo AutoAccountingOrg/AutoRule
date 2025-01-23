@@ -1,0 +1,97 @@
+{
+"ret_code": 0,
+"ret_msg": "ok",
+"header": {
+"logo_url": "https://res.wx.qq.com/a/wx_fed/wxpay_common_assets/res/tradingrecord/group_pay-0c5aa53a2a.png",
+"nickname": "群收款-来自李志超",
+"fee": "+24.44"
+},
+"preview": [
+{
+"separate": "solid",
+"value": [],
+"sequence": []
+},
+{
+"label": {
+"name": "当前状态",
+"actionsheet": [],
+"sub_text": []
+},
+"value": [
+{
+"name": "已存入零钱",
+"actionsheet": [],
+"sub_text": []
+}
+],
+"sequence": []
+},
+{
+"label": {
+"name": "收款详情",
+"actionsheet": [],
+"sub_text": []
+},
+"value": [
+{
+"name": "查看",
+"color": "#576B95",
+"event": {
+"name": "openWCPaySpecificView",
+"params": [
+{
+"key": "package",
+"value": "openview=open_wcpay_grouppay_detail&billno=4ecf76d9c32fe046dc054ea156272b02193fb48a9e0e90d4c8eafa69a2add9bfc3ddf0281a28b2964af1dbbdec34927e&groupid=45461524260@chatroom&reason=活动收款&sign=21299f08637190fc8276e192ccfb36bd&ver=1"
+}
+],
+"need_list": []
+},
+"actionsheet": [],
+"sub_text": []
+}
+],
+"sequence": []
+},
+{
+"label": {
+"name": "收款时间",
+"actionsheet": [],
+"sub_text": []
+},
+"value": [
+{
+"name": "1737347613",
+"actionsheet": [],
+"is_timestamp": true,
+"sub_text": []
+}
+],
+"sequence": []
+},
+{
+"label": {
+"name": "交易单号",
+"actionsheet": [],
+"sub_text": []
+},
+"value": [
+{
+"name": "1000049501250120024205144005601667986684",
+"actionsheet": [],
+"sub_text": []
+}
+],
+"sequence": []
+}
+],
+"entrances": [],
+"footer": [],
+"v2flag": 1,
+"scene": 0,
+"banner": {
+"content": ""
+},
+"v3_flag": 1,
+"service_module": []
+}

@@ -39,3 +39,18 @@ test('微信零钱提现', () =>
       'channel': '微信[账单-提现]'
     }
   ]));
+test('微信转账收款', () =>
+  testAnkio('微信转账收款', [
+    {
+      'type': 'Income',
+      'money': 24.44,
+      'fee': 0,
+      'shopName': '群收款',
+      'shopItem': '来自李志超',
+      'accountNameFrom': '零钱',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1737347613000,
+      'channel': '微信[账单-收入]'
+    }
+  ]));
