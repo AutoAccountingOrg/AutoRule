@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -15,6 +16,18 @@ test('支付宝花呗支付', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': 1734576048462,
+      'channel': '支付宝花呗[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 145.75,
+      'fee': 0,
+      'shopName': '支付宝',
+      'shopItem': '你有一笔145.75元的支出，点击领取9个支付宝积分。使用花呗支付，确认收货的订单请及时还款。',
+      'accountNameFrom': '支付宝花呗',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1737578393768,
       'channel': '支付宝花呗[支出]'
     }
   ]));
