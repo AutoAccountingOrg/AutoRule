@@ -26,7 +26,7 @@ let rules = [
     // 您账户1007于01月02日12:07在【财付通-群收款】发生快捷支付扣款，人民币12.00
     /您账户(\d{4})于(.*?)收款人民币([\d,]+.\d{2})/,
     (match, json) => {
-      let [, number, date, currency, money] = match;
+      let [, number, date, money] = match;
 
       let obj = new RuleObject();
 
