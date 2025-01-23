@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -32,6 +33,19 @@ test('工商银行支出', () =>
       'currency': 'CNY',
       'time': formatDate('1月12日15:56', 'M月D日h:i'),
       'channel': '工商银行[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 5,
+      'fee': 0,
+      'shopName': '缴费财付通',
+      'shopItem': '北京科技大学',
+      'accountNameFrom': '工商银行(9301)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('1月18日16:00', 'M月D日h:i'),
+      'channel': '工商银行[支出]'
     }
   ]));
+
 
