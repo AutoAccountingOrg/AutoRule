@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +21,17 @@ test('微信公众号ETC助手', () =>
       'currency': 'CNY',
       'time': formatDate('2024-11-24 19:36:44', 'Y-M-D h:i:s'),
       'channel': '微信[ETC助手]'
+    },
+    {
+      'type': 'Expend',
+      'money': 8.12,
+      'fee': 0,
+      'shopName': '沪AAM9312',
+      'shopItem': '上海华新站驶入-上海绿地大道站驶出',
+      'accountNameFrom': '',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('2025-01-21 21:20:41', 'Y-M-D h:i:s'),
+      'channel': '微信[ETC助手]'
     }
-
   ]));
