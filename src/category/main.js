@@ -1,7 +1,8 @@
 import { BillType, isTimeInRange } from 'common/index.js';
 
-export function get (money, type, shopName, shopItem, time) {
-  let string = `${shopName}_${shopItem}`;
+export function get (money, type, shopName, shopItem, time, _ruleName) {
+  let ruleName = _ruleName || '';
+  let string = `${shopName}_${shopItem}_${ruleName}`;
 
   const publicRule = {
     '快赎理财': /(余[额利]宝)|朝朝宝|活期\+/,
