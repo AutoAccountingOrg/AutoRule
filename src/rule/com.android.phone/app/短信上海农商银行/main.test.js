@@ -32,5 +32,18 @@ test('上海农商银行收入', () =>
       'currency': 'CNY',
       'time': formatDate('1月2日10:57', 'M月D日h:i'),
       'channel': '上海农商银行[收入]'
+    },
+    {
+      'type': 'Income',
+      'money': 1100,
+      'fee': 0,
+      'shopName': '张秦',
+      'shopItem': '汇款',
+      'accountNameFrom': '上海农商银行(8162)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('1月20日21:29', 'M月D日h:i'),
+      'channel': '上海农商银行[收入]'
     }
   ]));
+

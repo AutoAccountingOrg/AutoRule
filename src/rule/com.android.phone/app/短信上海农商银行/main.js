@@ -42,6 +42,24 @@ const rules = [
       obj.shopName = payer;
       return obj;
     }
+  ],
+  [
+    //您账户8162于1月20日21:29转入人民币1100.00元(事由：汇款)，付款方：张秦，交易后余额为20098.74元。【上海农商银行】
+    /您账户(\d{4})于(\d+月\d+日\d+:\d+)转入人民币(.*?)元\(事由：(.*?)\)，付款方：(.*?)，交易后余额为(.*?)元。/,
+    match => {
+      let [, number, date, money, reason, payer] = match;
+
+      let obj = new RuleObject();
+
+      obj.money = toFloat(money);
+      obj.channel = `${senderName}[收入]`;
+      obj.shopItem = reason;
+      obj.time = formatDate(date, 'M月D日h:i');
+      obj.type = 'Income';
+      obj.accountNameFrom = `${senderName}(${number})`;
+      obj.shopName = payer;
+      return obj;
+    }
   ]
 ];
 
