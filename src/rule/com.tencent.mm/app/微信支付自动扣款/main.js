@@ -29,8 +29,27 @@ const rules = [
     }
   ],
   [
+    //扣费金额￥19.59\n扣费项目微信支付高速通行费\n车牌号码鄂A******\n驶入时间2025-01-18\n通行详情湖北华容站-湖北黄冈站\n扣费方式招商银行\n收单机构财付通支付科技有限公司\n备注如果对扣费有疑问，请联系商家确认。电话：010-87508050。
+    /扣费金额￥(\d+\.\d{2})\n扣费项目(.*?)\n车牌号码(.*?)\n驶入时间(.*?)\n通行详情(.*?)\n扣费方式(.*?)\n/,
+    (match, t, item) => {
+      const [, money, shopName, carNumber, time, route, accountNameFrom] = match;
+      return new RuleObject(
+        BillType.Expend,
+        toFloat(money),
+        shopName,
+        `${route}(${carNumber})`,
+        accountNameFrom,
+        '',
+        0.0,
+        Currency['人民币'],
+        t,
+        '微信[微信支付-自动扣费]'
+      );
+    }
+  ],
+  [
     // 扣费金额￥22.00\n扣费项目上海交通大学免密支付\n扣费方式零钱通\n收单机构财付通支付科技有限公司\n消费场所闵行四餐食尚卤\n消费时间2024-12-10 17:18:24\n备注你在上海交通大学的账号124039910024扣费成功，你可以点击消息管理你的扣费项目
-
+//
     /扣费金额￥(.*?)\n扣费项目(.*?)\n扣费方式(.*?)\n收单机构(.*?)\n消费场所(.*?)\n消费时间(.*?)\n备注(.*?)，你可以点击消息管理你的扣费项目/,
     (match, t, item) => {
       const [, money, shopName, accountNameFrom, , shopItem, time] = match;

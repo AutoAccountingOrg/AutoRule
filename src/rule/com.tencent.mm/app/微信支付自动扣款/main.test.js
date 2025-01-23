@@ -138,5 +138,17 @@ test('微信支付自动扣费', () =>
       'currency': 'CNY',
       'time': 1733822307961,
       'channel': '微信[微信支付-自动扣费]'
+    },
+    {
+      'type': 'Expend',
+      'money': 19.59,
+      'fee': 0,
+      'shopName': '微信支付高速通行费',
+      'shopItem': '湖北华容站-湖北黄冈站(鄂A******)',
+      'accountNameFrom': '招商银行',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1737238869371,
+      'channel': '微信[微信支付-自动扣费]'
     }
   ]));
