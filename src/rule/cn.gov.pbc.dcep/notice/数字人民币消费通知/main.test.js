@@ -1,3 +1,4 @@
+
 const { get } = require('./main');
 const { testAnkio, testAnkioInit } = require('../../../../tests/TestUtils');
 const { formatDate } = require('common/Time.js');
@@ -15,6 +16,18 @@ test('数字人民币消费', () =>
       'accountNameTo': '',
       'currency': 'CNY',
       'time': 1733144040523,
+      'channel': '数字人民币[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 450.9,
+      'fee': 0,
+      'shopName': '淘宝（支付宝服务商户）',
+      'shopItem': '',
+      'accountNameFrom': '数字人民币(数字钱包3583)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1737389501459,
       'channel': '数字人民币[支出]'
     }
   ]));
