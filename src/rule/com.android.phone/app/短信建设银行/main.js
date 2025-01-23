@@ -1,4 +1,4 @@
-import { BillType, formatDate, RuleObject, splitSms, toFloat, transferCurrency } from 'common/index.js';
+import { BillType, formatDate, RuleObject, splitShop, splitSms, toFloat, transferCurrency } from 'common/index.js';
 
 // 正则表达式和处理函数的映射关系
 const rules = [
@@ -65,7 +65,8 @@ const rules = [
     }
   ],
   [
-    // 【建设银行】您尾号1546账户12月21日7时14分支出人民币30元,可用余额230.53元。附言：账户1546包年短信服务费。
+    // 您尾号1546账户12月21日7时14分支出人民币30元,可用余额230.53元。附言：账户1546包年短信服务费。
+    // 您账户4867于1月21日10时27分向美团支付-美团App老山东招牌炒鸡*支出人民币24.15元,可用余额10299.95元。
     /您尾号(\d{4})账户(\d{2}月\d{2}日\d{1,2}时\d{1,2}分)支出人民币(.*?)元,可用余额(.*?)元。附言：(.*?)。/,
     (match, t) => {
       let [, number, date, money, , shopItm] = match;
@@ -75,6 +76,28 @@ const rules = [
       obj.money = toFloat(money);
       obj.channel = `建设银行[支出]`;
       obj.shopItem = shopItm;
+      obj.time = t;
+
+      obj.type = BillType.Expend;
+      obj.accountNameFrom = `建设银行(${number})`;
+      return obj;
+    }
+  ],
+  [
+    // 您尾号1546账户12月21日7时14分支出人民币30元,可用余额230.53元。附言：账户1546包年短信服务费。
+    // 您账户4867于1月21日10时27分向美团支付-美团App老山东招牌炒鸡*支出人民币24.15元,可用余额10299.95元。
+    /您账户(\d+)于(.*?)向(.*?)支出人民币(.*?)元,可用余额(.*?)元。/,
+    (match, t) => {
+      let [, number, date, _shopItem, money] = match;
+
+      let obj = new RuleObject();
+
+      let { shopName, shopItem } = splitShop(_shopItem);
+
+      obj.money = toFloat(money);
+      obj.channel = `建设银行[支出]`;
+      obj.shopName = shopName;
+      obj.shopItem = shopItem;
       obj.time = t;
 
       obj.type = BillType.Expend;

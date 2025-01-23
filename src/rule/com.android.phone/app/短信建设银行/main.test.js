@@ -77,5 +77,17 @@ test('建设银行支出', () =>
       'currency': 'CNY',
       'time': 1734739538228,
       'channel': '建设银行[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 24.15,
+      'fee': 0,
+      'shopName': '美团支付',
+      'shopItem': '美团App老山东招牌炒鸡*',
+      'accountNameFrom': '建设银行(4867)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': 1737426473689,
+      'channel': '建设银行[支出]'
     }
   ]));
