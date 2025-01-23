@@ -6,5 +6,6 @@ const type = window.type || BillType.Expend;
 const shopName = window.shopName || '';
 const shopItem = window.shopItem || '';
 const time = window.time || '00:00';
+const ruleName = window.ruleName || '';
 
-print(JSON.stringify(get(money, type, shopName, shopItem, time)));
+print(JSON.stringify(get(money, type, shopName, shopItem, time, ruleName)));
