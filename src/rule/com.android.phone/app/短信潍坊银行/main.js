@@ -1,4 +1,4 @@
-import { formatDate, RuleObject, splitSms, toFloat } from 'common/index.js';
+import { formatDate, isPaymentType, RuleObject, splitSms, toFloat } from 'common/index.js';
 
 let senderName = '潍坊银行';
 
@@ -6,21 +6,25 @@ let senderName = '潍坊银行';
 const rules = [
   [
     //【潍坊银行】您尾号754的账户在01月25日10:31支取人民币2000.00。余额1968.17（本机构已参加存款保险）
-    /您尾号(\d{3})的账户在(\d+月\d+日\d+:\d+)支取人民币(.*?)。余额/,
+    /您尾号(\d{3})的账户在(\d+月\d+日\d+:\d+)(.*?)人民币(.*?)。余额/,
     match => {
-      let [, number, date, money, balance] = match;
+      let [, number, date, type, money, balance] = match;
+
+      let { matchType, typeName } = isPaymentType(type);
 
       let obj = new RuleObject();
 
+      obj.type = matchType;
       obj.money = toFloat(money);
-      obj.channel = `${senderName}[支出]`;
-      obj.shopItem = '支取';
+      obj.channel = `${senderName}[${typeName}]`;
+      obj.shopItem = type;
       obj.time = formatDate(date, 'M月D日h:i');
-      obj.type = 'Expend';
+
       obj.accountNameFrom = `${senderName}(${number})`;
       return obj;
     }
-  ]
+  ],
+
 ];
 
 /**
