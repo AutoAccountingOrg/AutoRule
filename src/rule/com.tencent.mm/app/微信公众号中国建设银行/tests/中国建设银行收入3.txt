@@ -1,0 +1,1 @@
+{"mMap":{"tableName":"AppMessage","description":"交易时间：2025年1月26日 09:20:08\n交易类型：收入（尾号5459理财卡）\n交易金额：2960.53（人民币）","source":"中国建设银行","t":1737854498522,"arg":"msgId","type":5,"appId":"","msgId":10042054,"title":"交易提醒"}}

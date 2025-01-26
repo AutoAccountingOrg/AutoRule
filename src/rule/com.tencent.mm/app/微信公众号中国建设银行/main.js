@@ -7,15 +7,16 @@ const TITLE = ['交易提醒', '交易结果通知', '实时交易提醒'];
 // 正则表达式和处理函数的映射关系
 const rules = [
   [
-    /交易时间：(.*?)\n交易类型：(收入|支出)（尾号(\d+)储蓄卡）\n交易金额：(.*?)（(.*?)）/,
+    //交易时间：2025年1月26日 09:20:08\n交易类型：收入（尾号5459理财卡）\n交易金额：2960.53（人民币）
+    /交易时间：(.*?)\n交易类型：(收入|支出)（尾号(\d+)(.*?)）\n交易金额：(.*?)（(.*?)）/,
     match => {
-      let [, time, type, number, money, currency] = match;
+      let [, time, type, number, card, money, currency] = match;
       return new RuleObject(
         type === '支出' ? BillType.Expend : BillType.Income,
         toFloat(money),
         '',
         '',
-        `${SOURCE}储蓄卡(${number})`,
+        `${SOURCE}${card}(${number})`,
         '',
         0.0,
         Currency[currency],
@@ -66,6 +67,7 @@ const rules = [
   ],
 
   [
+    //交易时间：2025年1月26日 09:20:08\n交易类型：收入（尾号5459理财卡）\n交易金额：2960.53（人民币）
     //交易时间：10月1日 15时51分\n交易类型：信用卡一键还款\n交易金额：4659.66（人民币）
     /交易时间：(.*?)\n交易类型：(.*?)\n交易金额：(.*?)（(.*?)）/,
     match => {
