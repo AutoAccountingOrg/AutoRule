@@ -5,9 +5,10 @@ const rules = [
   [
     //24年10月09日15:54您尾号097账户快捷支付，支出金额680.00元，余额155.70元。
     //25年01月16日16:50您尾号800账户快捷支付，支出金额1.00元，余额123.63元
-    /(.*?)您尾号(\d{3})账户快捷支付，支出金额(.*?)元，余额(.*?)元/,
+    //25年01月26日11:23您尾号800账户银联快捷，支出金额825.21元，余额185.70元
+    /(.*?)您尾号(\d{3})账户(.*?)，支出金额(.*?)元，余额(.*?)元/,
     match => {
-      let [, date, number, money] = match;
+      let [, date, number, type, money] = match;
 
       let obj = new RuleObject();
 
@@ -15,6 +16,7 @@ const rules = [
       obj.channel = `邮储银行[消费]`;
       obj.currency = Currency['人民币'];
       obj.time = formatDate(date, 'Y年M月D日h:i');
+      obj.shopItem = type;
       obj.type = BillType.Expend;
 
       obj.accountNameFrom = `邮储银行(${number})`;

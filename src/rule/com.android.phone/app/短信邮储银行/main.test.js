@@ -10,7 +10,7 @@ test('邮储银行支出', () =>
       'money': 680,
       'fee': 0,
       'shopName': '',
-      'shopItem': '',
+      'shopItem': '快捷支付',
       'accountNameFrom': '邮储银行(097)',
       'accountNameTo': '',
       'currency': 'CNY',
@@ -22,11 +22,23 @@ test('邮储银行支出', () =>
       'money': 1,
       'fee': 0,
       'shopName': '',
-      'shopItem': '',
+      'shopItem': '快捷支付',
       'accountNameFrom': '邮储银行(800)',
       'accountNameTo': '',
       'currency': 'CNY',
       'time': formatDate('2025年01月16日16:50', 'Y年M月D日h:i'),
+      'channel': '邮储银行[消费]'
+    },
+    {
+      'type': 'Expend',
+      'money': 825.21,
+      'fee': 0,
+      'shopName': '',
+      'shopItem': '银联快捷',
+      'accountNameFrom': '邮储银行(800)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('25年01月26日11:23', 'Y年M月D日h:i'),
       'channel': '邮储银行[消费]'
     }
 
