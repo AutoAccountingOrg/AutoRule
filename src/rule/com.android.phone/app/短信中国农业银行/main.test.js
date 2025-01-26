@@ -54,6 +54,18 @@ test('中国农业银行支出', () =>
       'currency': 'CNY',
       'time': formatDate('11月18日13时03分', 'M月D日h时i分'),
       'channel': '中国农业银行[支出]'
+    },
+    {
+      'type': 'Expend',
+      'money': 504.2,
+      'fee': 0,
+      'shopName': '财付通',
+      'shopItem': '微信支付大商鲜生（长兴岛）',
+      'accountNameFrom': '中国农业银行(8172)',
+      'accountNameTo': '',
+      'currency': 'CNY',
+      'time': formatDate('01月24日16:47', 'M月D日h:i'),
+      'channel': '中国农业银行[支出]'
     }
   ]));
 

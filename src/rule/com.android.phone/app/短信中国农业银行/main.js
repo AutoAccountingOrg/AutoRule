@@ -1,4 +1,4 @@
-import { formatDate, isPaymentType, RuleObject, splitSms, toFloat } from 'common/index.js';
+import { BillType, formatDate, isPaymentType, RuleObject, splitSms, toFloat } from 'common/index.js';
 
 let senderName = '中国农业银行';
 
@@ -21,12 +21,17 @@ const rules = [
     }
   ],
   [
+    //您尾号8172账户01月24日16:47向微信支付大商鲜生（长兴岛）完成财付通交易人民币-504.20，余额577.60。
     /您尾号(\d{4})账户(.*?)向(.*?)完成(.*?)交易人民币([-\d,]+(.\d{2})?)，余额([\d,]+(.\d{2})?)。/,
     match => {
       let [, number, date, shopItem, shopName, money] = match;
       let obj = new RuleObject();
 
       let { matchType, typeName } = isPaymentType(shopName);
+      if (money.indexOf('-') !== -1) {
+        matchType = BillType.Expend;
+        typeName = '支出';
+      }
 
       obj.money = toFloat(money);
       obj.channel = `${senderName}[${typeName}]`;
